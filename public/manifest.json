@@ -1,0 +1,16 @@
+{
+  "name": "QR Designer",
+  "short_name": "QR Designer",
+  "description": "Créez des QR codes personnalisés et professionnels en quelques secondes",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3b82f6",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
