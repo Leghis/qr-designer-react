@@ -1,15 +1,36 @@
-import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Crown, Star } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { QrCode, Crown, Star, User, LogOut, LogIn } from 'lucide-react';
 import { useSubscription } from '../../hooks/useSubscription.jsx';
+import { useAuth } from '../../context/AuthContext';
 import { motion } from 'framer-motion';
 import Badge from '../UI/Badge';
 import ThemeToggle from '../UI/ThemeToggle';
+import Modal from '../UI/Modal';
+import Button from '../UI/Button';
 
 const Header = () => {
   const { isPremium, plan } = useSubscription();
+  const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const isActive = (path) => location.pathname === path;
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    logout();
+    setShowLogoutModal(false);
+    navigate('/');
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50">
@@ -91,10 +112,68 @@ const Header = () => {
               <span>Premium</span>
             </Link>
             
-            <ThemeToggle />
+            {/* Authentication Section */}
+            <div className="flex items-center space-x-3">
+              {isAuthenticated && user ? (
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-dark-800 rounded-lg">
+                    <User className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {user.name}
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleLogoutClick}
+                    className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                    title="Se déconnecter"
+                  >
+                    <LogOut className="w-5 h-5" />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex items-center space-x-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-all transform hover:scale-105"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span>Connexion</span>
+                </Link>
+              )}
+              
+              <ThemeToggle />
+            </div>
           </motion.div>
         </div>
       </nav>
+      
+      {/* Logout Confirmation Modal */}
+      <Modal
+        isOpen={showLogoutModal}
+        onClose={handleLogoutCancel}
+        title="Confirmation de déconnexion"
+        footer={
+          <>
+            <Button
+              variant="secondary"
+              onClick={handleLogoutCancel}
+            >
+              Annuler
+            </Button>
+            <Button
+              variant="danger"
+              onClick={handleLogoutConfirm}
+              className="flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Se déconnecter
+            </Button>
+          </>
+        }
+      >
+        <p className="text-gray-600 dark:text-gray-300">
+          Êtes-vous sûr de vouloir vous déconnecter ?
+        </p>
+      </Modal>
     </header>
   );
 };
