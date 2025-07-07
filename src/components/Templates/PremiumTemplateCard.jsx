@@ -27,13 +27,14 @@ const PremiumTemplateCard = ({ template }) => {
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    const element = cardRef.current;
+    if (element) {
+      observer.observe(element);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (element) {
+        observer.unobserve(element);
       }
     };
   }, [qrGenerated]);

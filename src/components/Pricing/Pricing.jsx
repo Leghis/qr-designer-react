@@ -34,7 +34,7 @@ const plans = [
       '40+ templates premium'
     ],
     buttonText: 'Essai gratuit 7 jours',
-    buttonStyle: 'bg-white text-primary-600 hover:bg-gray-100',
+    buttonStyle: 'bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700',
     popular: true,
     cardStyle: 'bg-gradient-to-br from-primary-500 to-purple-600 text-white transform scale-105 shadow-2xl'
   },

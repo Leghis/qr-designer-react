@@ -62,7 +62,7 @@ const Testimonials = () => {
                 <div className={`w-10 h-10 bg-gradient-to-br ${testimonial.avatar} rounded-full`}></div>
                 <div>
                   <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

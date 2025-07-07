@@ -130,13 +130,13 @@ const PremiumPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#pricing"
-              className="px-8 py-3 bg-white text-primary-600 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+              className="px-8 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg font-medium transition-colors"
             >
               Voir les tarifs
             </a>
             <a
               href="/"
-              className="px-8 py-3 border-2 border-white text-white hover:bg-white hover:text-primary-600 rounded-lg font-medium transition-colors"
+              className="px-8 py-3 border-2 border-white dark:border-gray-300 text-white dark:text-gray-100 hover:bg-white dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-white rounded-lg font-medium transition-colors"
             >
               Essayer gratuitement
             </a>

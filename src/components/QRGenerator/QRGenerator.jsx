@@ -125,7 +125,7 @@ const QRGenerator = () => {
     try {
       await qrService.downloadQR(format, 'qr-designer');
       showNotification(`QR code téléchargé en ${format.toUpperCase()}`, 'success');
-    } catch (error) {
+    } catch (err) {
       showNotification('Erreur lors du téléchargement', 'error');
     }
   };

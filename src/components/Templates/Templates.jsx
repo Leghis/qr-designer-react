@@ -38,7 +38,7 @@ const templates = [
 ];
 
 const Templates = () => {
-  const handleTemplateClick = (templateId) => {
+  const handleTemplateClick = () => {
     // Scroll to generator and apply template
     document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });
     // TODO: Apply template to generator

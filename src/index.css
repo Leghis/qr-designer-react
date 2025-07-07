@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
 
+/* Enable dark mode variants in Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
 /* Tailwind CSS v4 Custom Theme */
 @theme {
   --color-primary-50: #f0f9ff;
@@ -27,6 +30,16 @@
 * {
   scroll-behavior: smooth;
 }
+
+/* Base styles for body and html */
+html, body {
+  @apply bg-white text-gray-900 transition-colors duration-300;
+}
+
+html.dark, html.dark body {
+  @apply bg-dark-900 text-gray-100;
+}
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -137,6 +150,51 @@
 .template-card:hover {
   @apply -translate-y-1 shadow-xl;
 }
+
+/* Theme toggle animations */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--tw-gradient-from) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.theme-toggle:active::before {
+  opacity: 0.3;
+  transform: scale(2);
+}
+
+/* Dark mode specific enhancements */
+.dark .theme-toggle::before {
+  --tw-gradient-from: #60a5fa;
+}
+
+.light .theme-toggle::before {
+  --tw-gradient-from: #fbbf24;
+}
+
+/* Icon rotation animation */
+@keyframes iconRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.theme-icon-enter {
+  animation: iconRotate 0.5s ease-in-out;
+}
+
 
 /* Notification animations */
 @keyframes slideInRight {

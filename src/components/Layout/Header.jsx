@@ -1,12 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Sun, Moon, Crown, Star } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
+import { QrCode, Crown, Star } from 'lucide-react';
 import { useSubscription } from '../../hooks/useSubscription.jsx';
 import { motion } from 'framer-motion';
 import Badge from '../UI/Badge';
+import ThemeToggle from '../UI/ThemeToggle';
 
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
   const { isPremium, plan } = useSubscription();
   const location = useLocation();
 
@@ -92,17 +91,7 @@ const Header = () => {
               <span>Premium</span>
             </Link>
             
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
+            <ThemeToggle />
           </motion.div>
         </div>
       </nav>

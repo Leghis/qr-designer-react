@@ -180,7 +180,7 @@ const DemoPage = () => {
                     <h3 className={`font-semibold text-center ${
                       currentStep >= index 
                         ? 'text-gray-900 dark:text-white' 
-                        : 'text-gray-500 dark:text-gray-500'
+                        : 'text-gray-500 dark:text-gray-400'
                     }`}>
                       {step.title}
                     </h3>
@@ -235,13 +235,13 @@ const DemoPage = () => {
                 <div className="flex gap-4 justify-center">
                   <a
                     href="/"
-                    className="px-6 py-3 bg-white text-primary-600 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                    className="px-6 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-white rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     Créer mon QR code
                   </a>
                   <button
                     onClick={startDemo}
-                    className="px-6 py-3 bg-transparent border-2 border-white rounded-lg font-medium hover:bg-white hover:text-primary-600 transition-colors"
+                    className="px-6 py-3 bg-transparent border-2 border-white dark:border-gray-300 rounded-lg font-medium hover:bg-white dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-white transition-colors"
                   >
                     Revoir la démo
                   </button>
