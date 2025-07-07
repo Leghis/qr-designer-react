@@ -7,9 +7,12 @@ import TemplateSelector from './TemplateSelector';
 import QRControls from './QRControls';
 import { useNotification } from '../../context/NotificationContext';
 import { useDebounce } from '../../hooks/useDebounce';
+import historyService from '../../services/historyService';
+import { useAuth } from '../../context/AuthContext';
 
 const QRGenerator = () => {
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
   const [qrData, setQrData] = useState(defaultQROptions.data);
   const [qrOptions, setQrOptions] = useState({
     dotsColor: defaultQROptions.dotsOptions.color,
@@ -19,6 +22,7 @@ const QRGenerator = () => {
     cornersType: defaultQROptions.cornersSquareOptions.type
   });
   const [isGenerating, setIsGenerating] = useState(false);
+  const [currentTemplate, setCurrentTemplate] = useState('default');
   
   const qrContainerRef = useRef(null);
   const qrCodeRef = useRef(null);
@@ -60,13 +64,23 @@ const QRGenerator = () => {
       qrCodeRef.current = qrService.generateQRCode(options);
       qrCodeRef.current.append(qrContainerRef.current);
       
+      // Save to history if user is authenticated
+      if (isAuthenticated && debouncedQrData) {
+        historyService.addQRCode({
+          data: debouncedQrData,
+          template: currentTemplate,
+          options: qrOptions,
+          type: 'text' // Could be enhanced to detect URL, email, etc.
+        });
+      }
+      
     } catch (error) {
       console.error('Error generating QR code:', error);
       showNotification('Erreur lors de la génération du QR code', 'error');
     } finally {
       setIsGenerating(false);
     }
-  }, [debouncedQrData, qrOptions, isGenerating, showNotification]);
+  }, [debouncedQrData, qrOptions, isGenerating, showNotification, isAuthenticated, currentTemplate]);
 
   // Generate QR on mount and when options change
   useEffect(() => {
@@ -87,7 +101,9 @@ const QRGenerator = () => {
   }, [location.state, showNotification]);
 
   // Handle template selection
-  const handleTemplateSelect = (templateOptions) => {
+  const handleTemplateSelect = (templateOptions, templateName = 'default') => {
+    setCurrentTemplate(templateName);
+    
     // For complex templates with gradients, we need to apply the full options
     if (templateOptions.dotsOptions?.gradient || 
         templateOptions.backgroundOptions?.gradient ||

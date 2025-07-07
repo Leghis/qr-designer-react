@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext';
 import { SubscriptionProvider } from './hooks/useSubscription.jsx';
 import Layout from './components/Layout/Layout';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -13,6 +14,7 @@ const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const PremiumPage = lazy(() => import('./pages/PremiumPage'));
 const DemoPage = lazy(() => import('./pages/DemoPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 
 // Loading component
 const PageLoader = () => (
@@ -58,6 +60,13 @@ function App() {
                       <Suspense fallback={<PageLoader />}>
                         <LoginPage />
                       </Suspense>
+                    } />
+                    <Route path="dashboard" element={
+                      <ProtectedRoute>
+                        <Suspense fallback={<PageLoader />}>
+                          <DashboardPage />
+                        </Suspense>
+                      </ProtectedRoute>
                     } />
                   </Route>
                 </Routes>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { cn } from '../../utils/cn';
@@ -53,7 +54,7 @@ const Modal = ({
     full: 'max-w-7xl'
   };
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <>
@@ -63,23 +64,27 @@ const Modal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
             onClick={handleOverlayClick}
           >
             {/* Modal */}
             <div className="min-h-screen flex items-center justify-center p-4">
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 className={cn(
-                  "w-full bg-white dark:bg-dark-900 rounded-2xl shadow-2xl",
+                  "relative w-full bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden",
+                  "border border-gray-200/50 dark:border-gray-700/50",
                   sizes[size],
                   className
                 )}
                 onClick={(e) => e.stopPropagation()}
               >
+                {/* Gradient decoration */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-purple-500"></div>
+                
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -88,7 +93,7 @@ const Modal = ({
                   {showCloseButton && (
                     <button
                       onClick={onClose}
-                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors"
+                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-all hover:rotate-90 duration-300"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -102,7 +107,7 @@ const Modal = ({
 
                 {/* Footer */}
                 {footer && (
-                  <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
+                  <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-dark-800/50">
                     {footer}
                   </div>
                 )}
@@ -113,6 +118,13 @@ const Modal = ({
       )}
     </AnimatePresence>
   );
+
+  // Use portal to render modal at root level
+  if (typeof document !== 'undefined') {
+    return ReactDOM.createPortal(modalContent, document.body);
+  }
+
+  return null;
 };
 
 export default Modal;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { QrCode, Crown, Star, User, LogOut, LogIn } from 'lucide-react';
+import { QrCode, Crown, Star, User, LogOut, LogIn, LayoutDashboard } from 'lucide-react';
 import { useSubscription } from '../../hooks/useSubscription.jsx';
 import { useAuth } from '../../context/AuthContext';
 import { motion } from 'framer-motion';
@@ -102,6 +102,19 @@ const Header = () => {
               >
                 Démo
               </Link>
+              {isAuthenticated && (
+                <Link
+                  to="/dashboard"
+                  className={`font-medium transition-colors flex items-center gap-1 ${
+                    isActive('/dashboard') 
+                      ? 'text-primary-600 dark:text-primary-400' 
+                      : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                  }`}
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Link>
+              )}
             </nav>
             
             <Link
@@ -150,29 +163,77 @@ const Header = () => {
       <Modal
         isOpen={showLogoutModal}
         onClose={handleLogoutCancel}
-        title="Confirmation de déconnexion"
+        title=""
+        showCloseButton={false}
+        size="sm"
         footer={
-          <>
+          <div className="flex gap-3 w-full">
             <Button
-              variant="secondary"
+              variant="ghost"
               onClick={handleLogoutCancel}
+              className="flex-1"
             >
-              Annuler
+              Rester connecté
             </Button>
             <Button
-              variant="danger"
+              variant="primary"
               onClick={handleLogoutConfirm}
-              className="flex items-center gap-2"
+              className="flex-1 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-4 h-4 mr-2" />
               Se déconnecter
             </Button>
-          </>
+          </div>
         }
       >
-        <p className="text-gray-600 dark:text-gray-300">
-          Êtes-vous sûr de vouloir vous déconnecter ?
-        </p>
+        <div className="text-center">
+          {/* Animated logout icon */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 260,
+              damping: 20 
+            }}
+            className="inline-flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-full"
+          >
+            <motion.div
+              animate={{ 
+                rotate: [0, -10, 10, -10, 0],
+              }}
+              transition={{ 
+                duration: 0.5,
+                delay: 0.3,
+                ease: "easeInOut"
+              }}
+            >
+              <LogOut className="w-10 h-10 text-red-500 dark:text-red-400" />
+            </motion.div>
+          </motion.div>
+
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            Déconnexion
+          </h3>
+          
+          {user && (
+            <div className="mb-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Connecté en tant que
+              </p>
+              <p className="font-medium text-gray-700 dark:text-gray-300">
+                {user.email}
+              </p>
+            </div>
+          )}
+          
+          <p className="text-gray-600 dark:text-gray-300 mb-2">
+            Êtes-vous sûr de vouloir vous déconnecter ?
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Vous pourrez vous reconnecter à tout moment.
+          </p>
+        </div>
       </Modal>
     </header>
   );
