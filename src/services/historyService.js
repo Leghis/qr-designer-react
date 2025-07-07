@@ -28,6 +28,10 @@ class HistoryService {
     const qrEntry = {
       id: Date.now().toString(),
       ...qrData,
+      type: qrData.type || 'url',
+      name: qrData.name || null,
+      scans: 0,
+      isDynamic: qrData.isDynamic || false,
       createdAt: new Date().toISOString(),
       lastUsed: new Date().toISOString(),
       usageCount: 1

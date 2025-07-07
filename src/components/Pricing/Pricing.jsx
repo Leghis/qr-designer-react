@@ -11,11 +11,12 @@ const plans = [
     price: '0€',
     period: 'Pour toujours',
     features: [
-      '10 QR codes par jour',
-      'Personnalisation basique',
-      'Export PNG & SVG',
-      'QR codes statiques',
-      '6 templates gratuits'
+      '10 QR codes statiques/mois',
+      'Types basiques (URL, Texte, Email)',
+      'Export PNG & SVG standard',
+      'Analytics de base (nombre de scans)',
+      'Support par email',
+      'Historique 30 jours'
     ],
     buttonText: 'Commencer gratuitement',
     buttonStyle: 'border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary-500',
@@ -28,10 +29,13 @@ const plans = [
     period: 'par mois',
     features: [
       'QR codes illimités',
-      'QR codes dynamiques',
-      'Analytics avancées',
-      'Logo personnalisé',
-      '40+ templates premium'
+      'QR codes dynamiques modifiables',
+      'Tous les types de QR (Menu, vCard, Paiement...)',
+      'Analytics complets (localisation, appareil)',
+      'Personnalisation avancée & logo',
+      'Export haute résolution',
+      'Historique illimité',
+      'Support prioritaire'
     ],
     buttonText: 'Essai gratuit 7 jours',
     buttonStyle: 'bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-700',
@@ -45,10 +49,13 @@ const plans = [
     period: 'par mois',
     features: [
       'Tout du plan Premium',
+      'Multi-utilisateurs (5 comptes)',
+      'Dossiers & projets illimités',
+      'Marque blanche disponible',
       'API complète',
-      'Équipe collaborative',
+      'Analytics avancés & rapports',
       'Génération en masse',
-      'Support prioritaire'
+      'Support dédié & formation'
     ],
     buttonText: 'Nous contacter',
     buttonStyle: 'border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary-500',

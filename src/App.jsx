@@ -14,7 +14,13 @@ const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const PremiumPage = lazy(() => import('./pages/PremiumPage'));
 const DemoPage = lazy(() => import('./pages/DemoPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+
+// Dashboard pages
+const DashboardLayout = lazy(() => import('./components/Dashboard/DashboardLayout'));
+const DashboardOverview = lazy(() => import('./pages/Dashboard/DashboardOverview'));
+const MyQRCodes = lazy(() => import('./pages/Dashboard/MyQRCodes'));
+const CreateQRCode = lazy(() => import('./pages/Dashboard/CreateQRCode'));
+const QRCodeDetail = lazy(() => import('./pages/Dashboard/QRCodeDetail'));
 
 // Loading component
 const PageLoader = () => (
@@ -61,13 +67,37 @@ function App() {
                         <LoginPage />
                       </Suspense>
                     } />
-                    <Route path="dashboard" element={
-                      <ProtectedRoute>
+                    <Route 
+                      path="dashboard" 
+                      element={
+                        <ProtectedRoute>
+                          <Suspense fallback={<PageLoader />}>
+                            <DashboardLayout />
+                          </Suspense>
+                        </ProtectedRoute>
+                      }
+                    >
+                      <Route index element={
                         <Suspense fallback={<PageLoader />}>
-                          <DashboardPage />
+                          <DashboardOverview />
                         </Suspense>
-                      </ProtectedRoute>
-                    } />
+                      } />
+                      <Route path="qr-codes" element={
+                        <Suspense fallback={<PageLoader />}>
+                          <MyQRCodes />
+                        </Suspense>
+                      } />
+                      <Route path="qr-codes/new" element={
+                        <Suspense fallback={<PageLoader />}>
+                          <CreateQRCode />
+                        </Suspense>
+                      } />
+                      <Route path="qr-codes/:id" element={
+                        <Suspense fallback={<PageLoader />}>
+                          <QRCodeDetail />
+                        </Suspense>
+                      } />
+                    </Route>
                   </Route>
                 </Routes>
               </Router>
