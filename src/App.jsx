@@ -7,6 +7,7 @@ import { SubscriptionProvider } from './hooks/useSubscription.jsx';
 import Layout from './components/Layout/Layout';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -40,6 +41,7 @@ function App() {
           <SubscriptionProvider>
             <NotificationProvider>
               <Router>
+                <ScrollToTop />
                 <Routes>
                   <Route path="/" element={<Layout />}>
                     <Route index element={

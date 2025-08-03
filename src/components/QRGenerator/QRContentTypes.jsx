@@ -10,7 +10,13 @@ import {
   MessageSquare,
   CreditCard,
   Music,
-  Bitcoin
+  Bitcoin,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Youtube,
+  Twitter,
+  Coins
 } from 'lucide-react';
 
 // Types de contenu QR disponibles
@@ -117,6 +123,62 @@ export const QR_CONTENT_TYPES = [
     fields: ['spotifyUri'],
     example: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
     validator: (data) => data.spotifyUri && data.spotifyUri.startsWith('spotify:')
+  },
+  {
+    id: 'whatsapp',
+    name: 'WhatsApp',
+    icon: MessageSquare,
+    fields: ['phone', 'message'],
+    example: 'https://wa.me/33123456789?text=Hello',
+    validator: (data) => data.phone && /^[\d\s\+\-\(\)]+$/.test(data.phone)
+  },
+  {
+    id: 'linkedin',
+    name: 'LinkedIn',
+    icon: Linkedin,
+    fields: ['profileUrl'],
+    example: 'https://linkedin.com/in/username',
+    validator: (data) => data.profileUrl && data.profileUrl.includes('linkedin.com')
+  },
+  {
+    id: 'instagram',
+    name: 'Instagram',
+    icon: Instagram,
+    fields: ['username'],
+    example: 'https://instagram.com/username',
+    validator: (data) => data.username && data.username.length > 0
+  },
+  {
+    id: 'facebook',
+    name: 'Facebook',
+    icon: Facebook,
+    fields: ['pageUrl'],
+    example: 'https://facebook.com/pagename',
+    validator: (data) => data.pageUrl && data.pageUrl.includes('facebook.com')
+  },
+  {
+    id: 'twitter',
+    name: 'Twitter/X',
+    icon: Twitter,
+    fields: ['username'],
+    example: 'https://twitter.com/username',
+    validator: (data) => data.username && data.username.length > 0
+  },
+  {
+    id: 'youtube',
+    name: 'YouTube',
+    icon: Youtube,
+    fields: ['videoUrl'],
+    example: 'https://youtube.com/watch?v=videoId',
+    validator: (data) => data.videoUrl && (data.videoUrl.includes('youtube.com') || data.videoUrl.includes('youtu.be'))
+  },
+  {
+    id: 'ethereum',
+    name: 'Ethereum',
+    icon: Coins,
+    fields: ['address', 'amount'],
+    example: 'ethereum:0x89205A3...?amount=0.05',
+    validator: (data) => data.address && data.address.startsWith('0x') && data.address.length === 42
   }
 ];
 
@@ -205,6 +267,36 @@ export const generateQRContent = (type, data) => {
       
     case 'spotify':
       return data.spotifyUri || '';
+      
+    case 'whatsapp':
+      const cleanPhone = (data.phone || '').replace(/[^\d]/g, '');
+      let waUrl = `https://wa.me/${cleanPhone}`;
+      if (data.message) {
+        waUrl += `?text=${encodeURIComponent(data.message)}`;
+      }
+      return waUrl;
+      
+    case 'linkedin':
+      return data.profileUrl || '';
+      
+    case 'instagram':
+      return `https://instagram.com/${data.username || ''}`;
+      
+    case 'facebook':
+      return data.pageUrl || '';
+      
+    case 'twitter':
+      return `https://twitter.com/${data.username || ''}`;
+      
+    case 'youtube':
+      return data.videoUrl || '';
+      
+    case 'ethereum':
+      let ethUri = `ethereum:${data.address || ''}`;
+      if (data.amount) {
+        ethUri += `?amount=${data.amount}`;
+      }
+      return ethUri;
       
     default:
       return '';
@@ -369,6 +461,79 @@ export const detectQRContentType = (content) => {
     return {
       type: 'spotify',
       data: { spotifyUri: content }
+    };
+  }
+  
+  // WhatsApp
+  if (content.includes('wa.me/')) {
+    const match = content.match(/wa\.me\/(\d+)(?:\?text=(.+))?/);
+    if (match) {
+      return {
+        type: 'whatsapp',
+        data: {
+          phone: match[1],
+          message: match[2] ? decodeURIComponent(match[2]) : ''
+        }
+      };
+    }
+  }
+  
+  // LinkedIn
+  if (content.includes('linkedin.com/')) {
+    return {
+      type: 'linkedin',
+      data: { profileUrl: content }
+    };
+  }
+  
+  // Instagram
+  if (content.includes('instagram.com/')) {
+    const match = content.match(/instagram\.com\/([^\/\?]+)/);
+    if (match) {
+      return {
+        type: 'instagram',
+        data: { username: match[1] }
+      };
+    }
+  }
+  
+  // Facebook
+  if (content.includes('facebook.com/')) {
+    return {
+      type: 'facebook',
+      data: { pageUrl: content }
+    };
+  }
+  
+  // Twitter
+  if (content.includes('twitter.com/') || content.includes('x.com/')) {
+    const match = content.match(/(?:twitter|x)\.com\/([^\/\?]+)/);
+    if (match) {
+      return {
+        type: 'twitter',
+        data: { username: match[1] }
+      };
+    }
+  }
+  
+  // YouTube
+  if (content.includes('youtube.com/') || content.includes('youtu.be/')) {
+    return {
+      type: 'youtube',
+      data: { videoUrl: content }
+    };
+  }
+  
+  // Ethereum
+  if (content.startsWith('ethereum:')) {
+    const [address, queryString] = content.substring(9).split('?');
+    const params = new URLSearchParams(queryString || '');
+    return {
+      type: 'ethereum',
+      data: {
+        address,
+        amount: params.get('amount') || ''
+      }
     };
   }
   

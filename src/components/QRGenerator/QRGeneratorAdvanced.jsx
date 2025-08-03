@@ -566,6 +566,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   <div className="mt-3 text-center">
                     <Link
                       to="/templates"
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
                       className="inline-flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
                     >
                       <Sparkles className="w-4 h-4" />

@@ -304,6 +304,26 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </div>
           );
         }
+        // Check if we're in ethereum context
+        if (contentType === 'ethereum') {
+          return (
+            <div key={field}>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Adresse Ethereum
+              </label>
+              <input
+                type="text"
+                value={contentData.address || ''}
+                onChange={(e) => handleFieldChange('address', e.target.value)}
+                placeholder="0x742d35Cc6634C0532925a3b844Bc9e7595f89f0e"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all font-mono text-sm"
+              />
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                Adresse Ethereum (42 caractères commençant par 0x)
+              </p>
+            </div>
+          );
+        }
         // Otherwise it's vCard address
         return (
           <div key={field}>
@@ -520,6 +540,80 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             />
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Cliquez droit sur une chanson/playlist dans Spotify → Partager → Copier l'URI Spotify
+            </p>
+          </div>
+        );
+
+      // LinkedIn field
+      case 'profileUrl':
+        return (
+          <div key={field}>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              URL du profil LinkedIn
+            </label>
+            <input
+              type="url"
+              value={contentData.profileUrl || ''}
+              onChange={(e) => handleFieldChange('profileUrl', e.target.value)}
+              placeholder="https://linkedin.com/in/john-doe"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+            />
+          </div>
+        );
+
+      // Instagram/Twitter username field
+      case 'username':
+        return (
+          <div key={field}>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Nom d'utilisateur
+            </label>
+            <input
+              type="text"
+              value={contentData.username || ''}
+              onChange={(e) => handleFieldChange('username', e.target.value)}
+              placeholder={contentType === 'instagram' ? 'instagram_user' : 'twitter_user'}
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+            />
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Sans le @ au début
+            </p>
+          </div>
+        );
+
+      // Facebook page URL field
+      case 'pageUrl':
+        return (
+          <div key={field}>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              URL de la page Facebook
+            </label>
+            <input
+              type="url"
+              value={contentData.pageUrl || ''}
+              onChange={(e) => handleFieldChange('pageUrl', e.target.value)}
+              placeholder="https://facebook.com/pagename"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+            />
+          </div>
+        );
+
+      // YouTube video URL field
+      case 'videoUrl':
+        return (
+          <div key={field}>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              URL de la vidéo YouTube
+            </label>
+            <input
+              type="url"
+              value={contentData.videoUrl || ''}
+              onChange={(e) => handleFieldChange('videoUrl', e.target.value)}
+              placeholder="https://youtube.com/watch?v=dQw4w9WgXcQ"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+            />
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Chaîne, vidéo ou playlist YouTube
             </p>
           </div>
         );
