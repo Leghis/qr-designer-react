@@ -10,9 +10,11 @@ import {
   ChevronLeft,
   Plus
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 
 const DashboardLayout = () => {
+  const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
@@ -35,19 +37,19 @@ const DashboardLayout = () => {
   const navigationItems = [
     {
       path: '/dashboard',
-      label: 'Tableau de bord',
+      label: t('dashboard.navigation.dashboard'),
       icon: LayoutDashboard,
       exact: true
     },
     {
       path: '/dashboard/qr-codes',
-      label: 'Mes QR Codes',
+      label: t('dashboard.navigation.myQRCodes'),
       icon: QrCode,
       badge: null // Could show count
     },
     {
       path: '/dashboard/settings',
-      label: 'Paramètres',
+      label: t('dashboard.navigation.settings'),
       icon: Settings
     }
   ];
@@ -101,7 +103,7 @@ const DashboardLayout = () => {
               </div>
               <div>
                 <h2 className="font-bold text-gray-900 dark:text-slate-100">QR Designer</h2>
-                <p className="text-xs text-gray-500 dark:text-slate-400">Dashboard</p>
+                <p className="text-xs text-gray-500 dark:text-slate-400">{t('common.dashboard')}</p>
               </div>
             </motion.div>
             
@@ -184,7 +186,7 @@ const DashboardLayout = () => {
             }`}
           >
             <Plus className={`w-5 h-5 ${!isSidebarOpen && 'md:mx-auto'}`} />
-            {isSidebarOpen && <span>Créer un QR Code</span>}
+            {isSidebarOpen && <span>{t('dashboard.navigation.createQRCode')}</span>}
           </motion.button>
         </nav>
 
@@ -205,7 +207,7 @@ const DashboardLayout = () => {
                   className="flex-1"
                 >
                   <p className="text-sm font-medium text-gray-900 dark:text-slate-100">
-                    {user?.name || 'Utilisateur'}
+                    {user?.name || t('dashboard.user.user')}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-slate-400">
                     {user?.email}

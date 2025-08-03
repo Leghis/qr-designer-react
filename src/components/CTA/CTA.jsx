@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Gift, Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const CTA = () => {
+  const { t } = useTranslation();
+  
   const scrollToGenerator = () => {
     document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -27,14 +30,14 @@ const CTA = () => {
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur rounded-full mb-6"
           >
             <Gift className="w-5 h-5" />
-            <span className="font-medium">Tout est gratuit, pour toujours</span>
+            <span className="font-medium">{t('cta.badge')}</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Prêt à créer des QR codes exceptionnels ?
+            {t('cta.title')}
           </h2>
           <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Rejoignez plus de 50 000 entreprises qui créent des QR codes professionnels gratuitement avec QR Designer
+            {t('cta.subtitle')}
           </p>
           
           <button
@@ -42,12 +45,12 @@ const CTA = () => {
             className="group inline-flex items-center gap-3 px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl"
           >
             <Sparkles className="w-6 h-6" />
-            Créer mon QR code gratuit
+            {t('cta.button')}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <p className="text-sm text-white/70 mt-6">
-            Aucune carte bancaire • Aucune inscription • Accès complet
+            {t('cta.disclaimer')}
           </p>
         </motion.div>
       </div>

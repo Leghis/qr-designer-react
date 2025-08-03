@@ -1,40 +1,42 @@
 import { motion } from 'framer-motion';
 import { QrCode, TrendingUp, Calendar, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import analyticsService from '../../services/analyticsService';
 
 const DashboardStats = () => {
+  const { t } = useTranslation();
   const { statistics } = useQRHistory();
   const trends = analyticsService.getUsageTrends();
 
   const stats = [
     {
-      title: 'QR Codes Total',
+      title: t('dashboard.stats.totalQRCodes'),
       value: statistics?.total || 0,
       icon: QrCode,
       color: 'from-blue-500 to-blue-600',
-      description: 'Tous les QR codes créés'
+      description: t('dashboard.stats.allQRCodesCreated')
     },
     {
-      title: "Aujourd'hui",
+      title: t('dashboard.stats.today'),
       value: statistics?.today || 0,
       icon: Calendar,
       color: 'from-green-500 to-green-600',
-      description: 'QR codes créés aujourd\'hui'
+      description: t('dashboard.stats.todayQRCodes')
     },
     {
-      title: 'Cette semaine',
+      title: t('dashboard.stats.thisWeek'),
       value: statistics?.thisWeek || 0,
       icon: Clock,
       color: 'from-purple-500 to-purple-600',
-      description: '7 derniers jours'
+      description: t('dashboard.stats.last7Days')
     },
     {
-      title: 'Tendance',
+      title: t('dashboard.stats.trend'),
       value: `${trends.isPositive ? '+' : ''}${trends.growth}%`,
       icon: TrendingUp,
       color: trends.isPositive ? 'from-emerald-500 to-emerald-600' : 'from-red-500 to-red-600',
-      description: 'vs semaine dernière'
+      description: t('dashboard.stats.vsLastWeek')
     }
   ];
 

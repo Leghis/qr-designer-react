@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, LogIn, UserPlus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import Checkbox from '../components/UI/Checkbox';
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { login, loading, error } = useAuth();
   
@@ -82,12 +84,12 @@ const LoginPage = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">
-              {isSignUp ? 'Créer un compte' : 'Se connecter'}
+              {isSignUp ? t('auth.createAccount') : t('auth.signIn')}
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               {isSignUp 
-                ? 'Rejoignez QR Designer et créez des QR codes premium' 
-                : 'Accédez à votre tableau de bord'}
+                ? t('auth.signUpSubtitle') 
+                : t('auth.signInSubtitle')}
             </p>
           </div>
 
@@ -108,8 +110,8 @@ const LoginPage = () => {
               <Input
                 name="name"
                 type="text"
-                label="Nom complet"
-                placeholder="Jean Dupont"
+                label={t('auth.fullName')}
+                placeholder={t('auth.fullNamePlaceholder')}
                 value={formData.name}
                 onChange={handleChange}
                 required={isSignUp}
@@ -119,8 +121,8 @@ const LoginPage = () => {
             <Input
               name="email"
               type="email"
-              label="Adresse email"
-              placeholder="votre@email.com"
+              label={t('auth.emailAddress')}
+              placeholder={t('auth.emailPlaceholder')}
               icon={Mail}
               value={formData.email}
               onChange={handleChange}
@@ -130,8 +132,8 @@ const LoginPage = () => {
             <Input
               name="password"
               type="password"
-              label="Mot de passe"
-              placeholder="••••••••"
+              label={t('auth.password')}
+              placeholder={t('auth.passwordPlaceholder')}
               icon={Lock}
               value={formData.password}
               onChange={handleChange}
@@ -142,7 +144,7 @@ const LoginPage = () => {
               <div className="flex items-center justify-between">
                 <Checkbox
                   name="rememberMe"
-                  label="Se souvenir de moi"
+                  label={t('auth.rememberMe')}
                   checked={formData.rememberMe}
                   onChange={handleChange}
                 />
@@ -150,7 +152,7 @@ const LoginPage = () => {
                   to="/forgot-password" 
                   className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
                 >
-                  Mot de passe oublié?
+                  {t('auth.forgotPassword')}
                 </Link>
               </div>
             )}
@@ -165,12 +167,12 @@ const LoginPage = () => {
               {isSignUp ? (
                 <>
                   <UserPlus className="w-5 h-5 mr-2" />
-                  Créer un compte
+                  {t('auth.createAccount')}
                 </>
               ) : (
                 <>
                   <LogIn className="w-5 h-5 mr-2" />
-                  Se connecter
+                  {t('auth.signIn')}
                 </>
               )}
             </Button>
@@ -183,7 +185,7 @@ const LoginPage = () => {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-4 bg-white dark:bg-dark-900 text-gray-500">
-                Ou continuer avec
+                {t('auth.orContinueWith')}
               </span>
             </div>
           </div>
@@ -233,13 +235,13 @@ const LoginPage = () => {
           {/* Toggle form */}
           <div className="mt-6 text-center">
             <p className="text-gray-600 dark:text-gray-400">
-              {isSignUp ? 'Déjà un compte?' : 'Pas encore de compte?'}{' '}
+              {isSignUp ? t('auth.alreadyHaveAccount') : t('auth.noAccountYet')}{' '}
               <button
                 type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
                 className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
               >
-                {isSignUp ? 'Se connecter' : "S'inscrire"}
+                {isSignUp ? t('auth.signIn') : t('auth.signUp')}
               </button>
             </p>
           </div>
@@ -256,7 +258,7 @@ const LoginPage = () => {
             to="/" 
             className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
           >
-            ← Retour à l'accueil
+            {t('auth.backToHome')}
           </Link>
         </motion.div>
       </div>

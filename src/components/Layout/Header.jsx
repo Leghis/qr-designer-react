@@ -1,14 +1,17 @@
 // import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { QrCode, Star, LayoutDashboard } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription.jsx';
 import { useAuth } from '../../context/AuthContext';
 import Badge from '../UI/Badge';
 import ThemeToggle from '../UI/ThemeToggle';
+import LanguageSwitcher from '../UI/LanguageSwitcher';
 // import Modal from '../UI/Modal';
 // import Button from '../UI/Button';
 
 const Header = () => {
+  const { t } = useTranslation();
   const { isPremium, plan } = useSubscription();
   const { isAuthenticated } = useAuth();
   const location = useLocation();
@@ -42,7 +45,7 @@ const Header = () => {
                 <QrCode className="w-7 h-7 text-white" />
               </div>
               <h1 className="text-2xl font-bold">
-                <span className="gradient-text">QR Designer</span>
+                <span className="gradient-text">{t('header.brand')}</span>
               </h1>
             </Link>
             
@@ -51,7 +54,7 @@ const Header = () => {
               <div className="ml-3">
                 <Badge type={plan === 'premium' ? 'premium' : 'pro'} className="flex items-center gap-1">
                   <Star className="w-3 h-3" />
-                  {plan === 'premium' ? 'Premium' : 'Enterprise'}
+                  {plan === 'premium' ? t('common.premium') : t('common.enterprise')}
                 </Badge>
               </div>
             )}
@@ -67,7 +70,7 @@ const Header = () => {
                     : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
-                Accueil
+                {t('header.home')}
               </Link>
               <Link
                 to="/templates"
@@ -77,7 +80,7 @@ const Header = () => {
                     : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
-                Templates
+                {t('header.templates')}
               </Link>
               {isAuthenticated && (
                 <Link
@@ -89,7 +92,7 @@ const Header = () => {
                   }`}
                 >
                   <LayoutDashboard className="w-4 h-4" />
-                  Dashboard
+                  {t('header.dashboard')}
                 </Link>
               )}
             </nav>
@@ -123,7 +126,10 @@ const Header = () => {
               )}
             </div> */}
             
-            <ThemeToggle />
+            <div className="flex items-center space-x-3">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </nav>

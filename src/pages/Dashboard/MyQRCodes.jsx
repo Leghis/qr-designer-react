@@ -11,6 +11,7 @@ import {
   X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useSubscription } from '../../hooks/useSubscription';
 import Input from '../../components/UI/Input';
@@ -19,6 +20,7 @@ import QRCodeCard from '../../components/Dashboard/QRCodeCard';
 import qrTypesService from '../../services/qrTypesService';
 
 const MyQRCodes = () => {
+  const { t } = useTranslation();
   const { history, loading, filters, updateFilters, deleteItem, exportHistory } = useQRHistory();
   const { isPremium } = useSubscription();
   const [viewMode, setViewMode] = useState('grid');
@@ -108,10 +110,10 @@ const MyQRCodes = () => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Mes QR Codes
+            {t('dashboard.myQRCodes.title')}
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
-            {history.length} QR code{history.length > 1 ? 's' : ''} créé{history.length > 1 ? 's' : ''}
+            {t('dashboard.myQRCodes.subtitle', { count: history.length, plural: history.length > 1 ? 's' : '' })}
           </p>
         </div>
         <Link
@@ -119,7 +121,7 @@ const MyQRCodes = () => {
           className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-medium transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
         >
           <Plus className="w-5 h-5" />
-          Créer un QR Code
+          {t('dashboard.myQRCodes.createQRCode')}
         </Link>
       </div>
 
@@ -130,7 +132,7 @@ const MyQRCodes = () => {
           <div className="flex-1">
             <Input
               type="text"
-              placeholder="Rechercher un QR code..."
+              placeholder={t('dashboard.myQRCodes.searchPlaceholder')}
               icon={Search}
               value={filters.search || ''}
               onChange={(e) => updateFilters({ search: e.target.value })}
@@ -144,7 +146,7 @@ const MyQRCodes = () => {
             onChange={(e) => setSelectedType(e.target.value)}
             className="px-4 py-3 bg-white dark:bg-dark-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 transition-all"
           >
-            <option value="all">Tous les types</option>
+            <option value="all">{t('dashboard.myQRCodes.filters.allTypes')}</option>
             {qrTypes.map(type => (
               <option key={type.id} value={type.id}>
                 {type.icon} {type.name}
@@ -193,13 +195,13 @@ const MyQRCodes = () => {
                   onClick={() => handleExport('json')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
                 >
-                  Exporter en JSON
+                  {t('dashboard.myQRCodes.filters.exportJSON')}
                 </button>
                 <button
                   onClick={() => handleExport('csv')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
                 >
-                  Exporter en CSV
+                  {t('dashboard.myQRCodes.filters.exportCSV')}
                 </button>
               </div>
             </div>
@@ -222,10 +224,10 @@ const MyQRCodes = () => {
                   value={filters.sortBy || 'newest'}
                   onChange={(e) => updateFilters({ sortBy: e.target.value })}
                 >
-                  <option value="newest">Plus récents</option>
-                  <option value="oldest">Plus anciens</option>
-                  <option value="mostUsed">Plus utilisés</option>
-                  <option value="lastUsed">Dernière utilisation</option>
+                  <option value="newest">{t('dashboard.myQRCodes.filters.newest')}</option>
+                  <option value="oldest">{t('dashboard.myQRCodes.filters.oldest')}</option>
+                  <option value="mostUsed">{t('dashboard.myQRCodes.filters.mostUsed')}</option>
+                  <option value="lastUsed">{t('dashboard.myQRCodes.filters.lastUsed')}</option>
                 </select>
 
                 <input
@@ -256,12 +258,12 @@ const MyQRCodes = () => {
             <Search className="w-12 h-12 text-gray-400" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Aucun QR code trouvé
+            {t('dashboard.myQRCodes.noQRCodes.title')}
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             {filters.search || selectedType !== 'all'
-              ? 'Essayez de modifier vos critères de recherche'
-              : 'Créez votre premier QR code pour commencer'}
+              ? t('dashboard.myQRCodes.noQRCodes.subtitle')
+              : t('dashboard.myQRCodes.noQRCodes.subtitleEmpty')}
           </p>
           {!filters.search && selectedType === 'all' && (
             <Link
@@ -269,7 +271,7 @@ const MyQRCodes = () => {
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-medium transition-colors"
             >
               <Plus className="w-5 h-5" />
-              Créer un QR Code
+              {t('dashboard.myQRCodes.noQRCodes.createQRCode')}
             </Link>
           )}
         </div>
@@ -279,7 +281,7 @@ const MyQRCodes = () => {
           {groupedQRCodes.today.length > 0 && (
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Aujourd'hui
+                {t('dashboard.myQRCodes.timeGroups.today')}
               </h2>
               <div className={viewMode === 'grid' 
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 
@@ -294,7 +296,7 @@ const MyQRCodes = () => {
           {groupedQRCodes.yesterday.length > 0 && (
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Hier
+                {t('dashboard.myQRCodes.timeGroups.yesterday')}
               </h2>
               <div className={viewMode === 'grid' 
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 
@@ -309,7 +311,7 @@ const MyQRCodes = () => {
           {groupedQRCodes.thisWeek.length > 0 && (
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Cette semaine
+                {t('dashboard.myQRCodes.timeGroups.thisWeek')}
               </h2>
               <div className={viewMode === 'grid' 
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 
@@ -324,7 +326,7 @@ const MyQRCodes = () => {
           {groupedQRCodes.older.length > 0 && (
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Plus ancien
+                {t('dashboard.myQRCodes.timeGroups.older')}
               </h2>
               <div className={viewMode === 'grid' 
                 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' 

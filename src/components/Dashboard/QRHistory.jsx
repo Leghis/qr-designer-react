@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Download, Trash2, Eye, Copy, Calendar, MoreVertical } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useNotification } from '../../context/NotificationContext';
 import Button from '../UI/Button';
@@ -8,6 +9,7 @@ import Input from '../UI/Input';
 import QRHistoryCard from './QRHistoryCard';
 
 const QRHistory = ({ limit }) => {
+  const { t } = useTranslation();
   const { history, loading, filters, updateFilters, deleteItem, deleteMultiple, exportHistory } = useQRHistory();
   const { showNotification } = useNotification();
   const [selectedItems, setSelectedItems] = useState([]);
@@ -17,22 +19,22 @@ const QRHistory = ({ limit }) => {
 
   const handleDelete = (id) => {
     deleteItem(id);
-    showNotification('QR code supprimé', 'success');
+    showNotification(t('dashboard.history.notifications.deleted'), 'success');
   };
 
   const handleDeleteSelected = () => {
     if (selectedItems.length === 0) return;
     
-    if (window.confirm(`Supprimer ${selectedItems.length} QR codes ?`)) {
+    if (window.confirm(t('dashboard.history.confirmDelete', { count: selectedItems.length }))) {
       deleteMultiple(selectedItems);
       setSelectedItems([]);
-      showNotification(`${selectedItems.length} QR codes supprimés`, 'success');
+      showNotification(t('dashboard.history.notifications.multipleDeleted', { count: selectedItems.length }), 'success');
     }
   };
 
   const handleExport = (format) => {
     exportHistory(format);
-    showNotification(`Historique exporté en ${format.toUpperCase()}`, 'success');
+    showNotification(t('dashboard.history.notifications.exported', { format: format.toUpperCase() }), 'success');
   };
 
   const toggleSelect = (id) => {
@@ -68,10 +70,10 @@ const QRHistory = ({ limit }) => {
         <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
           <div>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              Historique des QR Codes
+              {t('dashboard.history.title')}
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {history.length} QR codes créés au total
+              {t('dashboard.history.subtitle', { count: history.length })}
             </p>
           </div>
 
@@ -84,7 +86,7 @@ const QRHistory = ({ limit }) => {
                 className="flex items-center gap-2"
               >
                 <Trash2 className="w-4 h-4" />
-                Supprimer ({selectedItems.length})
+                {t('dashboard.history.deleteSelected', { count: selectedItems.length })}
               </Button>
             )}
             
@@ -95,20 +97,20 @@ const QRHistory = ({ limit }) => {
                 className="flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                Exporter
+                {t('dashboard.history.export')}
               </Button>
               <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                 <button
                   onClick={() => handleExport('json')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
                 >
-                  Exporter en JSON
+                  {t('dashboard.history.exportJSON')}
                 </button>
                 <button
                   onClick={() => handleExport('csv')}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors"
                 >
-                  Exporter en CSV
+                  {t('dashboard.history.exportCSV')}
                 </button>
               </div>
             </div>
@@ -120,7 +122,7 @@ const QRHistory = ({ limit }) => {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              Filtres
+              {t('dashboard.history.filters')}
             </Button>
           </div>
         </div>
@@ -129,7 +131,7 @@ const QRHistory = ({ limit }) => {
         <div className="mt-4">
           <Input
             type="text"
-            placeholder="Rechercher dans l'historique..."
+            placeholder={t('dashboard.history.searchPlaceholder')}
             icon={Search}
             value={filters.search || ''}
             onChange={(e) => updateFilters({ search: e.target.value })}
@@ -152,10 +154,10 @@ const QRHistory = ({ limit }) => {
                   value={filters.sortBy || 'newest'}
                   onChange={(e) => updateFilters({ sortBy: e.target.value })}
                 >
-                  <option value="newest">Plus récents</option>
-                  <option value="oldest">Plus anciens</option>
-                  <option value="mostUsed">Plus utilisés</option>
-                  <option value="lastUsed">Dernière utilisation</option>
+                  <option value="newest">{t('dashboard.history.filterOptions.newest')}</option>
+                  <option value="oldest">{t('dashboard.history.filterOptions.oldest')}</option>
+                  <option value="mostUsed">{t('dashboard.history.filterOptions.mostUsed')}</option>
+                  <option value="lastUsed">{t('dashboard.history.filterOptions.lastUsed')}</option>
                 </select>
 
                 <select
@@ -163,11 +165,11 @@ const QRHistory = ({ limit }) => {
                   value={filters.template || ''}
                   onChange={(e) => updateFilters({ template: e.target.value || undefined })}
                 >
-                  <option value="">Tous les templates</option>
-                  <option value="default">Par défaut</option>
-                  <option value="modern">Moderne</option>
-                  <option value="minimalist">Minimaliste</option>
-                  <option value="business">Business</option>
+                  <option value="">{t('dashboard.history.filterOptions.allTemplates')}</option>
+                  <option value="default">{t('dashboard.history.filterOptions.default')}</option>
+                  <option value="modern">{t('dashboard.history.filterOptions.modern')}</option>
+                  <option value="minimalist">{t('dashboard.history.filterOptions.minimalist')}</option>
+                  <option value="business">{t('dashboard.history.filterOptions.business')}</option>
                 </select>
 
                 <input
@@ -175,7 +177,7 @@ const QRHistory = ({ limit }) => {
                   className="px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-dark-800 text-gray-900 dark:text-white"
                   value={filters.startDate || ''}
                   onChange={(e) => updateFilters({ startDate: e.target.value || undefined })}
-                  placeholder="Date de début"
+                  placeholder={t('dashboard.history.filterOptions.startDate')}
                 />
               </div>
             </motion.div>
@@ -189,12 +191,12 @@ const QRHistory = ({ limit }) => {
           <div className="text-center py-12">
             <QrCode className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Aucun QR code trouvé
+              {t('dashboard.history.noQRCodes.title')}
             </h3>
             <p className="text-gray-500 dark:text-gray-400">
               {filters.search 
-                ? 'Aucun résultat pour votre recherche'
-                : 'Commencez à créer des QR codes pour les voir ici'}
+                ? t('dashboard.history.noQRCodes.searchSubtitle')
+                : t('dashboard.history.noQRCodes.emptySubtitle')}
             </p>
           </div>
         ) : (
@@ -208,7 +210,7 @@ const QRHistory = ({ limit }) => {
                 className="w-4 h-4"
               />
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                Tout sélectionner
+                {t('dashboard.history.selectAll')}
               </span>
             </div>
 
@@ -240,7 +242,7 @@ const QRHistory = ({ limit }) => {
               variant="ghost"
               onClick={() => window.location.href = '/dashboard?tab=history'}
             >
-              Voir tout l'historique ({history.length})
+              {t('dashboard.history.viewAll', { count: history.length })}
             </Button>
           </div>
         )}

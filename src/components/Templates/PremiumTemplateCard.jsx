@@ -3,11 +3,13 @@ import { motion } from 'framer-motion';
 import { Crown, ArrowRight, Lock } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { defaultQROptions } from '../../services/qrService';
 import { useSubscription } from '../../hooks/useSubscription.jsx';
 import { useNotification } from '../../context/NotificationContext';
 
 const PremiumTemplateCard = ({ template }) => {
+  const { t } = useTranslation();
   const [isInView, setIsInView] = useState(false);
   const [qrGenerated, setQrGenerated] = useState(false);
   const qrRef = useRef(null);
@@ -58,7 +60,7 @@ const PremiumTemplateCard = ({ template }) => {
 
   const handleUseTemplate = () => {
     if (template.isPremium && !canUsePremiumTemplate(template.id)) {
-      showNotification('Passez au plan Premium pour utiliser ce template', 'info');
+      showNotification(t('templateEdit.premium.accessRequired'), 'info');
       // Redirect to pricing section
       navigate('/#pricing');
       return;

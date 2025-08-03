@@ -15,6 +15,7 @@ import {
   Smartphone,
   Globe
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useNotification } from '../../context/NotificationContext';
 import { useSubscription } from '../../hooks/useSubscription';
@@ -24,6 +25,7 @@ import QRPreview from '../../components/Dashboard/QRPreview';
 import analyticsService from '../../services/analyticsService';
 
 const QRCodeDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { history, deleteItem } = useQRHistory();
@@ -58,7 +60,7 @@ const QRCodeDetail = () => {
         scansByTime: analyticsService.getHourlyDistribution()
       });
     } else {
-      showNotification('QR Code introuvable', 'error');
+      showNotification(t('dashboard.qrDetail.notifications.notFound'), 'error');
       navigate('/dashboard/qr-codes');
     }
   }, [id, history, navigate, showNotification]);
@@ -74,33 +76,33 @@ const QRCodeDetail = () => {
   const qrType = qrTypesService.getTypeById(qrCode.type);
 
   const handleDelete = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce QR code ?')) {
+    if (window.confirm(t('dashboard.qrDetail.confirmDelete'))) {
       deleteItem(qrCode.id);
-      showNotification('QR code supprimé', 'success');
+      showNotification(t('dashboard.qrDetail.notifications.deleted'), 'success');
       navigate('/dashboard/qr-codes');
     }
   };
 
   const handleDownload = () => {
-    showNotification('Téléchargement du QR code...', 'info');
+    showNotification(t('dashboard.qrDetail.notifications.downloading'), 'info');
   };
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
         title: qrCode.name || 'QR Code',
-        text: 'Découvrez mon QR code',
+        text: t('dashboard.qrDetail.shareText'),
         url: qrCode.data
       });
     } else {
       navigator.clipboard.writeText(qrCode.data);
-      showNotification('Lien copié !', 'success');
+      showNotification(t('dashboard.qrDetail.notifications.linkCopied'), 'success');
     }
   };
 
   const tabs = [
-    { id: 'overview', label: 'Vue d\'ensemble', icon: Eye },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3, premium: true }
+    { id: 'overview', label: t('dashboard.qrDetail.tabs.overview'), icon: Eye },
+    { id: 'analytics', label: t('dashboard.qrDetail.tabs.analytics'), icon: BarChart3, premium: true }
   ];
 
   const filteredTabs = tabs.filter(tab => !tab.premium || isPremium);
@@ -114,25 +116,25 @@ const QRCodeDetail = () => {
           className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
         >
           <ArrowLeft className="w-5 h-5" />
-          Retour
+          {t('dashboard.qrDetail.back')}
         </button>
         
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {qrCode.name || 'QR Code sans nom'}
+              {qrCode.name || t('dashboard.qrDetail.unnamed')}
             </h1>
             <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
               <span className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                Créé le {new Date(qrCode.createdAt).toLocaleDateString('fr-FR')}
+                {t('dashboard.qrDetail.createdOn')} {new Date(qrCode.createdAt).toLocaleDateString('fr-FR')}
               </span>
               <span className={`px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${qrType?.color || 'from-gray-400 to-gray-600'} text-white`}>
                 {qrType?.name || 'URL'}
               </span>
               {qrCode.isDynamic && (
                 <span className="px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-green-400 to-emerald-400 text-white">
-                  Dynamique
+                  {t('dashboard.qrDetail.dynamic')}
                 </span>
               )}
             </div>
@@ -144,21 +146,21 @@ const QRCodeDetail = () => {
               onClick={() => navigate(`/dashboard/qr-codes/edit/${qrCode.id}`)}
             >
               <Edit2 className="w-4 h-4 mr-2" />
-              Modifier
+              {t('dashboard.qrDetail.actions.edit')}
             </Button>
             <Button
               variant="secondary"
               onClick={handleShare}
             >
               <Share2 className="w-4 h-4 mr-2" />
-              Partager
+              {t('dashboard.qrDetail.actions.share')}
             </Button>
             <Button
               variant="danger"
               onClick={handleDelete}
             >
               <Trash2 className="w-4 h-4 mr-2" />
-              Supprimer
+              {t('dashboard.qrDetail.actions.delete')}
             </Button>
           </div>
         </div>
@@ -209,7 +211,7 @@ const QRCodeDetail = () => {
                     {analytics?.totalScans || 0}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Scans totaux
+                    {t('dashboard.qrDetail.stats.totalScans')}
                   </p>
                 </motion.div>
 
@@ -227,7 +229,7 @@ const QRCodeDetail = () => {
                     {analytics?.todayScans || 0}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Aujourd'hui
+                    {t('dashboard.qrDetail.stats.today')}
                   </p>
                 </motion.div>
 
@@ -245,7 +247,7 @@ const QRCodeDetail = () => {
                     {analytics?.weekScans || 0}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Cette semaine
+                    {t('dashboard.qrDetail.stats.thisWeek')}
                   </p>
                 </motion.div>
               </div>
@@ -258,7 +260,7 @@ const QRCodeDetail = () => {
                 className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
               >
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Données du QR Code
+                  {t('dashboard.qrDetail.qrData.title')}
                 </h2>
                 <div className="bg-gray-50 dark:bg-dark-800 rounded-lg p-4">
                   <p className="text-sm text-gray-800 dark:text-gray-200 break-all">
@@ -268,11 +270,11 @@ const QRCodeDetail = () => {
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(qrCode.data);
-                    showNotification('Données copiées !', 'success');
+                    showNotification(t('dashboard.qrDetail.notifications.dataCopied'), 'success');
                   }}
                   className="mt-3 text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
                 >
-                  Copier les données
+                  {t('dashboard.qrDetail.qrData.copyData')}
                 </button>
               </motion.div>
 
@@ -285,14 +287,14 @@ const QRCodeDetail = () => {
                   className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
                 >
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                    Appareils utilisés
+                    {t('dashboard.qrDetail.devicesUsed.title')}
                   </h2>
                   <div className="space-y-3">
                     <div>
                       <div className="flex justify-between items-center mb-1">
                         <span className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                           <Smartphone className="w-4 h-4" />
-                          Mobile
+                          {t('dashboard.qrDetail.devicesUsed.mobile')}
                         </span>
                         <span className="text-sm font-medium">
                           {analytics?.scansByDevice.mobile}%
@@ -310,7 +312,7 @@ const QRCodeDetail = () => {
                       <div className="flex justify-between items-center mb-1">
                         <span className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                           <Globe className="w-4 h-4" />
-                          Desktop
+                          {t('dashboard.qrDetail.devicesUsed.desktop')}
                         </span>
                         <span className="text-sm font-medium">
                           {analytics?.scansByDevice.desktop}%
@@ -336,7 +338,7 @@ const QRCodeDetail = () => {
                 className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg sticky top-8"
               >
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Aperçu
+                  {t('dashboard.qrDetail.preview.title')}
                 </h2>
                 <QRPreview 
                   data={qrCode.data} 
@@ -349,7 +351,7 @@ const QRCodeDetail = () => {
                   onClick={handleDownload}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Télécharger le QR Code
+                  {t('dashboard.qrDetail.preview.downloadQR')}
                 </Button>
               </motion.div>
             </div>
@@ -363,12 +365,12 @@ const QRCodeDetail = () => {
               className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
             >
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Analytics détaillés
+                {t('dashboard.qrDetail.analytics.title')}
               </h2>
               <div className="text-center py-12">
                 <BarChart3 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 dark:text-gray-400">
-                  Les analytics détaillés arrivent bientôt...
+                  {t('dashboard.qrDetail.analytics.comingSoon')}
                 </p>
               </div>
             </motion.div>

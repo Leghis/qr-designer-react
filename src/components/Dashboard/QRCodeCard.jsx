@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { 
   MoreVertical, 
   Eye, 
@@ -11,10 +12,12 @@ import {
   Share2
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../context/NotificationContext';
 import qrTypesService from '../../services/qrTypesService';
 
 const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
+  const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -24,7 +27,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(qrCode.data);
-    showNotification('Contenu copié !', 'success');
+    showNotification(t('dashboard.qrCard.notifications.copied'), 'success');
     setShowMenu(false);
   };
 
@@ -38,20 +41,20 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
 
   const handleDownload = () => {
     // In real implementation, would regenerate and download QR code
-    showNotification('Téléchargement du QR code...', 'info');
+    showNotification(t('dashboard.qrCard.notifications.downloading'), 'info');
     setShowMenu(false);
   };
 
   const handleShare = () => {
     // Share functionality
-    showNotification('Fonctionnalité de partage bientôt disponible', 'info');
+    showNotification(t('dashboard.qrCard.notifications.shareComingSoon'), 'info');
     setShowMenu(false);
   };
 
   const handleDelete = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce QR code ?')) {
+    if (window.confirm(t('dashboard.qrCard.confirmDelete'))) {
       onDelete();
-      showNotification('QR code supprimé', 'success');
+      showNotification(t('dashboard.qrCard.notifications.deleted'), 'success');
     }
     setShowMenu(false);
   };
@@ -61,9 +64,9 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
     const now = new Date();
     const diffInHours = (now - date) / (1000 * 60 * 60);
 
-    if (diffInHours < 1) return 'Il y a moins d\'une heure';
-    if (diffInHours < 24) return `Il y a ${Math.floor(diffInHours)} heures`;
-    if (diffInHours < 48) return 'Hier';
+    if (diffInHours < 1) return t('dashboard.qrCard.timeAgo.lessThanHour');
+    if (diffInHours < 24) return t('dashboard.qrCard.timeAgo.hoursAgo', { hours: Math.floor(diffInHours) });
+    if (diffInHours < 48) return t('dashboard.qrCard.timeAgo.yesterday');
     
     return date.toLocaleDateString('fr-FR', {
       day: 'numeric',
@@ -158,35 +161,35 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors text-left"
               >
                 <Eye className="w-4 h-4" />
-                Voir détails
+                {t('dashboard.qrCard.actions.viewDetails')}
               </button>
               <button
                 onClick={handleEdit}
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors text-left"
               >
                 <Edit2 className="w-4 h-4" />
-                Modifier
+                {t('dashboard.qrCard.actions.edit')}
               </button>
               <button
                 onClick={handleCopy}
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors text-left"
               >
                 <Copy className="w-4 h-4" />
-                Copier le lien
+                {t('dashboard.qrCard.actions.copyLink')}
               </button>
               <button
                 onClick={handleDownload}
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors text-left"
               >
                 <Download className="w-4 h-4" />
-                Télécharger
+                {t('dashboard.qrCard.actions.download')}
               </button>
               <button
                 onClick={handleShare}
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors text-left"
               >
                 <Share2 className="w-4 h-4" />
-                Partager
+                {t('dashboard.qrCard.actions.share')}
               </button>
               <hr className="my-1 border-gray-200 dark:border-gray-700" />
               <button
@@ -194,7 +197,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
                 className="w-full flex items-center gap-3 px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition-colors text-left"
               >
                 <Trash2 className="w-4 h-4" />
-                Supprimer
+                {t('dashboard.qrCard.actions.delete')}
               </button>
             </div>
           )}
@@ -204,7 +207,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
         {qrCode.isDynamic && (
           <div className="absolute bottom-4 left-4">
             <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white">
-              Dynamique
+              {t('dashboard.qrCard.dynamic')}
             </span>
           </div>
         )}
@@ -217,7 +220,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
         </h3>
         
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 truncate">
-          {qrCode.data || 'Pas de données'}
+          {qrCode.data || t('dashboard.qrCard.noData')}
         </p>
 
         {/* Stats */}
@@ -227,7 +230,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
           </span>
           <div className="flex items-center gap-1 text-primary-600 dark:text-primary-400">
             <BarChart3 className="w-4 h-4" />
-            <span className="font-medium">{qrCode.scans || 0} scans</span>
+            <span className="font-medium">{qrCode.scans || 0} {t('dashboard.qrCard.scans')}</span>
           </div>
         </div>
 
@@ -237,14 +240,14 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
             onClick={handleView}
             className="flex-1 py-2 text-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
           >
-            Détails
+            {t('dashboard.qrCard.actions.details')}
           </button>
           <div className="w-px h-6 bg-gray-200 dark:bg-gray-700"></div>
           <button
             onClick={handleEdit}
             className="flex-1 py-2 text-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
           >
-            Modifier
+            {t('dashboard.qrCard.actions.edit')}
           </button>
           <div className="w-px h-6 bg-gray-200 dark:bg-gray-700"></div>
           <a
@@ -254,7 +257,7 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
             className="flex-1 py-2 text-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center justify-center gap-1"
           >
             <ExternalLink className="w-3 h-3" />
-            Ouvrir
+            {t('dashboard.qrCard.actions.open')}
           </a>
         </div>
       </div>

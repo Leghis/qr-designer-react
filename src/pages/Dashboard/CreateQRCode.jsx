@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
 import { useNotification } from '../../context/NotificationContext';
 import qrTypesService from '../../services/qrTypesService';
@@ -15,6 +16,7 @@ import QRPreview from '../../components/Dashboard/QRPreview';
 import historyService from '../../services/historyService';
 
 const CreateQRCode = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { isPremium } = useSubscription();
@@ -69,14 +71,14 @@ const CreateQRCode = () => {
         fieldErrors[fieldName] = error;
       });
       setErrors(fieldErrors);
-      showNotification('Veuillez corriger les erreurs', 'error');
+      showNotification(t('dashboard.createQRCode.validation.pleaseCorrect'), 'error');
       return;
     }
 
     // Generate QR data
     const qrData = qrTypesService.generateQRData(selectedType, formData);
     if (!qrData) {
-      showNotification('Erreur lors de la génération du QR code', 'error');
+      showNotification(t('dashboard.createQRCode.validation.generationError'), 'error');
       return;
     }
 
@@ -90,7 +92,7 @@ const CreateQRCode = () => {
       template: 'modern' // Default template
     });
 
-    showNotification('QR Code créé avec succès !', 'success');
+    showNotification(t('dashboard.createQRCode.validation.success'), 'success');
     navigate('/dashboard/qr-codes');
   };
 
@@ -134,14 +136,14 @@ const CreateQRCode = () => {
             {field.type === 'select' ? (
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {field.label} {field.required && <span className="text-red-500">*</span>}
+                  {field.label} {field.required && <span className="text-red-500">{t('dashboard.createQRCode.formFields.required')}</span>}
                 </label>
                 <select
                   value={formData[field.name] || ''}
                   onChange={(e) => handleFieldChange(field.name, e.target.value)}
                   className="w-full px-4 py-3 bg-white dark:bg-dark-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all"
                 >
-                  <option value="">Sélectionner...</option>
+                  <option value="">{t('dashboard.createQRCode.formFields.select')}</option>
                   {field.options?.map(option => (
                     <option key={option} value={option}>{option}</option>
                   ))}
@@ -153,7 +155,7 @@ const CreateQRCode = () => {
             ) : field.type === 'textarea' ? (
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {field.label} {field.required && <span className="text-red-500">*</span>}
+                  {field.label} {field.required && <span className="text-red-500">{t('dashboard.createQRCode.formFields.required')}</span>}
                 </label>
                 <textarea
                   value={formData[field.name] || ''}
@@ -201,10 +203,10 @@ const CreateQRCode = () => {
           className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
         >
           <ArrowLeft className="w-5 h-5" />
-          Retour
+          {t('dashboard.createQRCode.back')}
         </button>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Créer un nouveau QR Code
+          {t('dashboard.createQRCode.title')}
         </h1>
       </div>
 
@@ -218,7 +220,7 @@ const CreateQRCode = () => {
             className="bg-white dark:bg-dark-900 rounded-2xl p-6 shadow-lg"
           >
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Type de QR Code
+              {t('dashboard.createQRCode.typeSelection.title')}
             </h2>
             <QRTypeSelector
               selectedType={selectedType}
@@ -235,8 +237,8 @@ const CreateQRCode = () => {
             className="bg-white dark:bg-dark-900 rounded-2xl p-6 shadow-lg"
           >
             <Input
-              label="Nom du QR Code (optionnel)"
-              placeholder="Ex: Menu Restaurant, Carte de visite..."
+              label={t('dashboard.createQRCode.qrName.label')}
+              placeholder={t('dashboard.createQRCode.qrName.placeholder')}
               value={qrName}
               onChange={(e) => setQrName(e.target.value)}
             />
@@ -251,10 +253,10 @@ const CreateQRCode = () => {
                 />
                 <div>
                   <span className="text-gray-700 dark:text-gray-300 font-medium">
-                    QR Code dynamique
+                    {t('dashboard.createQRCode.dynamicQR.title')}
                   </span>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Modifiable après création
+                    {t('dashboard.createQRCode.dynamicQR.subtitle')}
                   </p>
                 </div>
               </label>
@@ -270,7 +272,7 @@ const CreateQRCode = () => {
             className="bg-white dark:bg-dark-900 rounded-2xl p-6 shadow-lg"
           >
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Informations du QR Code
+              {t('dashboard.createQRCode.information.title')}
             </h2>
             {renderEditor()}
           </motion.div>
@@ -284,14 +286,14 @@ const CreateQRCode = () => {
               className="flex-1"
             >
               <Save className="w-5 h-5 mr-2" />
-              Créer le QR Code
+              {t('dashboard.createQRCode.actions.create')}
             </Button>
             <Button
               variant="secondary"
               size="lg"
               onClick={() => navigate('/dashboard/qr-codes')}
             >
-              Annuler
+              {t('dashboard.createQRCode.actions.cancel')}
             </Button>
           </div>
         </div>
@@ -306,7 +308,7 @@ const CreateQRCode = () => {
           >
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Eye className="w-5 h-5" />
-              Aperçu
+              {t('dashboard.createQRCode.preview.title')}
             </h2>
             <QRPreview 
               data={previewData} 

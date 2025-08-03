@@ -1,7 +1,10 @@
 import { Eye, Copy, Download, Trash2, Calendar, Hash, Palette } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../context/NotificationContext';
 
 const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
+  const { t } = useTranslation();
   const { showNotification } = useNotification();
 
   const formatDate = (dateString) => {
@@ -17,12 +20,12 @@ const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(item.data);
-    showNotification('Contenu copié !', 'success');
+    showNotification(t('dashboard.historyCard.notifications.copied'), 'success');
   };
 
   const handleDownload = () => {
     // In real implementation, would regenerate QR code and download
-    showNotification('Téléchargement du QR code...', 'info');
+    showNotification(t('dashboard.historyCard.notifications.downloading'), 'info');
   };
 
   const handleView = () => {
@@ -77,13 +80,13 @@ const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
         {item.template && (
           <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
             <Palette className="w-3 h-3" />
-            Template: {item.template}
+            {t('dashboard.historyCard.template')}: {item.template}
           </div>
         )}
 
         {item.usageCount > 1 && (
           <div className="text-xs text-primary-600 dark:text-primary-400">
-            Utilisé {item.usageCount} fois
+            {t('dashboard.historyCard.used', { count: item.usageCount })}
           </div>
         )}
       </div>
@@ -93,28 +96,28 @@ const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
         <button
           onClick={handleView}
           className="flex-1 p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 rounded-lg transition-colors"
-          title="Voir"
+          title={t('dashboard.historyCard.actions.view')}
         >
           <Eye className="w-4 h-4 mx-auto" />
         </button>
         <button
           onClick={handleCopy}
           className="flex-1 p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 rounded-lg transition-colors"
-          title="Copier"
+          title={t('dashboard.historyCard.actions.copy')}
         >
           <Copy className="w-4 h-4 mx-auto" />
         </button>
         <button
           onClick={handleDownload}
           className="flex-1 p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 rounded-lg transition-colors"
-          title="Télécharger"
+          title={t('dashboard.historyCard.actions.download')}
         >
           <Download className="w-4 h-4 mx-auto" />
         </button>
         <button
           onClick={onDelete}
           className="flex-1 p-2 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-          title="Supprimer"
+          title={t('dashboard.historyCard.actions.delete')}
         >
           <Trash2 className="w-4 h-4 mx-auto" />
         </button>

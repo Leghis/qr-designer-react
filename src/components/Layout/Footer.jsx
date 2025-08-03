@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { QrCode, Twitter, Linkedin, Github } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-dark-900 text-white py-16">
       <div className="container mx-auto px-4">
@@ -11,67 +14,67 @@ const Footer = () => {
               <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-xl flex items-center justify-center">
                 <QrCode className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold">QR Designer</h3>
+              <h3 className="text-xl font-bold">{t('footer.brand')}</h3>
             </div>
             <p className="text-gray-400">
-              Le générateur de QR codes le plus moderne pour les entreprises du futur.
+              {t('footer.tagline')}
             </p>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Produit</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.links.product')}</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link to="/" className="hover:text-white transition-colors">
-                  Générateur
+                  {t('common.home')}
                 </Link>
               </li>
               <li>
                 <Link to="/templates" className="hover:text-white transition-colors">
-                  Templates
+                  {t('footer.links.templates')}
                 </Link>
               </li>
               <li>
                 <Link to="/premium" className="hover:text-white transition-colors">
-                  Premium
+                  {t('common.premium')}
                 </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  API
+                  {t('footer.links.api')}
                 </a>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Entreprise</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.links.company')}</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  À propos
+                  {t('footer.links.about')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Blog
+                  {t('footer.links.blog')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Carrières
+                  {t('footer.links.careers')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Contact
+                  {t('footer.links.contact')}
                 </a>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Suivez-nous</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.links.support')}</h4>
             <div className="flex gap-4">
               <a
                 href="#"
@@ -99,7 +102,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 QR Designer. Tous droits réservés. Créé avec passion pour simplifier le monde des QR codes.</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })} {t('footer.madeWith')} ❤️ {t('footer.in')}.</p>
         </div>
       </div>
     </footer>

@@ -1,28 +1,32 @@
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const testimonials = [
+const getTestimonials = (t) => [
   {
-    name: 'Marie L.',
-    role: 'E-commerce',
-    content: "Incroyable qu'un outil aussi complet soit gratuit ! J'ai créé des QR codes personnalisés pour tous mes produits en quelques minutes.",
+    name: t('testimonials.list.ecommerce.author'),
+    role: t('testimonials.list.ecommerce.role'),
+    content: t('testimonials.list.ecommerce.text'),
     avatar: 'from-blue-500 to-purple-600'
   },
   {
-    name: 'Thomas D.',
-    role: 'Restaurant',
-    content: "Les templates sont magnifiques et tout est gratuit ! Nos QR codes sont maintenant un vrai atout visuel pour notre menu digital.",
+    name: t('testimonials.list.restaurant.author'),
+    role: t('testimonials.list.restaurant.role'),
+    content: t('testimonials.list.restaurant.text'),
     avatar: 'from-green-500 to-teal-600'
   },
   {
-    name: 'Sophie M.',
-    role: 'Tech Startup',
-    content: "Pas besoin de carte bancaire, pas d'abonnement caché. Simple, efficace et 100% gratuit. Exactement ce dont on avait besoin !",
+    name: t('testimonials.list.startup.author'),
+    role: t('testimonials.list.startup.role'),
+    content: t('testimonials.list.startup.text'),
     avatar: 'from-orange-500 to-red-600'
   }
 ];
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+  const testimonials = getTestimonials(t);
+  
   return (
     <section className="py-20 bg-gray-50 dark:bg-dark-800">
       <div className="container mx-auto px-4">
@@ -33,10 +37,10 @@ const Testimonials = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Ce que disent nos utilisateurs
+            {t('testimonials.title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Plus de 50 000 entreprises nous font confiance
+            {t('testimonials.subtitle')}
           </p>
         </motion.div>
         

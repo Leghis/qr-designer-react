@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const QRTypeSelector = ({ selectedType, onChange, availableTypes }) => {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
       {availableTypes.map((type, index) => {
@@ -45,7 +47,7 @@ const QRTypeSelector = ({ selectedType, onChange, availableTypes }) => {
             {type.premium && !isLocked && (
               <div className="absolute top-2 right-2">
                 <span className="px-2 py-0.5 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-medium rounded-full">
-                  Premium
+                  {t('dashboard.qrTypeSelector.premium')}
                 </span>
               </div>
             )}

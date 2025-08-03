@@ -1,25 +1,29 @@
 
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
-const steps = [
+const getSteps = (t) => [
   {
     number: '1',
-    title: 'Entrez votre contenu',
-    description: 'URL, texte, email, téléphone... tout est possible'
+    title: t('howItWorks.steps.enterContent.title'),
+    description: t('howItWorks.steps.enterContent.description')
   },
   {
     number: '2',
-    title: 'Personnalisez le design',
-    description: 'Couleurs, formes et styles à votre image'
+    title: t('howItWorks.steps.customize.title'),
+    description: t('howItWorks.steps.customize.description')
   },
   {
     number: '3',
-    title: 'Téléchargez',
-    description: 'PNG ou SVG, prêt à utiliser partout'
+    title: t('howItWorks.steps.download.title'),
+    description: t('howItWorks.steps.download.description')
   }
 ];
 
 const HowItWorks = () => {
+  const { t } = useTranslation();
+  const steps = getSteps(t);
+  
   return (
     <section className="py-20 bg-gray-50 dark:bg-dark-800">
       <div className="container mx-auto px-4">
@@ -29,9 +33,9 @@ const HowItWorks = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Comment ça marche ?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('howItWorks.title')}</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Créez votre QR code en 3 étapes simples
+            {t('howItWorks.subtitle')}
           </p>
         </motion.div>
         

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Gift, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
 import Features from '../components/Features/Features';
 import Templates from '../components/Templates/Templates';
@@ -10,6 +11,7 @@ import Testimonials from '../components/Testimonials/Testimonials';
 import CTA from '../components/CTA/CTA';
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const scrollToGenerator = () => {
     document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -73,13 +75,13 @@ const HomePage = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full mb-6 font-medium"
             >
               <Gift className="w-5 h-5" />
-              <span className="text-xs sm:text-sm">100% Gratuit • Sans inscription • Sans limite</span>
+              <span className="text-xs sm:text-sm">{t('hero.badge')}</span>
             </motion.div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
-              Créez des <span className="gradient-text">QR Codes</span><br/>
-              qui <span className="relative inline-block">
-                impressionnent
+              {t('hero.title')} <span className="gradient-text">{t('hero.titleHighlight')}</span><br/>
+              {t('hero.titleEnd')} <span className="relative inline-block">
+                {t('hero.titleUnderline')}
                 <svg className="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 200 10">
                   <path d="M0,5 Q50,0 100,5 T200,5" stroke="url(#gradient)" strokeWidth="3" fill="none"/>
                   <defs>
@@ -92,8 +94,7 @@ const HomePage = () => {
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-slate-200 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-              Le générateur de QR codes le plus moderne et intuitif. 
-              Personnalisez, créez et téléchargez en quelques secondes.
+              {t('hero.subtitle')}
             </p>
             
             <div className="flex justify-center mb-8">
@@ -102,7 +103,7 @@ const HomePage = () => {
                 className="group px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-xl flex items-center gap-3"
               >
                 <Sparkles className="w-5 h-5" />
-                Créer maintenant
+                {t('hero.cta')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -116,19 +117,19 @@ const HomePage = () => {
             >
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" />
-                <span>Sans inscription</span>
+                <span>{t('hero.features.noSignup')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" />
-                <span>Export HD gratuit</span>
+                <span>{t('hero.features.hdExport')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" />
-                <span>Tous les templates inclus</span>
+                <span>{t('hero.features.allTemplates')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" />
-                <span>Usage illimité</span>
+                <span>{t('hero.features.unlimited')}</span>
               </div>
             </motion.div>
             
@@ -141,7 +142,7 @@ const HomePage = () => {
                 className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">1M+</div>
-                <div className="text-sm text-gray-600 dark:text-slate-300">QR Codes créés</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.qrCreated')}</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -150,7 +151,7 @@ const HomePage = () => {
                 className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">50K+</div>
-                <div className="text-sm text-gray-600 dark:text-slate-300">Utilisateurs actifs</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.activeUsers')}</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -162,7 +163,7 @@ const HomePage = () => {
                   <div className="text-3xl font-bold text-green-600 dark:text-green-300">100%</div>
                   <Zap className="w-6 h-6 text-yellow-500" />
                 </div>
-                <div className="text-sm text-gray-600 dark:text-slate-300">Gratuit & Rapide</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.freeAndFast')}</div>
               </motion.div>
             </div>
           </motion.div>
@@ -183,10 +184,10 @@ const HomePage = () => {
               className="text-center mb-8"
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                Essayez-le <span className="gradient-text">maintenant</span>
+                {t('hero.generator.title')} <span className="gradient-text">{t('hero.generator.titleHighlight')}</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-slate-200 max-w-2xl mx-auto">
-                Créez votre premier QR code en quelques secondes. Aucune inscription requise.
+                {t('hero.generator.subtitle')}
               </p>
             </motion.div>
             
@@ -225,15 +226,15 @@ const HomePage = () => {
             >
               <div className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
                 <Zap className="w-4 h-4" />
-                <span>Génération instantanée</span>
+                <span>{t('hero.generator.features.instant')}</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium">
                 <Sparkles className="w-4 h-4" />
-                <span>12 types de contenu</span>
+                <span>{t('hero.generator.features.contentTypes')}</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full text-sm font-medium">
                 <Gift className="w-4 h-4" />
-                <span>Templates gratuits</span>
+                <span>{t('hero.generator.features.freeTemplates')}</span>
               </div>
             </motion.div>
           </motion.div>

@@ -1,26 +1,28 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Plus, FileText, Image, Sparkles, Palette, Download } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const QuickActions = () => {
+  const { t } = useTranslation();
   const actions = [
     {
-      title: 'Nouveau QR Code',
-      description: 'Créer un QR code personnalisé',
+      title: t('dashboard.quickActions.newQRCode'),
+      description: t('dashboard.quickActions.newQRCodeDesc'),
       icon: Plus,
       link: '/',
       color: 'from-primary-500 to-purple-500'
     },
     {
-      title: 'Templates',
-      description: 'Explorer les modèles',
+      title: t('dashboard.quickActions.templates'),
+      description: t('dashboard.quickActions.templatesDesc'),
       icon: Palette,
       link: '/templates',
       color: 'from-pink-500 to-rose-500'
     },
     {
-      title: 'Premium',
-      description: 'Débloquer plus de fonctionnalités',
+      title: t('dashboard.quickActions.premium'),
+      description: t('dashboard.quickActions.premiumDesc'),
       icon: Sparkles,
       link: '/premium',
       color: 'from-yellow-500 to-orange-500'
@@ -37,7 +39,7 @@ const QuickActions = () => {
   return (
     <div className="bg-white dark:bg-dark-900 rounded-2xl p-6 shadow-xl">
       <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-        Actions rapides
+        {t('dashboard.quickActions.title')}
       </h2>
 
       {/* Main Actions */}
@@ -69,7 +71,7 @@ const QuickActions = () => {
       {/* Quick Templates */}
       <div>
         <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-          Créer rapidement
+          {t('dashboard.quickActions.quickCreate')}
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {quickTemplates.map((template, index) => (

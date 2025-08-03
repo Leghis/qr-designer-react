@@ -12,6 +12,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
+import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
 import historyService from '../../services/historyService';
@@ -20,6 +21,7 @@ import historyService from '../../services/historyService';
 import { COLOR_PALETTES, QR_STYLES } from './constants';
 
 const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) => {
+  const { t } = useTranslation();
   const { showNotification } = useNotification();
   const { isAuthenticated } = useAuth();
   
@@ -180,7 +182,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       
     } catch (error) {
       console.error('Error generating QR:', error);
-      showNotification('Erreur lors de la génération', 'error');
+      showNotification(t('common.error'), 'error');
     } finally {
       setIsGenerating(false);
     }
@@ -220,9 +222,9 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
         URL.revokeObjectURL(url);
       }
       
-      showNotification(`QR code téléchargé en ${format.toUpperCase()}`, 'success');
+      showNotification(t('qrGenerator.actions.downloadSuccess', { format: format.toUpperCase() }), 'success');
     } catch (error) {
-      showNotification('Erreur lors du téléchargement', 'error');
+      showNotification(t('qrGenerator.actions.downloadError'), 'error');
     }
   };
   

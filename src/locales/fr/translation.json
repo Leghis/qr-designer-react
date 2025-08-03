@@ -1,0 +1,1047 @@
+{
+  "common": {
+    "home": "Accueil",
+    "templates": "Templates",
+    "dashboard": "Dashboard",
+    "premium": "Premium",
+    "enterprise": "Enterprise",
+    "login": "Connexion",
+    "logout": "Se déconnecter",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "download": "Télécharger",
+    "share": "Partager",
+    "copy": "Copier",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "all": "Tous",
+    "none": "Aucun",
+    "yes": "Oui",
+    "no": "Non",
+    "or": "ou",
+    "and": "et",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Information",
+    "reset": "Réinitialiser"
+  },
+  "header": {
+    "brand": "QR Designer",
+    "home": "Accueil",
+    "templates": "Templates",
+    "dashboard": "Dashboard",
+    "logout": "Se déconnecter",
+    "logoutModal": {
+      "title": "Déconnexion",
+      "connectedAs": "Connecté en tant que",
+      "confirmMessage": "Êtes-vous sûr de vouloir vous déconnecter ?",
+      "reconnectMessage": "Vous pourrez vous reconnecter à tout moment.",
+      "stayConnected": "Rester connecté",
+      "confirmLogout": "Se déconnecter"
+    }
+  },
+  "hero": {
+    "badge": "100% Gratuit • Sans inscription • Sans limite",
+    "title": "Créez des",
+    "titleHighlight": "QR Codes",
+    "titleEnd": "qui",
+    "titleUnderline": "impressionnent",
+    "subtitle": "Le générateur de QR codes le plus moderne et intuitif. Personnalisez, créez et téléchargez en quelques secondes.",
+    "cta": "Créer maintenant",
+    "features": {
+      "noSignup": "Sans inscription",
+      "hdExport": "Export HD gratuit",
+      "allTemplates": "Tous les templates inclus",
+      "unlimited": "Usage illimité"
+    },
+    "stats": {
+      "qrCreated": "QR Codes créés",
+      "activeUsers": "Utilisateurs actifs",
+      "freeAndFast": "Gratuit & Rapide"
+    },
+    "generator": {
+      "title": "Essayez-le",
+      "titleHighlight": "maintenant",
+      "subtitle": "Créez votre premier QR code en quelques secondes. Aucune inscription requise.",
+      "features": {
+        "instant": "Génération instantanée",
+        "contentTypes": "12 types de contenu",
+        "freeTemplates": "Templates gratuits"
+      }
+    }
+  },
+  "qrGenerator": {
+    "tabs": {
+      "content": "Contenu",
+      "style": "Style",
+      "logo": "Logo",
+      "advanced": "Avancé"
+    },
+    "content": {
+      "title": "Contenu du QR Code",
+      "placeholder": "Entrez l'URL ou le texte à encoder",
+      "contentType": "Type de contenu",
+      "noContent": "Aucun contenu généré",
+      "types": {
+        "url": "URL / Site Web",
+        "text": "Texte Simple",
+        "email": "Email",
+        "phone": "Téléphone",
+        "sms": "SMS",
+        "wifi": "WiFi",
+        "vcard": "Contact (vCard)",
+        "event": "Événement",
+        "location": "Localisation",
+        "bitcoin": "Bitcoin",
+        "paypal": "PayPal",
+        "spotify": "Spotify",
+        "whatsapp": "WhatsApp",
+        "linkedin": "LinkedIn",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "twitter": "Twitter/X",
+        "youtube": "YouTube",
+        "ethereum": "Ethereum"
+      },
+      "fields": {
+        "websiteUrl": "URL du site web",
+        "text": "Texte",
+        "wifiName": "Nom du réseau WiFi (SSID)",
+        "password": "Mot de passe",
+        "securityType": "Type de sécurité",
+        "hiddenNetwork": "Réseau masqué",
+        "phoneNumber": "Numéro de téléphone",
+        "message": "Message",
+        "emailAddress": "Adresse email",
+        "subject": "Sujet",
+        "messageBody": "Corps du message",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "company": "Entreprise",
+        "jobTitle": "Fonction",
+        "address": "Adresse",
+        "bitcoinAddress": "Adresse Bitcoin",
+        "ethereumAddress": "Adresse Ethereum",
+        "location": "Lieu",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "description": "Description",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "addressSearch": "Recherche d'adresse",
+        "amount": "Montant",
+        "currency": "Devise",
+        "paymentDescription": "Description du paiement",
+        "label": "Libellé",
+        "spotifyUri": "URI Spotify",
+        "linkedinUrl": "URL du profil LinkedIn",
+        "username": "Nom d'utilisateur",
+        "facebookUrl": "URL de la page Facebook",
+        "youtubeUrl": "URL de la vidéo YouTube"
+      },
+      "placeholders": {
+        "url": "https://example.com",
+        "text": "Entrez votre texte ici...",
+        "wifiName": "MonWiFi",
+        "phone": "+33 6 12 34 56 78",
+        "message": "Votre message...",
+        "email": "contact@example.com",
+        "subject": "Objet du message",
+        "messageBody": "Contenu du message...",
+        "firstName": "Jean",
+        "lastName": "Dupont",
+        "company": "Mon Entreprise",
+        "jobTitle": "Directeur Commercial",
+        "address": "123 Rue de la Paix, 75001 Paris",
+        "bitcoinAddress": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+        "ethereumAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f89f0e",
+        "location": "Salle de conférence, Paris",
+        "description": "Description de l'événement...",
+        "addressSearch": "Tour Eiffel, Paris",
+        "paymentDescription": "Paiement pour...",
+        "label": "Don pour...",
+        "spotifyUri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
+        "linkedinUrl": "https://linkedin.com/in/john-doe",
+        "facebookUrl": "https://facebook.com/pagename",
+        "youtubeUrl": "https://youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      "security": {
+        "wpa": "WPA/WPA2",
+        "wep": "WEP",
+        "none": "Aucune"
+      },
+      "currencies": {
+        "eur": "EUR (€)",
+        "usd": "USD ($)",
+        "gbp": "GBP (£)",
+        "chf": "CHF"
+      },
+      "hints": {
+        "ethereumAddress": "Adresse Ethereum (42 caractères commençant par 0x)",
+        "spotifyUri": "Cliquez droit sur une chanson/playlist dans Spotify → Partager → Copier l'URI Spotify",
+        "username": "Sans le @ au début",
+        "youtubeUrl": "Chaîne, vidéo ou playlist YouTube"
+      }
+    },
+    "style": {
+      "title": "Personnalisation",
+      "preset": "Style prédéfini",
+      "colors": "Couleurs",
+      "shape": "Forme",
+      "templates": "Templates populaires",
+      "dotsStyle": "Style des points",
+      "viewMore": "Voir plus de templates",
+      "colorTheme": "Thème de couleurs",
+      "customColors": "Couleurs personnalisées",
+      "custom": "Perso",
+      "colorSuggestions": "Suggestions de couleurs",
+      "applyPalette": "Appliquer cette palette",
+      "dotsColor": "Points",
+      "backgroundColor": "Fond",
+      "cornersColor": "Coins carrés",
+      "cornerDotsColor": "Points des coins",
+      "shapes": {
+        "square": "Carré",
+        "circle": "Cercle",
+        "dots": "Points",
+        "rounded": "Arrondi",
+        "extraRounded": "Très arrondi",
+        "classy": "Classique",
+        "classyRounded": "Classique arrondi"
+      }
+    },
+    "logo": {
+      "title": "Logo",
+      "upload": "Télécharger un logo",
+      "remove": "Supprimer le logo",
+      "size": "Taille du logo",
+      "hideBackgroundDots": "Masquer les points derrière le logo"
+    },
+    "advanced": {
+      "title": "Options avancées",
+      "errorCorrection": "Correction d'erreur",
+      "margin": "Marge",
+      "quality": "Qualité",
+      "levels": {
+        "L": "Faible (7%)",
+        "M": "Moyen (15%)",
+        "Q": "Élevé (25%)",
+        "H": "Très élevé (30%)"
+      }
+    },
+    "actions": {
+      "download": "Télécharger",
+      "downloadPNG": "Télécharger PNG",
+      "downloadSVG": "Télécharger SVG",
+      "downloadJPG": "Télécharger JPG",
+      "refresh": "Actualiser",
+      "hidePreview": "Masquer l'aperçu",
+      "showPreview": "Afficher l'aperçu"
+    },
+    "premium": {
+      "unlock": "Débloquer avec Premium",
+      "upgradeTitle": "Passez au Premium",
+      "upgradeMessage": "Débloquez tous les templates et fonctionnalités premium"
+    }
+  },
+  "templates": {
+    "title": "Templates Populaires",
+    "subtitle": "Commencez avec nos designs prédéfinis",
+    "viewAll": "Explorer tous les templates gratuits",
+    "categories": {
+      "all": "Tous",
+      "spectacular": "Spectaculaire",
+      "professional": "Professionnel",
+      "creative": "Créatif",
+      "event": "Événement",
+      "hospitality": "Hospitalité",
+      "retail": "Commerce",
+      "health": "Santé",
+      "education": "Éducation",
+      "social": "Réseaux sociaux"
+    },
+    "gallery": {
+      "title": "Galerie de",
+      "titleHighlight": "Templates Premium",
+      "subtitle": "Plus de {{count}} designs exclusifs créés par des professionnels. Trouvez le template parfait pour votre marque.",
+      "loading": "Chargement...",
+      "noTemplates": "Aucun template trouvé",
+      "tryOtherCategory": "Essayez une autre catégorie"
+    },
+    "card": {
+      "customize": "Personnaliser",
+      "view": "Voir le template",
+      "used": "Utilisé"
+    },
+    "cta": {
+      "unlockAll": "Débloquez tous les templates Premium",
+      "description": "Accédez à plus de {{count}} designs exclusifs et créez des QR codes qui se démarquent",
+      "upgrade": "Passer Premium"
+    }
+  },
+  "features": {
+    "title": "Tout ce dont vous avez besoin",
+    "subtitle": "Des fonctionnalités puissantes pour créer des QR codes professionnels",
+    "mainTitle": "Fonctionnalités Puissantes",
+    "mainSubtitle": "Tout ce dont vous avez besoin pour créer des QR codes parfaits",
+    "items": {
+      "totalCustomization": {
+        "title": "Personnalisation Totale",
+        "description": "Couleurs, formes, logos - créez des QR codes uniques qui reflètent votre marque."
+      },
+      "instantGeneration": {
+        "title": "Génération Instantanée",
+        "description": "Créez et modifiez vos QR codes en temps réel, sans attente ni rechargement."
+      },
+      "responsive": {
+        "title": "100% Responsive",
+        "description": "Créez vos QR codes sur n'importe quel appareil, où que vous soyez."
+      },
+      "hdExport": {
+        "title": "Export Haute Qualité",
+        "description": "Téléchargez en PNG haute résolution ou SVG vectoriel pour tous vos besoins."
+      },
+      "secure": {
+        "title": "100% Sécurisé",
+        "description": "Vos données restent privées. Aucun stockage sur nos serveurs."
+      },
+      "freeForever": {
+        "title": "Gratuit pour Toujours",
+        "description": "Les fonctionnalités essentielles resteront toujours gratuites."
+      }
+    },
+    "list": {
+      "customization": {
+        "title": "Personnalisation complète",
+        "description": "Couleurs, formes, logos - créez des QR codes uniques à votre image"
+      },
+      "hdExport": {
+        "title": "Export haute qualité",
+        "description": "Téléchargez en PNG, SVG ou JPG jusqu'à 3000x3000 pixels"
+      },
+      "dynamicQR": {
+        "title": "QR codes dynamiques",
+        "description": "Modifiez le contenu sans changer le code (Premium)"
+      },
+      "analytics": {
+        "title": "Statistiques détaillées",
+        "description": "Suivez les scans, localisations et appareils"
+      },
+      "bulkCreation": {
+        "title": "Création en masse",
+        "description": "Générez jusqu'à 100 QR codes simultanément"
+      },
+      "security": {
+        "title": "Sécurité renforcée",
+        "description": "Protection par mot de passe et expiration"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Créez votre QR code en 3 étapes simples",
+    "steps": {
+      "choose": {
+        "title": "Choisissez",
+        "description": "Sélectionnez le type de contenu"
+      },
+      "customize": {
+        "title": "Personnalisez",
+        "description": "Adaptez le design à votre marque"
+      },
+      "download": {
+        "title": "Téléchargez",
+        "description": "Exportez en haute qualité"
+      }
+    }
+  },
+  "pricing": {
+    "title": "Choisissez votre plan",
+    "subtitle": "Commencez gratuitement, évoluez selon vos besoins",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "save": "Économisez {{percent}}%",
+    "plans": {
+      "free": {
+        "name": "Gratuit",
+        "price": "0€",
+        "description": "Parfait pour débuter",
+        "cta": "Commencer gratuitement",
+        "features": {
+          "unlimitedStatic": "QR codes statiques illimités",
+          "basicTemplates": "Templates de base",
+          "hdDownloads": "Téléchargements HD",
+          "basicCustomization": "Personnalisation basique"
+        }
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "9€",
+        "priceYearly": "7€",
+        "description": "Pour les professionnels",
+        "cta": "Passer Premium",
+        "popular": "Le plus populaire",
+        "features": {
+          "everything": "Tout du plan Gratuit",
+          "dynamicQR": "QR codes dynamiques",
+          "premiumTemplates": "45+ templates premium",
+          "advancedCustomization": "Personnalisation avancée",
+          "analytics": "Statistiques détaillées",
+          "noWatermark": "Sans filigrane",
+          "bulkCreation": "Création en masse",
+          "prioritySupport": "Support prioritaire"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Sur devis",
+        "description": "Solutions sur mesure",
+        "cta": "Nous contacter",
+        "features": {
+          "everything": "Tout du plan Premium",
+          "unlimitedDynamic": "QR dynamiques illimités",
+          "customDomain": "Domaine personnalisé",
+          "apiAccess": "Accès API",
+          "whiteLabel": "Marque blanche",
+          "sla": "SLA garanti",
+          "dedicatedSupport": "Account manager dédié",
+          "training": "Formation équipe"
+        }
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Ils nous font confiance",
+    "subtitle": "Des milliers d'entreprises utilisent QR Designer chaque jour",
+    "list": {
+      "restaurant": {
+        "text": "QR Designer a révolutionné notre menu digital. Les clients adorent scanner pour voir les plats!",
+        "author": "Marie L.",
+        "role": "Restauratrice",
+        "rating": 5
+      },
+      "marketing": {
+        "text": "Les templates premium sont magnifiques. Nos campagnes ont maintenant un look professionnel.",
+        "author": "Thomas B.",
+        "role": "Directeur Marketing",
+        "rating": 5
+      },
+      "event": {
+        "text": "Parfait pour nos événements. Les QR codes dynamiques nous permettent de tout modifier en temps réel.",
+        "author": "Sophie M.",
+        "role": "Event Manager",
+        "rating": 5
+      }
+    }
+  },
+  "cta": {
+    "title": "Prêt à créer des QR codes",
+    "titleHighlight": "extraordinaires",
+    "subtitle": "Rejoignez des milliers de créateurs et donnez vie à vos idées",
+    "button": "Commencer gratuitement",
+    "premium": "ou",
+    "premiumLink": "découvrir Premium"
+  },
+  "templates": {
+    "title": "Templates Populaires",
+    "subtitle": "Commencez avec nos designs prédéfinis",
+    "viewAll": "Explorer tous les templates gratuits",
+    "examples": {
+      "business": {
+        "name": "Business Pro",
+        "description": "Parfait pour les cartes de visite"
+      },
+      "restaurant": {
+        "name": "Restaurant",
+        "description": "Menu digital et commandes"
+      },
+      "event": {
+        "name": "Événement",
+        "description": "Invitations et billetterie"
+      },
+      "social": {
+        "name": "Réseaux Sociaux",
+        "description": "Liens vers vos profils"
+      }
+    },
+    "categories": {
+      "all": "Tous",
+      "spectacular": "Spectaculaire",
+      "professional": "Professionnel",
+      "creative": "Créatif",
+      "event": "Événement",
+      "hospitality": "Hospitalité",
+      "retail": "Commerce",
+      "health": "Santé",
+      "education": "Éducation",
+      "social": "Réseaux sociaux"
+    },
+    "gallery": {
+      "title": "Galerie de",
+      "titleHighlight": "Templates Premium",
+      "subtitle": "Plus de {{count}} designs exclusifs créés par des professionnels. Trouvez le template parfait pour votre marque.",
+      "loading": "Chargement...",
+      "noTemplates": "Aucun template trouvé",
+      "tryOtherCategory": "Essayez une autre catégorie"
+    },
+    "card": {
+      "customize": "Personnaliser",
+      "view": "Voir le template",
+      "used": "Utilisé"
+    },
+    "cta": {
+      "unlockAll": "Débloquez tous les templates Premium",
+      "description": "Accédez à plus de {{count}} designs exclusifs et créez des QR codes qui se démarquent",
+      "upgrade": "Passer Premium"
+    }
+  },
+  "pricing": {
+    "startFree": {
+      "badge": "Commencez Gratuitement"
+    },
+    "title": "Simple et",
+    "titleHighlight": "Transparent",
+    "subtitle": "Créez des QR codes professionnels sans frais cachés. Les fonctionnalités essentielles sont gratuites, pour toujours.",
+    "free": {
+      "name": "Plan Gratuit",
+      "period": "pour toujours",
+      "description": "Parfait pour commencer et créer des QR codes de qualité",
+      "cta": "Créer un QR Code Gratuit",
+      "noCreditCard": "Aucune carte bancaire requise • Aucune inscription",
+      "features": {
+        "fastGeneration": {
+          "title": "Génération Rapide",
+          "description": "Créez vos QR codes instantanément, sans attente"
+        },
+        "basicTemplates": {
+          "title": "Templates Basiques",
+          "description": "Accès aux templates essentiels pour bien démarrer"
+        },
+        "standardExport": {
+          "title": "Export Standard",
+          "description": "Téléchargez en PNG et SVG pour vos besoins courants"
+        },
+        "noSignup": {
+          "title": "Sans Inscription",
+          "description": "Commencez immédiatement, sans créer de compte"
+        }
+      }
+    },
+    "commitment": {
+      "title": "Notre Engagement",
+      "mission": {
+        "title": "Notre Mission",
+        "description": "Rendre la technologie QR accessible à tous"
+      },
+      "community": {
+        "title": "Communauté",
+        "description": "Soutenu par une communauté passionnée"
+      },
+      "alwaysFree": {
+        "title": "Toujours Gratuit",
+        "description": "Les fonctionnalités essentielles resteront gratuites"
+      }
+    },
+    "security": {
+      "badge": "<strong>100% sécurisé</strong> • Vos données restent privées"
+    },
+    "comingSoon": {
+      "message": "Des fonctionnalités avancées arrivent bientôt"
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Créez votre QR code en 3 étapes simples",
+    "steps": {
+      "enterContent": {
+        "title": "Entrez votre contenu",
+        "description": "URL, texte, email, téléphone... tout est possible"
+      },
+      "customize": {
+        "title": "Personnalisez le design",
+        "description": "Couleurs, formes et styles à votre image"
+      },
+      "download": {
+        "title": "Téléchargez",
+        "description": "PNG ou SVG, prêt à utiliser partout"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent nos utilisateurs",
+    "subtitle": "Plus de 50 000 entreprises nous font confiance",
+    "list": {
+      "ecommerce": {
+        "text": "Incroyable qu'un outil aussi complet soit gratuit ! J'ai créé des QR codes personnalisés pour tous mes produits en quelques minutes.",
+        "author": "Marie L.",
+        "role": "E-commerce"
+      },
+      "restaurant": {
+        "text": "Les templates sont magnifiques et tout est gratuit ! Nos QR codes sont maintenant un vrai atout visuel pour notre menu digital.",
+        "author": "Thomas D.",
+        "role": "Restaurant"
+      },
+      "startup": {
+        "text": "Pas besoin de carte bancaire, pas d'abonnement caché. Simple, efficace et 100% gratuit. Exactement ce dont on avait besoin !",
+        "author": "Sophie M.",
+        "role": "Tech Startup"
+      }
+    }
+  },
+  "cta": {
+    "badge": "Tout est gratuit, pour toujours",
+    "title": "Prêt à créer des QR codes exceptionnels ?",
+    "subtitle": "Rejoignez plus de 50 000 entreprises qui créent des QR codes professionnels gratuitement avec QR Designer",
+    "button": "Créer mon QR code gratuit",
+    "disclaimer": "Aucune carte bancaire • Aucune inscription • Accès complet"
+  },
+  "qrGenerator": {
+    "tabs": {
+      "content": "Contenu",
+      "style": "Style", 
+      "logo": "Logo",
+      "advanced": "Avancé"
+    },
+    "templates": {
+      "basic": "Basique",
+      "modern": "Moderne"
+    },
+    "style": {
+      "templates": "Templates populaires",
+      "dotsStyle": "Style des points",
+      "colors": "Couleurs",
+      "dotsColor": "Points",
+      "backgroundColor": "Fond",
+      "cornersColor": "Coins carrés",
+      "cornerDotsColor": "Points des coins"
+    },
+    "logo": {
+      "title": "Logo central",
+      "upload": "Ajoutez votre logo",
+      "uploadHint": "PNG, JPG ou SVG • Max 2MB",
+      "remove": "Supprimer le logo",
+      "size": "Taille du logo",
+      "clickToChange": "Cliquez pour changer le logo",
+      "sizeSmall": "Petit",
+      "sizeLarge": "Grand"
+    },
+    "advanced": {
+      "title": "Options avancées",
+      "errorCorrection": "Niveau de correction d'erreur",
+      "errorCorrectionHelp": "Un niveau plus élevé permet au QR code d'être lu même s'il est partiellement endommagé",
+      "margin": "Marge (zone blanche)",
+      "marginNone": "Aucune",
+      "marginLarge": "Large",
+      "exportOptions": "Options d'export",
+      "optimizeForPrint": "Optimiser pour l'impression",
+      "includeMetadata": "Inclure les métadonnées",
+      "levels": {
+        "L": "Faible (7%)",
+        "M": "Moyen (15%)",
+        "Q": "Quartile (25%)",
+        "H": "Élevé (30%)"
+      }
+    },
+    "help": {
+      "content": "Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.",
+      "styleNoTemplate": "Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.",
+      "styleWithTemplate": "Modifiez le style du template ou gardez le design original.",
+      "logo": "Ajoutez votre logo au centre du QR code pour renforcer votre marque.",
+      "advanced": "Options avancées pour optimiser votre QR code selon vos besoins spécifiques."
+    },
+    "actions": {
+      "download": "Télécharger",
+      "hidePreview": "Masquer",
+      "showPreview": "Afficher",
+      "downloadPNG": "PNG",
+      "downloadSVG": "SVG",
+      "pdfComingSoon": "Export PDF disponible prochainement",
+      "downloadSuccess": "QR code téléchargé en {{format}}",
+      "downloadError": "Erreur lors du téléchargement"
+    },
+    "premium": {
+      "unlock": "Débloquer avec Premium",
+      "upgradeTitle": "Passez au Premium",
+      "upgradeMessage": "Template Premium • Passez au plan Pro pour débloquer tous les templates"
+    },
+    "preview": {
+      "title": "Aperçu en temps réel",
+      "generating": "Génération en cours..."
+    },
+    "template": {
+      "name": "Template",
+      "category": "Catégorie"
+    },
+    "help": {
+      "content": "Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.",
+      "styleNoTemplate": "Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.",
+      "styleWithTemplate": "Modifiez le style du template ou gardez le design original.",
+      "logo": "Ajoutez votre logo au centre du QR code pour renforcer votre marque.",
+      "advanced": "Options avancées pour optimiser votre QR code selon vos besoins spécifiques."
+    }
+  },
+  "templateEdit": {
+    "navigation": {
+      "backToGallery": "Retour à la galerie"
+    },
+    "header": {
+      "title": "Template"
+    },
+    "generator": {
+      "title": "Personnalisez votre QR Code",
+      "description": "Vous éditez le template <strong>{{templateName}}</strong>. L'aperçu se met à jour en temps réel à droite."
+    },
+    "features": {
+      "customization": {
+        "title": "Personnalisation",
+        "description": "Couleurs et styles"
+      },
+      "data": {
+        "title": "Données",
+        "description": "URL, texte, contact"
+      },
+      "logo": {
+        "title": "Logo",
+        "description": "Ajoutez votre marque"
+      },
+      "options": {
+        "title": "Options",
+        "description": "Finitions avancées"
+      }
+    },
+    "steps": {
+      "title": "Créez votre QR Code en",
+      "titleHighlight": "3 étapes simples",
+      "select": {
+        "title": "Sélectionnez",
+        "description": "Choisissez votre template"
+      },
+      "customize": {
+        "title": "Personnalisez",
+        "description": "Adaptez les couleurs et le style"
+      },
+      "download": {
+        "title": "Téléchargez",
+        "description": "Exportez en haute qualité"
+      }
+    },
+    "premium": {
+      "unlockTitle": "Débloquez ce template Premium",
+      "unlockDescription": "Accédez à tous nos templates exclusifs et créez des QR codes uniques qui marquent les esprits",
+      "discoverOffers": "Découvrir les offres Premium",
+      "accessRequired": "Passez au plan Premium pour utiliser ce template"
+    },
+    "errors": {
+      "notFound": "Template non trouvé",
+      "loadError": "Erreur lors du chargement du template"
+    }
+  },
+  "premium": {
+    "hero": {
+      "title": "Templates QR Codes",
+      "titleHighlight": "Premium",
+      "subtitle": "Des designs exclusifs conçus par des professionnels pour donner à vos QR codes un impact maximal"
+    },
+    "templatesCount": "{{count}} templates disponibles"
+  },
+  "footer": {
+    "brand": "QR Designer",
+    "tagline": "Le générateur de QR codes nouvelle génération",
+    "links": {
+      "product": "Produit",
+      "features": "Fonctionnalités",
+      "templates": "Templates",
+      "pricing": "Tarifs",
+      "api": "API",
+      "company": "Entreprise",
+      "about": "À propos",
+      "blog": "Blog",
+      "careers": "Carrières",
+      "contact": "Contact",
+      "support": "Support",
+      "help": "Centre d'aide",
+      "faq": "FAQ",
+      "status": "Statut",
+      "terms": "Conditions",
+      "privacy": "Confidentialité"
+    },
+    "copyright": "© {{year}} QR Designer. Tous droits réservés.",
+    "madeWith": "Fait avec",
+    "in": "au Canada"
+  },
+  "dashboard": {
+    "navigation": {
+      "dashboard": "Tableau de bord",
+      "myQRCodes": "Mes QR Codes",
+      "settings": "Paramètres",
+      "createQRCode": "Créer un QR Code"
+    },
+    "user": {
+      "user": "Utilisateur"
+    },
+    "overview": {
+      "welcome": "Bonjour, {{name}} ! 👋",
+      "welcomeSubtitle": "Voici un aperçu de votre activité QR Code",
+      "createQRCode": "Créer un QR Code",
+      "goToPremium": "Passer à Premium",
+      "stats": {
+        "totalQRCodes": "Total QR Codes",
+        "todayScans": "Scans aujourd'hui",
+        "activeQRCodes": "QR Codes actifs",
+        "averageTime": "Temps moyen"
+      },
+      "quickCreate": {
+        "title": "Création rapide",
+        "moreOptions": "Plus d'options"
+      },
+      "recentQRCodes": {
+        "title": "QR Codes récents",
+        "viewAll": "Voir tout",
+        "created": "Créé",
+        "scans": "scans",
+        "noQRCodes": "Aucun QR Code créé pour le moment",
+        "createFirst": "Créer votre premier QR Code"
+      },
+      "upgrade": {
+        "title": "Débloquez tout le potentiel de QR Designer ✨",
+        "subtitle": "QR Codes dynamiques, analytics avancés, types premium et bien plus !",
+        "discoverPremium": "Découvrir Premium"
+      }
+    },
+    "myQRCodes": {
+      "title": "Mes QR Codes",
+      "subtitle": "{{count}} QR code{{plural}} créé{{plural}}",
+      "createQRCode": "Créer un QR Code",
+      "searchPlaceholder": "Rechercher un QR code...",
+      "filters": {
+        "allTypes": "Tous les types",
+        "newest": "Plus récents",
+        "oldest": "Plus anciens",
+        "mostUsed": "Plus utilisés",
+        "lastUsed": "Dernière utilisation",
+        "exportJSON": "Exporter en JSON",
+        "exportCSV": "Exporter en CSV"
+      },
+      "timeGroups": {
+        "today": "Aujourd'hui",
+        "yesterday": "Hier",
+        "thisWeek": "Cette semaine",
+        "older": "Plus ancien"
+      },
+      "noQRCodes": {
+        "title": "Aucun QR code trouvé",
+        "subtitle": "Essayez de modifier vos critères de recherche",
+        "subtitleEmpty": "Créez votre premier QR code pour commencer",
+        "createQRCode": "Créer un QR Code"
+      }
+    },
+    "createQRCode": {
+      "title": "Créer un nouveau QR Code",
+      "back": "Retour",
+      "typeSelection": {
+        "title": "Type de QR Code"
+      },
+      "qrName": {
+        "label": "Nom du QR Code (optionnel)",
+        "placeholder": "Ex: Menu Restaurant, Carte de visite..."
+      },
+      "dynamicQR": {
+        "title": "QR Code dynamique",
+        "subtitle": "Modifiable après création"
+      },
+      "information": {
+        "title": "Informations du QR Code"
+      },
+      "preview": {
+        "title": "Aperçu"
+      },
+      "actions": {
+        "create": "Créer le QR Code",
+        "cancel": "Annuler"
+      },
+      "validation": {
+        "pleaseCorrect": "Veuillez corriger les erreurs",
+        "generationError": "Erreur lors de la génération du QR code",
+        "success": "QR Code créé avec succès !"
+      },
+      "formFields": {
+        "select": "Sélectionner...",
+        "required": "*"
+      }
+    },
+    "stats": {
+      "totalQRCodes": "QR Codes Total",
+      "allQRCodesCreated": "Tous les QR codes créés",
+      "today": "Aujourd'hui",
+      "todayQRCodes": "QR codes créés aujourd'hui",
+      "thisWeek": "Cette semaine",
+      "last7Days": "7 derniers jours",
+      "trend": "Tendance",
+      "vsLastWeek": "vs semaine dernière"
+    },
+    "quickActions": {
+      "title": "Actions rapides",
+      "newQRCode": "Nouveau QR Code",
+      "newQRCodeDesc": "Créer un QR code personnalisé",
+      "templates": "Templates",
+      "templatesDesc": "Explorer les modèles",
+      "premium": "Premium",
+      "premiumDesc": "Débloquer plus de fonctionnalités",
+      "quickCreate": "Créer rapidement"
+    },
+    "qrCard": {
+      "timeAgo": {
+        "lessThanHour": "Il y a moins d'une heure",
+        "hoursAgo": "Il y a {{hours}} heures",
+        "yesterday": "Hier"
+      },
+      "actions": {
+        "viewDetails": "Voir détails",
+        "edit": "Modifier",
+        "copyLink": "Copier le lien",
+        "download": "Télécharger",
+        "share": "Partager",
+        "delete": "Supprimer",
+        "details": "Détails",
+        "open": "Ouvrir"
+      },
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce QR code ?",
+      "notifications": {
+        "copied": "Contenu copié !",
+        "downloading": "Téléchargement du QR code...",
+        "shareComingSoon": "Fonctionnalité de partage bientôt disponible",
+        "deleted": "QR code supprimé"
+      },
+      "dynamic": "Dynamique",
+      "noData": "Pas de données",
+      "scans": "scans"
+    },
+    "history": {
+      "title": "Historique des QR Codes",
+      "subtitle": "{{count}} QR codes créés au total",
+      "deleteSelected": "Supprimer ({{count}})",
+      "export": "Exporter",
+      "exportJSON": "Exporter en JSON",
+      "exportCSV": "Exporter en CSV",
+      "filters": "Filtres",
+      "searchPlaceholder": "Rechercher dans l'historique...",
+      "filterOptions": {
+        "newest": "Plus récents",
+        "oldest": "Plus anciens",
+        "mostUsed": "Plus utilisés",
+        "lastUsed": "Dernière utilisation",
+        "allTemplates": "Tous les templates",
+        "default": "Par défaut",
+        "modern": "Moderne",
+        "minimalist": "Minimaliste",
+        "business": "Business",
+        "startDate": "Date de début"
+      },
+      "noQRCodes": {
+        "title": "Aucun QR code trouvé",
+        "searchSubtitle": "Aucun résultat pour votre recherche",
+        "emptySubtitle": "Commencez à créer des QR codes pour les voir ici"
+      },
+      "selectAll": "Tout sélectionner",
+      "viewAll": "Voir tout l'historique ({{count}})",
+      "confirmDelete": "Supprimer {{count}} QR codes ?",
+      "notifications": {
+        "deleted": "QR code supprimé",
+        "multipleDeleted": "{{count}} QR codes supprimés",
+        "exported": "Historique exporté en {{format}}"
+      }
+    },
+    "historyCard": {
+      "template": "Template",
+      "used": "Utilisé {{count}} fois",
+      "actions": {
+        "view": "Voir",
+        "copy": "Copier",
+        "download": "Télécharger",
+        "delete": "Supprimer"
+      },
+      "notifications": {
+        "copied": "Contenu copié !",
+        "downloading": "Téléchargement du QR code..."
+      }
+    },
+    "qrTypeSelector": {
+      "premium": "Premium"
+    },
+    "qrDetail": {
+      "back": "Retour",
+      "unnamed": "QR Code sans nom",
+      "createdOn": "Créé le",
+      "dynamic": "Dynamique",
+      "actions": {
+        "edit": "Modifier",
+        "share": "Partager",
+        "delete": "Supprimer"
+      },
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce QR code ?",
+      "tabs": {
+        "overview": "Vue d'ensemble",
+        "analytics": "Analytics"
+      },
+      "stats": {
+        "totalScans": "Scans totaux",
+        "today": "Aujourd'hui",
+        "thisWeek": "Cette semaine"
+      },
+      "qrData": {
+        "title": "Données du QR Code",
+        "copyData": "Copier les données"
+      },
+      "devicesUsed": {
+        "title": "Appareils utilisés",
+        "mobile": "Mobile",
+        "desktop": "Desktop"
+      },
+      "preview": {
+        "title": "Aperçu",
+        "downloadQR": "Télécharger le QR Code"
+      },
+      "analytics": {
+        "title": "Analytics détaillés",
+        "comingSoon": "Les analytics détaillés arrivent bientôt..."
+      },
+      "notifications": {
+        "notFound": "QR Code introuvable",
+        "deleted": "QR code supprimé",
+        "downloading": "Téléchargement du QR code...",
+        "linkCopied": "Lien copié !",
+        "dataCopied": "Données copiées !"
+      },
+      "shareText": "Découvrez mon QR code"
+    }
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "createAccount": "Créer un compte",
+    "signInSubtitle": "Accédez à votre tableau de bord",
+    "signUpSubtitle": "Rejoignez QR Designer et créez des QR codes premium",
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "Jean Dupont",
+    "emailAddress": "Adresse email",
+    "emailPlaceholder": "votre@email.com",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "rememberMe": "Se souvenir de moi",
+    "forgotPassword": "Mot de passe oublié?",
+    "orContinueWith": "Ou continuer avec",
+    "alreadyHaveAccount": "Déjà un compte?",
+    "noAccountYet": "Pas encore de compte?",
+    "backToHome": "← Retour à l'accueil"
+  }
+}

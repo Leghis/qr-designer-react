@@ -18,6 +18,7 @@ import {
   Crown,
   Loader2
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import QRCodeStyling from 'qr-code-styling';
 import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
@@ -26,7 +27,8 @@ import QRContentEditor from './QRContentEditor';
 
 // Import constants
 import { COLOR_PALETTES, QR_STYLES } from './constants';
-import { qrTemplates, premiumTemplates } from '../../services/qrService';
+import { qrTemplates } from '../../services/qrService';
+import { featuredPremiumTemplates } from '../../data/templates/featured';
 import { 
   extractTemplateColors, 
   applyThemeToTemplate, 
@@ -38,6 +40,7 @@ import {
 } from './colorUtils';
 
 const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialData }) => {
+  const { t } = useTranslation();
   const { showNotification } = useNotification();
   const { isAuthenticated } = useAuth();
   
@@ -104,7 +107,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
   const popularTemplates = !template ? [
     { 
       id: 'basic', 
-      name: 'Basique',
+      name: t('qrGenerator.templates.basic'),
       options: {
         dotsOptions: { color: '#000000', type: 'square' },
         backgroundOptions: { color: '#FFFFFF' },
@@ -115,7 +118,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     },
     { 
       id: 'modern', 
-      name: 'Moderne',
+      name: t('qrGenerator.templates.modern'),
       options: {
         dotsOptions: { color: '#3B82F6', type: 'rounded' },
         backgroundOptions: { color: '#EFF6FF' },
@@ -124,7 +127,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       },
       isPremium: false 
     },
-    ...premiumTemplates.slice(0, 4).map(t => ({ ...t, isPremium: true }))
+    ...featuredPremiumTemplates
   ] : [];
   
   // Refs
@@ -312,7 +315,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       
     } catch (error) {
       console.error('Error generating QR:', error);
-      showNotification('Erreur lors de la génération', 'error');
+      showNotification(t('common.error'), 'error');
     } finally {
       setIsGenerating(false);
     }
@@ -367,13 +370,13 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         URL.revokeObjectURL(url);
       } else if (format === 'pdf') {
         // Generate PDF with QR code
-        showNotification('Export PDF disponible prochainement', 'info');
+        showNotification(t('qrGenerator.actions.pdfComingSoon'), 'info');
         return;
       }
       
-      showNotification(`QR code téléchargé en ${format.toUpperCase()}`, 'success');
+      showNotification(t('qrGenerator.actions.downloadSuccess', { format: format.toUpperCase() }), 'success');
     } catch (error) {
-      showNotification('Erreur lors du téléchargement', 'error');
+      showNotification(t('qrGenerator.actions.downloadError'), 'error');
     }
   };
   
@@ -435,10 +438,10 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
   
   // Tab configuration
   const tabs = [
-    { id: 'content', label: 'Contenu', icon: Type },
-    { id: 'style', label: 'Style', icon: Palette },
-    { id: 'logo', label: 'Logo', icon: ImageIcon },
-    { id: 'advanced', label: 'Avancé', icon: Sliders }
+    { id: 'content', label: t('qrGenerator.tabs.content'), icon: Type },
+    { id: 'style', label: t('qrGenerator.tabs.style'), icon: Palette },
+    { id: 'logo', label: t('qrGenerator.tabs.logo'), icon: ImageIcon },
+    { id: 'advanced', label: t('qrGenerator.tabs.advanced'), icon: Sliders }
   ];
   
   // Add beautifulBackground prop to enable/disable the background styling
@@ -520,7 +523,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {!template && popularTemplates.length > 0 && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    Templates populaires
+                    {t('qrGenerator.style.templates')}
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                     {popularTemplates.map((tmpl) => (
@@ -570,7 +573,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       className="inline-flex items-center gap-2 text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
                     >
                       <Sparkles className="w-4 h-4" />
-                      Voir plus de templates
+                      {t('qrGenerator.style.viewMore')}
                     </Link>
                   </div>
                 </div>
@@ -580,7 +583,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Style des points
+                    {t('qrGenerator.style.dotsStyle')}
                   </label>
                   {qrOptions.style !== 'template' && template && (
                     <button
@@ -588,7 +591,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       className="text-sm text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1"
                     >
                       <RefreshCw className="w-3 h-3" />
-                      Réinitialiser
+                      {t('common.reset')}
                     </button>
                   )}
                 </div>
@@ -626,7 +629,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {/* Color Selection */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Couleurs
+                  {t('qrGenerator.style.colors')}
                 </label>
                 <div className="space-y-3">
                   {/* Preset Colors */}
@@ -655,7 +658,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                         title={palette.name}
                       >
                         {palette.id === 'custom' ? (
-                          <div className="text-xs font-medium">Perso</div>
+                          <div className="text-xs font-medium">{t('qrGenerator.style.custom')}</div>
                         ) : (
                           <div className="flex justify-center items-center gap-0.5 p-1">
                             {/* Background */}
@@ -686,7 +689,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     >
                       <div className="grid grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Points</label>
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.dotsColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.dots}
@@ -699,7 +702,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Fond</label>
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.backgroundColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.background}
@@ -714,7 +717,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       </div>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Coins carrés</label>
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.cornersColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.corners}
@@ -727,7 +730,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">Points des coins</label>
+                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.cornerDotsColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.cornersAlt || qrOptions.customColors.corners}
@@ -743,7 +746,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       
                       {/* Color harmony suggestions */}
                       <div className="pt-2">
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Suggestions de couleurs :</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{t('qrGenerator.style.colorSuggestions')}:</p>
                         <div className="flex gap-2">
                           {generateColorSuggestions(qrOptions.customColors.dots).map((color, index) => (
                             <button
@@ -751,7 +754,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                               onClick={() => applySuggestedColors(color)}
                               className="w-8 h-8 rounded border-2 border-gray-300 dark:border-gray-600 hover:scale-110 transition-transform"
                               style={{ backgroundColor: color.dots }}
-                              title="Appliquer cette palette"
+                              title={t('qrGenerator.style.applyPalette')}
                             />
                           ))}
                         </div>
@@ -764,7 +767,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {/* Shape */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Forme
+                  {t('qrGenerator.style.shape')}
                 </label>
                 <div className="flex gap-3">
                   <button
@@ -776,7 +779,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     }`}
                   >
                     <Square className="w-6 h-6 mx-auto mb-1" />
-                    <span className="text-xs">Carré</span>
+                    <span className="text-xs">{t('qrGenerator.style.shapes.square')}</span>
                   </button>
                   <button
                     onClick={() => setQrOptions({ ...qrOptions, shape: 'circle' })}
@@ -787,7 +790,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     }`}
                   >
                     <Circle className="w-6 h-6 mx-auto mb-1" />
-                    <span className="text-xs">Cercle</span>
+                    <span className="text-xs">{t('qrGenerator.style.shapes.circle')}</span>
                   </button>
                 </div>
               </div>
@@ -806,7 +809,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
             >
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Logo central
+                  {t('qrGenerator.logo.title')}
                 </label>
                 <input
                   type="file"
@@ -832,7 +835,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     <div className="space-y-4">
                       <img src={qrOptions.logo} alt="Logo" className="w-24 h-24 mx-auto object-contain" />
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Cliquez pour changer le logo
+                        {t('qrGenerator.logo.clickToChange')}
                       </p>
                     </div>
                   ) : (
@@ -840,10 +843,10 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       <Upload className="w-12 h-12 mx-auto text-gray-400" />
                       <div>
                         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Ajoutez votre logo
+                          {t('qrGenerator.logo.upload')}
                         </p>
                         <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                          PNG, JPG ou SVG • Max 2MB
+                          {t('qrGenerator.logo.uploadHint')}
                         </p>
                       </div>
                     </div>
@@ -855,7 +858,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     onClick={() => setQrOptions({ ...qrOptions, logo: null })}
                     className="mt-3 w-full px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
                   >
-                    Supprimer le logo
+                    {t('qrGenerator.logo.remove')}
                   </button>
                 )}
               </div>
@@ -864,7 +867,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {qrOptions.logo && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Taille du logo
+                    {t('qrGenerator.logo.size')}
                   </label>
                   <input
                     type="range"
@@ -876,9 +879,9 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     className="w-full"
                   />
                   <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    <span>Petit</span>
+                    <span>{t('qrGenerator.logo.sizeSmall')}</span>
                     <span>{Math.round(qrOptions.logoSize * 100)}%</span>
-                    <span>Grand</span>
+                    <span>{t('qrGenerator.logo.sizeLarge')}</span>
                   </div>
                 </div>
               )}
@@ -898,27 +901,27 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {/* Error Correction Level */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Niveau de correction d'erreur
+                  {t('qrGenerator.advanced.errorCorrection')}
                 </label>
                 <select
                   value={qrOptions.errorCorrectionLevel}
                   onChange={(e) => setQrOptions({ ...qrOptions, errorCorrectionLevel: e.target.value })}
                   className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 transition-all"
                 >
-                  <option value="L">Faible (7%)</option>
-                  <option value="M">Moyen (15%)</option>
-                  <option value="Q">Quartile (25%)</option>
-                  <option value="H">Élevé (30%)</option>
+                  <option value="L">{t('qrGenerator.advanced.levels.L')}</option>
+                  <option value="M">{t('qrGenerator.advanced.levels.M')}</option>
+                  <option value="Q">{t('qrGenerator.advanced.levels.Q')}</option>
+                  <option value="H">{t('qrGenerator.advanced.levels.H')}</option>
                 </select>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  Un niveau plus élevé permet au QR code d'être lu même s'il est partiellement endommagé
+                  {t('qrGenerator.advanced.errorCorrectionHelp')}
                 </p>
               </div>
               
               {/* Margin */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Marge (zone blanche)
+                  {t('qrGenerator.advanced.margin')}
                 </label>
                 <input
                   type="range"
@@ -930,16 +933,16 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   className="w-full"
                 />
                 <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  <span>Aucune</span>
+                  <span>{t('qrGenerator.advanced.marginNone')}</span>
                   <span>{qrOptions.margin}px</span>
-                  <span>Large</span>
+                  <span>{t('qrGenerator.advanced.marginLarge')}</span>
                 </div>
               </div>
               
               {/* Export Options */}
               <div>
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Options d'export
+                  {t('qrGenerator.advanced.exportOptions')}
                 </h3>
                 <div className="space-y-3">
                   <label className="flex items-center gap-3">
@@ -949,7 +952,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       defaultChecked
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
-                      Optimiser pour l'impression
+                      {t('qrGenerator.advanced.optimizeForPrint')}
                     </span>
                   </label>
                   <label className="flex items-center gap-3">
@@ -958,7 +961,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       className="w-5 h-5 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500"
                     />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
-                      Inclure les métadonnées
+                      {t('qrGenerator.advanced.includeMetadata')}
                     </span>
                   </label>
                 </div>
@@ -981,11 +984,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
             <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-sm text-blue-800 dark:text-blue-200">
-                {activeTab === 'content' && 'Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.'}
-                {activeTab === 'style' && !template && 'Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.'}
-                {activeTab === 'style' && template && 'Modifiez le style du template ou gardez le design original.'}
-                {activeTab === 'logo' && 'Ajoutez votre logo au centre du QR code pour renforcer votre marque.'}
-                {activeTab === 'advanced' && 'Options avancées pour optimiser votre QR code selon vos besoins spécifiques.'}
+                {activeTab === 'content' && t('qrGenerator.help.content')}
+                {activeTab === 'style' && !template && t('qrGenerator.help.styleNoTemplate')}
+                {activeTab === 'style' && template && t('qrGenerator.help.styleWithTemplate')}
+                {activeTab === 'logo' && t('qrGenerator.help.logo')}
+                {activeTab === 'advanced' && t('qrGenerator.help.advanced')}
               </p>
             </div>
           </div>
@@ -997,7 +1000,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl dark:shadow-slate-900/50 p-4 sm:p-6 lg:p-8">
           {/* Preview Header */}
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold">Aperçu en temps réel</h3>
+            <h3 className="text-lg font-semibold">{t('qrGenerator.preview.title')}</h3>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -1011,12 +1014,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               {showPreview ? (
                 <>
                   <EyeOff className="w-4 h-4" />
-                  <span className="text-sm font-medium">Masquer</span>
+                  <span className="text-sm font-medium">{t('qrGenerator.actions.hidePreview')}</span>
                 </>
               ) : (
                 <>
                   <Eye className="w-4 h-4" />
-                  <span className="text-sm font-medium">Afficher</span>
+                  <span className="text-sm font-medium">{t('qrGenerator.actions.showPreview')}</span>
                 </>
               )}
             </motion.button>
@@ -1054,7 +1057,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   className="px-6 py-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700"
                 >
                   <Eye className="w-5 h-5" />
-                  <span className="font-medium">Afficher l'aperçu</span>
+                  <span className="font-medium">{t('qrGenerator.actions.showPreview')}</span>
                 </motion.button>
               </motion.div>
               
@@ -1069,7 +1072,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 {isGenerating && (
                   <div className="flex flex-col items-center gap-4">
                     <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Génération en cours...</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{t('qrGenerator.preview.generating')}</p>
                   </div>
                 )}
               </div>
@@ -1085,7 +1088,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 className="flex-1 px-4 sm:px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-medium hover:from-primary-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                PNG
+                {t('qrGenerator.actions.downloadPNG')}
               </motion.button>
               
               <motion.button
@@ -1095,7 +1098,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 className="flex-1 px-4 sm:px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                SVG
+                {t('qrGenerator.actions.downloadSVG')}
               </motion.button>
               
               <motion.button
@@ -1117,11 +1120,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               className="mt-6 p-4 bg-gray-50 dark:bg-slate-850 rounded-lg"
             >
               <p className="text-sm text-gray-600 dark:text-slate-300">
-                Template: <span className="font-medium text-gray-900 dark:text-slate-100">{template.name}</span>
+                {t('qrGenerator.template.name')}: <span className="font-medium text-gray-900 dark:text-slate-100">{template.name}</span>
               </p>
               {template.category && (
                 <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">
-                  Catégorie: <span className="font-medium">{template.category}</span>
+                  {t('qrGenerator.template.category')}: <span className="font-medium">{template.category}</span>
                 </p>
               )}
             </motion.div>
@@ -1137,7 +1140,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               <div className="flex items-center gap-3">
                 <Crown className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  Template Premium • Passez au plan Pro pour débloquer tous les templates
+                  {t('qrGenerator.premium.upgradeMessage')}
                 </p>
               </div>
             </motion.div>

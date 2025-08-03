@@ -1,65 +1,54 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
-import { premiumTemplates, qrTemplates } from '../services/qrService';
+import { useTranslation } from 'react-i18next';
 import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
 import { useSubscription } from '../hooks/useSubscription.jsx';
 import { useNotification } from '../context/NotificationContext';
 import { useState, useEffect } from 'react';
 import Badge from '../components/UI/Badge';
+import { loadTemplateById } from '../services/templateService';
 
 const TemplateEditPage = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { isPremium, canUsePremiumTemplate } = useSubscription();
   const { showNotification } = useNotification();
   const [template, setTemplate] = useState(null);
   const [isHighlighted, setIsHighlighted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Rechercher le template dans les templates premium
-    const premiumTemplate = premiumTemplates.find(t => t.id === id);
-    
-    if (premiumTemplate) {
-      setTemplate(premiumTemplate);
-    } else {
-      // Si pas trouvé dans premium, chercher dans les templates de base
-      const basicTemplate = Object.entries(qrTemplates).find(([key]) => key === id);
-      if (basicTemplate) {
-        setTemplate({
-          id: basicTemplate[0],
-          name: basicTemplate[1].name,
-          isPremium: basicTemplate[1].isPremium,
-          options: {
-            dotsOptions: { 
-              color: basicTemplate[1].dotsColor,
-              type: basicTemplate[1].dotsType
-            },
-            backgroundOptions: { 
-              color: basicTemplate[1].bgColor 
-            },
-            cornersSquareOptions: { 
-              color: basicTemplate[1].cornersColor,
-              type: basicTemplate[1].cornersType
-            },
-            cornersDotOptions: { 
-              color: basicTemplate[1].cornersColor,
-              type: basicTemplate[1].cornersType
-            }
-          }
-        });
-      } else {
-        // Template non trouvé
-        showNotification('Template non trouvé', 'error');
+    // Charger le template de manière asynchrone
+    const fetchTemplate = async () => {
+      setIsLoading(true);
+      try {
+        const loadedTemplate = await loadTemplateById(id);
+        
+        if (loadedTemplate) {
+          setTemplate(loadedTemplate);
+        } else {
+          // Template non trouvé
+          showNotification(t('templateEdit.errors.notFound'), 'error');
+          navigate('/templates');
+        }
+      } catch (error) {
+        console.error('Error loading template:', error);
+        showNotification(t('templateEdit.errors.loadError'), 'error');
         navigate('/templates');
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
+    
+    fetchTemplate();
   }, [id, navigate, showNotification]);
 
   // Vérifier l'accès au template premium
   useEffect(() => {
     if (template && template.isPremium && !canUsePremiumTemplate(template.id)) {
-      showNotification('Passez au plan Premium pour utiliser ce template', 'info');
+      showNotification(t('templateEdit.premium.accessRequired'), 'info');
       navigate('/premium');
     }
   }, [template, canUsePremiumTemplate, navigate, showNotification]);
@@ -105,23 +94,23 @@ const TemplateEditPage = () => {
   const features = [
     {
       icon: Palette,
-      title: 'Personnalisation',
-      description: 'Couleurs et styles'
+      title: t('templateEdit.features.customization.title'),
+      description: t('templateEdit.features.customization.description')
     },
     {
       icon: Type,
-      title: 'Données',
-      description: 'URL, texte, contact'
+      title: t('templateEdit.features.data.title'),
+      description: t('templateEdit.features.data.description')
     },
     {
       icon: Image,
-      title: 'Logo',
-      description: 'Ajoutez votre marque'
+      title: t('templateEdit.features.logo.title'),
+      description: t('templateEdit.features.logo.description')
     },
     {
       icon: Settings,
-      title: 'Options',
-      description: 'Finitions avancées'
+      title: t('templateEdit.features.options.title'),
+      description: t('templateEdit.features.options.description')
     }
   ];
 
@@ -129,25 +118,25 @@ const TemplateEditPage = () => {
   const steps = [
     {
       number: '1',
-      title: 'Sélectionnez',
-      description: 'Choisissez votre template',
+      title: t('templateEdit.steps.select.title'),
+      description: t('templateEdit.steps.select.description'),
       color: 'from-blue-500 to-blue-600'
     },
     {
       number: '2',
-      title: 'Personnalisez',
-      description: 'Adaptez les couleurs et le style',
+      title: t('templateEdit.steps.customize.title'),
+      description: t('templateEdit.steps.customize.description'),
       color: 'from-purple-500 to-purple-600'
     },
     {
       number: '3',
-      title: 'Téléchargez',
-      description: 'Exportez en haute qualité',
+      title: t('templateEdit.steps.download.title'),
+      description: t('templateEdit.steps.download.description'),
       color: 'from-green-500 to-green-600'
     }
   ];
 
-  if (!template) {
+  if (isLoading || !template) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
@@ -173,7 +162,7 @@ const TemplateEditPage = () => {
               className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              Retour à la galerie
+              {t('templateEdit.navigation.backToGallery')}
             </Link>
           </motion.div>
 
@@ -186,7 +175,7 @@ const TemplateEditPage = () => {
           >
             <div className="flex items-center justify-center gap-4 mb-4">
               <h1 className="text-4xl md:text-5xl font-bold">
-                Template <span className="gradient-text">{template.name}</span>
+                {t('templateEdit.header.title')} <span className="gradient-text">{template.name}</span>
               </h1>
               {template.isPremium && (
                 <Badge type="premium" className="flex items-center gap-1">
@@ -245,14 +234,13 @@ const TemplateEditPage = () => {
         >
           <div className="p-8">
             <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-3">Personnalisez votre QR Code</h2>
+              <h2 className="text-2xl font-bold mb-3">{t('templateEdit.generator.title')}</h2>
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
                 <div className="flex items-start gap-3">
                   <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm text-blue-800 dark:text-blue-200">
-                      Vous éditez le template <strong>{template.name}</strong>. 
-                      L'aperçu se met à jour en temps réel à droite.
+                      {t('templateEdit.generator.description', { templateName: template.name })}
                     </p>
                   </div>
                 </div>
@@ -276,7 +264,7 @@ const TemplateEditPage = () => {
           className="mt-24"
         >
           <h2 className="text-3xl font-bold text-center mb-12">
-            Créez votre QR Code en <span className="gradient-text">3 étapes simples</span>
+            {t('templateEdit.steps.title')} <span className="gradient-text">{t('templateEdit.steps.titleHighlight')}</span>
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -319,17 +307,17 @@ const TemplateEditPage = () => {
             <div className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl p-8 shadow-lg">
               <Sparkles className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4">
-                Débloquez ce template Premium
+                {t('templateEdit.premium.unlockTitle')}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                Accédez à tous nos templates exclusifs et créez des QR codes uniques qui marquent les esprits
+                {t('templateEdit.premium.unlockDescription')}
               </p>
               <Link
                 to="/premium"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-xl font-medium transition-all transform hover:scale-105 shadow-lg"
               >
                 <Crown className="w-5 h-5" />
-                Découvrir les offres Premium
+                {t('templateEdit.premium.discoverOffers')}
               </Link>
             </div>
           </motion.div>

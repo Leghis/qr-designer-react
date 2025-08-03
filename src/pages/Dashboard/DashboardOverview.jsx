@@ -10,12 +10,14 @@ import {
   BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useSubscription } from '../../hooks/useSubscription';
 import analyticsService from '../../services/analyticsService';
 
 const DashboardOverview = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { statistics, history } = useQRHistory();
   const { plan, isPremium } = useSubscription();
@@ -24,7 +26,7 @@ const DashboardOverview = () => {
   // Quick stats
   const stats = [
     {
-      title: 'Total QR Codes',
+      title: t('dashboard.overview.stats.totalQRCodes'),
       value: statistics?.total || 0,
       icon: QrCode,
       color: 'from-blue-500 to-blue-600',
@@ -32,7 +34,7 @@ const DashboardOverview = () => {
       trendUp: true
     },
     {
-      title: "Scans aujourd'hui",
+      title: t('dashboard.overview.stats.todayScans'),
       value: '1,234',
       icon: BarChart3,
       color: 'from-green-500 to-green-600',
@@ -40,7 +42,7 @@ const DashboardOverview = () => {
       trendUp: true
     },
     {
-      title: 'QR Codes actifs',
+      title: t('dashboard.overview.stats.activeQRCodes'),
       value: statistics?.total || 0,
       icon: Zap,
       color: 'from-purple-500 to-purple-600',
@@ -48,7 +50,7 @@ const DashboardOverview = () => {
       trendUp: true
     },
     {
-      title: 'Temps moyen',
+      title: t('dashboard.overview.stats.averageTime'),
       value: '2.5s',
       icon: Clock,
       color: 'from-orange-500 to-orange-600',
@@ -77,10 +79,10 @@ const DashboardOverview = () => {
         className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-2xl p-8 text-white"
       >
         <h1 className="text-3xl font-bold mb-2">
-          Bonjour, {user?.name || 'Utilisateur'} ! 👋
+          {t('dashboard.overview.welcome', { name: user?.name || t('dashboard.user.user') })}
         </h1>
         <p className="text-white/80 mb-6">
-          Voici un aperçu de votre activité QR Code
+          {t('dashboard.overview.welcomeSubtitle')}
         </p>
         <div className="flex flex-wrap gap-4">
           <Link
@@ -88,7 +90,7 @@ const DashboardOverview = () => {
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl font-medium transition-all"
           >
             <Plus className="w-5 h-5" />
-            Créer un QR Code
+            {t('dashboard.overview.createQRCode')}
           </Link>
           {!isPremium && (
             <Link
@@ -96,7 +98,7 @@ const DashboardOverview = () => {
               className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-gray-900 rounded-xl font-medium transition-all"
             >
               <Sparkles className="w-5 h-5" />
-              Passer à Premium
+              {t('dashboard.overview.goToPremium')}
             </Link>
           )}
         </div>
@@ -141,7 +143,7 @@ const DashboardOverview = () => {
           className="bg-white dark:bg-dark-900 rounded-2xl p-6 shadow-lg"
         >
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-            Création rapide
+            {t('dashboard.overview.quickCreate.title')}
           </h2>
           <div className="grid grid-cols-2 gap-3">
             {qrTypes.map((type, index) => (
@@ -164,7 +166,7 @@ const DashboardOverview = () => {
             to="/dashboard/qr-codes/new"
             className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-gray-300 dark:border-gray-700 rounded-xl font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-800 transition-all"
           >
-            Plus d'options
+            {t('dashboard.overview.quickCreate.moreOptions')}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
@@ -177,13 +179,13 @@ const DashboardOverview = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              QR Codes récents
+              {t('dashboard.overview.recentQRCodes.title')}
             </h2>
             <Link
               to="/dashboard/qr-codes"
               className="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium flex items-center gap-1"
             >
-              Voir tout
+              {t('dashboard.overview.recentQRCodes.viewAll')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -207,12 +209,12 @@ const DashboardOverview = () => {
                       {qr.data?.substring(0, 30) || 'QR Code'}...
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Créé {new Date(qr.createdAt).toLocaleDateString('fr-FR')}
+                      {t('dashboard.overview.recentQRCodes.created')} {new Date(qr.createdAt).toLocaleDateString('fr-FR')}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      {qr.usageCount || 0} scans
+                      {qr.usageCount || 0} {t('dashboard.overview.recentQRCodes.scans')}
                     </p>
                     <p className="text-xs text-gray-600 dark:text-gray-400">
                       {qr.template || 'Standard'}
@@ -225,14 +227,14 @@ const DashboardOverview = () => {
             <div className="text-center py-8">
               <QrCode className="w-12 h-12 text-gray-400 mx-auto mb-3" />
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Aucun QR Code créé pour le moment
+                {t('dashboard.overview.recentQRCodes.noQRCodes')}
               </p>
               <Link
                 to="/dashboard/qr-codes/new"
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
               >
                 <Plus className="w-4 h-4" />
-                Créer votre premier QR Code
+                {t('dashboard.overview.recentQRCodes.createFirst')}
               </Link>
             </div>
           )}
@@ -249,10 +251,10 @@ const DashboardOverview = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                Débloquez tout le potentiel de QR Designer ✨
+                {t('dashboard.overview.upgrade.title')}
               </h3>
               <p className="text-gray-700 dark:text-gray-300">
-                QR Codes dynamiques, analytics avancés, types premium et bien plus !
+                {t('dashboard.overview.upgrade.subtitle')}
               </p>
             </div>
             <Link
@@ -260,7 +262,7 @@ const DashboardOverview = () => {
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
             >
               <Sparkles className="w-5 h-5" />
-              Découvrir Premium
+              {t('dashboard.overview.upgrade.discoverPremium')}
             </Link>
           </div>
         </motion.div>

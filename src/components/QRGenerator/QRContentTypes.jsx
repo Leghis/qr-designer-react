@@ -20,10 +20,10 @@ import {
 } from 'lucide-react';
 
 // Types de contenu QR disponibles
-export const QR_CONTENT_TYPES = [
+export const getQRContentTypes = (t) => [
   {
     id: 'url',
-    name: 'URL / Site Web',
+    name: t('qrGenerator.content.types.url'),
     icon: Globe,
     fields: ['url'],
     example: 'https://example.com',
@@ -38,7 +38,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'text',
-    name: 'Texte Simple',
+    name: t('qrGenerator.content.types.text'),
     icon: Type,
     fields: ['text'],
     example: 'Votre message ici',
@@ -46,7 +46,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'wifi',
-    name: 'WiFi',
+    name: t('qrGenerator.content.types.wifi'),
     icon: Wifi,
     fields: ['ssid', 'password', 'security', 'hidden'],
     example: 'WIFI:T:WPA;S:MonWiFi;P:MotDePasse;H:false;;',
@@ -54,7 +54,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'phone',
-    name: 'Téléphone',
+    name: t('qrGenerator.content.types.phone'),
     icon: Phone,
     fields: ['phone'],
     example: 'tel:+33123456789',
@@ -62,7 +62,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'sms',
-    name: 'SMS',
+    name: t('qrGenerator.content.types.sms'),
     icon: MessageSquare,
     fields: ['phone', 'message'],
     example: 'sms:+33123456789?body=Hello',
@@ -70,7 +70,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'email',
-    name: 'Email',
+    name: t('qrGenerator.content.types.email'),
     icon: Mail,
     fields: ['email', 'subject', 'body'],
     example: 'mailto:contact@example.com?subject=Sujet&body=Message',
@@ -78,7 +78,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'vcard',
-    name: 'Contact (vCard)',
+    name: t('qrGenerator.content.types.vcard'),
     icon: User,
     fields: ['firstName', 'lastName', 'phone', 'email', 'organization', 'title', 'url', 'address'],
     example: 'BEGIN:VCARD...',
@@ -86,7 +86,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'event',
-    name: 'Événement',
+    name: t('qrGenerator.content.types.event'),
     icon: Calendar,
     fields: ['title', 'location', 'startDate', 'endDate', 'description'],
     example: 'BEGIN:VEVENT...',
@@ -94,7 +94,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'location',
-    name: 'Localisation',
+    name: t('qrGenerator.content.types.location'),
     icon: MapPin,
     fields: ['latitude', 'longitude', 'query'],
     example: 'geo:48.8566,2.3522',
@@ -102,7 +102,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'paypal',
-    name: 'PayPal',
+    name: t('qrGenerator.content.types.paypal'),
     icon: CreditCard,
     fields: ['email', 'amount', 'currency', 'itemName'],
     example: 'https://paypal.me/example',
@@ -110,7 +110,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'bitcoin',
-    name: 'Bitcoin',
+    name: t('qrGenerator.content.types.bitcoin'),
     icon: Bitcoin,
     fields: ['address', 'amount', 'label', 'message'],
     example: 'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=0.001',
@@ -118,7 +118,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'spotify',
-    name: 'Spotify',
+    name: t('qrGenerator.content.types.spotify'),
     icon: Music,
     fields: ['spotifyUri'],
     example: 'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
@@ -126,7 +126,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'whatsapp',
-    name: 'WhatsApp',
+    name: t('qrGenerator.content.types.whatsapp'),
     icon: MessageSquare,
     fields: ['phone', 'message'],
     example: 'https://wa.me/33123456789?text=Hello',
@@ -134,7 +134,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'linkedin',
-    name: 'LinkedIn',
+    name: t('qrGenerator.content.types.linkedin'),
     icon: Linkedin,
     fields: ['profileUrl'],
     example: 'https://linkedin.com/in/username',
@@ -142,7 +142,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'instagram',
-    name: 'Instagram',
+    name: t('qrGenerator.content.types.instagram'),
     icon: Instagram,
     fields: ['username'],
     example: 'https://instagram.com/username',
@@ -150,7 +150,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'facebook',
-    name: 'Facebook',
+    name: t('qrGenerator.content.types.facebook'),
     icon: Facebook,
     fields: ['pageUrl'],
     example: 'https://facebook.com/pagename',
@@ -158,7 +158,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'twitter',
-    name: 'Twitter/X',
+    name: t('qrGenerator.content.types.twitter'),
     icon: Twitter,
     fields: ['username'],
     example: 'https://twitter.com/username',
@@ -166,7 +166,7 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'youtube',
-    name: 'YouTube',
+    name: t('qrGenerator.content.types.youtube'),
     icon: Youtube,
     fields: ['videoUrl'],
     example: 'https://youtube.com/watch?v=videoId',
@@ -174,13 +174,19 @@ export const QR_CONTENT_TYPES = [
   },
   {
     id: 'ethereum',
-    name: 'Ethereum',
+    name: t('qrGenerator.content.types.ethereum'),
     icon: Coins,
     fields: ['address', 'amount'],
     example: 'ethereum:0x89205A3...?amount=0.05',
     validator: (data) => data.address && data.address.startsWith('0x') && data.address.length === 42
   }
 ];
+
+// Legacy export for backward compatibility - returns untranslated keys
+// Note: This should only be used for internal purposes where raw keys are needed
+// For UI components, always use getQRContentTypes(t) with proper translation function
+// COMMENTED OUT - This was causing translation issues
+// export const QR_CONTENT_TYPES = getQRContentTypes((key) => key);
 
 // Fonctions pour générer le contenu QR selon le type
 export const generateQRContent = (type, data) => {
