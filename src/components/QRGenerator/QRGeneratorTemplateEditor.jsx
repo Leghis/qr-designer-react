@@ -152,14 +152,18 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
         options.shape = 'circle';
       }
       
+      // Ensure imageOptions exists with hideBackgroundDots
+      options.imageOptions = {
+        hideBackgroundDots: true,
+        crossOrigin: 'anonymous',
+        margin: 10,
+        imageSize: qrOptions.logoSize || 0.3,
+        ...options.imageOptions
+      };
+      
       // Apply logo
       if (qrOptions.logo) {
         options.image = qrOptions.logo;
-        options.imageOptions = {
-          crossOrigin: 'anonymous',
-          margin: 10,
-          imageSize: qrOptions.logoSize
-        };
       }
       
       qrCodeRef.current = new QRCodeStyling(options);

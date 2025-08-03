@@ -63,7 +63,7 @@ const TemplateEditPage = () => {
     }
   }, [template, canUsePremiumTemplate, navigate, showNotification]);
 
-  const handleQrDataChange = (newData) => {
+  const handleQrDataChange = () => {
     // Data is handled by the QRGeneratorTemplateEditor component
   };
 

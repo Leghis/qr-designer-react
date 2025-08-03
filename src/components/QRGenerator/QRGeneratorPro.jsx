@@ -211,11 +211,12 @@ const QRGeneratorPro = () => {
           color: colors?.corners || '#000000',
           type: style.cornersType || 'square'
         },
-        imageOptions: qrOptions.logo ? {
+        imageOptions: {
+          hideBackgroundDots: true,
           crossOrigin: 'anonymous',
           margin: 10,
-          imageSize: qrOptions.logoSize
-        } : undefined,
+          imageSize: qrOptions.logoSize || 0.3
+        },
         image: qrOptions.logo || undefined
       };
       

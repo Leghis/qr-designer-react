@@ -197,7 +197,14 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
       type: "svg",
       data: "https://qr-designer.com",
       margin: 10,
-      ...template.options
+      ...template.options,
+      imageOptions: {
+        hideBackgroundDots: true,
+        crossOrigin: "anonymous",
+        margin: 10,
+        imageSize: 0.3,
+        ...template.options?.imageOptions
+      }
     };
     
     qrRef.current = new QRCodeStyling(qrOptions);
