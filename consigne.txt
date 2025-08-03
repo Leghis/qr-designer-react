@@ -1,7 +1,0 @@
-QRGeneratorPro.jsx:245 Error generating QR: TypeError: Cannot read properties of undefined (reading 'hideBackgroundDots')
-    at generateQR (QRGeneratorPro.jsx:227:27)
-    at onClick (QRGeneratorPro.jsx:587:27)
-QRGeneratorPro.jsx:245 Error generating QR: TypeError: Cannot read properties of undefined (reading 'hideBackgroundDots')
-    at generateQR (QRGeneratorPro.jsx:227:27)
-    at QRGeneratorPro.jsx:321:7
-
