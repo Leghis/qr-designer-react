@@ -1,12 +1,11 @@
 import QRCodeStyling from 'qr-code-styling';
 
-// Default QR code options
+// Default QR code styling options
 export const defaultQROptions = {
-  width: 400, // Doubled size for better quality
-  height: 400, // Doubled size for better quality
+  width: 300,
+  height: 300,
   type: "svg",
   data: "https://qr-designer.com",
-  margin: 20, // Increased margin for better scanning
   qrOptions: {
     typeNumber: 0,
     mode: "Byte",
@@ -38,15 +37,18 @@ export const defaultQROptions = {
 // Export quality settings
 export const exportSettings = {
   png: {
-    width: 1000, // Export at 1000x1000 for high quality
-    height: 1000,
-    quality: 1.0, // Maximum quality
-    type: "png"
+    width: 1024,
+    height: 1024,
+    quality: 1.0
   },
   svg: {
-    width: 1000,
-    height: 1000,
-    type: "svg"
+    width: 1024,
+    height: 1024
+  },
+  jpg: {
+    width: 1024,
+    height: 1024,
+    quality: 0.95
   }
 };
 
@@ -108,7 +110,7 @@ export const qrTemplates = {
   }
 };
 
-// Premium templates (40+ designs)
+// Premium templates with advanced styles
 export const premiumTemplates = [
   // SPECTACULAR Category - Designs élégants et uniques
   {
@@ -160,63 +162,595 @@ export const premiumTemplates = [
     id: 'ocean-depth',
     name: 'Ocean Depth',
     category: 'spectacular',
-    description: 'Profondeurs océaniques aux nuances de bleu',
+    description: 'Dégradé océanique aux nuances profondes',
     isPremium: true,
     options: {
       dotsOptions: { 
-        type: 'classy-rounded',
+        type: 'extra-rounded',
         gradient: {
-          type: 'radial',
+          type: 'linear',
+          rotation: 90,
           colorStops: [
-            { offset: 0, color: '#1E3A8A' },
-            { offset: 0.5, color: '#2563EB' },
-            { offset: 1, color: '#60A5FA' }
+            { offset: 0, color: '#0077BE' },
+            { offset: 0.5, color: '#00A8CC' },
+            { offset: 1, color: '#5EB3D6' }
           ]
         }
       },
       backgroundOptions: { 
         gradient: {
-          type: 'linear',
-          rotation: 90,
+          type: 'radial',
           colorStops: [
-            { offset: 0, color: '#F0F9FF' },
-            { offset: 1, color: '#E0F2FE' }
+            { offset: 0, color: '#E8F4F8' },
+            { offset: 1, color: '#D0E9F2' }
           ]
         }
       },
       cornersSquareOptions: { 
         type: 'extra-rounded',
-        color: '#1E3A8A'
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#0077BE' },
+            { offset: 1, color: '#005A8B' }
+          ]
+        }
       },
       cornersDotOptions: { 
         type: 'dot',
-        color: '#60A5FA'
+        color: '#00A8CC'
       }
     }
   },
   {
-    id: 'northern-lights',
-    name: 'Northern Lights',
+    id: 'aurora-borealis',
+    name: 'Aurora Borealis',
     category: 'spectacular',
-    description: 'Aurore boréale aux teintes mystiques',
+    description: 'Inspiré des aurores boréales',
     isPremium: true,
     options: {
-      shape: 'circle',
       dotsOptions: { 
         type: 'dots',
         gradient: {
           type: 'linear',
           rotation: 0,
           colorStops: [
-            { offset: 0, color: '#10B981' },
-            { offset: 0.5, color: '#3B82F6' },
-            { offset: 1, color: '#8B5CF6' }
+            { offset: 0, color: '#A8E063' },
+            { offset: 0.33, color: '#56AB2F' },
+            { offset: 0.66, color: '#00B4DB' },
+            { offset: 1, color: '#0083B0' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#F0FFF0' },
+            { offset: 1, color: '#E6F7FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#56AB2F' },
+            { offset: 1, color: '#00B4DB' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#A8E063'
+      }
+    }
+  },
+  {
+    id: 'neon-glow',
+    name: 'Neon Glow',
+    category: 'spectacular',
+    description: 'Effet néon lumineux et moderne',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#FF006E' },
+            { offset: 0.5, color: '#8338EC' },
+            { offset: 1, color: '#3A86FF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#0A0A0A' // Dark background for neon effect
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFBE0B' },
+            { offset: 0.5, color: '#FB5607' },
+            { offset: 1, color: '#FF006E' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#3A86FF'
+      }
+    }
+  },
+  {
+    id: 'crystal-ice',
+    name: 'Crystal Ice',
+    category: 'spectacular',
+    description: 'Effet cristallin glacé',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#E0E7FF' },
+            { offset: 0.5, color: '#C7D2FE' },
+            { offset: 1, color: '#A5B4FC' }
           ]
         }
       },
       backgroundOptions: { 
         gradient: {
           type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 0.7, color: '#F0F4FF' },
+            { offset: 1, color: '#E0E7FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#818CF8' },
+            { offset: 1, color: '#6366F1' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#4F46E5'
+      }
+    }
+  },
+  {
+    id: 'fire-phoenix',
+    name: 'Fire Phoenix',
+    category: 'spectacular',
+    description: 'Dégradé de feu ardent',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 0.3, color: '#FFA500' },
+            { offset: 0.6, color: '#FF6347' },
+            { offset: 1, color: '#DC143C' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFF5E6' },
+            { offset: 1, color: '#FFE4CC' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF8C00' },
+            { offset: 1, color: '#B22222' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FFD700'
+      }
+    }
+  },
+  {
+    id: 'galaxy-spiral',
+    name: 'Galaxy Spiral',
+    category: 'spectacular',
+    description: 'Spirale galactique mystérieuse',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#667EEA' },
+            { offset: 0.3, color: '#764BA2' },
+            { offset: 0.6, color: '#F093FB' },
+            { offset: 1, color: '#4FACFE' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 225,
+          colorStops: [
+            { offset: 0, color: '#0F0C29' },
+            { offset: 0.5, color: '#302B63' },
+            { offset: 1, color: '#24243E' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F093FB' },
+            { offset: 1, color: '#764BA2' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#4FACFE'
+      }
+    }
+  },
+  {
+    id: 'emerald-forest',
+    name: 'Emerald Forest',
+    category: 'spectacular',
+    description: 'Forêt émeraude luxuriante',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#134E5E' },
+            { offset: 0.5, color: '#71B280' },
+            { offset: 1, color: '#659999' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F0FFF4' },
+            { offset: 1, color: '#DCFCE7' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#16A34A' },
+            { offset: 1, color: '#15803D' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#166534'
+      }
+    }
+  },
+  {
+    id: 'rainbow-prism',
+    name: 'Rainbow Prism',
+    category: 'spectacular',
+    description: 'Arc-en-ciel prismatique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FF0000' },
+            { offset: 0.17, color: '#FF7F00' },
+            { offset: 0.33, color: '#FFFF00' },
+            { offset: 0.5, color: '#00FF00' },
+            { offset: 0.67, color: '#0000FF' },
+            { offset: 0.83, color: '#4B0082' },
+            { offset: 1, color: '#9400D3' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF1493' },
+            { offset: 0.5, color: '#00CED1' },
+            { offset: 1, color: '#FFD700' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#FF69B4' },
+            { offset: 1, color: '#4169E1' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'cosmic-dust',
+    name: 'Cosmic Dust',
+    category: 'spectacular',
+    description: 'Poussière cosmique scintillante',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#E94057' },
+            { offset: 0.5, color: '#8A2387' },
+            { offset: 1, color: '#F27121' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#1A1A2E' },
+            { offset: 0.5, color: '#16213E' },
+            { offset: 1, color: '#0F3460' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F79533' },
+            { offset: 1, color: '#F37055' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FFD89B'
+      }
+    }
+  },
+  {
+    id: 'lavender-dream',
+    name: 'Lavender Dream',
+    category: 'spectacular',
+    description: 'Rêve lavande apaisant',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#D8B5FF' },
+            { offset: 0.5, color: '#C8A8E9' },
+            { offset: 1, color: '#B8A9C9' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FAF5FF' },
+            { offset: 1, color: '#F3E8FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#9D4EDD' },
+            { offset: 1, color: '#7B2CBF' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#C77DFF'
+      }
+    }
+  },
+  {
+    id: 'circular-aurora',
+    name: 'Circular Aurora',
+    category: 'spectacular',
+    description: 'Aurore circulaire dynamique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#00F5FF' },
+            { offset: 0.3, color: '#00D4FF' },
+            { offset: 0.6, color: '#00A6FF' },
+            { offset: 1, color: '#0078FF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#001F3F' },
+            { offset: 1, color: '#000A1F' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#00FF88' },
+            { offset: 1, color: '#00CC70' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#00F5FF'
+      }
+    }
+  },
+
+  // PROFESSIONAL Category - Business et Corporate
+  {
+    id: 'corporate-blue',
+    name: 'Corporate Blue',
+    category: 'professional',
+    description: 'Bleu corporate professionnel',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        color: '#1E3A8A'
+      },
+      backgroundOptions: { 
+        color: '#F8FAFC'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#1E3A8A'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#1E3A8A'
+      }
+    }
+  },
+  {
+    id: 'executive-gold',
+    name: 'Executive Gold',
+    category: 'professional',
+    description: 'Or exécutif prestigieux',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#D4A574' },
+            { offset: 0.5, color: '#B8860B' },
+            { offset: 1, color: '#996515' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFFEF7'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#B8860B'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#996515'
+      }
+    }
+  },
+  {
+    id: 'minimal-black',
+    name: 'Minimal Black',
+    category: 'professional',
+    description: 'Noir minimaliste élégant',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        color: '#000000'
+      },
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#000000'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#000000'
+      }
+    }
+  },
+  {
+    id: 'tech-grid',
+    name: 'Tech Grid',
+    category: 'professional',
+    description: 'Grille technologique moderne',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        color: '#4C1D95'
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 0,
           colorStops: [
             { offset: 0, color: '#F3F4F6' },
             { offset: 1, color: '#E5E7EB' }
@@ -224,460 +758,70 @@ export const premiumTemplates = [
         }
       },
       cornersSquareOptions: { 
-        type: 'dot',
-        color: '#10B981'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        color: '#8B5CF6'
-      }
-    }
-  },
-  {
-    id: 'rose-gold',
-    name: 'Rose Gold',
-    category: 'spectacular',
-    description: 'Or rose métallique luxueux et raffiné',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#B76E79' },
-            { offset: 0.5, color: '#F4C2C2' },
-            { offset: 1, color: '#E8A49C' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FEFEFE' },
-            { offset: 1, color: '#FDF5F5' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
         type: 'extra-rounded',
-        color: '#B76E79'
+        color: '#7C3AED'
       },
       cornersDotOptions: { 
         type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#F4C2C2' },
-            { offset: 1, color: '#B76E79' }
-          ]
-        }
+        color: '#6D28D9'
       }
     }
   },
   {
-    id: 'midnight-sky',
-    name: 'Midnight Sky',
-    category: 'spectacular',
-    description: 'Ciel nocturne étoilé profond et mystérieux',
+    id: 'finance-green',
+    name: 'Finance Green',
+    category: 'professional',
+    description: 'Vert finance institutionnel',
     isPremium: true,
     options: {
       dotsOptions: { 
-        type: 'dots',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#1E293B' },
-            { offset: 0.7, color: '#334155' },
-            { offset: 1, color: '#475569' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'linear',
-          rotation: 180,
-          colorStops: [
-            { offset: 0, color: '#F8FAFC' },
-            { offset: 1, color: '#F1F5F9' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'dot',
-        color: '#1E293B'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#60A5FA' },
-            { offset: 1, color: '#3B82F6' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'emerald-luxury',
-    name: 'Emerald Luxury',
-    category: 'spectacular',
-    description: 'Vert émeraude luxueux avec accents dorés',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'classy-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#047857' },
-            { offset: 0.5, color: '#10B981' },
-            { offset: 1, color: '#059669' }
-          ]
-        }
+        type: 'square',
+        color: '#14532D'
       },
       backgroundOptions: { 
         color: '#F0FDF4'
       },
       cornersSquareOptions: { 
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#FCD34D' },
-            { offset: 1, color: '#F59E0B' }
-          ]
-        }
+        type: 'square',
+        color: '#166534'
       },
       cornersDotOptions: { 
-        type: 'dot',
-        color: '#047857'
+        type: 'square',
+        color: '#14532D'
       }
     }
   },
   {
-    id: 'lavender-dreams',
-    name: 'Lavender Dreams',
-    category: 'spectacular',
-    description: 'Lavande douce et rêverie apaisante',
-    isPremium: true,
-    options: {
-      shape: 'circle',
-      dotsOptions: { 
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#C084FC' },
-            { offset: 0.5, color: '#E9D5FF' },
-            { offset: 1, color: '#DDD6FE' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FEFEFE' },
-            { offset: 1, color: '#FAF5FF' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'dot',
-        color: '#A855F7'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#F3E8FF' },
-            { offset: 1, color: '#C084FC' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'copper-shine',
-    name: 'Copper Shine',
-    category: 'spectacular',
-    description: 'Cuivre brillant aux reflets chaleureux',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#B87333' },
-            { offset: 0.5, color: '#E3A857' },
-            { offset: 1, color: '#CD853F' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFFAF0' },
-            { offset: 1, color: '#FFF8DC' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'extra-rounded',
-        color: '#B87333'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFD700' },
-            { offset: 1, color: '#B87333' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'arctic-ice',
-    name: 'Arctic Ice',
-    category: 'spectacular',
-    description: 'Glace arctique cristalline et pure',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#E0F2FE' },
-            { offset: 0.5, color: '#BAE6FD' },
-            { offset: 1, color: '#93C5FD' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFFFFF' },
-            { offset: 1, color: '#F0F9FF' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#60A5FA' },
-            { offset: 1, color: '#3B82F6' }
-          ]
-        }
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        color: '#DBEAFE'
-      }
-    }
-  },
-  {
-    id: 'sakura-bloom',
-    name: 'Sakura Bloom',
-    category: 'spectacular',
-    description: 'Fleurs de cerisier japonais délicates',
-    isPremium: true,
-    options: {
-      shape: 'circle',
-      dotsOptions: { 
-        type: 'dots',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFC0CB' },
-            { offset: 0.5, color: '#FFB6C1' },
-            { offset: 1, color: '#FF69B4' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#FFF5F7' },
-            { offset: 1, color: '#FFEFF1' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'dot',
-        color: '#FF1493'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFFFFF' },
-            { offset: 1, color: '#FFC0CB' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'golden-hour',
-    name: 'Golden Hour',
-    category: 'spectacular',
-    description: 'Lumière dorée de l\'heure magique',
+    id: 'consulting-navy',
+    name: 'Consulting Navy',
+    category: 'professional',
+    description: 'Bleu marine consulting',
     isPremium: true,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#F59E0B' },
-            { offset: 0.5, color: '#FCD34D' },
-            { offset: 1, color: '#FCA311' }
-          ]
-        }
+        color: '#1E293B'
       },
       backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFFBEB' },
-            { offset: 1, color: '#FEF3C7' }
-          ]
-        }
+        color: '#F8FAFC'
       },
       cornersSquareOptions: { 
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#D97706' },
-            { offset: 1, color: '#B45309' }
-          ]
-        }
+        type: 'square',
+        color: '#0F172A'
       },
       cornersDotOptions: { 
-        type: 'dot',
-        color: '#FEF3C7'
+        type: 'square',
+        color: '#1E293B'
       }
     }
   },
+
+  // CREATIVE Category - Artistique et Original
   {
-    id: 'deep-forest',
-    name: 'Deep Forest',
-    category: 'spectacular',
-    description: 'Forêt profonde aux nuances naturelles',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#064E3B' },
-            { offset: 0.5, color: '#047857' },
-            { offset: 1, color: '#065F46' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#F9FAFB' },
-            { offset: 1, color: '#ECFDF5' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'extra-rounded',
-        color: '#064E3B'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#34D399' },
-            { offset: 1, color: '#10B981' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'royal-purple',
-    name: 'Royal Purple',
-    category: 'spectacular',
-    description: 'Violet royal majestueux et noble',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#6B21A8' },
-            { offset: 0.5, color: '#9333EA' },
-            { offset: 1, color: '#7C3AED' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FEFEFE' },
-            { offset: 1, color: '#FAF5FF' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#C4B5FD' },
-            { offset: 1, color: '#A78BFA' }
-          ]
-        }
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        color: '#6B21A8'
-      }
-    }
-  },
-  {
-    id: 'coral-reef',
-    name: 'Coral Reef',
-    category: 'spectacular',
-    description: 'Récif corallien aux couleurs vivantes',
+    id: 'watercolor-splash',
+    name: 'Watercolor Splash',
+    category: 'creative',
+    description: 'Éclaboussures aquarelle',
     isPremium: true,
     options: {
       dotsOptions: { 
@@ -685,9 +829,9 @@ export const premiumTemplates = [
         gradient: {
           type: 'radial',
           colorStops: [
-            { offset: 0, color: '#FF6347' },
-            { offset: 0.5, color: '#FF7F50' },
-            { offset: 1, color: '#FFA07A' }
+            { offset: 0, color: '#FF6B6B' },
+            { offset: 0.5, color: '#4ECDC4' },
+            { offset: 1, color: '#45B7D1' }
           ]
         }
       },
@@ -696,183 +840,369 @@ export const premiumTemplates = [
           type: 'linear',
           rotation: 135,
           colorStops: [
-            { offset: 0, color: '#E6FFFA' },
-            { offset: 1, color: '#CCFBF1' }
+            { offset: 0, color: '#FFF5F5' },
+            { offset: 1, color: '#F5FFFF' }
           ]
         }
       },
       cornersSquareOptions: { 
         type: 'dot',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#14B8A6' },
-            { offset: 1, color: '#0D9488' }
-          ]
-        }
+        color: '#FF6B6B'
       },
       cornersDotOptions: { 
         type: 'dot',
-        color: '#FF6347'
+        color: '#45B7D1'
       }
     }
   },
   {
-    id: 'titanium',
-    name: 'Titanium',
-    category: 'spectacular',
-    description: 'Titane métallique sophistiqué',
+    id: 'pastel-dreams',
+    name: 'Pastel Dreams',
+    category: 'creative',
+    description: 'Rêves en couleurs pastel',
     isPremium: true,
     options: {
-      dotsOptions: { 
-        type: 'classy-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 180,
-          colorStops: [
-            { offset: 0, color: '#6B7280' },
-            { offset: 0.5, color: '#9CA3AF' },
-            { offset: 1, color: '#6B7280' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#F9FAFB' },
-            { offset: 1, color: '#F3F4F6' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'extra-rounded',
-        color: '#374151'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#D1D5DB' },
-            { offset: 1, color: '#9CA3AF' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'mystic-teal',
-    name: 'Mystic Teal',
-    category: 'spectacular',
-    description: 'Bleu-vert mystique et envoutant',
-    isPremium: true,
-    options: {
-      shape: 'circle',
       dotsOptions: { 
         type: 'rounded',
         gradient: {
           type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#0F766E' },
-            { offset: 0.5, color: '#14B8A6' },
-            { offset: 1, color: '#0D9488' }
-          ]
-        }
-      },
-      backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#F0FDFA' },
-            { offset: 1, color: '#E6FFFA' }
-          ]
-        }
-      },
-      cornersSquareOptions: { 
-        type: 'dot',
-        color: '#0F766E'
-      },
-      cornersDotOptions: { 
-        type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#5EEAD4' },
-            { offset: 1, color: '#2DD4BF' }
-          ]
-        }
-      }
-    }
-  },
-  {
-    id: 'champagne',
-    name: 'Champagne',
-    category: 'spectacular',
-    description: 'Doré champagne pétillant et élégant',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        type: 'classy',
-        gradient: {
-          type: 'linear',
           rotation: 45,
           colorStops: [
-            { offset: 0, color: '#D4AF37' },
-            { offset: 0.5, color: '#F4E4BC' },
-            { offset: 1, color: '#DAA520' }
+            { offset: 0, color: '#FFE5E5' },
+            { offset: 0.33, color: '#FFE5F1' },
+            { offset: 0.66, color: '#FFF0F5' },
+            { offset: 1, color: '#FFE5EC' }
           ]
         }
       },
       backgroundOptions: { 
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFFEF7' },
-            { offset: 1, color: '#FFF9E6' }
-          ]
-        }
+        color: '#FFFAFA'
       },
       cornersSquareOptions: { 
         type: 'extra-rounded',
-        color: '#B8860B'
+        color: '#FFB6C1'
       },
       cornersDotOptions: { 
         type: 'dot',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#FFE4B5' },
-            { offset: 1, color: '#D4AF37' }
-          ]
-        }
+        color: '#FFC0CB'
       }
     }
   },
   {
-    id: 'obsidian',
-    name: 'Obsidian',
-    category: 'spectacular',
-    description: 'Noir obsidienne profond et mystérieux',
+    id: 'retro-wave',
+    name: 'Retro Wave',
+    category: 'creative',
+    description: 'Vague rétro synthwave',
     isPremium: true,
     options: {
       dotsOptions: { 
         type: 'square',
         gradient: {
           type: 'linear',
-          rotation: 135,
+          rotation: 90,
           colorStops: [
-            { offset: 0, color: '#18181B' },
-            { offset: 0.5, color: '#27272A' },
-            { offset: 1, color: '#09090B' }
+            { offset: 0, color: '#FF006E' },
+            { offset: 0.5, color: '#8338EC' },
+            { offset: 1, color: '#3A86FF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#1A1A2E'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#FFBE0B'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#FB5607'
+      }
+    }
+  },
+  {
+    id: 'minimalist-art',
+    name: 'Minimalist Art',
+    category: 'creative',
+    description: 'Art minimaliste épuré',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        color: '#374151'
+      },
+      backgroundOptions: { 
+        color: '#FAFAFA'
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        color: '#111827'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#6B7280'
+      }
+    }
+  },
+  {
+    id: 'pop-art',
+    name: 'Pop Art',
+    category: 'creative',
+    description: 'Style pop art vibrant',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FF1744' },
+            { offset: 0.25, color: '#FFEA00' },
+            { offset: 0.5, color: '#00E676' },
+            { offset: 0.75, color: '#2979FF' },
+            { offset: 1, color: '#E91E63' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#000000'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#FF1744'
+      }
+    }
+  },
+
+  // EVENT Category - Événements spéciaux
+  {
+    id: 'wedding-elegant',
+    name: 'Wedding Elegant',
+    category: 'event',
+    description: 'Élégance pour mariages',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#F9A8D4' },
+            { offset: 0.5, color: '#F472B6' },
+            { offset: 1, color: '#EC4899' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFF1F2'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#BE185D'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#F9A8D4'
+      }
+    }
+  },
+  {
+    id: 'birthday-fun',
+    name: 'Birthday Fun',
+    category: 'event',
+    description: 'Amusant pour anniversaires',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FCD34D' },
+            { offset: 0.33, color: '#F59E0B' },
+            { offset: 0.66, color: '#EF4444' },
+            { offset: 1, color: '#8B5CF6' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FEF3C7' },
+            { offset: 1, color: '#FDE68A' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        color: '#DC2626'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#7C3AED'
+      }
+    }
+  },
+  {
+    id: 'christmas-magic',
+    name: 'Christmas Magic',
+    category: 'event',
+    description: 'Magie de Noël festive',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#DC2626' },
+            { offset: 0.5, color: '#B91C1C' },
+            { offset: 1, color: '#991B1B' }
           ]
         }
       },
       backgroundOptions: { 
         gradient: {
           type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F0FDF4' },
+            { offset: 1, color: '#DCFCE7' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#15803D'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#DC2626'
+      }
+    }
+  },
+
+  // HOSPITALITY Category - Hôtellerie et Restauration
+  {
+    id: 'restaurant-chic',
+    name: 'Restaurant Chic',
+    category: 'hospitality',
+    description: 'Chic pour restaurants haut de gamme',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        color: '#7F1D1D'
+      },
+      backgroundOptions: { 
+        color: '#FFFBEB'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#991B1B'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#7F1D1D'
+      }
+    }
+  },
+  {
+    id: 'cafe-warm',
+    name: 'Café Warm',
+    category: 'hospitality',
+    description: 'Chaleureux pour cafés',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#92400E' },
+            { offset: 0.5, color: '#78350F' },
+            { offset: 1, color: '#451A03' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FEF3C7'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#92400E'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#D97706'
+      }
+    }
+  },
+  {
+    id: 'hotel-luxury',
+    name: 'Hotel Luxury',
+    category: 'hospitality',
+    description: 'Luxe pour hôtels prestigieux',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#713F12' },
+            { offset: 0.5, color: '#854D0E' },
+            { offset: 1, color: '#A16207' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFFEF0'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#B45309' },
+            { offset: 1, color: '#92400E' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#78350F'
+      }
+    }
+  },
+
+  // RETAIL Category - Commerce et Vente
+  {
+    id: 'fashion-bold',
+    name: 'Fashion Bold',
+    category: 'retail',
+    description: 'Audacieux pour la mode',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        color: '#18181B'
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 135,
           colorStops: [
             { offset: 0, color: '#FAFAFA' },
             { offset: 1, color: '#F4F4F5' }
@@ -885,807 +1215,312 @@ export const premiumTemplates = [
       },
       cornersDotOptions: { 
         type: 'square',
+        color: '#3F3F46'
+      }
+    }
+  },
+  {
+    id: 'boutique-soft',
+    name: 'Boutique Soft',
+    category: 'retail',
+    description: 'Doux pour boutiques',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'rounded',
         gradient: {
-          type: 'radial',
+          type: 'linear',
+          rotation: 45,
           colorStops: [
-            { offset: 0, color: '#52525B' },
-            { offset: 1, color: '#18181B' }
+            { offset: 0, color: '#F9A8D4' },
+            { offset: 0.5, color: '#F472B6' },
+            { offset: 1, color: '#DB2777' }
           ]
         }
+      },
+      backgroundOptions: { 
+        color: '#FDF4FF'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#BE185D'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#EC4899'
+      }
+    }
+  },
+  {
+    id: 'store-modern',
+    name: 'Store Modern',
+    category: 'retail',
+    description: 'Moderne pour magasins',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#3B82F6' },
+            { offset: 1, color: '#2563EB' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#EFF6FF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#1E40AF'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#1D4ED8'
       }
     }
   },
 
-  // Professional Category (8 templates)
+  // HEALTH Category - Santé et Bien-être
   {
-    id: 'executive-elite',
-    name: 'Executive Elite',
-    category: 'professional',
-    description: 'Design sophistiqué pour dirigeants et cadres supérieurs',
+    id: 'medical-clean',
+    name: 'Medical Clean',
+    category: 'health',
+    description: 'Propre pour médical',
     isPremium: true,
     options: {
       dotsOptions: { 
-        color: '#1f2937', 
-        type: 'classy',
+        type: 'square',
+        color: '#0891B2'
+      },
+      backgroundOptions: { 
+        color: '#F0FDFA'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#0E7490'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#0891B2'
+      }
+    }
+  },
+  {
+    id: 'wellness-zen',
+    name: 'Wellness Zen',
+    category: 'health',
+    description: 'Zen pour bien-être',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
         gradient: {
           type: 'linear',
           rotation: 45,
           colorStops: [
-            { offset: 0, color: '#1f2937' },
-            { offset: 1, color: '#374151' }
+            { offset: 0, color: '#86EFAC' },
+            { offset: 0.5, color: '#4ADE80' },
+            { offset: 1, color: '#22C55E' }
           ]
         }
       },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { color: '#1f2937', type: 'square' },
-      cornersDotOptions: { color: '#1f2937', type: 'square' }
-    }
-  },
-  {
-    id: 'corporate-pro',
-    name: 'Corporate Pro',
-    category: 'professional',
-    description: 'Style corporate moderne et professionnel',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0f172a', type: 'classy-rounded' },
-      backgroundOptions: { color: '#f8fafc' },
-      cornersSquareOptions: { color: '#0f172a', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#0f172a', type: 'dot' }
-    }
-  },
-  {
-    id: 'tech-innovator',
-    name: 'Tech Innovator',
-    category: 'professional',
-    description: 'Design futuriste pour startups technologiques',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#0ea5e9', 
-        type: 'rounded',
+      backgroundOptions: { 
         gradient: {
           type: 'radial',
           colorStops: [
-            { offset: 0, color: '#0ea5e9' },
-            { offset: 1, color: '#0284c7' }
+            { offset: 0, color: '#F0FDF4' },
+            { offset: 1, color: '#DCFCE7' }
           ]
         }
       },
-      backgroundOptions: { color: '#f0f9ff' },
-      cornersSquareOptions: { color: '#0ea5e9', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#0284c7', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'consulting-expert',
-    name: 'Consulting Expert',
-    category: 'professional',
-    description: 'Design premium pour cabinets de conseil',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#4338ca', type: 'classy' },
-      backgroundOptions: { color: '#eef2ff' },
-      cornersSquareOptions: { color: '#4338ca', type: 'square' },
-      cornersDotOptions: { color: '#4338ca', type: 'square' }
-    }
-  },
-  {
-    id: 'finance-master',
-    name: 'Finance Master',
-    category: 'professional',
-    description: 'Design sobre pour institutions financières',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#059669', type: 'square' },
-      backgroundOptions: { color: '#f0fdf4' },
-      cornersSquareOptions: { color: '#059669', type: 'square' },
-      cornersDotOptions: { color: '#059669', type: 'square' }
-    }
-  },
-  {
-    id: 'real-estate-luxury',
-    name: 'Real Estate Luxury',
-    category: 'professional',
-    description: 'Design élégant pour l\'immobilier de prestige',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#b91c1c', type: 'classy-rounded' },
-      backgroundOptions: { color: '#fef2f2' },
-      cornersSquareOptions: { color: '#b91c1c', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#991b1b', type: 'dot' }
-    }
-  },
-  {
-    id: 'law-firm',
-    name: 'Law Firm',
-    category: 'professional',
-    description: 'Design traditionnel pour cabinets d\'avocats',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#1e293b', type: 'square' },
-      backgroundOptions: { color: '#f1f5f9' },
-      cornersSquareOptions: { color: '#1e293b', type: 'square' },
-      cornersDotOptions: { color: '#1e293b', type: 'square' }
-    }
-  },
-  {
-    id: 'insurance-trust',
-    name: 'Insurance Trust',
-    category: 'professional',
-    description: 'Design rassurant pour compagnies d\'assurance',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0369a1', type: 'rounded' },
-      backgroundOptions: { color: '#e0f2fe' },
-      cornersSquareOptions: { color: '#0369a1', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#0369a1', type: 'extra-rounded' }
-    }
-  },
-
-  // Creative Category (8 templates)
-  {
-    id: 'artist-palette',
-    name: 'Artist Palette',
-    category: 'creative',
-    description: 'Design coloré pour artistes et créatifs',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#7c3aed',
-        type: 'dots',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#7c3aed' },
-            { offset: 0.5, color: '#ec4899' },
-            { offset: 1, color: '#f59e0b' }
-          ]
-        }
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#16A34A'
       },
-      backgroundOptions: { color: '#faf5ff' },
-      cornersSquareOptions: { color: '#7c3aed', type: 'dot' },
-      cornersDotOptions: { color: '#ec4899', type: 'dot' }
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#22C55E'
+      }
     }
   },
   {
-    id: 'designer-chic',
-    name: 'Designer Chic',
-    category: 'creative',
-    description: 'Style minimaliste pour designers graphiques',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#000000', type: 'classy' },
-      backgroundOptions: { color: '#fafafa' },
-      cornersSquareOptions: { color: '#000000', type: 'square' },
-      cornersDotOptions: { color: '#000000', type: 'square' }
-    }
-  },
-  {
-    id: 'photo-pro',
-    name: 'Photography Pro',
-    category: 'creative',
-    description: 'Design élégant pour photographes professionnels',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#525252', type: 'rounded' },
-      backgroundOptions: { color: '#fafafa' },
-      cornersSquareOptions: { color: '#262626', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#262626', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'video-production',
-    name: 'Video Production',
-    category: 'creative',
-    description: 'Design dynamique pour studios vidéo',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#dc2626',
-        type: 'classy-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#dc2626' },
-            { offset: 1, color: '#991b1b' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#fef2f2' },
-      cornersSquareOptions: { color: '#dc2626', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#dc2626', type: 'dot' }
-    }
-  },
-  {
-    id: 'music-vibes',
-    name: 'Music Vibes',
-    category: 'creative',
-    description: 'Design rythmé pour musiciens et DJ',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#9333ea',
-        type: 'dots',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#9333ea' },
-            { offset: 1, color: '#6b21a8' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#1e1b4b' },
-      cornersSquareOptions: { color: '#9333ea', type: 'dot' },
-      cornersDotOptions: { color: '#a855f7', type: 'dot' }
-    }
-  },
-  {
-    id: 'fashion-forward',
-    name: 'Fashion Forward',
-    category: 'creative',
-    description: 'Design avant-gardiste pour le monde de la mode',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#be185d', type: 'classy' },
-      backgroundOptions: { color: '#fdf2f8' },
-      cornersSquareOptions: { color: '#be185d', type: 'square' },
-      cornersDotOptions: { color: '#be185d', type: 'square' }
-    }
-  },
-  {
-    id: 'architect-blueprint',
-    name: 'Architecture Blueprint',
-    category: 'creative',
-    description: 'Design structuré pour architectes',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0c4a6e', type: 'square' },
-      backgroundOptions: { color: '#f0f9ff' },
-      cornersSquareOptions: { color: '#0c4a6e', type: 'square' },
-      cornersDotOptions: { color: '#0c4a6e', type: 'square' }
-    }
-  },
-  {
-    id: 'gallery-modern',
-    name: 'Gallery Modern',
-    category: 'creative',
-    description: 'Design contemporain pour galeries d\'art',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#71717a', type: 'extra-rounded' },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { color: '#18181b', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#18181b', type: 'extra-rounded' }
-    }
-  },
-
-  // Event Category (6 templates)
-  {
-    id: 'wedding-elegant',
-    name: 'Wedding Elegant',
-    category: 'event',
-    description: 'Design romantique pour mariages',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#f472b6',
-        type: 'rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#f472b6' },
-            { offset: 1, color: '#ec4899' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#fdf2f8' },
-      cornersSquareOptions: { color: '#ec4899', type: 'dot' },
-      cornersDotOptions: { color: '#f472b6', type: 'dot' }
-    }
-  },
-  {
-    id: 'concert-live',
-    name: 'Concert Live',
-    category: 'event',
-    description: 'Design énergique pour concerts et festivals',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#ef4444',
-        type: 'classy-rounded',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#ef4444' },
-            { offset: 0.5, color: '#f97316' },
-            { offset: 1, color: '#f59e0b' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#1f2937' },
-      cornersSquareOptions: { color: '#ef4444', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#f97316', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'conference-pro',
-    name: 'Conference Pro',
-    category: 'event',
-    description: 'Design professionnel pour conférences',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#2563eb', type: 'classy' },
-      backgroundOptions: { color: '#eff6ff' },
-      cornersSquareOptions: { color: '#2563eb', type: 'square' },
-      cornersDotOptions: { color: '#2563eb', type: 'square' }
-    }
-  },
-  {
-    id: 'festival-fun',
-    name: 'Festival Fun',
-    category: 'event',
-    description: 'Design festif et coloré',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#10b981',
-        type: 'dots',
-        gradient: {
-          type: 'linear',
-          rotation: 180,
-          colorStops: [
-            { offset: 0, color: '#10b981' },
-            { offset: 0.33, color: '#3b82f6' },
-            { offset: 0.66, color: '#8b5cf6' },
-            { offset: 1, color: '#ec4899' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#fafaf9' },
-      cornersSquareOptions: { color: '#10b981', type: 'dot' },
-      cornersDotOptions: { color: '#3b82f6', type: 'dot' }
-    }
-  },
-  {
-    id: 'birthday-party',
-    name: 'Birthday Party',
-    category: 'event',
-    description: 'Design joyeux pour anniversaires',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#f59e0b', type: 'extra-rounded' },
-      backgroundOptions: { color: '#fefce8' },
-      cornersSquareOptions: { color: '#f59e0b', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#f97316', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'gala-luxury',
-    name: 'Gala Luxury',
-    category: 'event',
-    description: 'Design luxueux pour galas et soirées VIP',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#d4af37',
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#d4af37' },
-            { offset: 1, color: '#b8860b' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#0f172a' },
-      cornersSquareOptions: { color: '#d4af37', type: 'square' },
-      cornersDotOptions: { color: '#d4af37', type: 'square' }
-    }
-  },
-
-  // Hospitality Category (6 templates)
-  {
-    id: 'restaurant-gourmet',
-    name: 'Restaurant Gourmet',
-    category: 'hospitality',
-    description: 'Élégance pour restaurants haut de gamme',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#dc2626', type: 'rounded' },
-      backgroundOptions: { color: '#fef2f2' },
-      cornersSquareOptions: { color: '#dc2626', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#dc2626', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'hotel-prestige',
-    name: 'Hotel Prestige',
-    category: 'hospitality',
-    description: 'Design raffiné pour hôtels de luxe',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#78350f',
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 45,
-          colorStops: [
-            { offset: 0, color: '#78350f' },
-            { offset: 1, color: '#92400e' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#fffbeb' },
-      cornersSquareOptions: { color: '#78350f', type: 'square' },
-      cornersDotOptions: { color: '#78350f', type: 'square' }
-    }
-  },
-  {
-    id: 'cafe-cozy',
-    name: 'Café Cozy',
-    category: 'hospitality',
-    description: 'Design chaleureux pour cafés et bistros',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#7c2d12', type: 'dots' },
-      backgroundOptions: { color: '#fef3c7' },
-      cornersSquareOptions: { color: '#7c2d12', type: 'dot' },
-      cornersDotOptions: { color: '#7c2d12', type: 'dot' }
-    }
-  },
-  {
-    id: 'bar-cocktail',
-    name: 'Bar & Cocktail',
-    category: 'hospitality',
-    description: 'Design moderne pour bars et lounges',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#7e22ce',
-        type: 'classy-rounded',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#7e22ce' },
-            { offset: 1, color: '#581c87' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#1e1b4b' },
-      cornersSquareOptions: { color: '#7e22ce', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#a855f7', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'spa-wellness',
-    name: 'Spa Wellness',
-    category: 'hospitality',
-    description: 'Design zen pour spas et centres de bien-être',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#14b8a6', type: 'rounded' },
-      backgroundOptions: { color: '#f0fdfa' },
-      cornersSquareOptions: { color: '#14b8a6', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#14b8a6', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'tourism-adventure',
-    name: 'Tourism Adventure',
-    category: 'hospitality',
-    description: 'Design dynamique pour agences de voyage',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0891b2', type: 'extra-rounded' },
-      backgroundOptions: { color: '#ecfeff' },
-      cornersSquareOptions: { color: '#0891b2', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#0891b2', type: 'dot' }
-    }
-  },
-
-  // Retail Category (6 templates)
-  {
-    id: 'boutique-chic',
-    name: 'Boutique Chic',
-    category: 'retail',
-    description: 'Design élégant pour boutiques exclusives',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#e11d48', type: 'classy' },
-      backgroundOptions: { color: '#fff1f2' },
-      cornersSquareOptions: { color: '#e11d48', type: 'square' },
-      cornersDotOptions: { color: '#e11d48', type: 'square' }
-    }
-  },
-  {
-    id: 'ecommerce-modern',
-    name: 'E-commerce Modern',
-    category: 'retail',
-    description: 'Design moderne pour boutiques en ligne',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0ea5e9', type: 'rounded' },
-      backgroundOptions: { color: '#f0f9ff' },
-      cornersSquareOptions: { color: '#0ea5e9', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#0ea5e9', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'luxury-brand',
-    name: 'Luxury Brand',
-    category: 'retail',
-    description: 'Design premium pour marques de luxe',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#000000',
-        type: 'classy',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#000000' },
-            { offset: 1, color: '#262626' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { color: '#000000', type: 'square' },
-      cornersDotOptions: { color: '#000000', type: 'square' }
-    }
-  },
-  {
-    id: 'sale-promo',
-    name: 'Sale & Promo',
-    category: 'retail',
-    description: 'Design attractif pour promotions',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#ef4444', type: 'dots' },
-      backgroundOptions: { color: '#fef2f2' },
-      cornersSquareOptions: { color: '#ef4444', type: 'dot' },
-      cornersDotOptions: { color: '#ef4444', type: 'dot' }
-    }
-  },
-  {
-    id: 'product-launch',
-    name: 'Product Launch',
-    category: 'retail',
-    description: 'Design innovant pour lancements produits',
-    isPremium: true,
-    options: {
-      dotsOptions: { 
-        color: '#8b5cf6',
-        type: 'classy-rounded',
-        gradient: {
-          type: 'radial',
-          colorStops: [
-            { offset: 0, color: '#8b5cf6' },
-            { offset: 1, color: '#7c3aed' }
-          ]
-        }
-      },
-      backgroundOptions: { color: '#faf5ff' },
-      cornersSquareOptions: { color: '#8b5cf6', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#7c3aed', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'fashion-store',
-    name: 'Fashion Store',
-    category: 'retail',
-    description: 'Design tendance pour magasins de mode',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#db2777', type: 'extra-rounded' },
-      backgroundOptions: { color: '#fce7f3' },
-      cornersSquareOptions: { color: '#db2777', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#db2777', type: 'dot' }
-    }
-  },
-
-  // Health Category (4 templates)
-  {
-    id: 'medical-clinic',
-    name: 'Medical Clinic',
+    id: 'pharmacy-trust',
+    name: 'Pharmacy Trust',
     category: 'health',
-    description: 'Design professionnel pour cliniques médicales',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0369a1', type: 'square' },
-      backgroundOptions: { color: '#f0f9ff' },
-      cornersSquareOptions: { color: '#0369a1', type: 'square' },
-      cornersDotOptions: { color: '#0369a1', type: 'square' }
-    }
-  },
-  {
-    id: 'wellness-center',
-    name: 'Wellness Center',
-    category: 'health',
-    description: 'Design apaisant pour centres de bien-être',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#10b981', type: 'rounded' },
-      backgroundOptions: { color: '#ecfdf5' },
-      cornersSquareOptions: { color: '#10b981', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#10b981', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'fitness-energy',
-    name: 'Fitness Energy',
-    category: 'health',
-    description: 'Design dynamique pour salles de sport',
+    description: 'Confiance pour pharmacies',
     isPremium: true,
     options: {
       dotsOptions: { 
-        color: '#f97316',
-        type: 'classy-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 90,
-          colorStops: [
-            { offset: 0, color: '#f97316' },
-            { offset: 1, color: '#ea580c' }
-          ]
-        }
+        type: 'square',
+        color: '#059669'
       },
-      backgroundOptions: { color: '#fff7ed' },
-      cornersSquareOptions: { color: '#f97316', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#ea580c', type: 'dot' }
-    }
-  },
-  {
-    id: 'pharmacy-care',
-    name: 'Pharmacy Care',
-    category: 'health',
-    description: 'Design rassurant pour pharmacies',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#059669', type: 'classy' },
-      backgroundOptions: { color: '#ecfdf5' },
-      cornersSquareOptions: { color: '#059669', type: 'square' },
-      cornersDotOptions: { color: '#059669', type: 'square' }
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#047857'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#059669'
+      }
     }
   },
 
-  // Education Category (4 templates)
+  // EDUCATION Category - Éducation et Formation
   {
     id: 'university-classic',
     name: 'University Classic',
     category: 'education',
-    description: 'Design traditionnel pour universités',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#7c2d12', type: 'square' },
-      backgroundOptions: { color: '#fef3c7' },
-      cornersSquareOptions: { color: '#7c2d12', type: 'square' },
-      cornersDotOptions: { color: '#7c2d12', type: 'square' }
-    }
-  },
-  {
-    id: 'course-online',
-    name: 'Course Online',
-    category: 'education',
-    description: 'Design moderne pour cours en ligne',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#4f46e5', type: 'rounded' },
-      backgroundOptions: { color: '#eef2ff' },
-      cornersSquareOptions: { color: '#4f46e5', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#4f46e5', type: 'extra-rounded' }
-    }
-  },
-  {
-    id: 'workshop-creative',
-    name: 'Workshop Creative',
-    category: 'education',
-    description: 'Design créatif pour ateliers et formations',
+    description: 'Classique universitaire',
     isPremium: true,
     options: {
       dotsOptions: { 
-        color: '#a855f7',
+        type: 'classy',
+        color: '#1F2937'
+      },
+      backgroundOptions: { 
+        color: '#F9FAFB'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#111827'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#374151'
+      }
+    }
+  },
+  {
+    id: 'school-fun',
+    name: 'School Fun',
+    category: 'education',
+    description: 'Amusant pour écoles',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
         type: 'dots',
         gradient: {
           type: 'linear',
           rotation: 45,
           colorStops: [
-            { offset: 0, color: '#a855f7' },
-            { offset: 1, color: '#9333ea' }
+            { offset: 0, color: '#F59E0B' },
+            { offset: 0.33, color: '#EF4444' },
+            { offset: 0.66, color: '#8B5CF6' },
+            { offset: 1, color: '#3B82F6' }
           ]
         }
       },
-      backgroundOptions: { color: '#faf5ff' },
-      cornersSquareOptions: { color: '#a855f7', type: 'dot' },
-      cornersDotOptions: { color: '#9333ea', type: 'dot' }
-    }
-  },
-  {
-    id: 'library-knowledge',
-    name: 'Library Knowledge',
-    category: 'education',
-    description: 'Design académique pour bibliothèques',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#475569', type: 'classy' },
-      backgroundOptions: { color: '#f8fafc' },
-      cornersSquareOptions: { color: '#475569', type: 'square' },
-      cornersDotOptions: { color: '#475569', type: 'square' }
+      backgroundOptions: { 
+        color: '#FFFBEB'
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        color: '#DC2626'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#7C3AED'
+      }
     }
   },
 
-  // Social Category (3 templates)
+  // SOCIAL Category - Réseaux sociaux
   {
-    id: 'instagram-style',
-    name: 'Instagram Style',
+    id: 'instagram-gradient',
+    name: 'Instagram Gradient',
     category: 'social',
-    description: 'Design optimisé pour Instagram',
+    description: 'Gradient Instagram iconique',
     isPremium: true,
     options: {
       dotsOptions: { 
-        color: '#e1306c',
         type: 'rounded',
         gradient: {
           type: 'radial',
           colorStops: [
-            { offset: 0, color: '#f77737' },
-            { offset: 0.5, color: '#e1306c' },
-            { offset: 1, color: '#833ab4' }
+            { offset: 0, color: '#833AB4' },
+            { offset: 0.5, color: '#FD1D1D' },
+            { offset: 1, color: '#FCAF45' }
           ]
         }
       },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { color: '#e1306c', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#833ab4', type: 'extra-rounded' }
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#833AB4' },
+            { offset: 0.5, color: '#E1306C' },
+            { offset: 1, color: '#F77737' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#C13584'
+      }
     }
   },
   {
     id: 'linkedin-pro',
-    name: 'LinkedIn Professional',
+    name: 'LinkedIn Pro',
     category: 'social',
-    description: 'Design professionnel pour LinkedIn',
-    isPremium: true,
-    options: {
-      dotsOptions: { color: '#0077b5', type: 'classy' },
-      backgroundOptions: { color: '#f3f2ef' },
-      cornersSquareOptions: { color: '#0077b5', type: 'square' },
-      cornersDotOptions: { color: '#0077b5', type: 'square' }
-    }
-  },
-  {
-    id: 'tiktok-viral',
-    name: 'TikTok Viral',
-    category: 'social',
-    description: 'Design tendance pour TikTok',
+    description: 'Professionnel LinkedIn',
     isPremium: true,
     options: {
       dotsOptions: { 
-        color: '#000000',
-        type: 'extra-rounded',
-        gradient: {
-          type: 'linear',
-          rotation: 135,
-          colorStops: [
-            { offset: 0, color: '#00f2ea' },
-            { offset: 0.5, color: '#ff0050' },
-            { offset: 1, color: '#000000' }
-          ]
-        }
+        type: 'square',
+        color: '#0A66C2'
       },
-      backgroundOptions: { color: '#ffffff' },
-      cornersSquareOptions: { color: '#000000', type: 'extra-rounded' },
-      cornersDotOptions: { color: '#ff0050', type: 'dot' }
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#0A66C2'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#0A66C2'
+      }
+    }
+  },
+  {
+    id: 'youtube-play',
+    name: 'YouTube Play',
+    category: 'social',
+    description: 'Style YouTube dynamique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        color: '#FF0000'
+      },
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#CC0000'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FF0000'
+      }
     }
   }
 ];
 
-// QR Code generation service
+// QR Service Class
 class QRService {
   constructor() {
     this.qrCode = null;
@@ -1696,112 +1531,9 @@ class QRService {
     this.qrCode = new QRCodeStyling(finalOptions);
     return this.qrCode;
   }
-
-  // Generate spectacular QR code with advanced options
-  generateSpectacularQRCode(templateId, data) {
-    const template = premiumTemplates.find(t => t.id === templateId);
-    if (!template || template.category !== 'spectacular') {
-      return this.generateQRCode({ data });
-    }
-
-    const spectacularOptions = {
-      ...defaultQROptions,
-      data,
-      width: 600, // Larger size for spectacular effect
-      height: 600,
-      ...template.options,
-      margin: 30 // Extra margin for visual impact
-    };
-
-    // Apply special effects based on template
-    if (templateId === 'circular-aurora' || templateId === 'galaxy-spiral' || templateId === 'rainbow-prism') {
-      spectacularOptions.shape = 'circle';
-    }
-
-    this.qrCode = new QRCodeStyling(spectacularOptions);
-    return this.qrCode;
-  }
-
-  updateQRCode(options) {
-    if (this.qrCode) {
-      this.qrCode.update(options);
-    }
-  }
-
-  async downloadQR(format = 'png', filename = 'qrcode') {
-    if (!this.qrCode) return;
-
-    try {
-      // Update QR code size for high quality export
-      const exportOptions = exportSettings[format] || exportSettings.png;
-      
-      this.qrCode.update({
-        width: exportOptions.width,
-        height: exportOptions.height
-      });
-
-      if (format === 'svg') {
-        const blob = await this.qrCode.getRawData('svg');
-        this.downloadBlob(blob, `${filename}.svg`, 'image/svg+xml');
-      } else {
-        await this.qrCode.download({
-          name: filename,
-          extension: format
-        });
-      }
-
-      // Reset to default size after download
-      this.qrCode.update({
-        width: defaultQROptions.width,
-        height: defaultQROptions.height
-      });
-    } catch (error) {
-      console.error('Error downloading QR code:', error);
-      throw error;
-    }
-  }
-
-  downloadBlob(blob, filename, mimeType) {
-    const url = URL.createObjectURL(new Blob([blob], { type: mimeType }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }
-
-  applyTemplate(templateKey) {
-    const template = qrTemplates[templateKey];
-    if (!template) return null;
-
-    const options = {
-      dotsOptions: {
-        color: template.dotsColor,
-        type: template.dotsType
-      },
-      backgroundOptions: {
-        color: template.bgColor
-      },
-      cornersSquareOptions: {
-        color: template.cornersColor,
-        type: template.cornersType
-      },
-      cornersDotOptions: {
-        color: template.cornersColor,
-        type: template.cornersType
-      }
-    };
-
-    return options;
-  }
-
-  applyPremiumTemplate(templateId) {
-    const template = premiumTemplates.find(t => t.id === templateId);
-    if (!template) return null;
-    return template.options;
-  }
 }
 
-export default new QRService();
+// Create singleton instance
+const qrService = new QRService();
+
+export default qrService;

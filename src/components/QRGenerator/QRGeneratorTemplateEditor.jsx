@@ -16,8 +16,8 @@ import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
 import historyService from '../../services/historyService';
 
-// Import reusable components from QRGeneratorPro
-import { COLOR_PALETTES, QR_STYLES } from './QRGeneratorPro';
+// Import constants
+import { COLOR_PALETTES, QR_STYLES } from './constants';
 
 const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) => {
   const { showNotification } = useNotification();
