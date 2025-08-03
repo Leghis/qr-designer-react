@@ -87,17 +87,17 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
   
   // Initialize with template options
   useEffect(() => {
-    if (templateOptions) {
+    if (templateOptions && template) {
       // Extract style from template
-      const style = templateOptions.dotsOptions?.type || 'square';
+      const dotsType = templateOptions.dotsOptions?.type || 'square';
       const cornersType = templateOptions.cornersSquareOptions?.type || 'square';
       
       // Find matching style
       const matchingStyle = QR_STYLES.find(s => 
-        s.preview.dotsType === style && s.preview.cornersType === cornersType
-      );
+        s.preview.dotsType === dotsType && s.preview.cornersType === cornersType
+      ) || QR_STYLES[0];
       
-      // Extract colors
+      // Extract colors (including gradients)
       const colors = {
         dots: templateOptions.dotsOptions?.color || 
               templateOptions.dotsOptions?.gradient?.colorStops?.[0]?.color || 
@@ -112,7 +112,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       
       setQrOptions(prev => ({
         ...prev,
-        style: matchingStyle?.id || 'classic',
+        style: matchingStyle.id,
         customColors: colors,
         colors: 'custom',
         shape: templateOptions.shape || 'square',
@@ -120,8 +120,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         margin: templateOptions.margin || 20,
         templateOptions: templateOptions
       }));
+      
+      // Set selected template
+      setSelectedTemplate(template);
     }
-  }, [templateOptions]);
+  }, [templateOptions, template]);
   
   // Generate QR code
   const generateQR = useCallback(() => {
@@ -134,41 +137,40 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       // Use template options as base
       const baseOptions = qrOptions.templateOptions || templateOptions || {};
       
-      // Override with current selections
+      // Start with base options and override with current selections
       const options = {
+        ...baseOptions,
         width: 400,
         height: 400,
         type: 'svg',
         data: qrData,
         margin: qrOptions.margin,
         qrOptions: {
+          ...baseOptions.qrOptions,
           typeNumber: 0,
           mode: 'Byte',
           errorCorrectionLevel: qrOptions.errorCorrectionLevel
-        },
-        ...baseOptions
+        }
       };
       
-      // Apply current style if changed
-      if (qrOptions.style !== 'template') {
-        const selectedStyle = QR_STYLES.find(s => s.id === qrOptions.style);
-        if (selectedStyle) {
-          options.dotsOptions = {
-            ...options.dotsOptions,
-            type: selectedStyle.preview.dotsType
-          };
-          options.cornersSquareOptions = {
-            ...options.cornersSquareOptions,
-            type: selectedStyle.preview.cornersType
-          };
-          options.cornersDotOptions = {
-            ...options.cornersDotOptions,
-            type: selectedStyle.preview.cornersType
-          };
-        }
+      // Apply current style
+      const selectedStyle = QR_STYLES.find(s => s.id === qrOptions.style);
+      if (selectedStyle) {
+        options.dotsOptions = {
+          ...options.dotsOptions,
+          type: selectedStyle.preview.dotsType
+        };
+        options.cornersSquareOptions = {
+          ...options.cornersSquareOptions,
+          type: selectedStyle.preview.cornersType
+        };
+        options.cornersDotOptions = {
+          ...options.cornersDotOptions,
+          type: selectedStyle.preview.cornersType
+        };
       }
       
-      // Apply colors if changed
+      // Apply colors
       if (qrOptions.colors === 'custom') {
         options.dotsOptions = {
           ...options.dotsOptions,
@@ -195,6 +197,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
           options.cornersDotOptions = { ...options.cornersDotOptions, color: palette.colors.corners };
         }
       }
+      // For 'template' color option, keep the template's original colors
       
       // Apply shape
       if (qrOptions.shape === 'circle') {
@@ -351,10 +354,27 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
   // Reset to template defaults
   const resetToTemplate = () => {
     if (templateOptions) {
+      // Extract style from template
+      const dotsType = templateOptions.dotsOptions?.type || 'square';
+      const cornersType = templateOptions.cornersSquareOptions?.type || 'square';
+      
+      // Find matching style
+      const matchingStyle = QR_STYLES.find(s => 
+        s.preview.dotsType === dotsType && s.preview.cornersType === cornersType
+      ) || QR_STYLES[0];
+      
+      // Extract colors
+      const customColors = {
+        dots: templateOptions.dotsOptions?.color || '#000000',
+        background: templateOptions.backgroundOptions?.color || '#FFFFFF',
+        corners: templateOptions.cornersSquareOptions?.color || '#000000'
+      };
+      
       setQrOptions(prev => ({
         ...prev,
-        style: 'template',
-        colors: 'template',
+        style: matchingStyle.id,
+        colors: 'custom',
+        customColors: customColors,
         shape: templateOptions.shape || 'square',
         logo: null,
         logoSize: 0.3,
@@ -379,30 +399,35 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       {/* Beautiful Background - Only on home page */}
       {showBeautifulBackground && (
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-purple-50/30 to-pink-50/50 dark:from-primary-900/20 dark:via-purple-900/10 dark:to-pink-900/20 rounded-3xl"></div>
-          <div className="absolute inset-0 bg-white/60 dark:bg-dark-900/60 backdrop-blur-sm rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-purple-50/20 to-pink-50/30 dark:from-primary-950/20 dark:via-purple-950/10 dark:to-pink-950/20 rounded-3xl"></div>
+          <div className="absolute inset-0 bg-white/70 dark:bg-dark-900/70 backdrop-blur-sm rounded-3xl"></div>
         </div>
       )}
       
-      <div className={showBeautifulBackground ? "relative bg-white/80 dark:bg-dark-900/80 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-8" : ""}>
+      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-dark-900/90 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-8" : ""}>
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left: Controls */}
           <div className="space-y-6">
             {/* Enhanced Tab Selector */}
             <div className="relative">
               {showBeautifulBackground && (
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/50 to-purple-100/50 dark:from-primary-900/30 dark:to-purple-900/30 rounded-xl blur"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-100/30 to-purple-100/30 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl blur"></div>
               )}
-              <div className={`${showBeautifulBackground ? 'relative ' : ''}flex gap-1 p-1 bg-gray-100${showBeautifulBackground ? '/80' : ''} dark:bg-dark-800${showBeautifulBackground ? '/80 backdrop-blur-sm' : ''} rounded-${showBeautifulBackground ? 'xl' : 'lg'}`}>
+              <div className={showBeautifulBackground 
+                ? 'relative flex gap-1 p-1 bg-gray-100/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-xl' 
+                : 'flex gap-1 p-1 bg-gray-100 dark:bg-dark-800 rounded-lg'
+              }>
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
                   return (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex-1 flex items-center justify-center gap-2 px-3 py-${showBeautifulBackground ? '2.5' : '2'} rounded-lg font-medium transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-2 px-3 rounded-lg font-medium transition-all ${
+                        showBeautifulBackground ? 'py-2.5' : 'py-2'
+                      } ${
                         activeTab === tab.id
-                          ? `bg-white dark:bg-dark-900 text-primary-600 dark:text-primary-400 shadow-${showBeautifulBackground ? 'md' : 'sm'}`
+                          ? `bg-white dark:bg-dark-900 text-primary-600 dark:text-primary-400 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
                           : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                       }`}
                     >
@@ -851,9 +876,9 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`p-4 rounded-xl transition-all ${
+          className={`p-4 rounded-lg transition-all ${
             showBeautifulBackground 
-              ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800' 
+              ? 'bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200/50 dark:border-blue-700/50' 
               : 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'
           }`}
         >

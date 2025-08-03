@@ -14,6 +14,7 @@ const TemplateEditPage = () => {
   const { isPremium, canUsePremiumTemplate } = useSubscription();
   const { showNotification } = useNotification();
   const [template, setTemplate] = useState(null);
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
   useEffect(() => {
     // Rechercher le template dans les templates premium
@@ -62,6 +63,39 @@ const TemplateEditPage = () => {
       navigate('/premium');
     }
   }, [template, canUsePremiumTemplate, navigate, showNotification]);
+
+  // Scroll automatiquement vers le générateur de QR code après le chargement
+  useEffect(() => {
+    if (template) {
+      // D'abord, s'assurer qu'on est en haut de la page
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Attendre un peu pour que la page soit complètement rendue
+      setTimeout(() => {
+        const generatorSection = document.getElementById('qr-generator-section');
+        if (generatorSection) {
+          // Calculer la position avec un offset pour tenir compte du header fixe et ajouter une marge
+          const headerHeight = 100; // Hauteur du header + marge supplémentaire
+          const elementPosition = generatorSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Ajouter un effet de highlight temporaire
+          setTimeout(() => {
+            setIsHighlighted(true);
+            // Retirer le highlight après 2 secondes
+            setTimeout(() => {
+              setIsHighlighted(false);
+            }, 2000);
+          }, 600); // Après la fin du scroll
+        }
+      }, 500);
+    }
+  }, [template]);
 
   const handleQrDataChange = () => {
     // Data is handled by the QRGeneratorTemplateEditor component
@@ -200,12 +234,14 @@ const TemplateEditPage = () => {
       </section>
 
       {/* Main Content */}
-      <section className="container mx-auto px-4 pb-20">
+      <section id="qr-generator-section" className="container mx-auto px-4 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden"
+          className={`bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
+            isHighlighted ? 'ring-4 ring-primary-500 ring-opacity-50 scale-[1.01]' : ''
+          }`}
         >
           <div className="p-8">
             <div className="mb-6">
