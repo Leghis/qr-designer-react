@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
 import analyticsService from '../../services/analyticsService';
-import { useQRHistory } from '../../hooks/useQRHistory';
 
 const UsageChart = ({ detailed = false }) => {
-  const { statistics } = useQRHistory();
+  // Using analytics service directly for chart data
   const usageData = analyticsService.getUsageOverTime(detailed ? 30 : 7);
   const templateData = analyticsService.getTemplateUsage();
   const peakTimes = analyticsService.getPeakUsageTimes();

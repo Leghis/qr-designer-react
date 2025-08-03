@@ -32,7 +32,7 @@ END:VCARD`.trim();
 
     onPreviewUpdate(vcardData);
     onChange(vcard);
-  }, [vcard]);
+  }, [vcard, onChange, onPreviewUpdate]);
 
   const handleChange = (field, value) => {
     setVcard(prev => ({

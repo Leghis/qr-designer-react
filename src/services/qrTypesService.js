@@ -172,11 +172,12 @@ ${formData.title ? `TITLE:${formData.title}` : ''}
 ${formData.website ? `URL:${formData.website}` : ''}
 END:VCARD`;
 
-      case 'email':
+      case 'email': {
         const emailParams = [];
         if (formData.subject) emailParams.push(`subject=${encodeURIComponent(formData.subject)}`);
         if (formData.body) emailParams.push(`body=${encodeURIComponent(formData.body)}`);
         return `mailto:${formData.to}${emailParams.length > 0 ? '?' + emailParams.join('&') : ''}`;
+      }
 
       case 'sms':
         return `sms:${formData.phone}${formData.message ? `?body=${encodeURIComponent(formData.message)}` : ''}`;
@@ -184,7 +185,7 @@ END:VCARD`;
       case 'location':
         return `geo:${formData.latitude},${formData.longitude}${formData.name ? `?q=${encodeURIComponent(formData.name)}` : ''}`;
 
-      case 'event':
+      case 'event': {
         // Simple calendar event format
         const startDate = new Date(formData.startDate).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
         const endDate = formData.endDate ? new Date(formData.endDate).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '') : startDate;
@@ -195,6 +196,7 @@ DTSTART:${startDate}
 DTEND:${endDate}
 ${formData.description ? `DESCRIPTION:${formData.description}` : ''}
 END:VEVENT`;
+      }
 
       case 'text':
         return formData.text;

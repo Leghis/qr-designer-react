@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import qrService from '../../services/qrService';
 
-const QRPreview = ({ data, type, qrType }) => {
+const QRPreview = ({ data, qrType }) => {
   const qrContainerRef = useRef(null);
 
   useEffect(() => {

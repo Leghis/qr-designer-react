@@ -61,7 +61,7 @@ const QRCodeDetail = () => {
       showNotification('QR Code introuvable', 'error');
       navigate('/dashboard/qr-codes');
     }
-  }, [id, history]);
+  }, [id, history, navigate, showNotification]);
 
   if (!qrCode) {
     return (

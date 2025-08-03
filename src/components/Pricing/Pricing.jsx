@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users, Infinity } from 'lucide-react';
+import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users } from 'lucide-react';
 
 const features = [
   {

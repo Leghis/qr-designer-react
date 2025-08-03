@@ -29,7 +29,7 @@ const MenuEditor = ({ data, onChange, onPreviewUpdate }) => {
       menuId,
       menuUrl
     });
-  }, [menu]);
+  }, [menu, onChange, onPreviewUpdate]);
 
   const addCategory = () => {
     const newCategory = {
@@ -147,7 +147,7 @@ const MenuEditor = ({ data, onChange, onPreviewUpdate }) => {
 
         <div className="space-y-6">
           <AnimatePresence>
-            {menu.categories.map((category, categoryIndex) => (
+            {menu.categories.map((category) => (
               <motion.div
                 key={category.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -174,7 +174,7 @@ const MenuEditor = ({ data, onChange, onPreviewUpdate }) => {
 
                 {/* Category Items */}
                 <div className="space-y-3 ml-8">
-                  {category.items.map((item, itemIndex) => (
+                  {category.items.map((item) => (
                     <motion.div
                       key={item.id}
                       initial={{ opacity: 0, x: -20 }}

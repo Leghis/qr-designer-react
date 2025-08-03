@@ -8,7 +8,7 @@ import Input from '../UI/Input';
 import QRHistoryCard from './QRHistoryCard';
 
 const QRHistory = ({ limit }) => {
-  const { history, loading, filters, updateFilters, deleteItem, deleteMultiple, exportHistory, clearAll } = useQRHistory();
+  const { history, loading, filters, updateFilters, deleteItem, deleteMultiple, exportHistory } = useQRHistory();
   const { showNotification } = useNotification();
   const [selectedItems, setSelectedItems] = useState([]);
   const [showFilters, setShowFilters] = useState(false);

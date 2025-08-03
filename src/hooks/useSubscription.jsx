@@ -127,7 +127,7 @@ export const SubscriptionProvider = ({ children }) => {
   };
 
   // Check if user can use premium template
-  const canUsePremiumTemplate = () => {
+  const canUsePremiumTemplate = (templateId) => {
     return subscription.isPremium && subscription.features.premiumTemplates;
   };
 

@@ -25,7 +25,7 @@ const PaymentEditor = ({ data, onChange, onPreviewUpdate }) => {
 
     onPreviewUpdate(paymentUrl);
     onChange(payment);
-  }, [payment]);
+  }, [payment, onChange, onPreviewUpdate]);
 
   const handleChange = (field, value) => {
     setPayment(prev => ({

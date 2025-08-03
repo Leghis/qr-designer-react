@@ -1,13 +1,12 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Crown, Sparkles, Download, Eye, Palette, Type, Image, Settings, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
 import { premiumTemplates, qrTemplates } from '../services/qrService';
-import QRGenerator from '../components/QRGenerator/QRGenerator';
+import QRGeneratorTemplateEditor from '../components/QRGenerator/QRGeneratorTemplateEditor';
 import { useSubscription } from '../hooks/useSubscription.jsx';
 import { useNotification } from '../context/NotificationContext';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Badge from '../components/UI/Badge';
-import QRCodeStyling from 'qr-code-styling';
 
 const TemplateEditPage = () => {
   const { id } = useParams();
@@ -15,10 +14,6 @@ const TemplateEditPage = () => {
   const { isPremium, canUsePremiumTemplate } = useSubscription();
   const { showNotification } = useNotification();
   const [template, setTemplate] = useState(null);
-  const [activeTab, setActiveTab] = useState('customize');
-  const [qrData, setQrData] = useState('https://qr-designer.com');
-  const previewQrRef = useRef(null);
-  const previewContainerRef = useRef(null);
 
   useEffect(() => {
     // Rechercher le template dans les templates premium
@@ -68,115 +63,66 @@ const TemplateEditPage = () => {
     }
   }, [template, canUsePremiumTemplate, navigate, showNotification]);
 
-  // Générer l'aperçu QR code
-  useEffect(() => {
-    if (activeTab === 'preview' && template && previewContainerRef.current) {
-      // Clear existing QR code
-      previewContainerRef.current.innerHTML = '';
-      
-      // Generate preview QR code
-      const qrOptions = {
-        width: 300,
-        height: 300,
-        type: "svg",
-        data: qrData,
-        margin: 20,
-        ...template.options,
-        dotsOptions: {
-          ...template.options.dotsOptions
-        },
-        backgroundOptions: {
-          ...template.options.backgroundOptions
-        },
-        cornersSquareOptions: {
-          ...template.options.cornersSquareOptions
-        },
-        cornersDotOptions: {
-          ...template.options.cornersDotOptions
-        }
-      };
-      
-      previewQrRef.current = new QRCodeStyling(qrOptions);
-      previewQrRef.current.append(previewContainerRef.current);
+  const handleQrDataChange = (newData) => {
+    // Data is handled by the QRGeneratorTemplateEditor component
+  };
+
+  // Features for display
+  const features = [
+    {
+      icon: Palette,
+      title: 'Personnalisation',
+      description: 'Couleurs et styles'
+    },
+    {
+      icon: Type,
+      title: 'Données',
+      description: 'URL, texte, contact'
+    },
+    {
+      icon: Image,
+      title: 'Logo',
+      description: 'Ajoutez votre marque'
+    },
+    {
+      icon: Settings,
+      title: 'Options',
+      description: 'Finitions avancées'
     }
-  }, [activeTab, template, qrData]);
+  ];
+
+  // Steps
+  const steps = [
+    {
+      number: '1',
+      title: 'Sélectionnez',
+      description: 'Choisissez votre template',
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      number: '2',
+      title: 'Personnalisez',
+      description: 'Adaptez les couleurs et le style',
+      color: 'from-purple-500 to-purple-600'
+    },
+    {
+      number: '3',
+      title: 'Téléchargez',
+      description: 'Exportez en haute qualité',
+      color: 'from-green-500 to-green-600'
+    }
+  ];
 
   if (!template) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300">Chargement du template...</p>
-        </div>
+        <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
-  const features = [
-    {
-      icon: Palette,
-      title: 'Personnalisation Complète',
-      description: 'Modifiez les couleurs, formes et styles'
-    },
-    {
-      icon: Image,
-      title: 'Logo & Image',
-      description: 'Ajoutez votre logo ou une image au centre'
-    },
-    {
-      icon: Type,
-      title: 'Contenu Dynamique',
-      description: 'URL, texte, vCard, WiFi et plus encore'
-    },
-    {
-      icon: Download,
-      title: 'Export HD',
-      description: 'Téléchargez en PNG ou SVG haute qualité'
-    }
-  ];
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Choisissez votre contenu',
-      description: 'URL, texte, contact, WiFi...',
-      color: 'from-blue-400 to-blue-600'
-    },
-    {
-      number: '02',
-      title: 'Personnalisez le design',
-      description: 'Couleurs, formes, logo...',
-      color: 'from-purple-400 to-purple-600'
-    },
-    {
-      number: '03',
-      title: 'Téléchargez & Utilisez',
-      description: 'PNG, SVG haute qualité',
-      color: 'from-green-400 to-green-600'
-    }
-  ];
-
-  const handleDownloadPreview = async (format) => {
-    if (previewQrRef.current) {
-      try {
-        if (format === 'png') {
-          await previewQrRef.current.download({ name: `qr-${template.name}`, extension: 'png' });
-        } else {
-          await previewQrRef.current.download({ name: `qr-${template.name}`, extension: 'svg' });
-        }
-        showNotification(`QR code téléchargé en ${format.toUpperCase()}`, 'success');
-      } catch (err) {
-        showNotification('Erreur lors du téléchargement', 'error');
-      }
-    }
-  };
-
-  const handleQrDataChange = (newData) => {
-    setQrData(newData);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-800">
+    <div className="min-h-screen pt-20">
       {/* Hero Section avec Template Info */}
       <section className="relative overflow-hidden pb-8">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-purple-50/30 to-pink-50/50 dark:from-primary-900/20 dark:via-purple-900/10 dark:to-pink-900/20"></div>
@@ -253,7 +199,7 @@ const TemplateEditPage = () => {
         </div>
       </section>
 
-      {/* Main Content avec marge appropriée */}
+      {/* Main Content */}
       <section className="container mx-auto px-4 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -261,99 +207,31 @@ const TemplateEditPage = () => {
           transition={{ delay: 0.4 }}
           className="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden"
         >
-          {/* Tabs */}
-          <div className="border-b border-gray-200 dark:border-gray-700">
-            <div className="flex">
-              <button
-                onClick={() => setActiveTab('customize')}
-                className={`flex-1 px-6 py-4 font-medium transition-colors ${
-                  activeTab === 'customize'
-                    ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Settings className="w-5 h-5" />
-                  Personnaliser
-                </div>
-              </button>
-              <button
-                onClick={() => setActiveTab('preview')}
-                className={`flex-1 px-6 py-4 font-medium transition-colors ${
-                  activeTab === 'preview'
-                    ? 'text-primary-600 dark:text-primary-400 border-b-2 border-primary-600 dark:border-primary-400'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
-                }`}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Eye className="w-5 h-5" />
-                  Aperçu
-                </div>
-              </button>
-            </div>
-          </div>
-
-          {/* Tab Content */}
           <div className="p-8">
-            {activeTab === 'customize' ? (
-              <div>
-                <h2 className="text-2xl font-bold mb-6">Personnalisez votre QR Code</h2>
-                <QRGenerator 
-                  preSelectedTemplate={template.id}
-                  templateOptions={template.options}
-                  onDataChange={handleQrDataChange}
-                />
-              </div>
-            ) : (
-              <div className="space-y-8">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">Aperçu en temps réel</h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-8">
-                    Voici votre QR code avec le template {template.name} appliqué
-                  </p>
-                </div>
-
-                {/* QR Code Preview */}
-                <div className="flex justify-center">
-                  <div className="bg-gray-50 dark:bg-dark-800 rounded-xl p-8 inline-block">
-                    <div 
-                      ref={previewContainerRef} 
-                      className="qr-preview"
-                      style={{ minHeight: '300px', minWidth: '300px' }}
-                    />
-                  </div>
-                </div>
-
-                {/* Download Buttons */}
-                <div className="flex justify-center gap-4">
-                  <button
-                    onClick={() => handleDownloadPreview('png')}
-                    className="px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-medium transition-all transform hover:scale-105 flex items-center gap-2"
-                  >
-                    <Download className="w-5 h-5" />
-                    Télécharger PNG
-                  </button>
-                  <button
-                    onClick={() => handleDownloadPreview('svg')}
-                    className="px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl font-medium transition-all transform hover:scale-105 flex items-center gap-2"
-                  >
-                    <Download className="w-5 h-5" />
-                    Télécharger SVG
-                  </button>
-                </div>
-
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg">
-                    <CheckCircle className="w-5 h-5" />
-                    QR Code prêt à être téléchargé
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-3">Personnalisez votre QR Code</h2>
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+                <div className="flex items-start gap-3">
+                  <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      Vous éditez le template <strong>{template.name}</strong>. 
+                      L'aperçu se met à jour en temps réel à droite.
+                    </p>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+            
+            <QRGeneratorTemplateEditor 
+              template={template}
+              templateOptions={template.options}
+              onDataChange={handleQrDataChange}
+            />
           </div>
         </motion.div>
 
-        {/* Steps Process avec marge appropriée */}
+        {/* Steps Process */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -393,7 +271,7 @@ const TemplateEditPage = () => {
           </div>
         </motion.div>
 
-        {/* Call to Action avec marge appropriée */}
+        {/* Call to Action */}
         {template.isPremium && !isPremium && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

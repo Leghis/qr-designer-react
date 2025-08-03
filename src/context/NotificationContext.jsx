@@ -50,6 +50,10 @@ const Notification = ({ notification, onClose }) => {
 export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
+  const removeNotification = useCallback((id) => {
+    setNotifications(prev => prev.filter(notif => notif.id !== id));
+  }, []);
+
   const showNotification = useCallback((message, type = 'info') => {
     const id = Date.now();
     const notification = { id, message, type };
@@ -60,11 +64,7 @@ export const NotificationProvider = ({ children }) => {
     setTimeout(() => {
       removeNotification(id);
     }, 5000);
-  }, []);
-
-  const removeNotification = useCallback((id) => {
-    setNotifications(prev => prev.filter(notif => notif.id !== id));
-  }, []);
+  }, [removeNotification]);
 
   return (
     <NotificationContext.Provider value={{ showNotification }}>

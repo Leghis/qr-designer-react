@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { 
   MoreVertical, 
   Eye, 
@@ -13,14 +12,12 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../../context/NotificationContext';
-import { useSubscription } from '../../hooks/useSubscription';
 import qrTypesService from '../../services/qrTypesService';
 
 const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const { showNotification } = useNotification();
-  const { isPremium } = useSubscription();
 
   // Get QR type info
   const qrType = qrTypesService.getTypeById(qrCode.type || 'url');

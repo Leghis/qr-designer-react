@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Eye, Copy, Download, Trash2, Calendar, Hash, Palette } from 'lucide-react';
 import { useNotification } from '../../context/NotificationContext';
 
 const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
   const { showNotification } = useNotification();
-  const [imageError, setImageError] = useState(false);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -60,15 +57,9 @@ const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
       {/* QR Preview */}
       <div className="mb-4 flex justify-center">
         <div className="w-32 h-32 bg-white dark:bg-gray-900 rounded-lg p-2 shadow-inner">
-          {!imageError ? (
-            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded flex items-center justify-center">
-              <Hash className="w-8 h-8 text-gray-400 dark:text-gray-500" />
-            </div>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400">
-              <Hash className="w-12 h-12" />
-            </div>
-          )}
+          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded flex items-center justify-center">
+            <Hash className="w-8 h-8 text-gray-400 dark:text-gray-500" />
+          </div>
         </div>
       </div>
 
