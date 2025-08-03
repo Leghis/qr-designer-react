@@ -75,8 +75,8 @@ const Modal = ({
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 className={cn(
-                  "relative w-full bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden",
-                  "border border-gray-200/50 dark:border-gray-700/50",
+                  "relative w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden",
+                  "border border-gray-200 dark:border-slate-700",
                   sizes[size],
                   className
                 )}
@@ -86,14 +86,14 @@ const Modal = ({
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-purple-500"></div>
                 
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-slate-800">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-100">
                     {title}
                   </h3>
                   {showCloseButton && (
                     <button
                       onClick={onClose}
-                      className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-all hover:rotate-90 duration-300"
+                      className="p-2 text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all hover:rotate-90 duration-300"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -107,7 +107,7 @@ const Modal = ({
 
                 {/* Footer */}
                 {footer && (
-                  <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-dark-800/50">
+                  <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-850">
                     {footer}
                   </div>
                 )}

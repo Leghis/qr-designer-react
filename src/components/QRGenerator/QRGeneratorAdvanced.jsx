@@ -449,12 +449,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       {/* Beautiful Background - Only on home page */}
       {showBeautifulBackground && (
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-purple-50/20 to-pink-50/30 dark:from-primary-950/20 dark:via-purple-950/10 dark:to-pink-950/20 rounded-3xl"></div>
-          <div className="absolute inset-0 bg-white/70 dark:bg-dark-900/70 backdrop-blur-sm rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-purple-50/20 to-pink-50/30 dark:from-primary-950/30 dark:via-purple-950/20 dark:to-pink-950/30 rounded-3xl"></div>
+          <div className="absolute inset-0 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm rounded-3xl"></div>
         </div>
       )}
       
-      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-dark-900/90 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-4 sm:p-6 lg:p-8" : ""}>
+      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200 dark:border-slate-800 p-4 sm:p-6 lg:p-8" : ""}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left: Controls */}
           <div className="space-y-6">
@@ -464,8 +464,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-100/30 to-purple-100/30 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl blur"></div>
               )}
               <div className={showBeautifulBackground 
-                ? 'relative flex gap-1 p-1 bg-gray-100/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-xl' 
-                : 'flex gap-1 p-1 bg-gray-100 dark:bg-dark-800 rounded-lg'
+                ? 'relative flex gap-1 p-1 bg-gray-100/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl' 
+                : 'flex gap-1 p-1 bg-gray-100 dark:bg-slate-800 rounded-lg'
               }>
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
@@ -477,8 +477,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                         showBeautifulBackground ? 'py-2.5' : 'py-2'
                       } ${
                         activeTab === tab.id
-                          ? `bg-white dark:bg-dark-900 text-primary-600 dark:text-primary-400 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
-                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                          ? `bg-white dark:bg-slate-900 text-primary-600 dark:text-primary-400 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
+                          : 'text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -903,7 +903,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 <select
                   value={qrOptions.errorCorrectionLevel}
                   onChange={(e) => setQrOptions({ ...qrOptions, errorCorrectionLevel: e.target.value })}
-                  className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 transition-all"
                 >
                   <option value="L">Faible (7%)</option>
                   <option value="M">Moyen (15%)</option>
@@ -994,7 +994,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       
       {/* Right: Preview */}
       <div className="lg:sticky lg:top-24">
-        <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl dark:shadow-slate-900/50 p-4 sm:p-6 lg:p-8">
           {/* Preview Header */}
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-semibold">Aperçu en temps réel</h3>
@@ -1039,7 +1039,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   backdropFilter: showPreview ? 'blur(0px)' : 'blur(20px)'
                 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 z-10 bg-white/30 dark:bg-dark-900/30"
+                className="absolute inset-0 z-10 bg-white/30 dark:bg-slate-900/30"
                 style={{ 
                   display: showPreview ? 'none' : 'flex',
                   alignItems: 'center',
@@ -1051,7 +1051,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.2 }}
                   onClick={() => setShowPreview(true)}
-                  className="px-6 py-3 bg-white dark:bg-dark-800 text-gray-900 dark:text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-gray-200 dark:border-gray-700"
+                  className="px-6 py-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700"
                 >
                   <Eye className="w-5 h-5" />
                   <span className="font-medium">Afficher l'aperçu</span>
@@ -1092,7 +1092,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => downloadQR('svg')}
-                className="flex-1 px-4 sm:px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2"
+                className="flex-1 px-4 sm:px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 SVG
@@ -1102,7 +1102,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => downloadQR('pdf')}
-                className="w-full sm:w-auto px-4 sm:px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-4 sm:px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 PDF
@@ -1114,13 +1114,13 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 p-4 bg-gray-50 dark:bg-dark-900 rounded-lg"
+              className="mt-6 p-4 bg-gray-50 dark:bg-slate-850 rounded-lg"
             >
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Template: <span className="font-medium text-gray-900 dark:text-white">{template.name}</span>
+              <p className="text-sm text-gray-600 dark:text-slate-300">
+                Template: <span className="font-medium text-gray-900 dark:text-slate-100">{template.name}</span>
               </p>
               {template.category && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">
                   Catégorie: <span className="font-medium">{template.category}</span>
                 </p>
               )}

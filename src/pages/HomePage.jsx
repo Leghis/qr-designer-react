@@ -70,7 +70,7 @@ const HomePage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full mb-6 font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full mb-6 font-medium"
             >
               <Gift className="w-5 h-5" />
               <span className="text-xs sm:text-sm">100% Gratuit • Sans inscription • Sans limite</span>
@@ -91,7 +91,7 @@ const HomePage = () => {
                 </svg>
               </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-slate-200 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
               Le générateur de QR codes le plus moderne et intuitif. 
               Personnalisez, créez et téléchargez en quelques secondes.
             </p>
@@ -112,7 +112,7 @@ const HomePage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-400 mb-12"
+              className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-slate-300 mb-12"
             >
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" />
@@ -138,31 +138,31 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
+                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">1M+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">QR Codes créés</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">QR Codes créés</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
+                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">50K+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Utilisateurs actifs</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">Utilisateurs actifs</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
+                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="flex items-center gap-2">
-                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">100%</div>
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-300">100%</div>
                   <Zap className="w-6 h-6 text-yellow-500" />
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Gratuit & Rapide</div>
+                <div className="text-sm text-gray-600 dark:text-slate-300">Gratuit & Rapide</div>
               </motion.div>
             </div>
           </motion.div>
@@ -185,7 +185,7 @@ const HomePage = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 Essayez-le <span className="gradient-text">maintenant</span>
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-slate-200 max-w-2xl mx-auto">
                 Créez votre premier QR code en quelques secondes. Aucune inscription requise.
               </p>
             </motion.div>
@@ -223,7 +223,7 @@ const HomePage = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-wrap justify-center gap-4 mt-8"
             >
-              <div className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-medium">
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">
                 <Zap className="w-4 h-4" />
                 <span>Génération instantanée</span>
               </div>

@@ -46,7 +46,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'url':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               URL du site web
             </label>
             <input
@@ -54,7 +54,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.url || ''}
               onChange={(e) => handleFieldChange('url', e.target.value)}
               placeholder="https://example.com"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -62,7 +62,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'text':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Texte
             </label>
             <textarea
@@ -70,7 +70,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               onChange={(e) => handleFieldChange('text', e.target.value)}
               placeholder="Entrez votre texte ici..."
               rows={4}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
             />
           </div>
         );
@@ -78,7 +78,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'ssid':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Nom du réseau WiFi (SSID)
             </label>
             <input
@@ -86,7 +86,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.ssid || ''}
               onChange={(e) => handleFieldChange('ssid', e.target.value)}
               placeholder="MonWiFi"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -94,7 +94,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'password':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Mot de passe
             </label>
             <input
@@ -102,7 +102,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.password || ''}
               onChange={(e) => handleFieldChange('password', e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -110,13 +110,13 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'security':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Type de sécurité
             </label>
             <select
               value={contentData.security || 'WPA'}
               onChange={(e) => handleFieldChange('security', e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             >
               <option value="WPA">WPA/WPA2</option>
               <option value="WEP">WEP</option>
@@ -133,9 +133,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               id="hidden-network"
               checked={contentData.hidden || false}
               onChange={(e) => handleFieldChange('hidden', e.target.checked)}
-              className="w-5 h-5 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              className="w-5 h-5 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-slate-600"
             />
-            <label htmlFor="hidden-network" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label htmlFor="hidden-network" className="text-sm font-medium text-gray-700 dark:text-slate-200">
               Réseau masqué
             </label>
           </div>
@@ -144,7 +144,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'phone':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Numéro de téléphone
             </label>
             <input
@@ -152,7 +152,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.phone || ''}
               onChange={(e) => handleFieldChange('phone', e.target.value)}
               placeholder="+33 6 12 34 56 78"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -160,7 +160,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'message':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Message
             </label>
             <textarea
@@ -168,7 +168,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               onChange={(e) => handleFieldChange('message', e.target.value)}
               placeholder="Votre message..."
               rows={3}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
             />
           </div>
         );
@@ -176,7 +176,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'email':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Adresse email
             </label>
             <input
@@ -184,7 +184,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.email || ''}
               onChange={(e) => handleFieldChange('email', e.target.value)}
               placeholder="contact@example.com"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -192,7 +192,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'subject':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Sujet
             </label>
             <input
@@ -200,7 +200,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.subject || ''}
               onChange={(e) => handleFieldChange('subject', e.target.value)}
               placeholder="Objet du message"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -208,7 +208,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'body':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Corps du message
             </label>
             <textarea
@@ -216,7 +216,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               onChange={(e) => handleFieldChange('body', e.target.value)}
               placeholder="Contenu du message..."
               rows={3}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
             />
           </div>
         );
@@ -225,7 +225,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'firstName':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Prénom
             </label>
             <input
@@ -233,7 +233,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.firstName || ''}
               onChange={(e) => handleFieldChange('firstName', e.target.value)}
               placeholder="Jean"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -241,7 +241,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'lastName':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Nom
             </label>
             <input
@@ -249,7 +249,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.lastName || ''}
               onChange={(e) => handleFieldChange('lastName', e.target.value)}
               placeholder="Dupont"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -257,7 +257,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'organization':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Entreprise
             </label>
             <input
@@ -265,7 +265,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.organization || ''}
               onChange={(e) => handleFieldChange('organization', e.target.value)}
               placeholder="Mon Entreprise"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -273,7 +273,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'title':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Fonction
             </label>
             <input
@@ -281,7 +281,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.title || ''}
               onChange={(e) => handleFieldChange('title', e.target.value)}
               placeholder="Directeur Commercial"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -291,7 +291,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
         if (contentType === 'bitcoin') {
           return (
             <div key={field}>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
                 Adresse Bitcoin
               </label>
               <input
@@ -299,7 +299,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
                 value={contentData.address || ''}
                 onChange={(e) => handleFieldChange('address', e.target.value)}
                 placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all font-mono text-sm"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all font-mono text-sm"
               />
             </div>
           );
@@ -308,7 +308,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
         if (contentType === 'ethereum') {
           return (
             <div key={field}>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
                 Adresse Ethereum
               </label>
               <input
@@ -316,9 +316,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
                 value={contentData.address || ''}
                 onChange={(e) => handleFieldChange('address', e.target.value)}
                 placeholder="0x742d35Cc6634C0532925a3b844Bc9e7595f89f0e"
-                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all font-mono text-sm"
+                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all font-mono text-sm"
               />
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
                 Adresse Ethereum (42 caractères commençant par 0x)
               </p>
             </div>
@@ -327,7 +327,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
         // Otherwise it's vCard address
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Adresse
             </label>
             <textarea
@@ -335,7 +335,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               onChange={(e) => handleFieldChange('address', e.target.value)}
               placeholder="123 Rue de la Paix, 75001 Paris"
               rows={2}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
             />
           </div>
         );
@@ -344,7 +344,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'location':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Lieu
             </label>
             <input
@@ -352,7 +352,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.location || ''}
               onChange={(e) => handleFieldChange('location', e.target.value)}
               placeholder="Salle de conférence, Paris"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -360,14 +360,14 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'startDate':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Date de début
             </label>
             <input
               type="datetime-local"
               value={contentData.startDate || ''}
               onChange={(e) => handleFieldChange('startDate', e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -375,14 +375,14 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'endDate':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Date de fin
             </label>
             <input
               type="datetime-local"
               value={contentData.endDate || ''}
               onChange={(e) => handleFieldChange('endDate', e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -390,7 +390,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'description':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Description
             </label>
             <textarea
@@ -398,7 +398,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               onChange={(e) => handleFieldChange('description', e.target.value)}
               placeholder="Description de l'événement..."
               rows={3}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all resize-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
             />
           </div>
         );
@@ -407,7 +407,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'latitude':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Latitude
             </label>
             <input
@@ -416,7 +416,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.latitude || ''}
               onChange={(e) => handleFieldChange('latitude', e.target.value)}
               placeholder="48.8566"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -424,7 +424,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'longitude':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Longitude
             </label>
             <input
@@ -433,7 +433,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.longitude || ''}
               onChange={(e) => handleFieldChange('longitude', e.target.value)}
               placeholder="2.3522"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -441,7 +441,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'query':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Recherche d'adresse
             </label>
             <input
@@ -449,7 +449,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.query || ''}
               onChange={(e) => handleFieldChange('query', e.target.value)}
               placeholder="Tour Eiffel, Paris"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -458,7 +458,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'amount':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Montant
             </label>
             <input
@@ -467,7 +467,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.amount || ''}
               onChange={(e) => handleFieldChange('amount', e.target.value)}
               placeholder="10.00"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -475,13 +475,13 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'currency':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Devise
             </label>
             <select
               value={contentData.currency || 'EUR'}
               onChange={(e) => handleFieldChange('currency', e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             >
               <option value="EUR">EUR (€)</option>
               <option value="USD">USD ($)</option>
@@ -494,7 +494,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'itemName':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Description du paiement
             </label>
             <input
@@ -502,7 +502,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.itemName || ''}
               onChange={(e) => handleFieldChange('itemName', e.target.value)}
               placeholder="Paiement pour..."
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -511,7 +511,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'label':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Libellé
             </label>
             <input
@@ -519,7 +519,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.label || ''}
               onChange={(e) => handleFieldChange('label', e.target.value)}
               placeholder="Don pour..."
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -528,7 +528,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'spotifyUri':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               URI Spotify
             </label>
             <input
@@ -536,9 +536,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.spotifyUri || ''}
               onChange={(e) => handleFieldChange('spotifyUri', e.target.value)}
               placeholder="spotify:track:4iV5W9uYEdYUVa79Axb7Rh"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all font-mono text-sm"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all font-mono text-sm"
             />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
               Cliquez droit sur une chanson/playlist dans Spotify → Partager → Copier l'URI Spotify
             </p>
           </div>
@@ -548,7 +548,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'profileUrl':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               URL du profil LinkedIn
             </label>
             <input
@@ -556,7 +556,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.profileUrl || ''}
               onChange={(e) => handleFieldChange('profileUrl', e.target.value)}
               placeholder="https://linkedin.com/in/john-doe"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -565,7 +565,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'username':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               Nom d'utilisateur
             </label>
             <input
@@ -573,9 +573,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.username || ''}
               onChange={(e) => handleFieldChange('username', e.target.value)}
               placeholder={contentType === 'instagram' ? 'instagram_user' : 'twitter_user'}
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
               Sans le @ au début
             </p>
           </div>
@@ -585,7 +585,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'pageUrl':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               URL de la page Facebook
             </label>
             <input
@@ -593,7 +593,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.pageUrl || ''}
               onChange={(e) => handleFieldChange('pageUrl', e.target.value)}
               placeholder="https://facebook.com/pagename"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>
         );
@@ -602,7 +602,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       case 'videoUrl':
         return (
           <div key={field}>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">
               URL de la vidéo YouTube
             </label>
             <input
@@ -610,9 +610,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               value={contentData.videoUrl || ''}
               onChange={(e) => handleFieldChange('videoUrl', e.target.value)}
               placeholder="https://youtube.com/watch?v=dQw4w9WgXcQ"
-              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-all"
+              className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
               Chaîne, vidéo ou playlist YouTube
             </p>
           </div>
@@ -629,7 +629,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
     <div className="space-y-6">
       {/* Content Type Selector */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+        <label className="block text-sm font-medium text-gray-700 dark:text-slate-200 mb-3">
           Type de contenu
         </label>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -648,7 +648,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
                 className={`p-3 rounded-lg border-2 transition-all ${
                   contentType === type.id
                     ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                    : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                    : 'border-gray-300 dark:border-slate-600 hover:border-gray-400'
                 }`}
               >
                 <Icon className="w-5 h-5 mx-auto mb-1" />
@@ -673,8 +673,8 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
 
       {/* Preview of generated content */}
       {process.env.NODE_ENV === 'development' && (
-        <div className="mt-6 p-4 bg-gray-100 dark:bg-dark-800 rounded-lg">
-          <p className="text-xs font-mono text-gray-600 dark:text-gray-400 break-all">
+        <div className="mt-6 p-4 bg-gray-100 dark:bg-slate-800 rounded-lg">
+          <p className="text-xs font-mono text-gray-600 dark:text-slate-400 break-all">
             {generateQRContent(contentType, contentData) || 'Aucun contenu généré'}
           </p>
         </div>

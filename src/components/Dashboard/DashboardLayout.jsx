@@ -63,7 +63,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-800 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex">
       {/* Overlay for mobile */}
       <AnimatePresence>
         {isMobile && isSidebarOpen && (
@@ -85,11 +85,11 @@ const DashboardLayout = () => {
           x: isMobile && !isSidebarOpen ? -280 : 0
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed md:relative h-full bg-white dark:bg-dark-900 border-r border-gray-200 dark:border-gray-800 z-50 flex flex-col`}
+        className={`fixed md:relative h-full bg-white dark:bg-slate-950 border-r border-gray-200 dark:border-slate-800 z-50 flex flex-col`}
         style={{ height: '100vh' }}
       >
         {/* Sidebar Header */}
-        <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+        <div className="p-6 border-b border-gray-200 dark:border-slate-800">
           <div className="flex items-center justify-between">
             <motion.div
               animate={{ opacity: isSidebarOpen ? 1 : 0 }}
@@ -100,8 +100,8 @@ const DashboardLayout = () => {
                 <QrCode className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="font-bold text-gray-900 dark:text-white">QR Designer</h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Dashboard</p>
+                <h2 className="font-bold text-gray-900 dark:text-slate-100">QR Designer</h2>
+                <p className="text-xs text-gray-500 dark:text-slate-400">Dashboard</p>
               </div>
             </motion.div>
             
@@ -110,13 +110,13 @@ const DashboardLayout = () => {
               className="p-2 hover:bg-gray-100 dark:hover:bg-dark-800 rounded-lg transition-colors"
             >
               {isMobile ? (
-                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <X className="w-5 h-5 text-gray-600 dark:text-slate-400" />
               ) : (
                 <motion.div
                   animate={{ rotate: isSidebarOpen ? 0 : 180 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-slate-400" />
                 </motion.div>
               )}
             </button>
@@ -138,7 +138,7 @@ const DashboardLayout = () => {
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
                   isActive
                     ? 'bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 text-primary-600 dark:text-primary-400'
-                    : 'hover:bg-gray-100 dark:hover:bg-dark-800 text-gray-700 dark:text-gray-300'
+                    : 'hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-700 dark:text-slate-200'
                 }`}
               >
                 <item.icon className={`w-5 h-5 ${!isSidebarOpen && 'md:mx-auto'}`} />
@@ -189,7 +189,7 @@ const DashboardLayout = () => {
         </nav>
 
         {/* User Section */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-800">
+        <div className="p-4 border-t border-gray-200 dark:border-slate-800">
           <div className={`flex items-center gap-3 ${!isSidebarOpen && 'md:justify-center'}`}>
             <div className="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center text-white font-semibold">
               {user?.name?.[0]?.toUpperCase() || 'U'}
@@ -204,10 +204,10 @@ const DashboardLayout = () => {
                   transition={{ duration: 0.2 }}
                   className="flex-1"
                 >
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-sm font-medium text-gray-900 dark:text-slate-100">
                     {user?.name || 'Utilisateur'}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-500 dark:text-slate-400">
                     {user?.email}
                   </p>
                 </motion.div>
@@ -220,15 +220,15 @@ const DashboardLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Mobile Header */}
-        <div className="md:hidden bg-white dark:bg-dark-900 border-b border-gray-200 dark:border-gray-800 p-4">
+        <div className="md:hidden bg-white dark:bg-slate-950 border-b border-gray-200 dark:border-slate-800 p-4">
           <div className="flex items-center gap-3">
             <button
               onClick={toggleSidebar}
               className="p-2 hover:bg-gray-100 dark:hover:bg-dark-800 rounded-lg transition-colors"
             >
-              <Menu className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              <Menu className="w-5 h-5 text-gray-600 dark:text-slate-400" />
             </button>
-            <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h1 className="text-lg font-semibold text-gray-900 dark:text-slate-100">
               QR Designer
             </h1>
           </div>

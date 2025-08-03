@@ -33,7 +33,7 @@ const Header = () => {
   // };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-900/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-800/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-slate-800">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -64,7 +64,7 @@ const Header = () => {
                 className={`font-medium transition-colors ${
                   isActive('/') 
                     ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 Accueil
@@ -74,7 +74,7 @@ const Header = () => {
                 className={`font-medium transition-colors ${
                   isActive('/templates') 
                     ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 Templates
@@ -85,7 +85,7 @@ const Header = () => {
                   className={`font-medium transition-colors flex items-center gap-1 ${
                     isActive('/dashboard') 
                       ? 'text-primary-600 dark:text-primary-400' 
-                      : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                      : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
                   }`}
                 >
                   <LayoutDashboard className="w-4 h-4" />
