@@ -15,7 +15,7 @@ const TemplatesPro = () => {
   const [templates, setTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { isPremium, canUsePremiumTemplate } = useSubscription();
-  const [usedPremiumTemplates, setUsedPremiumTemplates] = useState([]);
+  const [usedPremiumTemplates] = useState([]);
   
   // Load templates when category changes
   useEffect(() => {
@@ -188,39 +188,73 @@ const TemplatesPro = () => {
 const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [qrGenerated, setQrGenerated] = useState(false);
   const qrRef = useRef(null);
   const qrContainerRef = useRef(null);
+  const cardRef = useRef(null);
   
-  // Generate QR preview
+  // Observe when card comes into view
   useEffect(() => {
-    if (!qrContainerRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !qrGenerated) {
+            setIsInView(true);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
     
-    // Clear existing QR
-    qrContainerRef.current.innerHTML = '';
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
     
-    // Create QR with template options
-    const qrOptions = {
-      width: 200,
-      height: 200,
-      type: "svg",
-      data: "https://qr-designer.com",
-      margin: 10,
-      ...template.options,
-      imageOptions: {
-        hideBackgroundDots: true,
-        crossOrigin: "anonymous",
-        margin: 10,
-        imageSize: 0.3,
-        ...template.options?.imageOptions
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
       }
     };
+  }, [qrGenerated]);
+  
+  // Generate QR preview only when in view
+  useEffect(() => {
+    if (!isInView || !qrContainerRef.current || qrGenerated) return;
     
-    qrRef.current = new QRCodeStyling(qrOptions);
-    qrRef.current.append(qrContainerRef.current);
-  }, [template]);
+    // Small delay to stagger QR generation
+    const timeout = setTimeout(() => {
+      // Clear existing QR
+      qrContainerRef.current.innerHTML = '';
+      
+      // Create QR with template options
+      const qrOptions = {
+        width: 200,
+        height: 200,
+        type: "svg",
+        data: "https://qr-designer.com",
+        margin: 10,
+        ...template.options,
+        imageOptions: {
+          hideBackgroundDots: true,
+          crossOrigin: "anonymous",
+          margin: 10,
+          imageSize: 0.3,
+          ...template.options?.imageOptions
+        }
+      };
+      
+      qrRef.current = new QRCodeStyling(qrOptions);
+      qrRef.current.append(qrContainerRef.current);
+      setQrGenerated(true);
+    }, index * 20); // Stagger by 20ms per card
+    
+    return () => clearTimeout(timeout);
+  }, [isInView, template, index, qrGenerated]);
   
   return (
     <motion.div
+      ref={cardRef}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -260,7 +294,13 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
           <div 
             ref={qrContainerRef}
             className="w-full h-full flex items-center justify-center"
-          />
+          >
+            {!qrGenerated && (
+              <div className="animate-pulse">
+                <div className="w-[200px] h-[200px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
+              </div>
+            )}
+          </div>
           
           {/* Hover Overlay */}
           <motion.div

@@ -146,7 +146,7 @@ const MenuEditor = ({ data, onChange, onPreviewUpdate }) => {
         </div>
 
         <div className="space-y-6">
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {menu.categories.map((category) => (
               <motion.div
                 key={category.id}

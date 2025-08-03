@@ -58,7 +58,7 @@ export const getQRContentTypes = (t) => [
     icon: Phone,
     fields: ['phone'],
     example: 'tel:+33123456789',
-    validator: (data) => data.phone && /^[\d\s\+\-\(\)]+$/.test(data.phone)
+    validator: (data) => data.phone && /^[\d\s+\-()]+$/.test(data.phone)
   },
   {
     id: 'sms',
@@ -66,7 +66,7 @@ export const getQRContentTypes = (t) => [
     icon: MessageSquare,
     fields: ['phone', 'message'],
     example: 'sms:+33123456789?body=Hello',
-    validator: (data) => data.phone && /^[\d\s\+\-\(\)]+$/.test(data.phone)
+    validator: (data) => data.phone && /^[\d\s+\-()]+$/.test(data.phone)
   },
   {
     id: 'email',
@@ -130,7 +130,7 @@ export const getQRContentTypes = (t) => [
     icon: MessageSquare,
     fields: ['phone', 'message'],
     example: 'https://wa.me/33123456789?text=Hello',
-    validator: (data) => data.phone && /^[\d\s\+\-\(\)]+$/.test(data.phone)
+    validator: (data) => data.phone && /^[\d\s+\-()]+$/.test(data.phone)
   },
   {
     id: 'linkedin',
@@ -197,10 +197,11 @@ export const generateQRContent = (type, data) => {
     case 'text':
       return data.text || '';
       
-    case 'wifi':
+    case 'wifi': {
       const security = data.security || 'WPA';
       const hidden = data.hidden ? 'true' : 'false';
       return `WIFI:T:${security};S:${data.ssid || ''};P:${data.password || ''};H:${hidden};;`;
+    }
       
     case 'phone':
       return `tel:${data.phone || ''}`;
@@ -208,15 +209,16 @@ export const generateQRContent = (type, data) => {
     case 'sms':
       return `sms:${data.phone || ''}${data.message ? `?body=${encodeURIComponent(data.message)}` : ''}`;
       
-    case 'email':
+    case 'email': {
       let mailto = `mailto:${data.email || ''}`;
       const params = [];
       if (data.subject) params.push(`subject=${encodeURIComponent(data.subject)}`);
       if (data.body) params.push(`body=${encodeURIComponent(data.body)}`);
       if (params.length > 0) mailto += `?${params.join('&')}`;
       return mailto;
+    }
       
-    case 'vcard':
+    case 'vcard': {
       const vcard = [
         'BEGIN:VCARD',
         'VERSION:3.0',
@@ -231,8 +233,9 @@ export const generateQRContent = (type, data) => {
         'END:VCARD'
       ].filter(line => line).join('\n');
       return vcard;
+    }
       
-    case 'event':
+    case 'event': {
       const formatDate = (date) => {
         return new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
       };
@@ -246,14 +249,16 @@ export const generateQRContent = (type, data) => {
         'END:VEVENT'
       ].filter(line => line).join('\n');
       return vevent;
+    }
       
-    case 'location':
+    case 'location': {
       if (data.latitude && data.longitude) {
         return `geo:${data.latitude},${data.longitude}`;
       } else if (data.query) {
         return `https://maps.google.com/?q=${encodeURIComponent(data.query)}`;
       }
       return '';
+    }
       
     case 'paypal':
       let paypalUrl = `https://paypal.me/${data.email}`;
@@ -297,12 +302,13 @@ export const generateQRContent = (type, data) => {
     case 'youtube':
       return data.videoUrl || '';
       
-    case 'ethereum':
+    case 'ethereum': {
       let ethUri = `ethereum:${data.address || ''}`;
       if (data.amount) {
         ethUri += `?amount=${data.amount}`;
       }
       return ethUri;
+    }
       
     default:
       return '';

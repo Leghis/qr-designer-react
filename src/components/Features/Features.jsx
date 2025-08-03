@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Palette, Zap, Smartphone, Image, ShieldCheck, Heart } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 const Features = () => {

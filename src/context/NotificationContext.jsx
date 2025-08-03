@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NotificationContext = createContext();
@@ -26,19 +26,29 @@ const Notification = ({ notification, onClose }) => {
     info: 'text-blue-800 dark:text-blue-200'
   };
 
+  // Safe close handler
+  const handleClose = useCallback(() => {
+    try {
+      onClose();
+    } catch (error) {
+      console.warn('Notification close error:', error);
+    }
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 100, opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg border-l-4 ${bgColor[notification.type]} ${textColor[notification.type]} max-w-sm`}
+      className={`p-4 rounded-lg shadow-lg border-l-4 ${bgColor[notification.type]} ${textColor[notification.type]} max-w-sm`}
     >
       <div className="flex items-center justify-between">
         <p className="font-medium">{notification.message}</p>
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="ml-4 text-current opacity-50 hover:opacity-100 transition-opacity"
+          type="button"
         >
           ×
         </button>
@@ -49,36 +59,80 @@ const Notification = ({ notification, onClose }) => {
 
 export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
+  const timeoutRefs = useRef(new Map()); // Track all active timeouts
+  const isMountedRef = useRef(true); // Track component mount status
 
   const removeNotification = useCallback((id) => {
-    setNotifications(prev => prev.filter(notif => notif.id !== id));
+    // Only update state if component is still mounted
+    if (isMountedRef.current) {
+      setNotifications(prev => prev.filter(notif => notif.id !== id));
+    }
+    
+    // Clear any associated timeout
+    const timeoutId = timeoutRefs.current.get(id);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutRefs.current.delete(id);
+    }
   }, []);
 
   const showNotification = useCallback((message, type = 'info') => {
-    const id = Date.now();
+    // Don't add notifications if component is unmounted
+    if (!isMountedRef.current) return;
+    
+    const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     const notification = { id, message, type };
     
     setNotifications(prev => [...prev, notification]);
     
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-      removeNotification(id);
+    // Auto remove after 5 seconds with safe timeout handling
+    const timeoutId = setTimeout(() => {
+      // Double-check component is still mounted before removing
+      if (isMountedRef.current) {
+        removeNotification(id);
+      }
     }, 5000);
+    
+    // Track this timeout for cleanup
+    timeoutRefs.current.set(id, timeoutId);
   }, [removeNotification]);
+
+  // Cleanup effect for component unmount
+  useEffect(() => {
+    return () => {
+      // Mark component as unmounted
+      isMountedRef.current = false;
+      
+      // Clear all active timeouts
+      for (const timeoutId of timeoutRefs.current.values()) {
+        clearTimeout(timeoutId);
+      }
+      timeoutRefs.current.clear();
+    };
+  }, []);
 
   return (
     <NotificationContext.Provider value={{ showNotification }}>
       {children}
-      <AnimatePresence>
-        {notifications.map((notification, index) => (
-          <div key={notification.id} style={{ top: `${(index + 1) * 70}px` }}>
-            <Notification
-              notification={notification}
-              onClose={() => removeNotification(notification.id)}
-            />
-          </div>
-        ))}
-      </AnimatePresence>
+      <div className="fixed top-4 right-4 z-50 pointer-events-none">
+        <AnimatePresence mode="sync">
+          {notifications.map((notification, index) => (
+            <div 
+              key={notification.id} 
+              className="pointer-events-auto mb-2"
+              style={{ 
+                transform: `translateY(${index * 70}px)`,
+                position: 'relative'
+              }}
+            >
+              <Notification
+                notification={notification}
+                onClose={() => removeNotification(notification.id)}
+              />
+            </div>
+          ))}
+        </AnimatePresence>
+      </div>
     </NotificationContext.Provider>
   );
 };

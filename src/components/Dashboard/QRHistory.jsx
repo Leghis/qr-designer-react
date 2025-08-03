@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Download, Trash2, Eye, Copy, Calendar, MoreVertical } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
-import { useNotification } from '../../context/NotificationContext';
+import { useNotification } from '../../hooks/NotificationContext';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import QRHistoryCard from './QRHistoryCard';
@@ -139,7 +139,7 @@ const QRHistory = ({ limit }) => {
         </div>
 
         {/* Filters */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {showFilters && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}

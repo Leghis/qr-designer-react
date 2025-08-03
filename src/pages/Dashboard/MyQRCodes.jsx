@@ -209,7 +209,7 @@ const MyQRCodes = () => {
         </div>
 
         {/* Advanced Filters */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {showFilters && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}

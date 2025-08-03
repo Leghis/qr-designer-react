@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import historyService from '../services/historyService';
+import { downloadJSON, downloadCSV } from '../utils/domSafeDownload';
 
 export const useQRHistory = (initialFilters = {}) => {
   const [history, setHistory] = useState([]);
@@ -53,19 +54,36 @@ export const useQRHistory = (initialFilters = {}) => {
     }
   }, [loadHistory]);
 
-  const exportHistory = useCallback((format = 'json') => {
-    const data = historyService.exportHistory(format);
-    const blob = new Blob([data], { 
-      type: format === 'json' ? 'application/json' : 'text/csv' 
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `qr-history-${new Date().toISOString().split('T')[0]}.${format}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const exportHistory = useCallback(async (format = 'json') => {
+    try {
+      const data = historyService.exportHistory(format);
+      const filename = `qr-history-${new Date().toISOString().split('T')[0]}.${format}`;
+      
+      if (format === 'json') {
+        // Parse and re-stringify for proper JSON formatting
+        const jsonData = typeof data === 'string' ? JSON.parse(data) : data;
+        await downloadJSON(jsonData, filename, {
+          onSuccess: () => {
+            console.log('History exported successfully as JSON');
+          },
+          onError: (error) => {
+            console.error('JSON export failed:', error);
+          }
+        });
+      } else {
+        // CSV format
+        await downloadCSV(data, filename, {
+          onSuccess: () => {
+            console.log('History exported successfully as CSV');
+          },
+          onError: (error) => {
+            console.error('CSV export failed:', error);
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Export failed:', error);
+    }
   }, []);
 
   const updateFilters = useCallback((newFilters) => {

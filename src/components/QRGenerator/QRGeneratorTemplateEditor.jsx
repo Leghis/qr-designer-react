@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Download, 
@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
 import historyService from '../../services/historyService';
+import { downloadSVG } from '../../utils/domSafeDownload';
 
 // Import constants
 import { COLOR_PALETTES, QR_STYLES } from './constants';
@@ -237,18 +238,27 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       if (format === 'png') {
         await qrCodeRef.current.download({
           name: `qr-code-${template?.id || 'custom'}`,
-          extension: 'png'
+          extension: 'png',
+          width: 4096,
+          height: 4096
         });
       } else {
-        const blob = await qrCodeRef.current.getRawData('svg');
-        const url = URL.createObjectURL(new Blob([blob], { type: 'image/svg+xml' }));
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `qr-code-${template?.id || 'custom'}.svg`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        // Use safe SVG download utility
+        const svgData = await qrCodeRef.current.getRawData('svg');
+        await downloadSVG(
+          svgData, 
+          `qr-code-${template?.id || 'custom'}.svg`,
+          {
+            onSuccess: () => {
+              showNotification(t('qrGenerator.actions.downloadSuccess', { format: 'SVG' }), 'success');
+            },
+            onError: (error) => {
+              console.error('SVG download failed:', error);
+              showNotification(t('qrGenerator.actions.downloadError'), 'error');
+            }
+          }
+        );
+        return; // Exit early to avoid duplicate success notification
       }
       
       showNotification(t('qrGenerator.actions.downloadSuccess', { format: format.toUpperCase() }), 'success');

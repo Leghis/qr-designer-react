@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Briefcase, Utensils, Calendar, Share2, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 

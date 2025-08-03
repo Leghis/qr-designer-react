@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getQRContentTypes, generateQRContent, detectQRContentType } from './QRContentTypes';
@@ -7,17 +7,9 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
   const { t, i18n } = useTranslation();
   const [contentType, setContentType] = useState('url');
   const [contentData, setContentData] = useState({});
-  const [errors, setErrors] = useState({});
+  const [, setErrors] = useState({});
+  const formRef = useRef(null);
   
-  // Attendre que les traductions soient chargées
-  if (!i18n.isInitialized) {
-    return (
-      <div className="flex justify-center items-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
-      </div>
-    );
-  }
-
   // Initialize with detected content type
   useEffect(() => {
     if (initialData) {
@@ -38,7 +30,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
         onDataChange(qrContent);
       }
     }
-  }, [contentType, contentData, onDataChange]);
+  }, [contentType, contentData, onDataChange, t]);
 
   const handleFieldChange = (field, value) => {
     setContentData(prev => ({
@@ -52,6 +44,39 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       [field]: null
     }));
   };
+  
+  // Handle input events (works better with autofill)
+  const handleFieldInput = (field) => (e) => {
+    handleFieldChange(field, e.target.value);
+  };
+  
+  // Monitor form for autofill changes
+  useEffect(() => {
+    if (!formRef.current || contentType !== 'vcard') return;
+    
+    // Check form values periodically to catch autofill
+    const checkAutofill = () => {
+      const inputs = formRef.current.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        const fieldName = input.getAttribute('data-field');
+        if (fieldName && input.value !== (contentData[fieldName] || '')) {
+          handleFieldChange(fieldName, input.value);
+        }
+      });
+    };
+    
+    // Check immediately and then periodically
+    checkAutofill();
+    const interval = setInterval(checkAutofill, 100);
+    
+    // Stop checking after 2 seconds
+    const timeout = setTimeout(() => clearInterval(interval), 2000);
+    
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [contentType]);
 
   const renderField = (field) => {
     switch (field) {
@@ -63,8 +88,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="url"
+              name="url"
+              autoComplete="url"
+              data-field="url"
               value={contentData.url || ''}
-              onChange={(e) => handleFieldChange('url', e.target.value)}
+              onChange={handleFieldInput('url')}
+              onInput={handleFieldInput('url')}
               placeholder={t('qrGenerator.content.placeholders.url')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -161,8 +190,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="tel"
+              name="tel"
+              autoComplete="tel"
+              data-field="phone"
               value={contentData.phone || ''}
-              onChange={(e) => handleFieldChange('phone', e.target.value)}
+              onChange={handleFieldInput('phone')}
+              onInput={handleFieldInput('phone')}
               placeholder={t('qrGenerator.content.placeholders.phone')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -193,8 +226,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="email"
+              name="email"
+              autoComplete="email"
+              data-field="email"
               value={contentData.email || ''}
-              onChange={(e) => handleFieldChange('email', e.target.value)}
+              onChange={handleFieldInput('email')}
+              onInput={handleFieldInput('email')}
               placeholder={t('qrGenerator.content.placeholders.email')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -242,8 +279,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="text"
+              name="given-name"
+              autoComplete="given-name"
+              data-field="firstName"
               value={contentData.firstName || ''}
-              onChange={(e) => handleFieldChange('firstName', e.target.value)}
+              onChange={handleFieldInput('firstName')}
+              onInput={handleFieldInput('firstName')}
               placeholder={t('qrGenerator.content.placeholders.firstName')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -258,8 +299,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="text"
+              name="family-name"
+              autoComplete="family-name"
+              data-field="lastName"
               value={contentData.lastName || ''}
-              onChange={(e) => handleFieldChange('lastName', e.target.value)}
+              onChange={handleFieldInput('lastName')}
+              onInput={handleFieldInput('lastName')}
               placeholder={t('qrGenerator.content.placeholders.lastName')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -274,8 +319,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="text"
+              name="organization"
+              autoComplete="organization"
+              data-field="organization"
               value={contentData.organization || ''}
-              onChange={(e) => handleFieldChange('organization', e.target.value)}
+              onChange={handleFieldInput('organization')}
+              onInput={handleFieldInput('organization')}
               placeholder={t('qrGenerator.content.placeholders.company')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -290,8 +339,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
             </label>
             <input
               type="text"
+              name="organization-title"
+              autoComplete="organization-title"
+              data-field="title"
               value={contentData.title || ''}
-              onChange={(e) => handleFieldChange('title', e.target.value)}
+              onChange={handleFieldInput('title')}
+              onInput={handleFieldInput('title')}
               placeholder={t('qrGenerator.content.placeholders.jobTitle')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -343,8 +396,12 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               {t('qrGenerator.content.fields.address')}
             </label>
             <textarea
+              name="street-address"
+              autoComplete="street-address"
+              data-field="address"
               value={contentData.address || ''}
-              onChange={(e) => handleFieldChange('address', e.target.value)}
+              onChange={handleFieldInput('address')}
+              onInput={handleFieldInput('address')}
               placeholder={t('qrGenerator.content.placeholders.address')}
               rows={2}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
@@ -635,6 +692,15 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
     }
   };
 
+  // Attendre que les traductions soient chargées
+  if (!i18n.isInitialized) {
+    return (
+      <div className="flex justify-center items-center p-8">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
+  
   const qrContentTypes = getQRContentTypes(t);
   const currentType = qrContentTypes.find(type => type.id === contentType);
 
@@ -675,6 +741,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       {/* Content Fields */}
       {currentType && (
         <motion.div
+          ref={formRef}
           key={contentType}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -685,7 +752,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       )}
 
       {/* Preview of generated content */}
-      {process.env.NODE_ENV === 'development' && (
+      {import.meta.env.DEV && (
         <div className="mt-6 p-4 bg-gray-100 dark:bg-slate-800 rounded-lg">
           <p className="text-xs font-mono text-gray-600 dark:text-slate-400 break-all">
             {generateQRContent(contentType, contentData) || t('qrGenerator.content.noContent')}

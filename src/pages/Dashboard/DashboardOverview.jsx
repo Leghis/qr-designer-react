@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { 
   QrCode, 
   TrendingUp, 
@@ -10,18 +9,17 @@ import {
   BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../context/AuthContext';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useSubscription } from '../../hooks/useSubscription';
-import analyticsService from '../../services/analyticsService';
 
 const DashboardOverview = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
   const { statistics, history } = useQRHistory();
-  const { plan, isPremium } = useSubscription();
-  const trends = analyticsService.getUsageTrends();
+  const { isPremium } = useSubscription();
 
   // Quick stats
   const stats = [

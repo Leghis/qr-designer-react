@@ -1,39 +1,72 @@
 // Template lazy loading manager
-import { lazy } from 'react';
 import { safeDynamicImport } from '../../utils/extensionErrorHandler';
 
-// Lazy load templates by category
+// Cache for loaded templates
+const templateCache = new Map();
+
+// Lazy load templates by category with caching
 export const loadTemplatesByCategory = async (category) => {
+  // Check cache first
+  if (templateCache.has(category)) {
+    return templateCache.get(category);
+  }
   try {
     switch (category) {
-      case 'spectacular':
+      case 'spectacular': {
         const spectacularModule = await safeDynamicImport(() => import('./spectacular'));
-        return spectacularModule?.spectacularTemplates || [];
-      case 'professional':
+        const spectacularTemplates = spectacularModule?.spectacularTemplates || [];
+        templateCache.set(category, spectacularTemplates);
+        return spectacularTemplates;
+    }
+      case 'professional': {
         const professionalModule = await safeDynamicImport(() => import('./professional'));
-        return professionalModule?.professionalTemplates || [];
-      case 'creative':
+        const professionalTemplates = professionalModule?.professionalTemplates || [];
+        templateCache.set(category, professionalTemplates);
+        return professionalTemplates;
+    }
+      case 'creative': {
         const creativeModule = await safeDynamicImport(() => import('./creative'));
-        return creativeModule?.creativeTemplates || [];
-      case 'event':
+        const creativeTemplates = creativeModule?.creativeTemplates || [];
+        templateCache.set(category, creativeTemplates);
+        return creativeTemplates;
+    }
+      case 'event': {
         const eventModule = await safeDynamicImport(() => import('./event'));
-        return eventModule?.eventTemplates || [];
-      case 'hospitality':
+        const eventTemplates = eventModule?.eventTemplates || [];
+        templateCache.set(category, eventTemplates);
+        return eventTemplates;
+    }
+      case 'hospitality': {
         const hospitalityModule = await safeDynamicImport(() => import('./hospitality'));
-        return hospitalityModule?.hospitalityTemplates || [];
-      case 'retail':
+        const hospitalityTemplates = hospitalityModule?.hospitalityTemplates || [];
+        templateCache.set(category, hospitalityTemplates);
+        return hospitalityTemplates;
+    }
+      case 'retail': {
         const retailModule = await safeDynamicImport(() => import('./retail'));
-        return retailModule?.retailTemplates || [];
-      case 'health':
+        const retailTemplates = retailModule?.retailTemplates || [];
+        templateCache.set(category, retailTemplates);
+        return retailTemplates;
+    }
+      case 'health': {
         const healthModule = await safeDynamicImport(() => import('./health'));
-        return healthModule?.healthTemplates || [];
-      case 'education':
+        const healthTemplates = healthModule?.healthTemplates || [];
+        templateCache.set(category, healthTemplates);
+        return healthTemplates;
+    }
+      case 'education': {
         const educationModule = await safeDynamicImport(() => import('./education'));
-        return educationModule?.educationTemplates || [];
-      case 'social':
+        const educationTemplates = educationModule?.educationTemplates || [];
+        templateCache.set(category, educationTemplates);
+        return educationTemplates;
+    }
+      case 'social': {
         const socialModule = await safeDynamicImport(() => import('./social'));
-        return socialModule?.socialTemplates || [];
-      case 'all':
+        const socialTemplates = socialModule?.socialTemplates || [];
+        templateCache.set(category, socialTemplates);
+        return socialTemplates;
+    }
+      case 'all': {
         // Load all templates concurrently with safe imports
         const results = await Promise.all([
           safeDynamicImport(() => import('./spectacular')).then(m => m?.spectacularTemplates || []),
@@ -46,7 +79,10 @@ export const loadTemplatesByCategory = async (category) => {
           safeDynamicImport(() => import('./education')).then(m => m?.educationTemplates || []),
           safeDynamicImport(() => import('./social')).then(m => m?.socialTemplates || [])
         ]);
-        return results.flat();
+        const allTemplates = results.flat();
+        templateCache.set(category, allTemplates);
+        return allTemplates;
+    }
       default:
         return [];
     }

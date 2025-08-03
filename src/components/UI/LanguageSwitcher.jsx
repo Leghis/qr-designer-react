@@ -46,7 +46,7 @@ const LanguageSwitcher = () => {
         </motion.svg>
       </motion.button>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
           <>
             {/* Backdrop */}

@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 const getTestimonials = (t) => [

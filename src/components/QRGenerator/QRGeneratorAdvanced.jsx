@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -23,18 +23,18 @@ import QRCodeStyling from 'qr-code-styling';
 import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
 import historyService from '../../services/historyService';
+import { downloadSVG } from '../../utils/domSafeDownload';
 import QRContentEditor from './QRContentEditor';
 
 // Import constants
 import { COLOR_PALETTES, QR_STYLES } from './constants';
-import { qrTemplates } from '../../services/qrService';
 import { featuredPremiumTemplates } from '../../data/templates/featured';
 import { 
   extractTemplateColors, 
   applyThemeToTemplate, 
   generateColorScheme,
-  isGradient,
-  extractPrimaryColor,
+  
+  
   hexToHSL,
   hslToHex
 } from './colorUtils';
@@ -383,20 +383,27 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       };
       
       if (format === 'png') {
-        // High quality PNG
-        downloadOptions.width = 1024;
-        downloadOptions.height = 1024;
+        // Ultra high quality PNG for incredible resolution
+        downloadOptions.width = 4096;
+        downloadOptions.height = 4096;
         await qrCodeRef.current.download(downloadOptions);
       } else if (format === 'svg') {
-        const blob = await qrCodeRef.current.getRawData('svg');
-        const url = URL.createObjectURL(new Blob([blob], { type: 'image/svg+xml' }));
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${downloadOptions.name}.svg`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        // Use safe SVG download utility
+        const svgData = await qrCodeRef.current.getRawData('svg');
+        await downloadSVG(
+          svgData, 
+          `${downloadOptions.name}.svg`,
+          {
+            onSuccess: () => {
+              showNotification(t('qrGenerator.actions.downloadSuccess', { format: 'SVG' }), 'success');
+            },
+            onError: (error) => {
+              console.error('SVG download failed:', error);
+              showNotification(t('qrGenerator.actions.downloadError'), 'error');
+            }
+          }
+        );
+        return; // Exit early to avoid duplicate success notification
       } else if (format === 'pdf') {
         // Generate PDF with QR code
         showNotification(t('qrGenerator.actions.pdfComingSoon'), 'info');

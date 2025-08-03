@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
+import { motion } from 'framer-motion';
 import analyticsService from '../../services/analyticsService';
 
 const UsageChart = ({ detailed = false }) => {

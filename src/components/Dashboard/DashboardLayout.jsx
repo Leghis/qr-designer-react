@@ -67,9 +67,10 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex">
       {/* Overlay for mobile */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobile && isSidebarOpen && (
           <motion.div
+            key="mobile-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -145,9 +146,10 @@ const DashboardLayout = () => {
               >
                 <item.icon className={`w-5 h-5 ${!isSidebarOpen && 'md:mx-auto'}`} />
                 
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   {isSidebarOpen && (
                     <motion.span
+                      key={`label-${item.label}`}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -10 }}
@@ -197,9 +199,10 @@ const DashboardLayout = () => {
               {user?.name?.[0]?.toUpperCase() || 'U'}
             </div>
             
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {isSidebarOpen && (
                 <motion.div
+                  key="user-info"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}

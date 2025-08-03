@@ -116,7 +116,7 @@ export const adjustBrightness = (color, factor) => {
 /**
  * Applies a color theme to a color definition while preserving its structure
  */
-export const applyColorTheme = (originalDef, themeColor, elementType) => {
+export const applyColorTheme = (originalDef, themeColor) => {
   if (!originalDef) {
     return themeColor;
   }
@@ -129,7 +129,7 @@ export const applyColorTheme = (originalDef, themeColor, elementType) => {
   // If original has a gradient, create a gradient with theme colors
   if (originalDef.gradient) {
     const gradient = { ...originalDef.gradient };
-    const themeHSL = hexToHSL(themeColor);
+    // const themeHSL = hexToHSL(themeColor); // Unused variable
     
     // Apply theme color to gradient stops with variations
     gradient.colorStops = originalDef.gradient.colorStops.map((stop, index) => {

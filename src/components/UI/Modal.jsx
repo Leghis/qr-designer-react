@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -15,21 +15,34 @@ const Modal = ({
   showCloseButton = true,
   className
 }) => {
+  const [portalContainer, setPortalContainer] = useState(null);
+  const cleanupRef = useRef(null);
+  // Initialize portal container
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setPortalContainer(document.body);
+    }
+  }, []);
+
   // Prevent body scroll when modal is open
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof document !== 'undefined') {
       document.body.style.overflow = 'hidden';
-    } else {
+    } else if (typeof document !== 'undefined') {
       document.body.style.overflow = 'unset';
     }
     
     return () => {
-      document.body.style.overflow = 'unset';
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'unset';
+      }
     };
   }, [isOpen]);
 
   // Handle escape key
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const handleEscape = (e) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
@@ -37,8 +50,26 @@ const Modal = ({
     };
     
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
   }, [isOpen, onClose]);
+
+  // Cleanup function for safe portal removal
+  useEffect(() => {
+    cleanupRef.current = () => {
+      // This cleanup function will be called when component unmounts
+      // to ensure any pending DOM operations are cancelled
+    };
+
+    return () => {
+      if (cleanupRef.current) {
+        cleanupRef.current();
+      }
+    };
+  }, []);
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget && closeOnOverlay) {
@@ -54,77 +85,79 @@ const Modal = ({
     full: 'max-w-7xl'
   };
 
+  // Don't render anything if portal container isn't ready
+  if (!portalContainer) return null;
+
   const modalContent = (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
-        <>
-          {/* Backdrop */}
+        <motion.div
+          key="modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
+          onClick={handleOverlayClick}
+        >
+        {/* Modal */}
+        <div className="min-h-screen flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
-            onClick={handleOverlayClick}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className={cn(
+              "relative w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden",
+              "border border-gray-200 dark:border-slate-700",
+              sizes[size],
+              className
+            )}
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal */}
-            <div className="min-h-screen flex items-center justify-center p-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                className={cn(
-                  "relative w-full bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden",
-                  "border border-gray-200 dark:border-slate-700",
-                  sizes[size],
-                  className
-                )}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Gradient decoration */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-purple-500"></div>
-                
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-slate-800">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-100">
-                    {title}
-                  </h3>
-                  {showCloseButton && (
-                    <button
-                      onClick={onClose}
-                      className="p-2 text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all hover:rotate-90 duration-300"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  {children}
-                </div>
-
-                {/* Footer */}
-                {footer && (
-                  <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-850">
-                    {footer}
-                  </div>
-                )}
-              </motion.div>
+            {/* Gradient decoration */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-purple-500"></div>
+            
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-slate-800">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-100">
+                {title}
+              </h3>
+              {showCloseButton && (
+                <button
+                  onClick={onClose}
+                  className="p-2 text-gray-400 hover:text-gray-600 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-all hover:rotate-90 duration-300"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              )}
             </div>
+
+            {/* Content */}
+            <div className="p-6">
+              {children}
+            </div>
+
+            {/* Footer */}
+            {footer && (
+              <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-850">
+                {footer}
+              </div>
+            )}
           </motion.div>
-        </>
+        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
 
-  // Use portal to render modal at root level
-  if (typeof document !== 'undefined') {
-    return ReactDOM.createPortal(modalContent, document.body);
+  // Use portal to render modal at root level with safe error handling
+  try {
+    return ReactDOM.createPortal(modalContent, portalContainer);
+  } catch (error) {
+    console.warn('Modal portal error:', error);
+    return null;
   }
-
-  return null;
 };
 
 export default Modal;
