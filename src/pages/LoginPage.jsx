@@ -57,7 +57,7 @@ const LoginPage = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+        className="absolute top-20 left-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
       />
       <motion.div
         animate={{
@@ -69,7 +69,7 @@ const LoginPage = () => {
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute bottom-20 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+        className="absolute bottom-20 right-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
       />
 
       <div className="container mx-auto px-4 relative z-10 max-w-md">

@@ -31,7 +31,7 @@ const HomePage = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          className="absolute top-20 left-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
         />
         <motion.div
           animate={{
@@ -43,7 +43,7 @@ const HomePage = () => {
             ease: "easeInOut",
             delay: 2
           }}
-          className="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          className="absolute top-40 right-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
         />
         <motion.div
           animate={{
@@ -55,7 +55,7 @@ const HomePage = () => {
             ease: "easeInOut",
             delay: 4
           }}
-          className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+          className="absolute bottom-20 left-1/2 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20"
         />
         
         <div className="container mx-auto px-4 relative z-10">
@@ -73,10 +73,10 @@ const HomePage = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full mb-6 font-medium"
             >
               <Gift className="w-5 h-5" />
-              <span>100% Gratuit • Sans inscription • Sans limite</span>
+              <span className="text-xs sm:text-sm">100% Gratuit • Sans inscription • Sans limite</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight">
               Créez des <span className="gradient-text">QR Codes</span><br/>
               qui <span className="relative inline-block">
                 impressionnent
@@ -91,7 +91,7 @@ const HomePage = () => {
                 </svg>
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
               Le générateur de QR codes le plus moderne et intuitif. 
               Personnalisez, créez et téléchargez en quelques secondes.
             </p>
@@ -182,7 +182,7 @@ const HomePage = () => {
               transition={{ delay: 0.5 }}
               className="text-center mb-8"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 Essayez-le <span className="gradient-text">maintenant</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
