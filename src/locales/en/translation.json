@@ -193,6 +193,10 @@
         "youtubeUrl": "Channel, video or YouTube playlist"
       }
     },
+    "templates": {
+      "basic": "Basic",
+      "modern": "Modern"
+    },
     "style": {
       "title": "Customization",
       "preset": "Preset style",
@@ -632,61 +636,6 @@
     "subtitle": "Join over 50,000 companies creating professional QR codes for free with QR Designer",
     "button": "Create my free QR code",
     "disclaimer": "No credit card • No signup • Full access"
-  },
-  "qrGenerator": {
-    "tabs": {
-      "content": "Content",
-      "style": "Style", 
-      "logo": "Logo",
-      "advanced": "Advanced"
-    },
-    "templates": {
-      "basic": "Basic",
-      "modern": "Modern"
-    },
-    "style": {
-      "templates": "Popular templates",
-      "dotsStyle": "Dots style",
-      "colors": "Colors",
-      "dotsColor": "Dots",
-      "backgroundColor": "Background",
-      "cornersColor": "Square corners",
-      "cornerDotsColor": "Corner dots"
-    },
-    "logo": {
-      "title": "Central logo",
-      "upload": "Add your logo",
-      "uploadHint": "PNG, JPG or SVG • Max 2MB",
-      "remove": "Remove logo",
-      "size": "Logo size"
-    },
-    "advanced": {
-      "errorCorrection": "Error correction level",
-      "levels": {
-        "L": "Low (7%)",
-        "M": "Medium (15%)",
-        "Q": "Quartile (25%)",
-        "H": "High (30%)"
-      },
-      "margin": "Margin (white zone)",
-      "exportOptions": "Export options"
-    },
-    "help": {
-      "content": "Our editor automatically detects content type and allows you to modify it easily.",
-      "styleNoTemplate": "Customize your QR code with our preset templates and styles or create your own.",
-      "styleWithTemplate": "Modify the template style or keep the original design.",
-      "logo": "Add your logo to the center of the QR code to strengthen your brand.",
-      "advanced": "Advanced options to optimize your QR code according to your specific needs."
-    },
-    "actions": {
-      "hidePreview": "Hide",
-      "showPreview": "Show",
-      "downloadPNG": "PNG",
-      "downloadSVG": "SVG"
-    },
-    "premium": {
-      "upgradeMessage": "Premium Template • Upgrade to Pro plan to unlock all templates"
-    }
   },
   "templateEdit": {
     "navigation": {

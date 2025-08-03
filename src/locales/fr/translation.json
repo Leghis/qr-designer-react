@@ -193,6 +193,10 @@
         "youtubeUrl": "Chaîne, vidéo ou playlist YouTube"
       }
     },
+    "templates": {
+      "basic": "Basique",
+      "modern": "Moderne"
+    },
     "style": {
       "title": "Personnalisation",
       "preset": "Style prédéfini",
@@ -221,37 +225,65 @@
       }
     },
     "logo": {
-      "title": "Logo",
-      "upload": "Télécharger un logo",
+      "title": "Logo central",
+      "upload": "Ajoutez votre logo",
+      "uploadHint": "PNG, JPG ou SVG • Max 2MB",
       "remove": "Supprimer le logo",
       "size": "Taille du logo",
+      "clickToChange": "Cliquez pour changer le logo",
+      "sizeSmall": "Petit",
+      "sizeLarge": "Grand",
       "hideBackgroundDots": "Masquer les points derrière le logo"
     },
     "advanced": {
       "title": "Options avancées",
-      "errorCorrection": "Correction d'erreur",
-      "margin": "Marge",
+      "errorCorrection": "Niveau de correction d'erreur",
+      "errorCorrectionHelp": "Un niveau plus élevé permet au QR code d'être lu même s'il est partiellement endommagé",
+      "margin": "Marge (zone blanche)",
+      "marginNone": "Aucune",
+      "marginLarge": "Large",
       "quality": "Qualité",
+      "exportOptions": "Options d'export",
+      "optimizeForPrint": "Optimiser pour l'impression",
+      "includeMetadata": "Inclure les métadonnées",
       "levels": {
         "L": "Faible (7%)",
         "M": "Moyen (15%)",
-        "Q": "Élevé (25%)",
-        "H": "Très élevé (30%)"
+        "Q": "Quartile (25%)",
+        "H": "Élevé (30%)"
       }
     },
     "actions": {
       "download": "Télécharger",
-      "downloadPNG": "Télécharger PNG",
-      "downloadSVG": "Télécharger SVG",
+      "hidePreview": "Masquer",
+      "showPreview": "Afficher",
+      "downloadPNG": "PNG",
+      "downloadSVG": "SVG",
       "downloadJPG": "Télécharger JPG",
       "refresh": "Actualiser",
-      "hidePreview": "Masquer l'aperçu",
-      "showPreview": "Afficher l'aperçu"
+      "pdfComingSoon": "Export PDF disponible prochainement",
+      "downloadSuccess": "QR code téléchargé en {{format}}",
+      "downloadError": "Erreur lors du téléchargement"
     },
     "premium": {
       "unlock": "Débloquer avec Premium",
       "upgradeTitle": "Passez au Premium",
-      "upgradeMessage": "Débloquez tous les templates et fonctionnalités premium"
+      "upgradeMessage": "Template Premium • Passez au plan Pro pour débloquer tous les templates"
+    },
+    "preview": {
+      "title": "Aperçu en temps réel",
+      "generating": "Génération en cours..."
+    },
+    "template": {
+      "name": "Template",
+      "category": "Catégorie"
+    },
+    "help": {
+      "content": "Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.",
+      "styleNoTemplate": "Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.",
+      "styleWithTemplate": "Modifiez le style du template ou gardez le design original.",
+      "logo": "Ajoutez votre logo au centre du QR code pour renforcer votre marque.",
+      "advanced": "Options avancées pour optimiser votre QR code selon vos besoins spécifiques."
     }
   },
   "templates": {
@@ -604,91 +636,6 @@
     "subtitle": "Rejoignez plus de 50 000 entreprises qui créent des QR codes professionnels gratuitement avec QR Designer",
     "button": "Créer mon QR code gratuit",
     "disclaimer": "Aucune carte bancaire • Aucune inscription • Accès complet"
-  },
-  "qrGenerator": {
-    "tabs": {
-      "content": "Contenu",
-      "style": "Style", 
-      "logo": "Logo",
-      "advanced": "Avancé"
-    },
-    "templates": {
-      "basic": "Basique",
-      "modern": "Moderne"
-    },
-    "style": {
-      "templates": "Templates populaires",
-      "dotsStyle": "Style des points",
-      "colors": "Couleurs",
-      "dotsColor": "Points",
-      "backgroundColor": "Fond",
-      "cornersColor": "Coins carrés",
-      "cornerDotsColor": "Points des coins"
-    },
-    "logo": {
-      "title": "Logo central",
-      "upload": "Ajoutez votre logo",
-      "uploadHint": "PNG, JPG ou SVG • Max 2MB",
-      "remove": "Supprimer le logo",
-      "size": "Taille du logo",
-      "clickToChange": "Cliquez pour changer le logo",
-      "sizeSmall": "Petit",
-      "sizeLarge": "Grand"
-    },
-    "advanced": {
-      "title": "Options avancées",
-      "errorCorrection": "Niveau de correction d'erreur",
-      "errorCorrectionHelp": "Un niveau plus élevé permet au QR code d'être lu même s'il est partiellement endommagé",
-      "margin": "Marge (zone blanche)",
-      "marginNone": "Aucune",
-      "marginLarge": "Large",
-      "exportOptions": "Options d'export",
-      "optimizeForPrint": "Optimiser pour l'impression",
-      "includeMetadata": "Inclure les métadonnées",
-      "levels": {
-        "L": "Faible (7%)",
-        "M": "Moyen (15%)",
-        "Q": "Quartile (25%)",
-        "H": "Élevé (30%)"
-      }
-    },
-    "help": {
-      "content": "Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.",
-      "styleNoTemplate": "Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.",
-      "styleWithTemplate": "Modifiez le style du template ou gardez le design original.",
-      "logo": "Ajoutez votre logo au centre du QR code pour renforcer votre marque.",
-      "advanced": "Options avancées pour optimiser votre QR code selon vos besoins spécifiques."
-    },
-    "actions": {
-      "download": "Télécharger",
-      "hidePreview": "Masquer",
-      "showPreview": "Afficher",
-      "downloadPNG": "PNG",
-      "downloadSVG": "SVG",
-      "pdfComingSoon": "Export PDF disponible prochainement",
-      "downloadSuccess": "QR code téléchargé en {{format}}",
-      "downloadError": "Erreur lors du téléchargement"
-    },
-    "premium": {
-      "unlock": "Débloquer avec Premium",
-      "upgradeTitle": "Passez au Premium",
-      "upgradeMessage": "Template Premium • Passez au plan Pro pour débloquer tous les templates"
-    },
-    "preview": {
-      "title": "Aperçu en temps réel",
-      "generating": "Génération en cours..."
-    },
-    "template": {
-      "name": "Template",
-      "category": "Catégorie"
-    },
-    "help": {
-      "content": "Notre éditeur détecte automatiquement le type de contenu et vous permet de le modifier facilement.",
-      "styleNoTemplate": "Personnalisez votre QR code avec nos templates et styles prédéfinis ou créez le vôtre.",
-      "styleWithTemplate": "Modifiez le style du template ou gardez le design original.",
-      "logo": "Ajoutez votre logo au centre du QR code pour renforcer votre marque.",
-      "advanced": "Options avancées pour optimiser votre QR code selon vos besoins spécifiques."
-    }
   },
   "templateEdit": {
     "navigation": {
