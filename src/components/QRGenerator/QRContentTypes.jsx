@@ -260,14 +260,15 @@ export const generateQRContent = (type, data) => {
       return '';
     }
       
-    case 'paypal':
+    case 'paypal': {
       let paypalUrl = `https://paypal.me/${data.email}`;
       if (data.amount) {
         paypalUrl += `/${data.amount}${data.currency || 'EUR'}`;
       }
       return paypalUrl;
+    }
       
-    case 'bitcoin':
+    case 'bitcoin': {
       let bitcoinUri = `bitcoin:${data.address || ''}`;
       const bitcoinParams = [];
       if (data.amount) bitcoinParams.push(`amount=${data.amount}`);
@@ -275,17 +276,19 @@ export const generateQRContent = (type, data) => {
       if (data.message) bitcoinParams.push(`message=${encodeURIComponent(data.message)}`);
       if (bitcoinParams.length > 0) bitcoinUri += `?${bitcoinParams.join('&')}`;
       return bitcoinUri;
+    }
       
     case 'spotify':
       return data.spotifyUri || '';
       
-    case 'whatsapp':
+    case 'whatsapp': {
       const cleanPhone = (data.phone || '').replace(/[^\d]/g, '');
       let waUrl = `https://wa.me/${cleanPhone}`;
       if (data.message) {
         waUrl += `?text=${encodeURIComponent(data.message)}`;
       }
       return waUrl;
+    }
       
     case 'linkedin':
       return data.profileUrl || '';
@@ -323,7 +326,7 @@ export const detectQRContentType = (content) => {
   if (content.match(/^https?:\/\//i)) {
     // Check for special URLs
     if (content.includes('paypal.me')) {
-      const match = content.match(/paypal\.me\/([^\/\?]+)(?:\/(\d+(?:\.\d+)?)([\w]+)?)?/);
+      const match = content.match(/paypal\.me\/([^/?]+)(?:\/(\d+(?:\.\d+)?)([\w]+)?)?/);
       if (match) {
         return {
           type: 'paypal',
@@ -500,7 +503,7 @@ export const detectQRContentType = (content) => {
   
   // Instagram
   if (content.includes('instagram.com/')) {
-    const match = content.match(/instagram\.com\/([^\/\?]+)/);
+    const match = content.match(/instagram\.com\/([^/?]+)/);
     if (match) {
       return {
         type: 'instagram',
@@ -519,7 +522,7 @@ export const detectQRContentType = (content) => {
   
   // Twitter
   if (content.includes('twitter.com/') || content.includes('x.com/')) {
-    const match = content.match(/(?:twitter|x)\.com\/([^\/\?]+)/);
+    const match = content.match(/(?:twitter|x)\.com\/([^/?]+)/);
     if (match) {
       return {
         type: 'twitter',

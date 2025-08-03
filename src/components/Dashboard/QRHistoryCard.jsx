@@ -1,7 +1,6 @@
 import { Eye, Copy, Download, Trash2, Calendar, Hash, Palette } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useNotification } from '../../context/NotificationContext';
+import { useNotification } from '../../hooks/useNotification';
 
 const QRHistoryCard = ({ item, isSelected, onToggleSelect, onDelete }) => {
   const { t } = useTranslation();

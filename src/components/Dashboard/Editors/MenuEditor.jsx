@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, GripVertical, Image, Euro } from 'lucide-react';
 import Input from '../../UI/Input';
 import Button from '../../UI/Button';

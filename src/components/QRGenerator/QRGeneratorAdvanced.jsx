@@ -20,8 +20,8 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import QRCodeStyling from 'qr-code-styling';
-import { useNotification } from '../../context/NotificationContext';
-import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
 import historyService from '../../services/historyService';
 import { downloadSVG } from '../../utils/domSafeDownload';
 import QRContentEditor from './QRContentEditor';
@@ -94,7 +94,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     shape: 'square',
     logo: null,
     logoSize: 0.3,
-    errorCorrectionLevel: 'M',
+    errorCorrectionLevel: 'H', // High error correction for better quality
     margin: 20,
     dotsOptions: {},
     cornersSquareOptions: {},
@@ -386,6 +386,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         // Ultra high quality PNG for incredible resolution
         downloadOptions.width = 4096;
         downloadOptions.height = 4096;
+        downloadOptions.quality = 1.0; // Maximum quality
+        downloadOptions.margin = qrOptions.margin || 20; // Preserve margin in download
         await qrCodeRef.current.download(downloadOptions);
       } else if (format === 'svg') {
         // Use safe SVG download utility

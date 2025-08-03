@@ -1,5 +1,4 @@
 import { Crown, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const PremiumBadge = ({ text = 'PREMIUM', showIcon = true, size = 'sm' }) => {
   const sizes = {

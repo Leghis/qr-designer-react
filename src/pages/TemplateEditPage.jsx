@@ -1,10 +1,9 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
-import { useSubscription } from '../hooks/useSubscription.jsx';
-import { useNotification } from '../context/NotificationContext';
+import { useSubscription } from '../hooks/useSubscription';
+import { useNotification } from '../hooks/useNotification';
 import { useState, useEffect } from 'react';
 import Badge from '../components/UI/Badge';
 import { loadTemplateById } from '../services/templateService';

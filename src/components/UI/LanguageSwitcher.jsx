@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

@@ -1,5 +1,4 @@
 import { QrCode, TrendingUp, Calendar, Clock } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import analyticsService from '../../services/analyticsService';

@@ -9,9 +9,8 @@ import {
   BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { useQRHistory } from '../../hooks/useQRHistory';
 import { useSubscription } from '../../hooks/useSubscription';
 

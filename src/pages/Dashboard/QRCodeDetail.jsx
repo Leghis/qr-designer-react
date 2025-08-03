@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -17,7 +16,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
-import { useNotification } from '../../context/NotificationContext';
+import { useNotification } from '../../hooks/useNotification';
 import { useSubscription } from '../../hooks/useSubscription';
 import Button from '../../components/UI/Button';
 import qrTypesService from '../../services/qrTypesService';

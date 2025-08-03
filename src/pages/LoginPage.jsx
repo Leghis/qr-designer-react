@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Lock, LogIn, UserPlus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import Checkbox from '../components/UI/Checkbox';

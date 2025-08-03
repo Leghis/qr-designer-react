@@ -13,8 +13,8 @@ import {
 } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
 import { useTranslation } from 'react-i18next';
-import { useNotification } from '../../context/NotificationContext';
-import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../hooks/useNotification';
+import { useAuth } from '../../hooks/useAuth';
 import historyService from '../../services/historyService';
 import { downloadSVG } from '../../utils/domSafeDownload';
 
@@ -240,7 +240,9 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
           name: `qr-code-${template?.id || 'custom'}`,
           extension: 'png',
           width: 4096,
-          height: 4096
+          height: 4096,
+          quality: 1.0, // Maximum quality
+          margin: 20 // Preserve margin in download
         });
       } else {
         // Use safe SVG download utility

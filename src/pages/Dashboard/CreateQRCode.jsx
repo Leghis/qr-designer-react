@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Save, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
-import { useNotification } from '../../context/NotificationContext';
+import { useNotification } from '../../hooks/useNotification';
 import qrTypesService from '../../services/qrTypesService';
 import Button from '../../components/UI/Button';
 import Input from '../../components/UI/Input';
@@ -96,6 +95,15 @@ const CreateQRCode = () => {
     navigate('/dashboard/qr-codes');
   };
 
+  // Memoize callbacks to prevent infinite loops in editors
+  const handleEditorChange = useCallback((newData) => {
+    setFormData(newData);
+  }, []);
+
+  const handlePreviewUpdate = useCallback((data) => {
+    setPreviewData(data);
+  }, []);
+
   const renderEditor = () => {
     if (qrType?.customEditor) {
       switch (selectedType) {
@@ -103,24 +111,24 @@ const CreateQRCode = () => {
           return (
             <MenuEditor 
               data={formData} 
-              onChange={setFormData}
-              onPreviewUpdate={setPreviewData}
+              onChange={handleEditorChange}
+              onPreviewUpdate={handlePreviewUpdate}
             />
           );
         case 'vcard':
           return (
             <VCardEditor 
               data={formData} 
-              onChange={setFormData}
-              onPreviewUpdate={setPreviewData}
+              onChange={handleEditorChange}
+              onPreviewUpdate={handlePreviewUpdate}
             />
           );
         case 'payment':
           return (
             <PaymentEditor 
               data={formData} 
-              onChange={setFormData}
-              onPreviewUpdate={setPreviewData}
+              onChange={handleEditorChange}
+              onPreviewUpdate={handlePreviewUpdate}
             />
           );
         default:

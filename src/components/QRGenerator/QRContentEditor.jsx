@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getQRContentTypes, generateQRContent, detectQRContentType } from './QRContentTypes';
 
@@ -715,16 +714,14 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
           {qrContentTypes.map((type) => {
             const Icon = type.icon;
             return (
-              <motion.button
+              <button
                 key={type.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 onClick={() => {
                   setContentType(type.id);
                   setContentData({});
                   setErrors({});
                 }}
-                className={`p-3 rounded-lg border-2 transition-all ${
+                className={`p-3 rounded-lg border-2 transition-all hover:scale-105 active:scale-95 ${
                   contentType === type.id
                     ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
                     : 'border-gray-300 dark:border-slate-600 hover:border-gray-400'
@@ -732,7 +729,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               >
                 <Icon className="w-5 h-5 mx-auto mb-1" />
                 <span className="text-xs block">{type.name}</span>
-              </motion.button>
+              </button>
             );
           })}
         </div>
@@ -740,15 +737,13 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
 
       {/* Content Fields */}
       {currentType && (
-        <motion.div
+        <div
           ref={formRef}
           key={contentType}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-4"
+          className="space-y-4 animate-fadeIn"
         >
           {currentType.fields.map(field => renderField(field))}
-        </motion.div>
+        </div>
       )}
 
       {/* Preview of generated content */}

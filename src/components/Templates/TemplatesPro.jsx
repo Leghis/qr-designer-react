@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Crown, Check, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSubscription } from '../../hooks/useSubscription.jsx';
+import { useSubscription } from '../../hooks/useSubscription';
 import QRCodeStyling from 'qr-code-styling';
 import { loadTemplatesByCategory, templateCounts, CATEGORIES } from '../../data/templates';
 import TemplateSkeletonLoader from './TemplateSkeletonLoader';

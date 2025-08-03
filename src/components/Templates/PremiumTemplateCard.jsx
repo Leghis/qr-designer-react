@@ -5,8 +5,8 @@ import QRCodeStyling from 'qr-code-styling';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { defaultQROptions } from '../../services/qrService';
-import { useSubscription } from '../../hooks/useSubscription.jsx';
-import { useNotification } from '../../context/NotificationContext';
+import { useSubscription } from '../../hooks/useSubscription';
+import { useNotification } from '../../hooks/useNotification';
 
 const PremiumTemplateCard = ({ template }) => {
   const { t } = useTranslation();

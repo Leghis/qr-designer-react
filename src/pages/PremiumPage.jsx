@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Crown, Sparkles, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { loadTemplatesByCategory, templateCounts } from '../data/templates';

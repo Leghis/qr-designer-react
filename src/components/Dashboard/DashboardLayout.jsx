@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -11,7 +10,7 @@ import {
   Plus
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 
 const DashboardLayout = () => {
   const { t } = useTranslation();

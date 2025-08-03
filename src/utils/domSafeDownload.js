@@ -66,7 +66,7 @@ class SafeDownloadManager {
       if (url.startsWith('blob:')) {
         try {
           URL.revokeObjectURL(url);
-        } catch (e) {
+        } catch {
           // Ignore revoke errors
         }
       }

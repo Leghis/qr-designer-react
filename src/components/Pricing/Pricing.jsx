@@ -1,5 +1,4 @@
 import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useTranslation, Trans } from 'react-i18next';
 
 const getFeatures = (t) => [

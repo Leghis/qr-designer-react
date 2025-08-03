@@ -1,5 +1,4 @@
 import { ArrowRight, Check, Gift, Sparkles, Zap } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';

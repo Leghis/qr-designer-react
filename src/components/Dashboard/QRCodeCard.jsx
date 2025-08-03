@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, memo } from 'react';
 import { 
   MoreVertical, 
   Eye, 
@@ -13,10 +12,10 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNotification } from '../../context/NotificationContext';
+import { useNotification } from '../../hooks/useNotification';
 import qrTypesService from '../../services/qrTypesService';
 
-const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
+const QRCodeCard = memo(({ qrCode, onDelete, viewMode = 'grid' }) => {
   const { t } = useTranslation();
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
@@ -77,9 +76,8 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
 
   if (viewMode === 'list') {
     return (
-      <motion.div
-        whileHover={{ x: 4 }}
-        className="bg-white dark:bg-dark-900 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all flex items-center gap-4"
+      <div
+        className="bg-white dark:bg-dark-900 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all flex items-center gap-4 hover:translate-x-1"
       >
         {/* QR Preview */}
         <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${qrType?.color || 'from-gray-400 to-gray-600'} flex items-center justify-center text-white flex-shrink-0`}>
@@ -121,15 +119,14 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
             <Trash2 className="w-5 h-5" />
           </button>
         </div>
-      </motion.div>
+      </div>
     );
   }
 
   // Grid view (card)
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      className="bg-white dark:bg-dark-900 rounded-2xl shadow-lg hover:shadow-xl transition-all overflow-hidden group relative"
+    <div
+      className="bg-white dark:bg-dark-900 rounded-2xl shadow-lg hover:shadow-xl transition-all overflow-hidden group relative hover:-translate-y-1"
     >
       {/* Header with gradient */}
       <div className={`h-32 bg-gradient-to-br ${qrType?.color || 'from-gray-400 to-gray-600'} relative overflow-hidden`}>
@@ -261,8 +258,10 @@ const QRCodeCard = ({ qrCode, onDelete, viewMode = 'grid' }) => {
           </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-};
+});
+
+QRCodeCard.displayName = 'QRCodeCard';
 
 export default QRCodeCard;

@@ -30,9 +30,14 @@ ${vcard.website ? `URL:${vcard.website}` : ''}
 ${vcard.address ? `ADR:;;${vcard.address};;;;` : ''}
 END:VCARD`.trim();
 
-    onPreviewUpdate(vcardData);
-    onChange(vcard);
-  }, [vcard, onChange, onPreviewUpdate]);
+    // Debounce updates to prevent excessive re-renders
+    const timeoutId = setTimeout(() => {
+      onPreviewUpdate(vcardData);
+      onChange(vcard);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [vcard]); // Remove onChange and onPreviewUpdate from dependencies
 
   const handleChange = (field, value) => {
     setVcard(prev => ({

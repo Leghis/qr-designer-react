@@ -2,8 +2,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { QrCode, Star, LayoutDashboard } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useSubscription } from '../../hooks/useSubscription.jsx';
-import { useAuth } from '../../context/AuthContext';
+import { useSubscription } from '../../hooks/useSubscription';
+import { useAuth } from '../../hooks/useAuth';
 import Badge from '../UI/Badge';
 import ThemeToggle from '../UI/ThemeToggle';
 import LanguageSwitcher from '../UI/LanguageSwitcher';

@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Download, Trash2, Eye, Copy, Calendar, MoreVertical } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useQRHistory } from '../../hooks/useQRHistory';
-import { useNotification } from '../../hooks/NotificationContext';
+import { useNotification } from '../../hooks/useNotification';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import QRHistoryCard from './QRHistoryCard';

@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, 
   Search, 
@@ -22,7 +21,7 @@ import qrTypesService from '../../services/qrTypesService';
 const MyQRCodes = () => {
   const { t } = useTranslation();
   const { history, loading, filters, updateFilters, deleteItem, exportHistory } = useQRHistory();
-  const { isPremium } = useSubscription();
+  useSubscription(); // For future use
   const [viewMode, setViewMode] = useState('grid');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedType, setSelectedType] = useState('all');

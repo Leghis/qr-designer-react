@@ -1,15 +1,6 @@
-import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { createContext, useState, useCallback, useRef, useEffect } from 'react';
 
-const NotificationContext = createContext();
-
-export const useNotification = () => {
-  const context = useContext(NotificationContext);
-  if (!context) {
-    throw new Error('useNotification must be used within a NotificationProvider');
-  }
-  return context;
-};
+export const NotificationContext = createContext();
 
 const Notification = ({ notification, onClose }) => {
   const bgColor = {

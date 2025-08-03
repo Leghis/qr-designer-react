@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { AuthProvider } from './context/AuthContext';
-import { SubscriptionProvider } from './hooks/useSubscription.jsx';
+import { SubscriptionProvider } from './context/SubscriptionContext';
 import Layout from './components/Layout/Layout';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute';
