@@ -120,29 +120,6 @@ const PremiumPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold mb-4">Passez au Premium Aujourd'hui</h3>
-          <p className="text-xl mb-8 opacity-90">
-            Débloquez tous les templates et créez des QR codes qui marquent les esprits
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#pricing"
-              className="px-8 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg font-medium transition-colors"
-            >
-              Voir les tarifs
-            </a>
-            <a
-              href="/"
-              className="px-8 py-3 border-2 border-white dark:border-gray-300 text-white dark:text-gray-100 hover:bg-white dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-white rounded-lg font-medium transition-colors"
-            >
-              Essayer gratuitement
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

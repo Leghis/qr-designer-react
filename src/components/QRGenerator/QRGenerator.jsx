@@ -10,10 +10,17 @@ import { useDebounce } from '../../hooks/useDebounce';
 import historyService from '../../services/historyService';
 import { useAuth } from '../../context/AuthContext';
 
-const QRGenerator = ({ preSelectedTemplate, templateOptions }) => {
+const QRGenerator = ({ preSelectedTemplate, templateOptions, onDataChange }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
   const [qrData, setQrData] = useState(defaultQROptions.data);
+
+  // Notify parent component when data changes
+  useEffect(() => {
+    if (onDataChange) {
+      onDataChange(qrData);
+    }
+  }, [qrData, onDataChange]);
   const [qrOptions, setQrOptions] = useState({
     dotsColor: defaultQROptions.dotsOptions.color,
     dotsType: defaultQROptions.dotsOptions.type,
@@ -93,8 +100,6 @@ const QRGenerator = ({ preSelectedTemplate, templateOptions }) => {
       const templateOptions = qrService.applyPremiumTemplate(location.state.templateId);
       if (templateOptions) {
         handleTemplateSelect(templateOptions);
-        // Scroll to generator section
-        document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });
         showNotification('Template appliqué avec succès !', 'success');
       }
     } else if (preSelectedTemplate && templateOptions) {

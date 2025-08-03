@@ -13,7 +13,6 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const TemplateEditPage = lazy(() => import('./pages/TemplateEditPage'));
 const PremiumPage = lazy(() => import('./pages/PremiumPage'));
-const DemoPage = lazy(() => import('./pages/DemoPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 
 // Dashboard pages
@@ -61,11 +60,6 @@ function App() {
                     <Route path="premium" element={
                       <Suspense fallback={<PageLoader />}>
                         <PremiumPage />
-                      </Suspense>
-                    } />
-                    <Route path="demo" element={
-                      <Suspense fallback={<PageLoader />}>
-                        <DemoPage />
                       </Suspense>
                     } />
                     <Route path="login" element={

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Package, Crown } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { premiumTemplates } from '../services/qrService';
 import PremiumTemplateCard from '../components/Templates/PremiumTemplateCard';
-import { Link } from 'react-router-dom';
 
 const categories = [
   { id: 'all', name: 'Tous', icon: '🌟' },
@@ -121,50 +120,6 @@ const TemplatesPage = () => {
         </div>
       </section>
 
-      {/* Info Section */}
-      <section className="py-16 bg-gray-50 dark:bg-dark-800">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
-            >
-              <Package className="w-12 h-12 text-primary-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Templates Gratuits</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Accédez à une sélection de templates basiques pour créer rapidement vos QR codes.
-              </p>
-              <Link 
-                to="/"
-                className="text-primary-600 dark:text-primary-400 font-medium hover:underline"
-              >
-                Créer un QR code →
-              </Link>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-xl p-6 shadow-lg"
-            >
-              <Crown className="w-12 h-12 text-yellow-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Templates Premium</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Débloquez l'accès complet à tous nos templates exclusifs et créez des QR codes uniques.
-              </p>
-              <Link 
-                to="/premium"
-                className="text-yellow-700 dark:text-yellow-400 font-medium hover:underline"
-              >
-                Voir les offres Premium →
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

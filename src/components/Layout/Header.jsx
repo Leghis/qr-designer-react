@@ -92,16 +92,6 @@ const Header = () => {
               >
                 Templates
               </Link>
-              <Link
-                to="/demo"
-                className={`font-medium transition-colors ${
-                  isActive('/demo') 
-                    ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
-                }`}
-              >
-                Démo
-              </Link>
               {isAuthenticated && (
                 <Link
                   to="/dashboard"
