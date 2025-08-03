@@ -124,11 +124,9 @@ const TemplatesPro = () => {
             `}
           >
             {t(`templates.categories.${category.id}`)}
-            {category.id !== 'all' && (
-              <span className="ml-2 opacity-60">
-                ({templateCounts[category.id] || 0})
-              </span>
-            )}
+            <span className="ml-2 opacity-60">
+              ({templateCounts[category.id] || 0})
+            </span>
           </motion.button>
         ))}
       </motion.div>

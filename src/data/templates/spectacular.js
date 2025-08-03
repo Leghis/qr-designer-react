@@ -722,7 +722,7 @@ export const spectacularTemplates = [
     }
   },
   {
-    id: 'holographic-dream',
+    id: 'holographic-spectacular',
     name: 'Holographic Dream',
     category: 'spectacular',
     description: 'Rêve holographique iridescent',
@@ -772,6 +772,559 @@ export const spectacularTemplates = [
           colorStops: [
             { offset: 0, color: '#FECA57' },
             { offset: 1, color: '#FF9FF3' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'cosmic-nebula',
+    name: 'Cosmic Nebula',
+    category: 'spectacular',
+    description: 'Nébuleuse cosmique aux teintes intergalactiques',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF00FF' },
+            { offset: 0.2, color: '#9400D3' },
+            { offset: 0.4, color: '#4B0082' },
+            { offset: 0.6, color: '#0000FF' },
+            { offset: 0.8, color: '#00CED1' },
+            { offset: 1, color: '#9370DB' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#0A0A0A' },
+            { offset: 0.7, color: '#1A1A2E' },
+            { offset: 1, color: '#16213E' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FF1493' },
+            { offset: 0.5, color: '#8A2BE2' },
+            { offset: 1, color: '#4169E1' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#FF69B4' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'liquid-metal',
+    name: 'Liquid Metal',
+    category: 'spectacular',
+    description: 'Métal liquide chromé aux reflets holographiques',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#C0C0C0' },
+            { offset: 0.2, color: '#B8B8B8' },
+            { offset: 0.4, color: '#E5E5E5' },
+            { offset: 0.6, color: '#FFFFFF' },
+            { offset: 0.8, color: '#D3D3D3' },
+            { offset: 1, color: '#A9A9A9' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#1C1C1C' },
+            { offset: 0.5, color: '#2D2D2D' },
+            { offset: 1, color: '#0A0A0A' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 0.5, color: '#C0C0C0' },
+            { offset: 1, color: '#808080' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FFFFFF'
+      }
+    }
+  },
+  {
+    id: 'phoenix-flame',
+    name: 'Phoenix Flame',
+    category: 'spectacular',
+    description: 'Flammes du phénix renaissant de ses cendres',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFF00' },
+            { offset: 0.2, color: '#FFD700' },
+            { offset: 0.4, color: '#FFA500' },
+            { offset: 0.6, color: '#FF6347' },
+            { offset: 0.8, color: '#DC143C' },
+            { offset: 1, color: '#8B0000' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 315,
+          colorStops: [
+            { offset: 0, color: '#2D1810' },
+            { offset: 0.5, color: '#1A0A00' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#FF4500' },
+            { offset: 0.5, color: '#FF6347' },
+            { offset: 1, color: '#DC143C' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFF00' },
+            { offset: 1, color: '#FF8C00' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'quantum-wave',
+    name: 'Quantum Wave',
+    category: 'spectacular',
+    description: 'Ondes quantiques en superposition',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#00FFFF' },
+            { offset: 0.16, color: '#00BFFF' },
+            { offset: 0.33, color: '#1E90FF' },
+            { offset: 0.5, color: '#0000FF' },
+            { offset: 0.66, color: '#4169E1' },
+            { offset: 0.83, color: '#8A2BE2' },
+            { offset: 1, color: '#9400D3' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#E6F3FF' },
+            { offset: 0.5, color: '#CCE7FF' },
+            { offset: 1, color: '#B3DBFF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#00CED1' },
+            { offset: 0.5, color: '#0080FF' },
+            { offset: 1, color: '#0040FF' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#0000CD'
+      }
+    }
+  },
+  {
+    id: 'emerald-aurora',
+    name: 'Emerald Aurora',
+    category: 'spectacular',
+    description: 'Aurore émeraude dansant dans le ciel nordique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 270,
+          colorStops: [
+            { offset: 0, color: '#00FF00' },
+            { offset: 0.2, color: '#00FA9A' },
+            { offset: 0.4, color: '#00CED1' },
+            { offset: 0.6, color: '#20B2AA' },
+            { offset: 0.8, color: '#48D1CC' },
+            { offset: 1, color: '#00FFFF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#001F1F' },
+            { offset: 0.5, color: '#002626' },
+            { offset: 1, color: '#003333' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#50C878' },
+            { offset: 0.5, color: '#00A86B' },
+            { offset: 1, color: '#008B8B' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#7FFFD4' },
+            { offset: 1, color: '#40E0D0' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'dragon-scale',
+    name: 'Dragon Scale',
+    category: 'spectacular',
+    description: 'Écailles de dragon iridescentes',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#4B0082' },
+            { offset: 0.2, color: '#6A0DAD' },
+            { offset: 0.4, color: '#7B68EE' },
+            { offset: 0.6, color: '#9370DB' },
+            { offset: 0.8, color: '#8B008B' },
+            { offset: 1, color: '#4B0082' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#1A0033' },
+            { offset: 0.5, color: '#220044' },
+            { offset: 1, color: '#2D0055' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#8B008B' },
+            { offset: 0.5, color: '#9932CC' },
+            { offset: 1, color: '#BA55D3' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#FFA500' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'plasma-energy',
+    name: 'Plasma Energy',
+    category: 'spectacular',
+    description: 'Énergie plasma électrisante',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#FF00FF' },
+            { offset: 0.2, color: '#FF1493' },
+            { offset: 0.4, color: '#FF69B4' },
+            { offset: 0.6, color: '#FFC0CB' },
+            { offset: 0.8, color: '#FFB6C1' },
+            { offset: 1, color: '#FFFFFF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#0A0014' },
+            { offset: 0.5, color: '#14001F' },
+            { offset: 1, color: '#1F0029' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF1493' },
+            { offset: 0.5, color: '#FF00FF' },
+            { offset: 1, color: '#8B008B' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#FF69B4' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'diamond-prism',
+    name: 'Diamond Prism',
+    category: 'spectacular',
+    description: 'Prisme de diamant aux mille reflets',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#E0E0E0' },
+            { offset: 0.14, color: '#87CEEB' },
+            { offset: 0.28, color: '#ADD8E6' },
+            { offset: 0.42, color: '#B0E0E6' },
+            { offset: 0.57, color: '#AFEEEE' },
+            { offset: 0.71, color: '#E0FFFF' },
+            { offset: 0.85, color: '#F0FFFF' },
+            { offset: 1, color: '#FFFFFF' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#F5F5F5' },
+            { offset: 1, color: '#FFFFFF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 0.5, color: '#E0E0E0' },
+            { offset: 1, color: '#C0C0C0' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#87CEEB' },
+            { offset: 1, color: '#4682B4' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'volcano-burst',
+    name: 'Volcano Burst',
+    category: 'spectacular',
+    description: 'Éruption volcanique explosive',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFF00' },
+            { offset: 0.15, color: '#FFD700' },
+            { offset: 0.3, color: '#FFA500' },
+            { offset: 0.45, color: '#FF8C00' },
+            { offset: 0.6, color: '#FF4500' },
+            { offset: 0.75, color: '#DC143C' },
+            { offset: 0.9, color: '#8B0000' },
+            { offset: 1, color: '#4B0000' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#1A0000' },
+            { offset: 0.5, color: '#0D0000' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#FF0000' },
+            { offset: 0.5, color: '#DC143C' },
+            { offset: 1, color: '#8B0000' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFF00' },
+            { offset: 0.5, color: '#FFA500' },
+            { offset: 1, color: '#FF4500' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'mystic-crystal',
+    name: 'Mystic Crystal',
+    category: 'spectacular',
+    description: 'Cristal mystique aux pouvoirs envoûtants',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 315,
+          colorStops: [
+            { offset: 0, color: '#E0AAFF' },
+            { offset: 0.16, color: '#C77DFF' },
+            { offset: 0.33, color: '#9D4EDD' },
+            { offset: 0.5, color: '#7B2CBF' },
+            { offset: 0.66, color: '#5A189A' },
+            { offset: 0.83, color: '#3C096C' },
+            { offset: 1, color: '#240046' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#10002B' },
+            { offset: 0.7, color: '#240046' },
+            { offset: 1, color: '#3C096C' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#E0AAFF' },
+            { offset: 0.5, color: '#9D4EDD' },
+            { offset: 1, color: '#5A189A' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#FFB6FF' },
+            { offset: 1, color: '#E0AAFF' }
           ]
         }
       }

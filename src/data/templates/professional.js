@@ -313,5 +313,435 @@ export const professionalTemplates = [
         color: '#991B1B'
       }
     }
+  },
+  {
+    id: 'titanium-power',
+    name: 'Titanium Power',
+    category: 'professional',
+    description: 'Titane puissant aux reflets métalliques',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#B8C6DB' },
+            { offset: 0.5, color: '#5B86C5' },
+            { offset: 1, color: '#3D5A80' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#F5F7FA' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#293241' },
+            { offset: 1, color: '#3D5A80' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#293241'
+      }
+    }
+  },
+  {
+    id: 'sapphire-elite',
+    name: 'Sapphire Elite',
+    category: 'professional',
+    description: 'Saphir élite aux nuances de bleu profond',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#003049' },
+            { offset: 0.5, color: '#003F5C' },
+            { offset: 1, color: '#2A6F97' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#F7FBFC'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#001D3D'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#468FAF' },
+            { offset: 1, color: '#003F5C' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'copper-executive',
+    name: 'Copper Executive',
+    category: 'professional',
+    description: 'Cuivre exécutif aux teintes chaudes raffinées',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#B87333' },
+            { offset: 0.5, color: '#CD7F32' },
+            { offset: 1, color: '#8B4513' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#FFF8F3' },
+            { offset: 1, color: '#FAF0E6' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#6F4E37'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#8B4513'
+      }
+    }
+  },
+  {
+    id: 'onyx-professional',
+    name: 'Onyx Professional',
+    category: 'professional',
+    description: 'Onyx professionnel au contraste saisissant',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#2D2D2D' },
+            { offset: 0.5, color: '#1A1A1A' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#F5F5F5' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#3A3A3A' },
+            { offset: 1, color: '#0A0A0A' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#1A1A1A'
+      }
+    }
+  },
+  {
+    id: 'emerald-authority',
+    name: 'Emerald Authority',
+    category: 'professional',
+    description: 'Émeraude autorité sophistiquée',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#004643' },
+            { offset: 0.5, color: '#0B5351' },
+            { offset: 1, color: '#065A60' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#F9FBF2'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#0A7373' },
+            { offset: 1, color: '#004643' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#003131'
+      }
+    }
+  },
+  {
+    id: 'bronze-prestige',
+    name: 'Bronze Prestige',
+    category: 'professional',
+    description: 'Bronze prestige aux dégradés dorés antiques',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#CD7F32' },
+            { offset: 0.3, color: '#B87333' },
+            { offset: 0.7, color: '#A0522D' },
+            { offset: 1, color: '#8B4513' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFAF0' },
+            { offset: 1, color: '#FFF5EE' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#704214' },
+            { offset: 1, color: '#5C3317' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#704214'
+      }
+    }
+  },
+  {
+    id: 'graphite-modern',
+    name: 'Graphite Modern',
+    category: 'professional',
+    description: 'Graphite moderne aux gris contemporains',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#616161' },
+            { offset: 0.5, color: '#424242' },
+            { offset: 1, color: '#212121' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#FAFAFA' },
+            { offset: 0.5, color: '#F5F5F5' },
+            { offset: 1, color: '#EEEEEE' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        color: '#212121'
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#424242'
+      }
+    }
+  },
+  {
+    id: 'ruby-leadership',
+    name: 'Ruby Leadership',
+    category: 'professional',
+    description: 'Rubis leadership au rouge puissant',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#9B111E' },
+            { offset: 0.5, color: '#A91B0C' },
+            { offset: 1, color: '#7A0C0C' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFF9F9'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#CC0000' },
+            { offset: 1, color: '#800000' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#660000'
+      }
+    }
+  },
+  {
+    id: 'steel-innovation',
+    name: 'Steel Innovation',
+    category: 'professional',
+    description: 'Acier innovation aux dégradés industriels',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#71797E' },
+            { offset: 0.3, color: '#566573' },
+            { offset: 0.7, color: '#36454F' },
+            { offset: 1, color: '#2C3E50' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 0.5, color: '#F8F9F9' },
+            { offset: 1, color: '#EAEDED' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#1B2631'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#36454F' },
+            { offset: 1, color: '#2C3E50' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'diamond-excellence',
+    name: 'Diamond Excellence',
+    category: 'professional',
+    description: 'Diamant excellence aux effets cristallins',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#E8E8E8' },
+            { offset: 0.3, color: '#D3D3D3' },
+            { offset: 0.6, color: '#C0C0C0' },
+            { offset: 1, color: '#A9A9A9' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 0.5, color: '#FAFAFA' },
+            { offset: 1, color: '#F5F5F5' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#B8B8B8' },
+            { offset: 0.5, color: '#9E9E9E' },
+            { offset: 1, color: '#828282' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#C0C0C0' }
+          ]
+        }
+      }
+    }
   }
 ];

@@ -58,16 +58,16 @@ export const loadTemplatesByCategory = async (category) => {
 
 // Get template count for each category (without loading the templates)
 export const templateCounts = {
-  spectacular: 17,
-  professional: 11,
-  creative: 10,
-  event: 8,
-  hospitality: 8,
-  retail: 8,
-  health: 8,
-  education: 8,
-  social: 8,
-  all: 85
+  spectacular: 18,
+  professional: 21,
+  creative: 20,
+  event: 18,
+  hospitality: 18,
+  retail: 18,
+  health: 18,
+  education: 17,
+  social: 18,
+  all: 166
 };
 
 // Categories configuration

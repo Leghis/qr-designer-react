@@ -250,5 +250,488 @@ export const educationTemplates = [
         color: '#304FFE'
       }
     }
+  },
+  {
+    id: 'art-school-creative',
+    name: 'Art School Creative',
+    category: 'education',
+    description: 'École d\'art créative et inspirante',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#E91E63' },
+            { offset: 0.2, color: '#9C27B0' },
+            { offset: 0.4, color: '#673AB7' },
+            { offset: 0.6, color: '#3F51B5' },
+            { offset: 0.8, color: '#2196F3' },
+            { offset: 1, color: '#00BCD4' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFFEF7' },
+            { offset: 0.5, color: '#FFF5F5' },
+            { offset: 1, color: '#F5F5FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#FFA500' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#00E676' },
+            { offset: 1, color: '#00C853' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'language-institute',
+    name: 'Language Institute',
+    category: 'education',
+    description: 'Institut de langues multiculturel',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#FF5252' },
+            { offset: 0.25, color: '#2196F3' },
+            { offset: 0.5, color: '#FFC107' },
+            { offset: 0.75, color: '#4CAF50' },
+            { offset: 1, color: '#FF5252' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#F5F5F5' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#7C4DFF' },
+            { offset: 1, color: '#651FFF' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FF6F00'
+      }
+    }
+  },
+  {
+    id: 'coding-academy',
+    name: 'Coding Academy',
+    category: 'education',
+    description: 'Académie de programmation moderne',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#00FF00' },
+            { offset: 0.5, color: '#00C853' },
+            { offset: 1, color: '#00FF00' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#000000' },
+            { offset: 0.5, color: '#0A0A0A' },
+            { offset: 1, color: '#1A1A1A' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#00E5FF' },
+            { offset: 1, color: '#0091EA' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#00FF00'
+      }
+    }
+  },
+  {
+    id: 'music-conservatory',
+    name: 'Music Conservatory',
+    category: 'education',
+    description: 'Conservatoire musical élégant et harmonieux',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#8B4513' },
+            { offset: 0.5, color: '#A0522D' },
+            { offset: 1, color: '#D2691E' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFF8DC' },
+            { offset: 1, color: '#FAEBD7' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#B8860B' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#654321'
+      }
+    }
+  },
+  {
+    id: 'business-school-elite',
+    name: 'Business School Elite',
+    category: 'education',
+    description: 'École de commerce élite prestigieuse',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#1B5E20' },
+            { offset: 0.5, color: '#2E7D32' },
+            { offset: 1, color: '#388E3C' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FAFAFA'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#212121' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFC107' },
+            { offset: 1, color: '#FF8F00' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'elementary-bright',
+    name: 'Elementary Bright',
+    category: 'education',
+    description: 'Élémentaire lumineux et joyeux',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFEB3B' },
+            { offset: 0.2, color: '#FFC107' },
+            { offset: 0.4, color: '#FF9800' },
+            { offset: 0.6, color: '#FF5722' },
+            { offset: 0.8, color: '#F44336' },
+            { offset: 1, color: '#E91E63' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#E3F2FD' },
+            { offset: 0.5, color: '#E8F5E9' },
+            { offset: 1, color: '#FFF9C4' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#4CAF50' },
+            { offset: 1, color: '#388E3C' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#2196F3' },
+            { offset: 1, color: '#1976D2' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'research-institute',
+    name: 'Research Institute',
+    category: 'education',
+    description: 'Institut de recherche scientifique avancé',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#0D47A1' },
+            { offset: 0.33, color: '#1565C0' },
+            { offset: 0.66, color: '#1976D2' },
+            { offset: 1, color: '#1E88E5' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#E8EAF6' },
+            { offset: 1, color: '#C5CAE9' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF6F00' },
+            { offset: 1, color: '#E65100' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#1A237E'
+      }
+    }
+  },
+  {
+    id: 'sports-academy',
+    name: 'Sports Academy',
+    category: 'education',
+    description: 'Académie sportive dynamique et énergique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 270,
+          colorStops: [
+            { offset: 0, color: '#F44336' },
+            { offset: 0.25, color: '#FF5722' },
+            { offset: 0.5, color: '#FF6F00' },
+            { offset: 0.75, color: '#FF8F00' },
+            { offset: 1, color: '#FFA000' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#263238' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#00E676' },
+            { offset: 1, color: '#00C853' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#FFEB3B'
+      }
+    }
+  },
+  {
+    id: 'vocational-training',
+    name: 'Vocational Training',
+    category: 'education',
+    description: 'Formation professionnelle pratique',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#E65100' },
+            { offset: 0.5, color: '#F57C00' },
+            { offset: 1, color: '#FF9800' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F5F5F5' },
+            { offset: 1, color: '#E0E0E0' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#424242' },
+            { offset: 1, color: '#212121' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        color: '#BF360C'
+      }
+    }
+  },
+  {
+    id: 'distance-learning',
+    name: 'Distance Learning',
+    category: 'education',
+    description: 'Apprentissage à distance connecté',
+    isPremium: true,
+    options: {
+      dotsOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#00BCD4' },
+            { offset: 0.33, color: '#00ACC1' },
+            { offset: 0.66, color: '#0097A7' },
+            { offset: 1, color: '#00838F' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#E0F7FA' },
+            { offset: 1, color: '#B2EBF2' }
+          ]
+        }
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#7C4DFF' },
+            { offset: 1, color: '#651FFF' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#00BCD4' }
+          ]
+        }
+      }
+    }
   }
 ];
