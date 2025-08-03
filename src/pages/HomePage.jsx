@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, PlayCircle, Check } from 'lucide-react';
+import { ArrowRight, Check, Gift, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import QRGenerator from '../components/QRGenerator/QRGenerator';
 import Features from '../components/Features/Features';
@@ -65,6 +65,17 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
+            {/* Badge Gratuit */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full mb-6 font-medium"
+            >
+              <Gift className="w-5 h-5" />
+              <span>100% Gratuit • Sans inscription • Sans limite</span>
+            </motion.div>
+
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
               Créez des <span className="gradient-text">QR Codes</span><br/>
               qui <span className="relative inline-block">
@@ -85,22 +96,41 @@ const HomePage = () => {
               Personnalisez, créez et téléchargez en quelques secondes.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex justify-center mb-8">
               <button
                 onClick={scrollToGenerator}
-                className="px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-xl"
+                className="group px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-xl flex items-center gap-3"
               >
+                <Sparkles className="w-5 h-5" />
                 Créer maintenant
-                <ArrowRight className="inline w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <Link
-                to="/demo"
-                className="px-8 py-4 bg-white dark:bg-dark-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-primary-500 rounded-xl font-semibold text-lg transition-all hover-lift flex items-center justify-center gap-2"
-              >
-                <PlayCircle className="w-5 h-5" />
-                Voir la démo
-              </Link>
             </div>
+
+            {/* Features rapides */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-400 mb-12"
+            >
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-500" />
+                <span>Sans inscription</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-500" />
+                <span>Export HD gratuit</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-500" />
+                <span>Tous les templates inclus</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-500" />
+                <span>Usage illimité</span>
+              </div>
+            </motion.div>
             
             {/* Stats */}
             <div className="flex flex-wrap justify-center gap-8 text-center">
@@ -108,6 +138,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
+                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">1M+</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">QR Codes créés</div>
@@ -116,6 +147,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
+                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
                 <div className="text-3xl font-bold gradient-text">50K+</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">Utilisateurs actifs</div>
@@ -124,9 +156,13 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
+                className="bg-white/50 dark:bg-dark-800/50 backdrop-blur rounded-xl px-6 py-4"
               >
-                <div className="text-3xl font-bold gradient-text">100%</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Gratuit</div>
+                <div className="flex items-center gap-2">
+                  <div className="text-3xl font-bold text-green-600 dark:text-green-400">100%</div>
+                  <Zap className="w-6 h-6 text-yellow-500" />
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Gratuit & Rapide</div>
               </motion.div>
             </div>
           </motion.div>

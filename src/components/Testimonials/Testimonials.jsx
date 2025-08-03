@@ -5,19 +5,19 @@ const testimonials = [
   {
     name: 'Marie L.',
     role: 'E-commerce',
-    content: "Interface incroyablement intuitive. J'ai créé des QR codes personnalisés pour tous mes produits en quelques minutes.",
+    content: "Incroyable qu'un outil aussi complet soit gratuit ! J'ai créé des QR codes personnalisés pour tous mes produits en quelques minutes.",
     avatar: 'from-blue-500 to-purple-600'
   },
   {
     name: 'Thomas D.',
     role: 'Restaurant',
-    content: 'Les templates premium ont transformé notre marketing. Nos QR codes sont maintenant un vrai atout visuel.',
+    content: "Les templates sont magnifiques et tout est gratuit ! Nos QR codes sont maintenant un vrai atout visuel pour notre menu digital.",
     avatar: 'from-green-500 to-teal-600'
   },
   {
     name: 'Sophie M.',
     role: 'Tech Startup',
-    content: "L'API est parfaite pour notre intégration. Support technique au top, ils ont répondu à toutes nos questions.",
+    content: "Pas besoin de carte bancaire, pas d'abonnement caché. Simple, efficace et 100% gratuit. Exactement ce dont on avait besoin !",
     avatar: 'from-orange-500 to-red-600'
   }
 ];
@@ -48,7 +48,7 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
+              className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (

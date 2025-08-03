@@ -91,11 +91,11 @@ const Templates = () => {
           className="text-center"
         >
           <Link
-            to="/premium"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl font-medium hover:from-yellow-400 hover:to-orange-400 transition-all transform hover:scale-105"
+            to="/templates"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-medium hover:from-primary-700 hover:to-purple-700 transition-all transform hover:scale-105"
           >
             <Sparkles className="w-5 h-5" />
-            Voir tous les templates premium
+            Explorer tous les templates gratuits
           </Link>
         </motion.div>
       </div>
