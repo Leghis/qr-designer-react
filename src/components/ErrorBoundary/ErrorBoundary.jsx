@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertCircle } from 'lucide-react';
+import { isExtensionError } from '../../utils/extensionErrorHandler';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -12,6 +13,12 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // Ignore extension errors
+    if (isExtensionError(error)) {
+      console.log('Extension error ignored by ErrorBoundary');
+      this.setState({ hasError: false, error: null });
+      return;
+    }
     console.error('Error caught by boundary:', error, errorInfo);
   }
 

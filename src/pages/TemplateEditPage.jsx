@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
 import { useSubscription } from '../hooks/useSubscription.jsx';
 import { useNotification } from '../context/NotificationContext';
@@ -240,7 +240,11 @@ const TemplateEditPage = () => {
                   <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm text-blue-800 dark:text-blue-200">
-                      {t('templateEdit.generator.description', { templateName: template.name })}
+                      <Trans 
+                        i18nKey="templateEdit.generator.description" 
+                        values={{ templateName: template.name }}
+                        components={{ strong: <strong /> }}
+                      />
                     </p>
                   </div>
                 </div>

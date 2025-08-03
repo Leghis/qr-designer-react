@@ -1,43 +1,58 @@
 // Template lazy loading manager
 import { lazy } from 'react';
+import { safeDynamicImport } from '../../utils/extensionErrorHandler';
 
 // Lazy load templates by category
 export const loadTemplatesByCategory = async (category) => {
-  switch (category) {
-    case 'spectacular':
-      return import('./spectacular').then(module => module.spectacularTemplates);
-    case 'professional':
-      return import('./professional').then(module => module.professionalTemplates);
-    case 'creative':
-      return import('./creative').then(module => module.creativeTemplates);
-    case 'event':
-      return import('./event').then(module => module.eventTemplates);
-    case 'hospitality':
-      return import('./hospitality').then(module => module.hospitalityTemplates);
-    case 'retail':
-      return import('./retail').then(module => module.retailTemplates);
-    case 'health':
-      return import('./health').then(module => module.healthTemplates);
-    case 'education':
-      return import('./education').then(module => module.educationTemplates);
-    case 'social':
-      return import('./social').then(module => module.socialTemplates);
-    case 'all':
-      // Load all templates concurrently
-      const results = await Promise.all([
-        import('./spectacular').then(m => m.spectacularTemplates),
-        import('./professional').then(m => m.professionalTemplates),
-        import('./creative').then(m => m.creativeTemplates),
-        import('./event').then(m => m.eventTemplates),
-        import('./hospitality').then(m => m.hospitalityTemplates),
-        import('./retail').then(m => m.retailTemplates),
-        import('./health').then(m => m.healthTemplates),
-        import('./education').then(m => m.educationTemplates),
-        import('./social').then(m => m.socialTemplates)
-      ]);
-      return results.flat();
-    default:
-      return [];
+  try {
+    switch (category) {
+      case 'spectacular':
+        const spectacularModule = await safeDynamicImport(() => import('./spectacular'));
+        return spectacularModule?.spectacularTemplates || [];
+      case 'professional':
+        const professionalModule = await safeDynamicImport(() => import('./professional'));
+        return professionalModule?.professionalTemplates || [];
+      case 'creative':
+        const creativeModule = await safeDynamicImport(() => import('./creative'));
+        return creativeModule?.creativeTemplates || [];
+      case 'event':
+        const eventModule = await safeDynamicImport(() => import('./event'));
+        return eventModule?.eventTemplates || [];
+      case 'hospitality':
+        const hospitalityModule = await safeDynamicImport(() => import('./hospitality'));
+        return hospitalityModule?.hospitalityTemplates || [];
+      case 'retail':
+        const retailModule = await safeDynamicImport(() => import('./retail'));
+        return retailModule?.retailTemplates || [];
+      case 'health':
+        const healthModule = await safeDynamicImport(() => import('./health'));
+        return healthModule?.healthTemplates || [];
+      case 'education':
+        const educationModule = await safeDynamicImport(() => import('./education'));
+        return educationModule?.educationTemplates || [];
+      case 'social':
+        const socialModule = await safeDynamicImport(() => import('./social'));
+        return socialModule?.socialTemplates || [];
+      case 'all':
+        // Load all templates concurrently with safe imports
+        const results = await Promise.all([
+          safeDynamicImport(() => import('./spectacular')).then(m => m?.spectacularTemplates || []),
+          safeDynamicImport(() => import('./professional')).then(m => m?.professionalTemplates || []),
+          safeDynamicImport(() => import('./creative')).then(m => m?.creativeTemplates || []),
+          safeDynamicImport(() => import('./event')).then(m => m?.eventTemplates || []),
+          safeDynamicImport(() => import('./hospitality')).then(m => m?.hospitalityTemplates || []),
+          safeDynamicImport(() => import('./retail')).then(m => m?.retailTemplates || []),
+          safeDynamicImport(() => import('./health')).then(m => m?.healthTemplates || []),
+          safeDynamicImport(() => import('./education')).then(m => m?.educationTemplates || []),
+          safeDynamicImport(() => import('./social')).then(m => m?.socialTemplates || [])
+        ]);
+        return results.flat();
+      default:
+        return [];
+    }
+  } catch (error) {
+    console.error('Error loading templates:', error);
+    return [];
   }
 };
 

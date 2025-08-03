@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 const getFeatures = (t) => [
   {
@@ -189,7 +189,10 @@ const Pricing = () => {
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 dark:bg-dark-800 rounded-full">
             <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
             <span className="text-gray-700 dark:text-gray-300">
-              {t('pricing.security.badge')}
+              <Trans 
+                i18nKey="pricing.security.badge" 
+                components={{ strong: <strong /> }}
+              />
             </span>
           </div>
         </motion.div>
