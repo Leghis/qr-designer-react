@@ -15,7 +15,8 @@ import {
   Settings2,
   Image as ImageIcon,
   Sliders,
-  Crown
+  Crown,
+  Loader2
 } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
 import { useNotification } from '../../context/NotificationContext';
@@ -996,29 +997,83 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
           {/* Preview Header */}
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-semibold">Aperçu en temps réel</h3>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setShowPreview(!showPreview)}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
+              className={`px-3 py-1.5 flex items-center gap-2 rounded-lg transition-all ${
+                showPreview 
+                  ? 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700' 
+                  : 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-900/50'
+              }`}
             >
-              {showPreview ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
-            </button>
+              {showPreview ? (
+                <>
+                  <EyeOff className="w-4 h-4" />
+                  <span className="text-sm font-medium">Masquer</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4" />
+                  <span className="text-sm font-medium">Afficher</span>
+                </>
+              )}
+            </motion.button>
           </div>
           
           {/* QR Preview */}
-          <div className={`transition-all ${showPreview ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-900 dark:to-dark-800 rounded-xl p-4 sm:p-6 lg:p-8">
+          <motion.div 
+            animate={{ 
+              scale: showPreview ? 1 : 0.98,
+              transition: { duration: 0.3, ease: "easeInOut" }
+            }}
+            className="relative"
+          >
+            <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-900 dark:to-dark-800 rounded-xl p-4 sm:p-6 lg:p-8 overflow-hidden">
+              {/* Blur overlay when hidden */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: showPreview ? 0 : 1,
+                  backdropFilter: showPreview ? 'blur(0px)' : 'blur(20px)'
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 z-10 bg-white/30 dark:bg-dark-900/30"
+                style={{ 
+                  display: showPreview ? 'none' : 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <motion.button
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.2 }}
+                  onClick={() => setShowPreview(true)}
+                  className="px-6 py-3 bg-white dark:bg-dark-800 text-gray-900 dark:text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-gray-200 dark:border-gray-700"
+                >
+                  <Eye className="w-5 h-5" />
+                  <span className="font-medium">Afficher l'aperçu</span>
+                </motion.button>
+              </motion.div>
+              
+              {/* QR Code content with blur effect */}
               <div 
                 ref={previewRef}
-                className="mx-auto flex items-center justify-center w-full"
+                className={`mx-auto flex items-center justify-center w-full transition-all duration-300 ${
+                  showPreview ? '' : 'blur-xl scale-95'
+                }`}
                 style={{ minHeight: '250px', maxWidth: '400px' }}
-              />
-              
-              {isGenerating && (
-                <div className="absolute inset-0 bg-white/80 dark:bg-dark-900/80 rounded-xl flex items-center justify-center">
-                  <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
-                </div>
-              )}
+              >
+                {isGenerating && (
+                  <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Génération en cours...</p>
+                  </div>
+                )}
+              </div>
             </div>
+          </motion.div>
             
             {/* Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
@@ -1052,7 +1107,6 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 PDF
               </motion.button>
             </div>
-          </div>
           
           {/* Template Info */}
           {template && (
