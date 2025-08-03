@@ -41,11 +41,11 @@ export const QR_STYLES = [
     }
   },
   {
-    id: 'sharp',
-    name: 'Angulaire',
+    id: 'fluid',
+    name: 'Fluide',
     preview: {
-      dotsType: 'square',
-      cornersType: 'square'
+      dotsType: 'classy-rounded',
+      cornersType: 'extra-rounded'
     }
   }
 ];
@@ -121,6 +121,16 @@ export const COLOR_PALETTES = [
       corners: '#DB2777'
     },
     preview: ['#EC4899', '#FDF2F8', '#DB2777']
+  },
+  {
+    id: 'teal',
+    name: 'Turquoise',
+    colors: {
+      dots: '#14B8A6',
+      background: '#F0FDFA',
+      corners: '#0F766E'
+    },
+    preview: ['#14B8A6', '#F0FDFA', '#0F766E']
   },
   {
     id: 'custom',

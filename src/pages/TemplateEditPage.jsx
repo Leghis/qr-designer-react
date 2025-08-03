@@ -2,7 +2,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
 import { premiumTemplates, qrTemplates } from '../services/qrService';
-import QRGeneratorTemplateEditor from '../components/QRGenerator/QRGeneratorTemplateEditor';
+import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
 import { useSubscription } from '../hooks/useSubscription.jsx';
 import { useNotification } from '../context/NotificationContext';
 import { useState, useEffect } from 'react';
@@ -223,10 +223,11 @@ const TemplateEditPage = () => {
               </div>
             </div>
             
-            <QRGeneratorTemplateEditor 
+            <QRGeneratorAdvanced 
               template={template}
               templateOptions={template.options}
               onDataChange={handleQrDataChange}
+              initialData="https://qr-designer.com"
             />
           </div>
         </motion.div>

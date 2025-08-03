@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Gift, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import QRGenerator from '../components/QRGenerator/QRGenerator';
+import QRGeneratorAdvanced from '../components/QRGenerator/QRGeneratorAdvanced';
 import Features from '../components/Features/Features';
 import Templates from '../components/Templates/Templates';
 import Pricing from '../components/Pricing/Pricing';
@@ -167,14 +167,75 @@ const HomePage = () => {
             </div>
           </motion.div>
 
-          {/* QR Generator */}
+          {/* QR Generator Section */}
           <motion.div
             id="generator"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-16"
           >
-            <QRGenerator />
+            {/* Section Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-center mb-8"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Essayez-le <span className="gradient-text">maintenant</span>
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Créez votre premier QR code en quelques secondes. Aucune inscription requise.
+              </p>
+            </motion.div>
+            
+            {/* Animated Border */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
+              className="relative"
+            >
+              {/* Glowing effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+              
+              {/* Pulsing rings */}
+              <div className="absolute -inset-4 animate-pulse">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-purple-500/20 rounded-3xl blur-xl"></div>
+              </div>
+              
+              {/* Main content */}
+              <div className="relative">
+                <QRGeneratorAdvanced 
+                  template={null}
+                  templateOptions={null}
+                  onDataChange={() => {}}
+                  initialData="https://qr-designer.com"
+                />
+              </div>
+            </motion.div>
+            
+            {/* Features badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap justify-center gap-4 mt-8"
+            >
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-medium">
+                <Zap className="w-4 h-4" />
+                <span>Génération instantanée</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium">
+                <Sparkles className="w-4 h-4" />
+                <span>12 types de contenu</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full text-sm font-medium">
+                <Gift className="w-4 h-4" />
+                <span>Templates gratuits</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
