@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
 const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
+const TemplateEditPage = lazy(() => import('./pages/TemplateEditPage'));
 const PremiumPage = lazy(() => import('./pages/PremiumPage'));
 const DemoPage = lazy(() => import('./pages/DemoPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -50,6 +51,11 @@ function App() {
                     <Route path="templates" element={
                       <Suspense fallback={<PageLoader />}>
                         <TemplatesPage />
+                      </Suspense>
+                    } />
+                    <Route path="templates/:id" element={
+                      <Suspense fallback={<PageLoader />}>
+                        <TemplateEditPage />
                       </Suspense>
                     } />
                     <Route path="premium" element={

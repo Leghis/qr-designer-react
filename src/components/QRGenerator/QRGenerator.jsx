@@ -10,7 +10,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import historyService from '../../services/historyService';
 import { useAuth } from '../../context/AuthContext';
 
-const QRGenerator = () => {
+const QRGenerator = ({ preSelectedTemplate, templateOptions }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
   const [qrData, setQrData] = useState(defaultQROptions.data);
@@ -22,7 +22,7 @@ const QRGenerator = () => {
     cornersType: defaultQROptions.cornersSquareOptions.type
   });
   const [isGenerating, setIsGenerating] = useState(false);
-  const [currentTemplate, setCurrentTemplate] = useState('default');
+  const [currentTemplate, setCurrentTemplate] = useState(preSelectedTemplate || 'default');
   
   const qrContainerRef = useRef(null);
   const qrCodeRef = useRef(null);
@@ -87,7 +87,7 @@ const QRGenerator = () => {
     generateQR();
   }, [generateQR]);
 
-  // Handle template selection from navigation
+  // Handle template selection from navigation or props
   useEffect(() => {
     if (location.state?.templateId) {
       const templateOptions = qrService.applyPremiumTemplate(location.state.templateId);
@@ -97,8 +97,11 @@ const QRGenerator = () => {
         document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });
         showNotification('Template appliqué avec succès !', 'success');
       }
+    } else if (preSelectedTemplate && templateOptions) {
+      // Apply template from props without scrolling
+      handleTemplateSelect(templateOptions, preSelectedTemplate);
     }
-  }, [location.state, showNotification]);
+  }, [location.state, showNotification, preSelectedTemplate, templateOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle template selection
   const handleTemplateSelect = (templateOptions, templateName = 'default') => {

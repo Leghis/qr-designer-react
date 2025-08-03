@@ -64,8 +64,8 @@ const PremiumTemplateCard = ({ template }) => {
       return;
     }
     
-    // Navigate to generator with template preselected
-    navigate('/', { state: { templateId: template.id } });
+    // Navigate to template edit page
+    navigate(`/templates/${template.id}`);
   };
 
   const categoryColors = {
