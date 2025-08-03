@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Download, 
@@ -42,6 +42,27 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
   // Refs
   const qrCodeRef = useRef(null);
   const previewRef = useRef(null);
+  const qrOptionsRef = useRef(qrOptions);
+  const qrDataRef = useRef(qrData);
+  const templateRef = useRef(template);
+  const templateOptionsRef = useRef(templateOptions);
+  
+  // Update refs when values change
+  useEffect(() => {
+    qrOptionsRef.current = qrOptions;
+  }, [qrOptions]);
+  
+  useEffect(() => {
+    qrDataRef.current = qrData;
+  }, [qrData]);
+  
+  useEffect(() => {
+    templateRef.current = template;
+  }, [template]);
+  
+  useEffect(() => {
+    templateOptionsRef.current = templateOptions;
+  }, [templateOptions]);
   
   // Initialize with template options
   useEffect(() => {
@@ -79,32 +100,37 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
     }
   }, [templateOptions]);
   
-  // Generate QR code
+  // Generate QR code - stable function reference
   const generateQR = useCallback(() => {
     if (!previewRef.current) return;
     
     setIsGenerating(true);
     
     try {
+      const currentQrOptions = qrOptionsRef.current;
+      const currentQrData = qrDataRef.current;
+      const currentTemplate = templateRef.current;
+      const currentTemplateOptions = templateOptionsRef.current;
+      
       // Clear previous QR
       previewRef.current.innerHTML = '';
       
       // Use template options as base
-      const baseOptions = qrOptions.templateOptions || templateOptions || {};
+      const baseOptions = currentQrOptions.templateOptions || currentTemplateOptions || {};
       
       // Override with current selections
       const options = {
         width: 400,
         height: 400,
         type: 'svg',
-        data: qrData,
+        data: currentQrData,
         margin: 20,
         ...baseOptions
       };
       
       // Apply current style if changed
-      if (qrOptions.style !== 'template') {
-        const selectedStyle = QR_STYLES.find(s => s.id === qrOptions.style);
+      if (currentQrOptions.style !== 'template') {
+        const selectedStyle = QR_STYLES.find(s => s.id === currentQrOptions.style);
         if (selectedStyle) {
           options.dotsOptions = {
             ...options.dotsOptions,
@@ -122,25 +148,25 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       }
       
       // Apply colors if changed
-      if (qrOptions.colors === 'custom') {
+      if (currentQrOptions.colors === 'custom') {
         options.dotsOptions = {
           ...options.dotsOptions,
-          color: qrOptions.customColors.dots
+          color: currentQrOptions.customColors.dots
         };
         options.backgroundOptions = {
           ...options.backgroundOptions,
-          color: qrOptions.customColors.background
+          color: currentQrOptions.customColors.background
         };
         options.cornersSquareOptions = {
           ...options.cornersSquareOptions,
-          color: qrOptions.customColors.corners
+          color: currentQrOptions.customColors.corners
         };
         options.cornersDotOptions = {
           ...options.cornersDotOptions,
-          color: qrOptions.customColors.corners
+          color: currentQrOptions.customColors.corners
         };
-      } else if (qrOptions.colors !== 'template') {
-        const palette = COLOR_PALETTES.find(p => p.id === qrOptions.colors);
+      } else if (currentQrOptions.colors !== 'template') {
+        const palette = COLOR_PALETTES.find(p => p.id === currentQrOptions.colors);
         if (palette?.colors) {
           options.dotsOptions = { ...options.dotsOptions, color: palette.colors.dots };
           options.backgroundOptions = { ...options.backgroundOptions, color: palette.colors.background };
@@ -150,7 +176,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       }
       
       // Apply shape
-      if (qrOptions.shape === 'circle') {
+      if (currentQrOptions.shape === 'circle') {
         options.shape = 'circle';
       }
       
@@ -159,23 +185,23 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
         hideBackgroundDots: true,
         crossOrigin: 'anonymous',
         margin: 10,
-        imageSize: qrOptions.logoSize || 0.3,
+        imageSize: currentQrOptions.logoSize || 0.3,
         ...options.imageOptions
       };
       
       // Apply logo
-      if (qrOptions.logo) {
-        options.image = qrOptions.logo;
+      if (currentQrOptions.logo) {
+        options.image = currentQrOptions.logo;
       }
       
       qrCodeRef.current = new QRCodeStyling(options);
       qrCodeRef.current.append(previewRef.current);
       
       // Save to history
-      if (isAuthenticated && qrData) {
+      if (isAuthenticated && currentQrData) {
         historyService.addQRCode({
-          data: qrData,
-          template: template?.id || 'custom',
+          data: currentQrData,
+          template: currentTemplate?.id || 'custom',
           options: options
         });
       }
@@ -186,12 +212,15 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
     } finally {
       setIsGenerating(false);
     }
-  }, [qrData, qrOptions, template, templateOptions, isAuthenticated, showNotification]);
+  }, [isAuthenticated, showNotification, t]); // Minimal stable dependencies
   
-  // Update QR when options change
+  // Update QR when data or options change
   useEffect(() => {
     generateQR();
-  }, [generateQR]);
+  }, [qrData, qrOptions.style, qrOptions.colors, qrOptions.customColors.dots, 
+      qrOptions.customColors.background, qrOptions.customColors.corners, 
+      qrOptions.shape, qrOptions.logo, qrOptions.logoSize, 
+      template?.id, templateOptions]);
   
   // Update parent with data changes
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -135,6 +135,27 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
   const previewRef = useRef(null);
   const prevLogoRef = useRef(null);
   const prevLogoSizeRef = useRef(null);
+  const qrOptionsRef = useRef(qrOptions);
+  const qrDataRef = useRef(qrData);
+  const templateRef = useRef(template);
+  const templateOptionsRef = useRef(templateOptions);
+  
+  // Update refs when values change
+  useEffect(() => {
+    qrOptionsRef.current = qrOptions;
+  }, [qrOptions]);
+  
+  useEffect(() => {
+    qrDataRef.current = qrData;
+  }, [qrData]);
+  
+  useEffect(() => {
+    templateRef.current = template;
+  }, [template]);
+  
+  useEffect(() => {
+    templateOptionsRef.current = templateOptions;
+  }, [templateOptions]);
   
   // Initialize with template options
   useEffect(() => {
@@ -167,16 +188,20 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     }
   }, [templateOptions, template]);
   
-  // Generate QR code
+  // Generate QR code - stable function reference
   const generateQR = useCallback(() => {
     if (!previewRef.current) return;
     
     setIsGenerating(true);
     
     try {
+      const currentQrOptions = qrOptionsRef.current;
+      const currentQrData = qrDataRef.current;
+      const currentTemplate = templateRef.current;
+      const currentTemplateOptions = templateOptionsRef.current;
       
       // Use template options as base, or create default structure
-      const baseOptions = qrOptions.templateOptions || templateOptions || {
+      const baseOptions = currentQrOptions.templateOptions || currentTemplateOptions || {
         dotsOptions: { type: 'square', color: '#000000' },
         backgroundOptions: { color: '#FFFFFF' },
         cornersSquareOptions: { type: 'square', color: '#000000' },
@@ -189,13 +214,13 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         width: 400,
         height: 400,
         type: 'svg',
-        data: qrData,
-        margin: qrOptions.margin,
+        data: currentQrData,
+        margin: currentQrOptions.margin,
         qrOptions: {
           ...baseOptions.qrOptions,
           typeNumber: 0,
           mode: 'Byte',
-          errorCorrectionLevel: qrOptions.errorCorrectionLevel
+          errorCorrectionLevel: currentQrOptions.errorCorrectionLevel
         },
         // Ensure these options exist even if not in baseOptions
         dotsOptions: baseOptions.dotsOptions || { type: 'square' },
@@ -205,7 +230,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       };
       
       // Apply current style
-      const selectedStyle = QR_STYLES.find(s => s.id === qrOptions.style);
+      const selectedStyle = QR_STYLES.find(s => s.id === currentQrOptions.style);
       if (selectedStyle) {
         options.dotsOptions = {
           ...options.dotsOptions,
@@ -222,16 +247,16 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       }
       
       // Apply colors
-      if (qrOptions.colors === 'template') {
+      if (currentQrOptions.colors === 'template') {
         // Keep the template's original colors (already in baseOptions)
         // No need to do anything, colors are already set from template
-      } else if (qrOptions.colors === 'custom') {
+      } else if (currentQrOptions.colors === 'custom') {
         // Apply custom colors intelligently preserving gradients
         const customTheme = {
-          dots: qrOptions.customColors.dots,
-          background: qrOptions.customColors.background,
-          corners: qrOptions.customColors.corners,
-          cornersAlt: qrOptions.customColors.cornersAlt || qrOptions.customColors.corners
+          dots: currentQrOptions.customColors.dots,
+          background: currentQrOptions.customColors.background,
+          corners: currentQrOptions.customColors.corners,
+          cornersAlt: currentQrOptions.customColors.cornersAlt || currentQrOptions.customColors.corners
         };
         
         const themedOptions = applyThemeToTemplate(baseOptions, customTheme);
@@ -242,7 +267,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         options.cornersDotOptions = { ...options.cornersDotOptions, ...themedOptions.cornersDotOptions };
       } else {
         // Apply predefined color palette intelligently
-        const palette = COLOR_PALETTES.find(p => p.id === qrOptions.colors);
+        const palette = COLOR_PALETTES.find(p => p.id === currentQrOptions.colors);
         if (palette?.colors) {
           const themeColors = {
             dots: palette.colors.dots,
@@ -261,7 +286,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       }
       
       // Apply shape
-      if (qrOptions.shape === 'circle') {
+      if (currentQrOptions.shape === 'circle') {
         options.shape = 'circle';
       }
       
@@ -271,12 +296,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         hideBackgroundDots: true,
         crossOrigin: 'anonymous',
         margin: 10,
-        imageSize: qrOptions.logoSize || 0.3
+        imageSize: currentQrOptions.logoSize || 0.3
       };
       
       // Apply logo
-      if (qrOptions.logo) {
-        options.image = qrOptions.logo;
+      if (currentQrOptions.logo) {
+        options.image = currentQrOptions.logo;
       } else {
         // Ensure no logo is displayed when logo is removed
         delete options.image;
@@ -284,8 +309,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       
       // Create or update QR code
       // Force recreation when logo or size changes for better reliability
-      const logoChanged = qrOptions.logo !== prevLogoRef.current;
-      const logoSizeChanged = qrOptions.logoSize !== prevLogoSizeRef.current;
+      const logoChanged = currentQrOptions.logo !== prevLogoRef.current;
+      const logoSizeChanged = currentQrOptions.logoSize !== prevLogoSizeRef.current;
       const shouldRecreate = !qrCodeRef.current || logoChanged || logoSizeChanged;
       
       if (shouldRecreate) {
@@ -301,14 +326,14 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       }
       
       // Update refs for next comparison
-      prevLogoRef.current = qrOptions.logo;
-      prevLogoSizeRef.current = qrOptions.logoSize;
+      prevLogoRef.current = currentQrOptions.logo;
+      prevLogoSizeRef.current = currentQrOptions.logoSize;
       
       // Save to history
-      if (isAuthenticated && qrData) {
+      if (isAuthenticated && currentQrData) {
         historyService.addQRCode({
-          data: qrData,
-          template: template?.id || 'custom',
+          data: currentQrData,
+          template: currentTemplate?.id || 'custom',
           options: options
         });
       }
@@ -319,12 +344,16 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     } finally {
       setIsGenerating(false);
     }
-  }, [qrData, qrOptions, template, templateOptions, isAuthenticated, showNotification]);
+  }, [isAuthenticated, showNotification, t]); // Minimal stable dependencies
   
-  // Update QR when options change
+  // Update QR when data or options change
   useEffect(() => {
     generateQR();
-  }, [generateQR]);
+  }, [qrData, qrOptions.style, qrOptions.colors, qrOptions.customColors.dots, 
+      qrOptions.customColors.background, qrOptions.customColors.corners, 
+      qrOptions.customColors.cornersAlt, qrOptions.shape, qrOptions.logo, 
+      qrOptions.logoSize, qrOptions.errorCorrectionLevel, qrOptions.margin, 
+      template?.id, templateOptions]);
   
   // Cleanup on unmount
   useEffect(() => {
