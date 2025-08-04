@@ -261,6 +261,82 @@ html {
   outline: none;
 }
 
+/* Enhanced Header Styles */
+.header-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .header-glass {
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(71, 85, 105, 0.2);
+}
+
+/* Remove all focus outlines on links and buttons in header */
+header a:focus,
+header button:focus,
+header *:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Custom focus styles for header navigation */
+header nav a:focus-visible {
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 0.75rem;
+}
+
+/* Enhanced glassmorphism effect */
+.glass-enhanced {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark .glass-enhanced {
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(71, 85, 105, 0.15);
+}
+
+/* Smooth gradient animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Enhanced micro-interactions */
+.micro-bounce:hover {
+  animation: micro-bounce 0.6s ease-in-out;
+}
+
+@keyframes micro-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Premium glow effect */
+.premium-glow {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  animation: premium-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes premium-pulse {
+  from { box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+  to { box-shadow: 0 0 30px rgba(251, 191, 36, 0.5); }
+}
+
 /* Theme toggle animations */
 .theme-toggle {
   position: relative;

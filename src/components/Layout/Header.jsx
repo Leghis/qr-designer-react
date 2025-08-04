@@ -72,161 +72,200 @@ const Header = () => {
   // };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-slate-800">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/85 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50 shadow-sm">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link to="/" className="flex items-center space-x-2 sm:space-x-3" onClick={closeMobileMenu}>
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform">
-                <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group" onClick={closeMobileMenu}>
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+                <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-white transition-transform group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold">
-                <span className="gradient-text">{t('header.brand')}</span>
-              </h1>
+              <div className="relative">
+                <h1 className="text-xl sm:text-2xl font-bold gradient-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-purple-600 transition-all duration-300">
+                  {t('header.brand')}
+                </h1>
+                <div className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 group-hover:w-full transition-all duration-300" />
+              </div>
             </Link>
             
-            {/* User Status Badge - Hidden on small screens */}
+            {/* User Status Badge - Enhanced */}
             {isPremium && (
-              <div className="ml-2 hidden sm:block">
-                <Badge type={plan === 'premium' ? 'premium' : 'pro'} className="flex items-center gap-1">
-                  <Star className="w-3 h-3" />
-                  {plan === 'premium' ? t('common.premium') : t('common.enterprise')}
-                </Badge>
+              <div className="ml-2 hidden sm:block group">
+                <div className="relative px-3 py-1.5 bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                  <div className="flex items-center gap-1.5 text-white font-medium text-sm">
+                    <Star className="w-3.5 h-3.5 animate-pulse" />
+                    <span>{plan === 'premium' ? t('common.premium') : t('common.enterprise')}</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               </div>
             )}
           </div>
           
           <div className="flex items-center space-x-3">
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
+            {/* Desktop Navigation - Enhanced */}
+            <nav className="hidden md:flex items-center space-x-1">
               <Link
                 to="/"
-                className={`font-medium transition-colors ${
+                className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group ${
                   isActive('/') 
-                    ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
+                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
                 }`}
               >
-                {t('header.home')}
+                <span className="relative z-10">{t('header.home')}</span>
+                {isActive('/') && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
+                )}
+                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
               <Link
                 to="/templates"
-                className={`font-medium transition-colors ${
+                className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group ${
                   isActive('/templates') 
-                    ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
+                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
                 }`}
               >
-                {t('header.templates')}
+                <span className="relative z-10">{t('header.templates')}</span>
+                {isActive('/templates') && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
+                )}
+                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
               {isAuthenticated && (
                 <Link
                   to="/dashboard"
-                  className={`font-medium transition-colors flex items-center gap-1 ${
+                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group flex items-center gap-2 ${
                     isActive('/dashboard') 
-                      ? 'text-primary-600 dark:text-primary-400' 
-                      : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400'
+                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
+                      : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
                   }`}
                 >
-                  <LayoutDashboard className="w-4 h-4" />
-                  {t('header.dashboard')}
+                  <LayoutDashboard className="w-4 h-4 transition-transform group-hover:scale-110" />
+                  <span className="relative z-10">{t('header.dashboard')}</span>
+                  {isActive('/dashboard') && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
+                  )}
+                  <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 </Link>
               )}
             </nav>
             
-            {/* Desktop Controls */}
-            <div className="hidden sm:flex items-center space-x-3">
-              <LanguageSwitcher />
-              <ThemeToggle />
+            {/* Desktop Controls - Enhanced */}
+            <div className="hidden sm:flex items-center space-x-2">
+              <div className="p-1 rounded-xl bg-gray-50 dark:bg-slate-800/50 backdrop-blur-sm">
+                <LanguageSwitcher />
+              </div>
+              <div className="p-1 rounded-xl bg-gray-50 dark:bg-slate-800/50 backdrop-blur-sm">
+                <ThemeToggle />
+              </div>
             </div>
             
-            {/* Mobile Controls - Only theme and language switcher on very small screens */}
+            {/* Mobile Controls - Enhanced */}
             <div className="flex sm:hidden items-center space-x-2">
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
             
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Enhanced */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              className="md:hidden relative p-2.5 rounded-xl bg-gray-50 dark:bg-slate-800/50 hover:bg-gray-100 dark:hover:bg-slate-700/50 transition-all duration-300 group backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50"
               aria-label="Toggle mobile menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-600 dark:text-slate-200" />
-              ) : (
-                <Menu className="w-6 h-6 text-gray-600 dark:text-slate-200" />
-              )}
+              <div className="relative">
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 text-gray-700 dark:text-slate-200 transition-all duration-300 rotate-90" />
+                ) : (
+                  <Menu className="w-5 h-5 text-gray-700 dark:text-slate-200 transition-all duration-300 group-hover:scale-110" />
+                )}
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </div>
         </div>
       </nav>
       
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Enhanced */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 backdrop-blur-md z-40 md:hidden"
           onClick={closeMobileMenu}
         />
       )}
       
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Enhanced */}
       <div 
         ref={mobileMenuRef}
-        className={`fixed top-[85px] left-0 right-0 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 transform transition-all duration-300 ease-out z-40 md:hidden ${
+        className={`fixed top-[85px] left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50 shadow-xl transform transition-all duration-500 ease-out z-40 md:hidden ${
           isMobileMenuOpen 
             ? 'translate-y-0 opacity-100' 
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="container mx-auto px-4 py-6">
-          <div className="space-y-6">
-            {/* User Status Badge - Visible on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/30 via-transparent to-purple-50/30 dark:from-primary-950/30 dark:via-transparent dark:to-purple-950/30" />
+        <nav className="relative container mx-auto px-4 py-8">
+          <div className="space-y-8">
+            {/* User Status Badge - Enhanced Mobile */}
             {isPremium && (
               <div className="flex justify-center">
-                <Badge type={plan === 'premium' ? 'premium' : 'pro'} className="flex items-center gap-1">
-                  <Star className="w-3 h-3" />
-                  {plan === 'premium' ? t('common.premium') : t('common.enterprise')}
-                </Badge>
+                <div className="relative px-4 py-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 rounded-full shadow-lg">
+                  <div className="flex items-center gap-2 text-white font-medium">
+                    <Star className="w-4 h-4 animate-pulse" />
+                    <span>{plan === 'premium' ? t('common.premium') : t('common.enterprise')}</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full" />
+                </div>
               </div>
             )}
             
-            {/* Navigation Links */}
-            <div className="space-y-4">
+            {/* Navigation Links - Enhanced */}
+            <div className="space-y-3">
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                className={`block py-3 px-4 rounded-lg text-center font-medium transition-all ${
+                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
                   isActive('/') 
-                    ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                    ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
+                    : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
                 }`}
               >
-                {t('header.home')}
+                <span className="relative z-10">{t('header.home')}</span>
+                {!isActive('/') && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                )}
               </Link>
               <Link
                 to="/templates"
                 onClick={closeMobileMenu}
-                className={`block py-3 px-4 rounded-lg text-center font-medium transition-all ${
+                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
                   isActive('/templates') 
-                    ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                    ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
+                    : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
                 }`}
               >
-                {t('header.templates')}
+                <span className="relative z-10">{t('header.templates')}</span>
+                {!isActive('/templates') && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                )}
               </Link>
               {isAuthenticated && (
                 <Link
                   to="/dashboard"
                   onClick={closeMobileMenu}
-                  className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium transition-all ${
+                  className={`relative flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
                     isActive('/dashboard') 
-                      ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                      : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                      ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
+                      : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
                   }`}
                 >
-                  <LayoutDashboard className="w-4 h-4" />
-                  {t('header.dashboard')}
+                  <LayoutDashboard className="w-5 h-5 transition-transform hover:scale-110" />
+                  <span className="relative z-10">{t('header.dashboard')}</span>
+                  {!isActive('/dashboard') && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  )}
                 </Link>
               )}
             </div>
