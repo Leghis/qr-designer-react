@@ -183,11 +183,11 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       
       // Ensure imageOptions exists with hideBackgroundDots
       options.imageOptions = {
+        ...options.imageOptions,
         hideBackgroundDots: true,
         crossOrigin: 'anonymous',
         margin: 10,
-        imageSize: currentQrOptions.logoSize || 0.3,
-        ...options.imageOptions
+        imageSize: currentQrOptions.logoSize || 0.3
       };
       
       // Apply logo
