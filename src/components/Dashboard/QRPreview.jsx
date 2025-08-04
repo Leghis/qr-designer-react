@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import qrService from '../../services/qrService';
+import { generateQRCode } from '../../services/qrService';
 
 const QRPreview = ({ data, qrType }) => {
   const qrContainerRef = useRef(null);
@@ -10,8 +10,8 @@ const QRPreview = ({ data, qrType }) => {
     // Clear existing QR code
     qrContainerRef.current.innerHTML = '';
 
-    // Generate QR code
-    const qrCode = qrService.generateQRCode({
+    // Generate QR code (factory – no singleton)
+    const qrCode = generateQRCode({
       data: data,
       dotsOptions: {
         color: '#3b82f6',
@@ -27,6 +27,13 @@ const QRPreview = ({ data, qrType }) => {
     });
 
     qrCode.append(qrContainerRef.current);
+
+    // Cleanup on unmount or data change
+    return () => {
+      if (qrContainerRef.current) {
+        qrContainerRef.current.innerHTML = '';
+      }
+    };
   }, [data]);
 
   return (

@@ -3293,20 +3293,16 @@ export const premiumTemplates = [
   }
 ];
 
-// QR Service Class
-class QRService {
-  constructor() {
-    this.qrCode = null;
-  }
-
-  generateQRCode(options = {}) {
-    const finalOptions = { ...defaultQROptions, ...options };
-    this.qrCode = new QRCodeStyling(finalOptions);
-    return this.qrCode;
-  }
-}
-
-// Create singleton instance
-const qrService = new QRService();
-
-export default qrService;
+/**
+ * ------------------------------------------------------------------
+ * QR Code Factory (stateless) – évite tout singleton/global instance
+ * ------------------------------------------------------------------
+ * Chaque appel retourne une **nouvelle** instance QRCodeStyling afin
+ * d’empêcher les collisions entre composants React et simplifier le
+ * cycle vie (montage / mise à jour / nettoyage).
+ * ------------------------------------------------------------------
+ */
+export const generateQRCode = (options = {}) => {
+  const finalOptions = { ...defaultQROptions, ...options };
+  return new QRCodeStyling(finalOptions);
+};
