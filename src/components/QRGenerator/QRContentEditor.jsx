@@ -8,26 +8,48 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
   const [contentData, setContentData] = useState({});
   const [, setErrors] = useState({});
   const formRef = useRef(null);
+  // Keep ref of contentData for autofill detection callback
+  const contentDataRef = useRef(contentData);
+  // Keep ref of last generated content to avoid redundant onDataChange calls and loops
+  const lastContentRef = useRef(initialData || '');
   
-  // Initialize with detected content type
+  // Initialize with detected content type and sync lastContentRef
+  // Sync with initialData only when it truly comes from outside this component.
+  // This prevents edit-time loops where every keystroke regenerates the full
+  // vCard, bubbles up to the parent, then comes back down here and resets the
+  // local input state (e.g. removing the space the user just typed).
   useEffect(() => {
-    if (initialData) {
-      const detected = detectQRContentType(initialData);
-      setContentType(detected.type);
-      setContentData(detected.data);
+    if (!initialData) return;
+
+    // Ignore updates that originate from this component itself
+    if (initialData === lastContentRef.current) {
+      return;
     }
+
+    const detected = detectQRContentType(initialData);
+    setContentType(detected.type);
+    setContentData(detected.data);
+    lastContentRef.current = initialData;
   }, [initialData]);
 
-  // Update parent when data changes
+  // Update parent when data changes, but only on genuine content changes to prevent loops
   useEffect(() => {
     const qrContentTypes = getQRContentTypes(t);
     const contentConfig = qrContentTypes.find(type => type.id === contentType);
-    if (contentConfig) {
-      const isValid = contentConfig.validator(contentData);
-      if (isValid) {
-        const qrContent = generateQRContent(contentType, contentData);
-        onDataChange(qrContent);
-      }
+    if (!contentConfig) return;
+
+    // Validate safely without throwing to avoid render loops on invalid intermediate states
+    let isValid = false;
+    try {
+      isValid = !!contentConfig.validator?.(contentData);
+    } catch {
+      isValid = false;
+    }
+
+    const qrContent = isValid ? generateQRContent(contentType, contentData) : '';
+    if (qrContent !== lastContentRef.current) {
+      lastContentRef.current = qrContent;
+      onDataChange(qrContent);
     }
   }, [contentType, contentData, onDataChange, t]);
 
@@ -48,32 +70,51 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
   const handleFieldInput = (field) => (e) => {
     handleFieldChange(field, e.target.value);
   };
-  
-  // Monitor form for autofill changes
+  // Update ref when contentData changes to avoid stale closures
   useEffect(() => {
-    if (!formRef.current || contentType !== 'vcard') return;
-    
-    // Check form values periodically to catch autofill
-    const checkAutofill = () => {
-      const inputs = formRef.current.querySelectorAll('input, textarea');
-      inputs.forEach(input => {
-        const fieldName = input.getAttribute('data-field');
-        if (fieldName && input.value !== (contentData[fieldName] || '')) {
-          handleFieldChange(fieldName, input.value);
-        }
-      });
+    contentDataRef.current = contentData;
+  }, [contentData]);
+  
+  // Monitor form for autofill changes (avoid tight loops and excessive observers)
+  useEffect(() => {
+    if (contentType !== 'vcard') return;
+    if (!formRef.current) return;
+
+    const formEl = formRef.current;
+
+    // Sync on focus events which browsers fire during autofill reveal/commit
+    const handleFocus = (e) => {
+      const input = e.target;
+      if (!(input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement)) return;
+      const fieldName = input.getAttribute('data-field');
+      if (!fieldName) return;
+      const nextVal = input.value;
+      const currentVal = contentDataRef.current[fieldName] || '';
+      if (nextVal !== currentVal) {
+        handleFieldChange(fieldName, nextVal);
+      }
     };
-    
-    // Check immediately and then periodically
-    checkAutofill();
-    const interval = setInterval(checkAutofill, 100);
-    
-    // Stop checking after 2 seconds
-    const timeout = setTimeout(() => clearInterval(interval), 2000);
-    
+
+    formEl.addEventListener('focusin', handleFocus);
+    formEl.addEventListener('change', handleFocus);
+    formEl.addEventListener('input', handleFocus);
+
+    // Initial sync once
+    const inputs = formEl.querySelectorAll('input, textarea');
+    inputs.forEach((input) => {
+      const fieldName = input.getAttribute('data-field');
+      if (!fieldName) return;
+      const nextVal = input.value;
+      const currentVal = contentDataRef.current[fieldName] || '';
+      if (nextVal !== currentVal) {
+        handleFieldChange(fieldName, nextVal);
+      }
+    });
+
     return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
+      formEl.removeEventListener('focusin', handleFocus);
+      formEl.removeEventListener('change', handleFocus);
+      formEl.removeEventListener('input', handleFocus);
     };
   }, [contentType]);
 
@@ -281,11 +322,15 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               name="given-name"
               autoComplete="given-name"
               data-field="firstName"
-              value={contentData.firstName || ''}
+              value={contentData.firstName ?? ''}
               onChange={handleFieldInput('firstName')}
               onInput={handleFieldInput('firstName')}
+              // allow spaces during typing, no trim here
               placeholder={t('qrGenerator.content.placeholders.firstName')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
+              // Disable auto-capitalize/auto-correct to prevent unintended changes
+              autoCapitalize="none"
+              autoCorrect="off"
             />
           </div>
         );
@@ -301,11 +346,13 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               name="family-name"
               autoComplete="family-name"
               data-field="lastName"
-              value={contentData.lastName || ''}
+              value={contentData.lastName ?? ''}
               onChange={handleFieldInput('lastName')}
               onInput={handleFieldInput('lastName')}
               placeholder={t('qrGenerator.content.placeholders.lastName')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
+              autoCapitalize="none"
+              autoCorrect="off"
             />
           </div>
         );
@@ -323,7 +370,6 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               data-field="organization"
               value={contentData.organization || ''}
               onChange={handleFieldInput('organization')}
-              onInput={handleFieldInput('organization')}
               placeholder={t('qrGenerator.content.placeholders.company')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -343,7 +389,6 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               data-field="title"
               value={contentData.title || ''}
               onChange={handleFieldInput('title')}
-              onInput={handleFieldInput('title')}
               placeholder={t('qrGenerator.content.placeholders.jobTitle')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
@@ -400,7 +445,6 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               data-field="address"
               value={contentData.address || ''}
               onChange={handleFieldInput('address')}
-              onInput={handleFieldInput('address')}
               placeholder={t('qrGenerator.content.placeholders.address')}
               rows={2}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all resize-none"
@@ -720,6 +764,8 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
                   setContentType(type.id);
                   setContentData({});
                   setErrors({});
+                  // reset last content to avoid loop if switching types with same generated content
+                  lastContentRef.current = '';
                 }}
                 className={`p-3 rounded-lg border-2 transition-all hover:scale-105 active:scale-95 ${
                   contentType === type.id
