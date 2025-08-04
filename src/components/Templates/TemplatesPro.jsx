@@ -88,12 +88,12 @@ const TemplatesPro = () => {
   
   return (
     <div>
-      {/* Header Section */}
-      <div className="text-center mb-12">
+      {/* Header Section - Mobile Optimized */}
+      <div className="text-center mb-8 sm:mb-12">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 px-4"
         >
           {t('templates.gallery.title')} <span className="gradient-text">{t('templates.gallery.titleHighlight')}</span>
         </motion.h2>
@@ -101,7 +101,7 @@ const TemplatesPro = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4"
         >
           {t('templates.gallery.subtitle', { count: templateCounts.all })}
         </motion.p>
@@ -113,14 +113,14 @@ const TemplatesPro = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-8 md:hidden"
+        className="mb-6 sm:mb-8 md:hidden px-4"
       >
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full px-6 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-lg flex items-center justify-between"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg flex items-center justify-between min-h-[52px]"
           >
-            <span className="font-medium">
+            <span className="font-medium text-sm sm:text-base">
               {t(`templates.categories.${selectedCategory}`)}
             </span>
             <ChevronDown className={`w-5 h-5 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -144,11 +144,11 @@ const TemplatesPro = () => {
                       setIsDropdownOpen(false);
                     }}
                     className={`
-                      w-full px-6 py-3 text-left hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors
+                      w-full px-4 sm:px-6 py-3 sm:py-4 text-left hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors min-h-[48px] flex items-center
                       ${selectedCategory === category.id ? 'bg-gray-50 dark:bg-slate-700' : ''}
                     `}
                   >
-                    <span className={`bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent font-medium`}>
+                    <span className={`bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent font-medium text-sm sm:text-base`}>
                       {t(`templates.categories.${category.id}`)}
                     </span>
                   </button>
@@ -164,16 +164,16 @@ const TemplatesPro = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="hidden md:flex flex-wrap justify-center gap-3 mb-12"
+        className="hidden md:flex flex-wrap justify-center gap-3 mb-8 lg:mb-12 px-4"
       >
         {CATEGORIES.map((category) => (
           <motion.button
             key={category.id}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedCategory(category.id)}
             className={`
-              px-6 py-3 rounded-full font-medium transition-all
+              px-4 lg:px-6 py-2.5 lg:py-3 rounded-full font-medium transition-all text-sm lg:text-base min-h-[44px] flex items-center
               ${selectedCategory === category.id 
                 ? 'bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg' 
                 : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700'
@@ -196,7 +196,7 @@ const TemplatesPro = () => {
       ) : (
         <motion.div 
           layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4"
         >
           {templates.map((template, index) => (
             <TemplateCard
@@ -341,16 +341,18 @@ const TemplateCard = ({ template, index }) => {
       transition={{ delay: index * 0.05 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setTimeout(() => setIsHovered(false), 2000)} // Keep visible for 2s on touch
       className="group"
     >
       <div className={`
-        relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden transition-all duration-300
-        ${isHovered ? 'shadow-2xl transform -translate-y-2' : 'shadow-lg'}
+        relative bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300
+        ${isHovered ? 'shadow-xl sm:shadow-2xl transform -translate-y-1 sm:-translate-y-2' : 'shadow-md sm:shadow-lg'}
       `}>
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4 z-10">
+        {/* Category Badge - Mobile Optimized */}
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
           <span className={`
-            px-3 py-1 rounded-full text-xs font-medium bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
+            px-2 py-1 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
             bg-gradient-to-r ${CATEGORIES.find(c => c.id === template.category)?.gradient || 'from-gray-500 to-gray-600'}
             bg-clip-text text-transparent
           `}>
@@ -358,35 +360,35 @@ const TemplateCard = ({ template, index }) => {
           </span>
         </div>
         
-        {/* QR Preview */}
-        <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 p-8">
+        {/* QR Preview - Mobile Optimized */}
+        <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 p-4 sm:p-6 lg:p-8">
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 dark:to-white/5"></div>
           <div 
             ref={qrContainerRef}
             className="w-full h-full flex items-center justify-center"
           />
           
-          {/* Hover Overlay */}
+          {/* Mobile-friendly Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-6"
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-4 sm:p-6"
           >
             <Link
               to={`/templates/${template.id}`}
-              className="px-6 py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-xl font-medium hover:bg-white dark:hover:bg-slate-900 transition-all transform hover:scale-105"
+              className="px-4 py-2.5 sm:px-6 sm:py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-lg sm:rounded-xl font-medium hover:bg-white dark:hover:bg-slate-900 transition-all transform hover:scale-105 text-sm sm:text-base min-h-[44px] flex items-center justify-center"
             >
               {t('templates.card.customize')}
             </Link>
           </motion.div>
         </div>
         
-        {/* Template Info */}
-        <div className="p-6">
-          <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+        {/* Template Info - Mobile Optimized */}
+        <div className="p-4 sm:p-6">
+          <h3 className="font-semibold text-base sm:text-lg mb-2 flex items-center gap-2 line-clamp-1">
             {template.name}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
             {template.description || 'Template personnalisable'}
           </p>
         </div>

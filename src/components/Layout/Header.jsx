@@ -1,6 +1,6 @@
-// import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Star, LayoutDashboard } from 'lucide-react';
+import { QrCode, Star, LayoutDashboard, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
 import { useAuth } from '../../hooks/useAuth';
@@ -15,10 +15,46 @@ const Header = () => {
   const { isPremium, plan } = useSubscription();
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-  // const navigate = useNavigate();
-  // const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   const isActive = (path) => location.pathname === path;
+  
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        // Check if the click is not on the menu button itself
+        const menuButton = document.querySelector('[aria-label="Toggle mobile menu"]');
+        if (!menuButton || !menuButton.contains(event.target)) {
+          closeMobileMenu();
+        }
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location.pathname]);
 
   // Logout functions commented out since authentication is hidden
   // const handleLogoutClick = () => {
@@ -39,19 +75,19 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-slate-800">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform">
-                <QrCode className="w-7 h-7 text-white" />
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3" onClick={closeMobileMenu}>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform">
+                <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-xl sm:text-2xl font-bold">
                 <span className="gradient-text">{t('header.brand')}</span>
               </h1>
             </Link>
             
-            {/* User Status Badge */}
+            {/* User Status Badge - Hidden on small screens */}
             {isPremium && (
-              <div className="ml-3">
+              <div className="ml-2 hidden sm:block">
                 <Badge type={plan === 'premium' ? 'premium' : 'pro'} className="flex items-center gap-1">
                   <Star className="w-3 h-3" />
                   {plan === 'premium' ? t('common.premium') : t('common.enterprise')}
@@ -60,7 +96,8 @@ const Header = () => {
             )}
           </div>
           
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3">
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
               <Link
                 to="/"
@@ -97,42 +134,105 @@ const Header = () => {
               )}
             </nav>
             
-            {/* Authentication Section - Hidden for now */}
-            {/* <div className="flex items-center space-x-3">
-              {isAuthenticated && user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2 px-3 py-2 bg-gray-100 dark:bg-dark-800 rounded-lg">
-                    <User className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {user.name}
-                    </span>
-                  </div>
-                  <button
-                    onClick={handleLogoutClick}
-                    className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-                    title="Se déconnecter"
-                  >
-                    <LogOut className="w-5 h-5" />
-                  </button>
-                </div>
-              ) : (
-                <Link
-                  to="/login"
-                  className="flex items-center space-x-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-all transform hover:scale-105"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Connexion</span>
-                </Link>
-              )}
-            </div> */}
-            
-            <div className="flex items-center space-x-3">
+            {/* Desktop Controls */}
+            <div className="hidden sm:flex items-center space-x-3">
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
+            
+            {/* Mobile Controls - Only theme and language switcher on very small screens */}
+            <div className="flex sm:hidden items-center space-x-2">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-600 dark:text-slate-200" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-600 dark:text-slate-200" />
+              )}
+            </button>
           </div>
         </div>
       </nav>
+      
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          onClick={closeMobileMenu}
+        />
+      )}
+      
+      {/* Mobile Menu */}
+      <div 
+        ref={mobileMenuRef}
+        className={`fixed top-[85px] left-0 right-0 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 transform transition-all duration-300 ease-out z-40 md:hidden ${
+          isMobileMenuOpen 
+            ? 'translate-y-0 opacity-100' 
+            : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <nav className="container mx-auto px-4 py-6">
+          <div className="space-y-6">
+            {/* User Status Badge - Visible on mobile */}
+            {isPremium && (
+              <div className="flex justify-center">
+                <Badge type={plan === 'premium' ? 'premium' : 'pro'} className="flex items-center gap-1">
+                  <Star className="w-3 h-3" />
+                  {plan === 'premium' ? t('common.premium') : t('common.enterprise')}
+                </Badge>
+              </div>
+            )}
+            
+            {/* Navigation Links */}
+            <div className="space-y-4">
+              <Link
+                to="/"
+                onClick={closeMobileMenu}
+                className={`block py-3 px-4 rounded-lg text-center font-medium transition-all ${
+                  isActive('/') 
+                    ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                    : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                {t('header.home')}
+              </Link>
+              <Link
+                to="/templates"
+                onClick={closeMobileMenu}
+                className={`block py-3 px-4 rounded-lg text-center font-medium transition-all ${
+                  isActive('/templates') 
+                    ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                    : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                {t('header.templates')}
+              </Link>
+              {isAuthenticated && (
+                <Link
+                  to="/dashboard"
+                  onClick={closeMobileMenu}
+                  className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium transition-all ${
+                    isActive('/dashboard') 
+                      ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                      : 'text-gray-600 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  {t('header.dashboard')}
+                </Link>
+              )}
+            </div>
+          </div>
+        </nav>
+      </div>
       
       {/* Logout Confirmation Modal - Hidden for now */}
       {/* <Modal

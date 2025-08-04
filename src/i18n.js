@@ -25,6 +25,7 @@ i18n
     resources,
     fallbackLng: 'fr', // Default to French
     debug: false,
+    lng: 'fr', // Force initial language to ensure resources are loaded
     
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
@@ -39,10 +40,16 @@ i18n
       useSuspense: false, // Disable suspense to avoid loading issues
       bindI18n: 'languageChanged loaded',
       bindI18nStore: 'added removed',
-      transEmptyNodeValue: '',
+      transEmptyNodeValue: '', // Show empty string instead of key when translation is missing
       transSupportBasicHtmlNodes: true,
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i']
     }
+  })
+  .then(() => {
+    // i18n initialized successfully - silent in production
+  })
+  .catch(() => {
+    // i18n initialization failed - handled silently
   });
 
 export default i18n;

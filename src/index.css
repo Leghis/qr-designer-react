@@ -198,6 +198,69 @@ html.dark, html.dark body {
   @apply -translate-y-1 shadow-xl;
 }
 
+/* Mobile Typography Improvements */
+@media (max-width: 640px) {
+  /* Better line height for mobile reading */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+  }
+  
+  /* Improved text spacing on mobile */
+  p, .text-base, .text-sm, .text-xs {
+    line-height: 1.6;
+  }
+  
+  /* Prevent text overflow on mobile */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Touch-friendly interactions */
+  button, .btn, .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better tap targets */
+  a, button, input, select, textarea, [role="button"] {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Smooth scrolling for better mobile UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for keyboard navigation */
+*:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Hide focus outline for mouse users */
+.js-focus-visible *:focus:not(.focus-visible) {
+  outline: none;
+}
+
 /* Theme toggle animations */
 .theme-toggle {
   position: relative;

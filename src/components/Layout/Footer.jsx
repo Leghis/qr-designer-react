@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { QrCode, Twitter, Linkedin, Github } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslationOptimized } from '../../hooks/useTranslationOptimized';
 import ComingSoonModal from '../UI/ComingSoonModal';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslationOptimized();
   const [modalState, setModalState] = useState({
     isOpen: false,
     type: 'feature',
@@ -14,6 +14,11 @@ const Footer = () => {
   });
 
   const openModal = (type, title, description) => {
+    // Ne pas ouvrir le modal si les traductions ne sont pas prêtes
+    if (!ready) {
+      return;
+    }
+    
     setModalState({
       isOpen: true,
       type,
@@ -162,4 +167,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

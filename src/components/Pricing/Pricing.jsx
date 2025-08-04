@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users } from 'lucide-react';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslationOptimized } from '../../hooks/useTranslationOptimized';
+import { Trans } from 'react-i18next';
 
 const getFeatures = (t) => [
   {
@@ -50,7 +51,7 @@ const getWhyFree = (t) => [
 ];
 
 const Pricing = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslationOptimized();
   const features = getFeatures(t);
   const whyFree = getWhyFree(t);
   
@@ -207,7 +208,7 @@ const Pricing = () => {
           <p className="text-sm text-gray-500 dark:text-gray-400">
             <span className="inline-flex items-center gap-1">
               <Sparkles className="w-4 h-4" />
-              {t('pricing.comingSoon.message')}
+              {t('comingSoon.message')}
             </span>
           </p>
         </motion.div>

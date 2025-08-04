@@ -497,11 +497,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
         </div>
       )}
       
-      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-2xl border border-gray-200 dark:border-slate-800 p-4 sm:p-6 lg:p-8" : ""}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-200 dark:border-slate-800 p-3 sm:p-6 lg:p-8" : ""}>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {/* Left: Controls */}
-          <div className="space-y-6">
-            {/* Enhanced Tab Selector */}
+          <div className="space-y-4 sm:space-y-6">
+            {/* Enhanced Tab Selector - Mobile Optimized */}
             <div className="relative">
               {showBeautifulBackground && (
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-100/30 to-purple-100/30 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl blur"></div>
@@ -516,16 +516,14 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex-1 flex items-center justify-center gap-2 px-3 rounded-lg font-medium transition-all ${
-                        showBeautifulBackground ? 'py-2.5' : 'py-2'
-                      } ${
+                      className={`flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg font-medium transition-all text-xs sm:text-sm min-h-[44px] ${
                         activeTab === tab.id
                           ? `bg-white dark:bg-slate-900 text-primary-600 dark:text-primary-400 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
                           : 'text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100'
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
-                      <span className="hidden sm:inline">{tab.label}</span>
+                      <Icon className="w-4 h-4 sm:w-4 sm:h-4" />
+                      <span className="text-[10px] sm:text-sm font-medium">{tab.label}</span>
                     </button>
                   );
                 })}
@@ -565,23 +563,23 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {t('qrGenerator.style.templates')}
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {popularTemplates.map((tmpl) => (
                       <motion.button
                         key={tmpl.id}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                         onClick={() => applyTemplate(tmpl)}
-                        className={`relative p-3 rounded-lg border-2 transition-all ${
+                        className={`relative p-3 sm:p-4 rounded-xl border-2 transition-all min-h-[80px] sm:min-h-[90px] ${
                           selectedTemplate?.id === tmpl.id
                             ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 active:border-primary-400'
                         }`}
                       >
                         {tmpl.isPremium && (
-                          <Crown className="absolute top-1 right-1 w-3 h-3 text-yellow-500" />
+                          <Crown className="absolute top-2 right-2 w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
                         )}
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                           <div className="w-full h-full relative" style={{ 
                             backgroundColor: tmpl.options?.backgroundOptions?.color || '#FFFFFF' 
                           }}>
@@ -690,20 +688,20 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       <button
                         key={palette.id}
                         onClick={() => setQrOptions({ ...qrOptions, colors: palette.id })}
-                        className={`p-2 rounded-lg border-2 transition-all ${
+                        className={`p-2 sm:p-3 rounded-xl border-2 transition-all min-h-[52px] min-w-[52px] ${
                           qrOptions.colors === palette.id
-                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 scale-105'
+                            : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 active:scale-95'
                         }`}
                         title={palette.name}
                       >
                         {palette.id === 'custom' ? (
-                          <div className="text-xs font-medium">{t('qrGenerator.style.custom')}</div>
+                          <div className="text-[10px] sm:text-xs font-medium text-center">{t('qrGenerator.style.custom')}</div>
                         ) : (
-                          <div className="flex justify-center items-center gap-0.5 p-1">
+                          <div className="flex justify-center items-center">
                             {/* Background */}
                             <div 
-                              className="w-8 h-8 rounded border border-gray-300 relative overflow-hidden"
+                              className="w-8 h-8 sm:w-10 sm:h-10 rounded border border-gray-300 relative overflow-hidden"
                               style={{ backgroundColor: palette.preview[1] }}
                             >
                               {/* Dots preview */}
@@ -727,9 +725,9 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       animate={{ opacity: 1, height: 'auto' }}
                       className="space-y-3 pt-3 border-t border-gray-200 dark:border-gray-700"
                     >
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.dotsColor')}</label>
+                          <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">{t('qrGenerator.style.dotsColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.dots}
@@ -738,11 +736,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                               colors: 'custom',
                               customColors: { ...qrOptions.customColors, dots: e.target.value }
                             })}
-                            className="w-full h-10 rounded cursor-pointer"
+                            className="w-full h-12 rounded-xl cursor-pointer border-2 border-gray-300 dark:border-gray-600"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.backgroundColor')}</label>
+                          <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">{t('qrGenerator.style.backgroundColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.background}
@@ -751,13 +749,13 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                               colors: 'custom',
                               customColors: { ...qrOptions.customColors, background: e.target.value }
                             })}
-                            className="w-full h-10 rounded cursor-pointer"
+                            className="w-full h-12 rounded-xl cursor-pointer border-2 border-gray-300 dark:border-gray-600"
                           />
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.cornersColor')}</label>
+                          <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">{t('qrGenerator.style.cornersColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.corners}
@@ -766,11 +764,11 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                               colors: 'custom',
                               customColors: { ...qrOptions.customColors, corners: e.target.value }
                             })}
-                            className="w-full h-10 rounded cursor-pointer"
+                            className="w-full h-12 rounded-xl cursor-pointer border-2 border-gray-300 dark:border-gray-600"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">{t('qrGenerator.style.cornerDotsColor')}</label>
+                          <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">{t('qrGenerator.style.cornerDotsColor')}</label>
                           <input
                             type="color"
                             value={qrOptions.customColors.cornersAlt || qrOptions.customColors.corners}
@@ -779,7 +777,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                               colors: 'custom',
                               customColors: { ...qrOptions.customColors, cornersAlt: e.target.value }
                             })}
-                            className="w-full h-10 rounded cursor-pointer"
+                            className="w-full h-12 rounded-xl cursor-pointer border-2 border-gray-300 dark:border-gray-600"
                           />
                         </div>
                       </div>
@@ -787,12 +785,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       {/* Color harmony suggestions */}
                       <div className="pt-2">
                         <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{t('qrGenerator.style.colorSuggestions')}:</p>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-3">
                           {generateColorSuggestions(qrOptions.customColors.dots).map((color, index) => (
                             <button
                               key={index}
                               onClick={() => applySuggestedColors(color)}
-                              className="w-8 h-8 rounded border-2 border-gray-300 dark:border-gray-600 hover:scale-110 transition-transform"
+                              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border-2 border-gray-300 dark:border-gray-600 hover:scale-110 active:scale-95 transition-transform"
                               style={{ backgroundColor: color.dots }}
                               title={t('qrGenerator.style.applyPalette')}
                             />
@@ -809,28 +807,28 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                   {t('qrGenerator.style.shape')}
                 </label>
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <button
                     onClick={() => setQrOptions({ ...qrOptions, shape: 'square' })}
-                    className={`flex-1 p-3 rounded-lg border-2 transition-all ${
+                    className={`flex-1 p-4 rounded-xl border-2 transition-all min-h-[64px] ${
                       qrOptions.shape === 'square'
-                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 scale-105'
+                        : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 active:scale-95'
                     }`}
                   >
-                    <Square className="w-6 h-6 mx-auto mb-1" />
-                    <span className="text-xs">{t('qrGenerator.style.shapes.square')}</span>
+                    <Square className="w-6 h-6 sm:w-7 sm:h-7 mx-auto mb-2" />
+                    <span className="text-xs sm:text-sm font-medium">{t('qrGenerator.style.shapes.square')}</span>
                   </button>
                   <button
                     onClick={() => setQrOptions({ ...qrOptions, shape: 'circle' })}
-                    className={`flex-1 p-3 rounded-lg border-2 transition-all ${
+                    className={`flex-1 p-4 rounded-xl border-2 transition-all min-h-[64px] ${
                       qrOptions.shape === 'circle'
-                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 scale-105'
+                        : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 active:scale-95'
                     }`}
                   >
-                    <Circle className="w-6 h-6 mx-auto mb-1" />
-                    <span className="text-xs">{t('qrGenerator.style.shapes.circle')}</span>
+                    <Circle className="w-6 h-6 sm:w-7 sm:h-7 mx-auto mb-2" />
+                    <span className="text-xs sm:text-sm font-medium">{t('qrGenerator.style.shapes.circle')}</span>
                   </button>
                 </div>
               </div>
@@ -1101,55 +1099,61 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 </motion.button>
               </motion.div>
               
-              {/* QR Code content with blur effect */}
+              {/* QR Code content with blur effect - Mobile Optimized */}
               <div 
                 ref={previewRef}
                 className={`mx-auto flex items-center justify-center w-full transition-all duration-300 ${
                   showPreview ? '' : 'blur-xl scale-95'
                 }`}
-                style={{ minHeight: '250px', maxWidth: '400px' }}
+                style={{ 
+                  minHeight: '200px', 
+                  maxWidth: '100%',
+                  aspectRatio: '1/1'
+                }}
               >
                 {isGenerating && (
-                  <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t('qrGenerator.preview.generating')}</p>
+                  <div className="flex flex-col items-center gap-3 p-4">
+                    <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary-600" />
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center">{t('qrGenerator.preview.generating')}</p>
                   </div>
                 )}
               </div>
             </div>
           </motion.div>
             
-            {/* Download Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-6">
+            {/* Download Buttons - Mobile Optimized */}
+            <div className="flex flex-col gap-3 mt-6">
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => downloadQR('png')}
-                className="flex-1 px-4 sm:px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-medium hover:from-primary-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
+                className="w-full px-6 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-semibold hover:from-primary-700 hover:to-purple-700 transition-all flex items-center justify-center gap-3 min-h-[52px] text-lg"
               >
                 <Download className="w-5 h-5" />
                 {t('qrGenerator.actions.downloadPNG')}
               </motion.button>
               
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => downloadQR('svg')}
-                className="flex-1 px-4 sm:px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                {t('qrGenerator.actions.downloadSVG')}
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => downloadQR('pdf')}
-                className="w-full sm:w-auto px-4 sm:px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                PDF
-              </motion.button>
+              <div className="grid grid-cols-2 gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => downloadQR('svg')}
+                  className="px-4 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                >
+                  <Download className="w-4 h-4" />
+                  {t('qrGenerator.actions.downloadSVG')}
+                </motion.button>
+                
+                <motion.button
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => downloadQR('pdf')}
+                  className="px-4 py-3 bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                >
+                  <Download className="w-4 h-4" />
+                  PDF
+                </motion.button>
+              </div>
             </div>
           
           {/* Template Info */}

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, Clock, Star, Zap, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslationOptimized } from '../../hooks/useTranslationOptimized';
 
 const ComingSoonModal = ({ isOpen, onClose, type = 'feature', title, description }) => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslationOptimized();
 
   useEffect(() => {
     if (isOpen) {
@@ -67,9 +67,30 @@ const ComingSoonModal = ({ isOpen, onClose, type = 'feature', title, description
     }
   };
 
+  // Afficher un loader si les traductions ne sont pas prêtes
+  if (isOpen && !ready) {
+    return (
+      <AnimatePresence>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        >
+          <div className="bg-white dark:bg-slate-800 rounded-3xl p-8">
+            <div className="flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+              <span className="ml-3 text-gray-600 dark:text-gray-300">Loading translations...</span>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && ready && (
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -255,4 +276,4 @@ const ComingSoonModal = ({ isOpen, onClose, type = 'feature', title, description
   );
 };
 
-export default ComingSoonModal;
+export default memo(ComingSoonModal);
