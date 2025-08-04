@@ -62,7 +62,7 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => openModal('premium', 'Premium Features', 'Découvrez bientôt nos fonctionnalités premium exclusives qui révolutionneront votre expérience QR Designer!')}
+                  onClick={() => openModal('premium', t('comingSoon.premium.title'), t('comingSoon.premium.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('common.premium')}
@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => openModal('api', 'API Access', 'Notre API puissante arrive bientôt pour intégrer QR Designer dans vos applications!')}
+                  onClick={() => openModal('api', t('comingSoon.api.title'), t('comingSoon.api.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('footer.links.api')}
@@ -84,7 +84,7 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <button 
-                  onClick={() => openModal('page', 'À Propos', 'Découvrez bientôt notre histoire, notre mission et les valeurs qui nous animent chez QR Designer.')}
+                  onClick={() => openModal('page', t('comingSoon.about.title'), t('comingSoon.about.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('footer.links.about')}
@@ -92,7 +92,7 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => openModal('page', 'Blog', 'Notre blog arrive bientôt avec des articles, tutoriels et conseils pour maximiser l\'usage des QR codes!')}
+                  onClick={() => openModal('page', t('comingSoon.blog.title'), t('comingSoon.blog.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('footer.links.blog')}
@@ -100,7 +100,7 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => openModal('page', 'Carrières', 'Rejoignez bientôt notre équipe dynamique et participez à l\'innovation dans l\'univers des QR codes!')}
+                  onClick={() => openModal('page', t('comingSoon.careers.title'), t('comingSoon.careers.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('footer.links.careers')}
@@ -108,7 +108,7 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => openModal('page', 'Contact', 'Une page de contact complète sera bientôt disponible pour répondre à toutes vos questions!')}
+                  onClick={() => openModal('page', t('comingSoon.contact.title'), t('comingSoon.contact.description'))}
                   className="hover:text-white transition-colors text-left"
                 >
                   {t('footer.links.contact')}
@@ -121,21 +121,21 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">{t('footer.links.support')}</h4>
             <div className="flex gap-4">
               <button
-                onClick={() => openModal('support', 'Support Twitter', 'Suivez-nous bientôt sur Twitter pour les dernières nouveautés et le support communautaire!')}
+                onClick={() => openModal('support', t('comingSoon.twitter.title'), t('comingSoon.twitter.description'))}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </button>
               <button
-                onClick={() => openModal('support', 'Support LinkedIn', 'Connectez-vous bientôt avec nous sur LinkedIn pour des insights professionnels!')}
+                onClick={() => openModal('support', t('comingSoon.linkedin.title'), t('comingSoon.linkedin.description'))}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </button>
               <button
-                onClick={() => openModal('support', 'Support GitHub', 'Découvrez bientôt notre code open-source et contribuez au projet sur GitHub!')}
+                onClick={() => openModal('support', t('comingSoon.github.title'), t('comingSoon.github.description'))}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="GitHub"
               >

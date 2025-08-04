@@ -108,6 +108,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     { 
       id: 'basic', 
       name: t('qrGenerator.templates.basic'),
+      category: t('templates.categories.professional'),
       options: {
         dotsOptions: { color: '#000000', type: 'square' },
         backgroundOptions: { color: '#FFFFFF' },
@@ -119,6 +120,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     { 
       id: 'modern', 
       name: t('qrGenerator.templates.modern'),
+      category: t('templates.categories.creative'),
       options: {
         dotsOptions: { color: '#3B82F6', type: 'rounded' },
         backgroundOptions: { color: '#EFF6FF' },
@@ -1151,18 +1153,18 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
             </div>
           
           {/* Template Info */}
-          {template && (
+          {(template || selectedTemplate) && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="mt-6 p-4 bg-gray-50 dark:bg-slate-850 rounded-lg"
             >
               <p className="text-sm text-gray-600 dark:text-slate-300">
-                {t('qrGenerator.template.name')}: <span className="font-medium text-gray-900 dark:text-slate-100">{template.name}</span>
+                {t('qrGenerator.template.name')}: <span className="font-medium text-gray-900 dark:text-slate-100">{(template || selectedTemplate)?.name}</span>
               </p>
-              {template.category && (
+              {(template || selectedTemplate)?.category && (
                 <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">
-                  {t('qrGenerator.template.category')}: <span className="font-medium">{template.category}</span>
+                  {t('qrGenerator.template.category')}: <span className="font-medium">{(template || selectedTemplate)?.category}</span>
                 </p>
               )}
             </motion.div>

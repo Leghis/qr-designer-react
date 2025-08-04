@@ -596,10 +596,44 @@
       "feature1": "Enhanced and intuitive user interface",
       "feature2": "Powerful new features",
       "feature3": "Optimized performance and stability",
-      "notify": "Be the first to know!",
-      "emailPlaceholder": "your@email.com",
-      "notifyMe": "Notify me",
-      "comingSoonText": "Coming soon..."
+      "stayTuned": "Stay connected and don't miss anything!",
+      "thankYou": "Thank you for your patience",
+      "premium": {
+        "title": "Premium Features",
+        "description": "Discover soon our exclusive premium features that will revolutionize your QR Designer experience!"
+      },
+      "api": {
+        "title": "API Access",
+        "description": "Our powerful API is coming soon to integrate QR Designer into your applications!"
+      },
+      "about": {
+        "title": "About Us",
+        "description": "Discover soon our story, our mission and the values that drive us at QR Designer."
+      },
+      "blog": {
+        "title": "Blog",
+        "description": "Our blog is coming soon with articles, tutorials and tips to maximize QR code usage!"
+      },
+      "careers": {
+        "title": "Careers",
+        "description": "Join soon our dynamic team and participate in innovation in the QR code universe!"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "A complete contact page will be available soon to answer all your questions!"
+      },
+      "twitter": {
+        "title": "Twitter Support",
+        "description": "Follow us soon on Twitter for the latest news and community support!"
+      },
+      "linkedin": {
+        "title": "LinkedIn Support",
+        "description": "Connect with us soon on LinkedIn for professional insights!"
+      },
+      "github": {
+        "title": "GitHub Support",
+        "description": "Discover soon our open-source code and contribute to the project on GitHub!"
+      }
     }
   },
   "howItWorks": {

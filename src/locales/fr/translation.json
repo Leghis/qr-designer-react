@@ -596,10 +596,44 @@
       "feature1": "Interface utilisateur améliorée et intuitive",
       "feature2": "Nouvelles fonctionnalités puissantes",
       "feature3": "Performance optimisée et stabilité",
-      "notify": "Soyez le premier informé !",
-      "emailPlaceholder": "votre@email.com",
-      "notifyMe": "Me notifier",
-      "comingSoonText": "Bientôt disponible..."
+      "stayTuned": "Restez connectés pour ne rien manquer !",
+      "thankYou": "Merci pour votre patience",
+      "premium": {
+        "title": "Fonctionnalités Premium",
+        "description": "Découvrez bientôt nos fonctionnalités premium exclusives qui révolutionneront votre expérience QR Designer !"
+      },
+      "api": {
+        "title": "Accès API",
+        "description": "Notre API puissante arrive bientôt pour intégrer QR Designer dans vos applications !"
+      },
+      "about": {
+        "title": "À Propos",
+        "description": "Découvrez bientôt notre histoire, notre mission et les valeurs qui nous animent chez QR Designer."
+      },
+      "blog": {
+        "title": "Blog",
+        "description": "Notre blog arrive bientôt avec des articles, tutoriels et conseils pour maximiser l'usage des QR codes !"
+      },
+      "careers": {
+        "title": "Carrières",
+        "description": "Rejoignez bientôt notre équipe dynamique et participez à l'innovation dans l'univers des QR codes !"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Une page de contact complète sera bientôt disponible pour répondre à toutes vos questions !"
+      },
+      "twitter": {
+        "title": "Support Twitter",
+        "description": "Suivez-nous bientôt sur Twitter pour les dernières nouveautés et le support communautaire !"
+      },
+      "linkedin": {
+        "title": "Support LinkedIn",
+        "description": "Connectez-vous bientôt avec nous sur LinkedIn pour des insights professionnels !"
+      },
+      "github": {
+        "title": "Support GitHub",
+        "description": "Découvrez bientôt notre code open-source et contribuez au projet sur GitHub !"
+      }
     }
   },
   "howItWorks": {
