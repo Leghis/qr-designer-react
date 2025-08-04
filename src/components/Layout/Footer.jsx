@@ -1,9 +1,35 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { QrCode, Twitter, Linkedin, Github } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import ComingSoonModal from '../UI/ComingSoonModal';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    type: 'feature',
+    title: '',
+    description: ''
+  });
+
+  const openModal = (type, title, description) => {
+    setModalState({
+      isOpen: true,
+      type,
+      title,
+      description
+    });
+  };
+
+  const closeModal = () => {
+    setModalState({
+      isOpen: false,
+      type: 'feature',
+      title: '',
+      description: ''
+    });
+  };
   
   return (
     <footer className="bg-dark-900 text-white py-16">
@@ -35,14 +61,20 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/premium" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('premium', 'Premium Features', 'Découvrez bientôt nos fonctionnalités premium exclusives qui révolutionneront votre expérience QR Designer!')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('common.premium')}
-                </Link>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('api', 'API Access', 'Notre API puissante arrive bientôt pour intégrer QR Designer dans vos applications!')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('footer.links.api')}
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -51,24 +83,36 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">{t('footer.links.company')}</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('page', 'À Propos', 'Découvrez bientôt notre histoire, notre mission et les valeurs qui nous animent chez QR Designer.')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('footer.links.about')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('page', 'Blog', 'Notre blog arrive bientôt avec des articles, tutoriels et conseils pour maximiser l\'usage des QR codes!')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('footer.links.blog')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('page', 'Carrières', 'Rejoignez bientôt notre équipe dynamique et participez à l\'innovation dans l\'univers des QR codes!')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('footer.links.careers')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => openModal('page', 'Contact', 'Une page de contact complète sera bientôt disponible pour répondre à toutes vos questions!')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   {t('footer.links.contact')}
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -76,27 +120,27 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">{t('footer.links.support')}</h4>
             <div className="flex gap-4">
-              <a
-                href="#"
+              <button
+                onClick={() => openModal('support', 'Support Twitter', 'Suivez-nous bientôt sur Twitter pour les dernières nouveautés et le support communautaire!')}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                onClick={() => openModal('support', 'Support LinkedIn', 'Connectez-vous bientôt avec nous sur LinkedIn pour des insights professionnels!')}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
+                onClick={() => openModal('support', 'Support GitHub', 'Découvrez bientôt notre code open-source et contribuez au projet sur GitHub!')}
                 className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -105,6 +149,15 @@ const Footer = () => {
           <p>{t('footer.copyright', { year: new Date().getFullYear() })} {t('footer.madeWith')} ❤️ {t('footer.in')}.</p>
         </div>
       </div>
+
+      {/* Coming Soon Modal */}
+      <ComingSoonModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        type={modalState.type}
+        title={modalState.title}
+        description={modalState.description}
+      />
     </footer>
   );
 };

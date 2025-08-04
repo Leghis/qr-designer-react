@@ -4,7 +4,7 @@ export const professionalTemplates = [
     name: 'Corporate Blue',
     category: 'professional',
     description: 'Bleu corporate professionnel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -28,7 +28,7 @@ export const professionalTemplates = [
     name: 'Executive Gold',
     category: 'professional',
     description: 'Or exécutif prestigieux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -60,7 +60,7 @@ export const professionalTemplates = [
     name: 'Minimal Black',
     category: 'professional',
     description: 'Noir minimaliste élégant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -84,7 +84,7 @@ export const professionalTemplates = [
     name: 'Tech Grid',
     category: 'professional',
     description: 'Grille technologique moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -115,7 +115,7 @@ export const professionalTemplates = [
     name: 'Finance Green',
     category: 'professional',
     description: 'Vert finance institutionnel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -139,7 +139,7 @@ export const professionalTemplates = [
     name: 'Consulting Navy',
     category: 'professional',
     description: 'Bleu marine consulting',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -163,7 +163,7 @@ export const professionalTemplates = [
     name: 'Platinum Elite',
     category: 'professional',
     description: 'Platine élite ultra-premium',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -202,7 +202,7 @@ export const professionalTemplates = [
     name: 'Royal Purple',
     category: 'professional',
     description: 'Violet royal distingué',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -233,7 +233,7 @@ export const professionalTemplates = [
     name: 'Executive Silver',
     category: 'professional',
     description: 'Argent exécutif sophistiqué',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -265,7 +265,7 @@ export const professionalTemplates = [
     name: 'Corporate Teal',
     category: 'professional',
     description: 'Turquoise corporate moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -295,7 +295,7 @@ export const professionalTemplates = [
     name: 'Business Crimson',
     category: 'professional',
     description: 'Cramoisi business impactant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -319,7 +319,7 @@ export const professionalTemplates = [
     name: 'Titanium Power',
     category: 'professional',
     description: 'Titane puissant aux reflets métalliques',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -364,7 +364,7 @@ export const professionalTemplates = [
     name: 'Sapphire Elite',
     category: 'professional',
     description: 'Saphir élite aux nuances de bleu profond',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -402,7 +402,7 @@ export const professionalTemplates = [
     name: 'Copper Executive',
     category: 'professional',
     description: 'Cuivre exécutif aux teintes chaudes raffinées',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -441,7 +441,7 @@ export const professionalTemplates = [
     name: 'Onyx Professional',
     category: 'professional',
     description: 'Onyx professionnel au contraste saisissant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -486,7 +486,7 @@ export const professionalTemplates = [
     name: 'Emerald Authority',
     category: 'professional',
     description: 'Émeraude autorité sophistiquée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -524,7 +524,7 @@ export const professionalTemplates = [
     name: 'Bronze Prestige',
     category: 'professional',
     description: 'Bronze prestige aux dégradés dorés antiques',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -570,7 +570,7 @@ export const professionalTemplates = [
     name: 'Graphite Modern',
     category: 'professional',
     description: 'Graphite moderne aux gris contemporains',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -610,7 +610,7 @@ export const professionalTemplates = [
     name: 'Ruby Leadership',
     category: 'professional',
     description: 'Rubis leadership au rouge puissant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -648,7 +648,7 @@ export const professionalTemplates = [
     name: 'Steel Innovation',
     category: 'professional',
     description: 'Acier innovation aux dégradés industriels',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -695,7 +695,7 @@ export const professionalTemplates = [
     name: 'Diamond Excellence',
     category: 'professional',
     description: 'Diamant excellence aux effets cristallins',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',

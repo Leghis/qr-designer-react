@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { X } from 'lucide-react';

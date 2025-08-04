@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { CheckCircle, Gift, Zap, Shield, Sparkles, Heart, Users } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 

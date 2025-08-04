@@ -4,7 +4,7 @@ export const educationTemplates = [
     name: 'University Classic',
     category: 'education',
     description: 'Classique universitaire',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -28,7 +28,7 @@ export const educationTemplates = [
     name: 'School Fun',
     category: 'education',
     description: 'Amusant pour écoles',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -61,7 +61,7 @@ export const educationTemplates = [
     name: 'Kindergarten Play',
     category: 'education',
     description: 'Maternelle ludique et colorée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -102,7 +102,7 @@ export const educationTemplates = [
     name: 'Academy Prestige',
     category: 'education',
     description: 'Académie prestigieuse élitiste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -141,7 +141,7 @@ export const educationTemplates = [
     name: 'Online Learning',
     category: 'education',
     description: 'Apprentissage en ligne moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -179,7 +179,7 @@ export const educationTemplates = [
     name: 'Library Wisdom',
     category: 'education',
     description: 'Bibliothèque sagesse intemporelle',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -217,7 +217,7 @@ export const educationTemplates = [
     name: 'STEM Lab',
     category: 'education',
     description: 'Laboratoire STEM innovant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -256,7 +256,7 @@ export const educationTemplates = [
     name: 'Art School Creative',
     category: 'education',
     description: 'École d\'art créative et inspirante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -311,7 +311,7 @@ export const educationTemplates = [
     name: 'Language Institute',
     category: 'education',
     description: 'Institut de langues multiculturel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -358,7 +358,7 @@ export const educationTemplates = [
     name: 'Coding Academy',
     category: 'education',
     description: 'Académie de programmation moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -404,7 +404,7 @@ export const educationTemplates = [
     name: 'Music Conservatory',
     category: 'education',
     description: 'Conservatoire musical élégant et harmonieux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -449,7 +449,7 @@ export const educationTemplates = [
     name: 'Business School Elite',
     category: 'education',
     description: 'École de commerce élite prestigieuse',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -494,7 +494,7 @@ export const educationTemplates = [
     name: 'Elementary Bright',
     category: 'education',
     description: 'Élémentaire lumineux et joyeux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -549,7 +549,7 @@ export const educationTemplates = [
     name: 'Research Institute',
     category: 'education',
     description: 'Institut de recherche scientifique avancé',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -595,7 +595,7 @@ export const educationTemplates = [
     name: 'Sports Academy',
     category: 'education',
     description: 'Académie sportive dynamique et énergique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -641,7 +641,7 @@ export const educationTemplates = [
     name: 'Vocational Training',
     category: 'education',
     description: 'Formation professionnelle pratique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -686,7 +686,7 @@ export const educationTemplates = [
     name: 'Distance Learning',
     category: 'education',
     description: 'Apprentissage à distance connecté',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Plus, FileText, Image, Sparkles, Palette, Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next';

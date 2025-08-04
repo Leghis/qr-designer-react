@@ -1,4 +1,6 @@
 
+import { motion } from 'framer-motion';
+
 const Badge = ({ type = 'default', children, className = '', animate = true }) => {
   const variants = {
     free: 'bg-gradient-to-r from-green-400 to-green-600 text-white',

@@ -5,7 +5,7 @@ export const featuredPremiumTemplates = [
     name: 'Sunset Gradient',
     category: 'spectacular',
     description: 'Dégradé coucher de soleil aux teintes chaudes',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -50,7 +50,7 @@ export const featuredPremiumTemplates = [
     name: 'Corporate Blue',
     category: 'professional',
     description: 'Design professionnel en nuances de bleu',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -74,7 +74,7 @@ export const featuredPremiumTemplates = [
     name: 'Watercolor Splash',
     category: 'creative',
     description: 'Effet aquarelle artistique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -111,7 +111,7 @@ export const featuredPremiumTemplates = [
     name: 'Wedding Elegant',
     category: 'event',
     description: 'Élégance romantique pour mariages',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',

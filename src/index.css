@@ -255,8 +255,23 @@ html.dark, html.dark body {
   }
 }
 
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 .notification-enter {
   animation: slideInRight 0.3s ease-out;
+}
+
+.notification-exit {
+  animation: slideOutRight 0.3s ease-out;
 }
 
 /* Performance optimizations */

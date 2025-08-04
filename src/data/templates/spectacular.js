@@ -4,7 +4,7 @@ export const spectacularTemplates = [
     name: 'Sunset Gradient',
     category: 'spectacular',
     description: 'Dégradé coucher de soleil aux teintes chaudes',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -49,7 +49,7 @@ export const spectacularTemplates = [
     name: 'Ocean Depth',
     category: 'spectacular',
     description: 'Dégradé océanique aux nuances profondes',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -94,7 +94,7 @@ export const spectacularTemplates = [
     name: 'Aurora Borealis',
     category: 'spectacular',
     description: 'Inspiré des aurores boréales',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -140,7 +140,7 @@ export const spectacularTemplates = [
     name: 'Neon Glow',
     category: 'spectacular',
     description: 'Effet néon lumineux et moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -179,7 +179,7 @@ export const spectacularTemplates = [
     name: 'Crystal Ice',
     category: 'spectacular',
     description: 'Effet cristallin glacé',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -225,7 +225,7 @@ export const spectacularTemplates = [
     name: 'Fire Phoenix',
     category: 'spectacular',
     description: 'Dégradé de feu ardent',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -270,7 +270,7 @@ export const spectacularTemplates = [
     name: 'Galaxy Spiral',
     category: 'spectacular',
     description: 'Spirale galactique mystérieuse',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -316,7 +316,7 @@ export const spectacularTemplates = [
     name: 'Emerald Forest',
     category: 'spectacular',
     description: 'Forêt émeraude luxuriante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -361,7 +361,7 @@ export const spectacularTemplates = [
     name: 'Rainbow Prism',
     category: 'spectacular',
     description: 'Arc-en-ciel prismatique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -411,7 +411,7 @@ export const spectacularTemplates = [
     name: 'Cosmic Dust',
     category: 'spectacular',
     description: 'Poussière cosmique scintillante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -456,7 +456,7 @@ export const spectacularTemplates = [
     name: 'Lavender Dream',
     category: 'spectacular',
     description: 'Rêve lavande apaisant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -501,7 +501,7 @@ export const spectacularTemplates = [
     name: 'Circular Aurora',
     category: 'spectacular',
     description: 'Aurore circulaire dynamique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -545,7 +545,7 @@ export const spectacularTemplates = [
     name: 'Diamond Sparkle',
     category: 'spectacular',
     description: 'Éclat de diamant scintillant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -590,7 +590,7 @@ export const spectacularTemplates = [
     name: 'Mystic Twilight',
     category: 'spectacular',
     description: 'Crépuscule mystique enchanteur',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -637,7 +637,7 @@ export const spectacularTemplates = [
     name: 'Electric Plasma',
     category: 'spectacular',
     description: 'Plasma électrique futuriste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -677,7 +677,7 @@ export const spectacularTemplates = [
     name: 'Golden Sunset',
     category: 'spectacular',
     description: 'Coucher de soleil doré majestueux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -726,7 +726,7 @@ export const spectacularTemplates = [
     name: 'Holographic Dream',
     category: 'spectacular',
     description: 'Rêve holographique iridescent',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -782,7 +782,7 @@ export const spectacularTemplates = [
     name: 'Cosmic Nebula',
     category: 'spectacular',
     description: 'Nébuleuse cosmique aux teintes intergalactiques',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -837,7 +837,7 @@ export const spectacularTemplates = [
     name: 'Liquid Metal',
     category: 'spectacular',
     description: 'Métal liquide chromé aux reflets holographiques',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -887,7 +887,7 @@ export const spectacularTemplates = [
     name: 'Phoenix Flame',
     category: 'spectacular',
     description: 'Flammes du phénix renaissant de ses cendres',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -943,7 +943,7 @@ export const spectacularTemplates = [
     name: 'Quantum Wave',
     category: 'spectacular',
     description: 'Ondes quantiques en superposition',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -994,7 +994,7 @@ export const spectacularTemplates = [
     name: 'Emerald Aurora',
     category: 'spectacular',
     description: 'Aurore émeraude dansant dans le ciel nordique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -1051,7 +1051,7 @@ export const spectacularTemplates = [
     name: 'Dragon Scale',
     category: 'spectacular',
     description: 'Écailles de dragon iridescentes',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -1107,7 +1107,7 @@ export const spectacularTemplates = [
     name: 'Plasma Energy',
     category: 'spectacular',
     description: 'Énergie plasma électrisante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -1163,7 +1163,7 @@ export const spectacularTemplates = [
     name: 'Diamond Prism',
     category: 'spectacular',
     description: 'Prisme de diamant aux mille reflets',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -1220,7 +1220,7 @@ export const spectacularTemplates = [
     name: 'Volcano Burst',
     category: 'spectacular',
     description: 'Éruption volcanique explosive',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -1278,7 +1278,7 @@ export const spectacularTemplates = [
     name: 'Mystic Crystal',
     category: 'spectacular',
     description: 'Cristal mystique aux pouvoirs envoûtants',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',

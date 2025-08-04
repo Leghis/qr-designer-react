@@ -2,7 +2,7 @@ import { createContext, useState, useCallback, useRef, useEffect } from 'react';
 
 export const NotificationContext = createContext();
 
-const Notification = ({ notification, onClose }) => {
+const Notification = ({ notification, onClose, isExiting }) => {
   const bgColor = {
     success: 'bg-green-50 dark:bg-green-900/20 border-green-500',
     error: 'bg-red-50 dark:bg-red-900/20 border-red-500',
@@ -27,12 +27,10 @@ const Notification = ({ notification, onClose }) => {
   }, [onClose]);
 
   return (
-    <motion.div
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 100, opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className={`p-4 rounded-lg shadow-lg border-l-4 ${bgColor[notification.type]} ${textColor[notification.type]} max-w-sm`}
+    <div
+      className={`p-4 rounded-lg shadow-lg border-l-4 ${bgColor[notification.type]} ${textColor[notification.type]} max-w-sm notification-enter ${
+        isExiting ? 'notification-exit' : ''
+      }`}
     >
       <div className="flex items-center justify-between">
         <p className="font-medium">{notification.message}</p>
@@ -44,20 +42,32 @@ const Notification = ({ notification, onClose }) => {
           ×
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
+  const [exitingIds, setExitingIds] = useState(new Set());
   const timeoutRefs = useRef(new Map()); // Track all active timeouts
   const isMountedRef = useRef(true); // Track component mount status
 
   const removeNotification = useCallback((id) => {
-    // Only update state if component is still mounted
-    if (isMountedRef.current) {
-      setNotifications(prev => prev.filter(notif => notif.id !== id));
-    }
+    // Trigger exit animation
+    setExitingIds(prev => new Set([...prev, id]));
+    
+    // Remove after animation completes
+    setTimeout(() => {
+      // Only update state if component is still mounted
+      if (isMountedRef.current) {
+        setNotifications(prev => prev.filter(notif => notif.id !== id));
+        setExitingIds(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(id);
+          return newSet;
+        });
+      }
+    }, 300); // Match CSS animation duration
     
     // Clear any associated timeout
     const timeoutId = timeoutRefs.current.get(id);
@@ -106,23 +116,23 @@ export const NotificationProvider = ({ children }) => {
     <NotificationContext.Provider value={{ showNotification }}>
       {children}
       <div className="fixed top-4 right-4 z-50 pointer-events-none">
-        <AnimatePresence mode="sync">
-          {notifications.map((notification, index) => (
-            <div 
-              key={notification.id} 
-              className="pointer-events-auto mb-2"
-              style={{ 
-                transform: `translateY(${index * 70}px)`,
-                position: 'relative'
-              }}
-            >
-              <Notification
-                notification={notification}
-                onClose={() => removeNotification(notification.id)}
-              />
-            </div>
-          ))}
-        </AnimatePresence>
+        {notifications.map((notification, index) => (
+          <div 
+            key={notification.id} 
+            className="pointer-events-auto mb-2"
+            style={{ 
+              transform: `translateY(${index * 70}px)`,
+              position: 'relative',
+              transition: 'transform 0.3s ease-out'
+            }}
+          >
+            <Notification
+              notification={notification}
+              onClose={() => removeNotification(notification.id)}
+              isExiting={exitingIds.has(notification.id)}
+            />
+          </div>
+        ))}
       </div>
     </NotificationContext.Provider>
   );

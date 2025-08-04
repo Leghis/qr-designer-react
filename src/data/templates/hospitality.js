@@ -4,7 +4,7 @@ export const hospitalityTemplates = [
     name: 'Restaurant Chic',
     category: 'hospitality',
     description: 'Chic pour restaurants haut de gamme',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -28,7 +28,7 @@ export const hospitalityTemplates = [
     name: 'Café Warm',
     category: 'hospitality',
     description: 'Chaleureux pour cafés',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -60,7 +60,7 @@ export const hospitalityTemplates = [
     name: 'Hotel Luxury',
     category: 'hospitality',
     description: 'Luxe pour hôtels prestigieux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -99,7 +99,7 @@ export const hospitalityTemplates = [
     name: 'Bistro Charm',
     category: 'hospitality',
     description: 'Charme bistrot parisien',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -131,7 +131,7 @@ export const hospitalityTemplates = [
     name: 'Spa Zen',
     category: 'hospitality',
     description: 'Zen spa relaxant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -169,7 +169,7 @@ export const hospitalityTemplates = [
     name: 'Cocktail Lounge',
     category: 'hospitality',
     description: 'Lounge cocktail sophistiqué',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -213,7 +213,7 @@ export const hospitalityTemplates = [
     name: 'Beach Resort',
     category: 'hospitality',
     description: 'Resort plage paradisiaque',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -252,7 +252,7 @@ export const hospitalityTemplates = [
     name: 'Mountain Lodge',
     category: 'hospitality',
     description: 'Lodge montagne chaleureux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -290,7 +290,7 @@ export const hospitalityTemplates = [
     name: 'Wine Bar Elegant',
     category: 'hospitality',
     description: 'Bar à vin élégant aux teintes bordeaux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -336,7 +336,7 @@ export const hospitalityTemplates = [
     name: 'Sushi Master',
     category: 'hospitality',
     description: 'Maître sushi minimaliste japonais',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -375,7 +375,7 @@ export const hospitalityTemplates = [
     name: 'Rooftop Terrace',
     category: 'hospitality',
     description: 'Terrasse rooftop urbaine sophistiquée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -420,7 +420,7 @@ export const hospitalityTemplates = [
     name: 'Bakery Fresh',
     category: 'hospitality',
     description: 'Boulangerie artisanale fraîche et gourmande',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -467,7 +467,7 @@ export const hospitalityTemplates = [
     name: 'Steakhouse Premium',
     category: 'hospitality',
     description: 'Steakhouse premium luxueux et masculin',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -519,7 +519,7 @@ export const hospitalityTemplates = [
     name: 'Ice Cream Parlor',
     category: 'hospitality',
     description: 'Glacier coloré et gourmand pour enfants',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -573,7 +573,7 @@ export const hospitalityTemplates = [
     name: 'Boutique Hotel',
     category: 'hospitality',
     description: 'Hôtel boutique design contemporain',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -619,7 +619,7 @@ export const hospitalityTemplates = [
     name: 'Tea House Garden',
     category: 'hospitality',
     description: 'Maison de thé jardin zen apaisant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -672,7 +672,7 @@ export const hospitalityTemplates = [
     name: 'Pizzeria Rustic',
     category: 'hospitality',
     description: 'Pizzeria rustique italienne authentique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -718,7 +718,7 @@ export const hospitalityTemplates = [
     name: 'Wellness Retreat',
     category: 'hospitality',
     description: 'Retraite bien-être naturelle et régénérante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',

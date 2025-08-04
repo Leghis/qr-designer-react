@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { User, Phone, Mail, Briefcase, Globe, MapPin } from 'lucide-react';
 import Input from '../../UI/Input';
 
@@ -16,6 +16,16 @@ const VCardEditor = ({ data, onChange, onPreviewUpdate }) => {
     twitter: data.twitter || ''
   });
 
+  // Use refs to store the latest callback functions to avoid infinite loops
+  const onChangeRef = useRef(onChange);
+  const onPreviewUpdateRef = useRef(onPreviewUpdate);
+  
+  // Update refs when props change
+  useEffect(() => {
+    onChangeRef.current = onChange;
+    onPreviewUpdateRef.current = onPreviewUpdate;
+  }, [onChange, onPreviewUpdate]);
+
   useEffect(() => {
     // Generate vCard data
     const vcardData = `BEGIN:VCARD
@@ -32,12 +42,12 @@ END:VCARD`.trim();
 
     // Debounce updates to prevent excessive re-renders
     const timeoutId = setTimeout(() => {
-      onPreviewUpdate(vcardData);
-      onChange(vcard);
+      onPreviewUpdateRef.current(vcardData);
+      onChangeRef.current(vcard);
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [vcard]); // Remove onChange and onPreviewUpdate from dependencies
+  }, [vcard]); // Only depend on vcard data
 
   const handleChange = (field, value) => {
     setVcard(prev => ({

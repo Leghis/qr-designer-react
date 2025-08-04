@@ -4,7 +4,7 @@ export const creativeTemplates = [
     name: 'Watercolor Splash',
     category: 'creative',
     description: 'Éclaboussures aquarelle',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -42,7 +42,7 @@ export const creativeTemplates = [
     name: 'Pastel Dreams',
     category: 'creative',
     description: 'Rêves en couleurs pastel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -75,7 +75,7 @@ export const creativeTemplates = [
     name: 'Retro Wave',
     category: 'creative',
     description: 'Vague rétro synthwave',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -107,7 +107,7 @@ export const creativeTemplates = [
     name: 'Minimalist Art',
     category: 'creative',
     description: 'Art minimaliste épuré',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -131,7 +131,7 @@ export const creativeTemplates = [
     name: 'Pop Art',
     category: 'creative',
     description: 'Style pop art vibrant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -165,7 +165,7 @@ export const creativeTemplates = [
     name: 'Graffiti Burst',
     category: 'creative',
     description: 'Explosion graffiti urbain',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -206,7 +206,7 @@ export const creativeTemplates = [
     name: 'Abstract Flow',
     category: 'creative',
     description: 'Flux abstrait contemporain',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -251,7 +251,7 @@ export const creativeTemplates = [
     name: 'Neon Punk',
     category: 'creative',
     description: 'Punk néon rebelle',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -289,7 +289,7 @@ export const creativeTemplates = [
     name: 'Organic Nature',
     category: 'creative',
     description: 'Nature organique fluide',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -335,7 +335,7 @@ export const creativeTemplates = [
     name: 'Geometric Maze',
     category: 'creative',
     description: 'Labyrinthe géométrique complexe',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -369,7 +369,7 @@ export const creativeTemplates = [
     name: 'Impressionist Garden',
     category: 'creative',
     description: 'Jardin impressionniste aux touches de couleurs',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -417,7 +417,7 @@ export const creativeTemplates = [
     name: 'Digital Glitch',
     category: 'creative',
     description: 'Glitch numérique cyberpunk',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -465,7 +465,7 @@ export const creativeTemplates = [
     name: 'Canvas Splash',
     category: 'creative',
     description: 'Éclaboussures de toile artistique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -521,7 +521,7 @@ export const creativeTemplates = [
     name: 'Psychedelic Trip',
     category: 'creative',
     description: 'Voyage psychédélique coloré',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -581,7 +581,7 @@ export const creativeTemplates = [
     name: 'Origami Fold',
     category: 'creative',
     description: 'Pliage origami géométrique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -630,7 +630,7 @@ export const creativeTemplates = [
     name: 'Street Art',
     category: 'creative',
     description: 'Art urbain expressif',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -678,7 +678,7 @@ export const creativeTemplates = [
     name: 'Holographic Dream',
     category: 'creative',
     description: 'Rêve holographique futuriste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -734,7 +734,7 @@ export const creativeTemplates = [
     name: 'Vintage Comic',
     category: 'creative',
     description: 'Bande dessinée vintage',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -787,7 +787,7 @@ export const creativeTemplates = [
     name: 'Crystal Prism',
     category: 'creative',
     description: 'Prisme cristallin arc-en-ciel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -845,7 +845,7 @@ export const creativeTemplates = [
     name: 'Fluid Dynamics',
     category: 'creative',
     description: 'Dynamique fluide hypnotique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',

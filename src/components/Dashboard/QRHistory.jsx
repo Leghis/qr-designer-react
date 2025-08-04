@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Search, Filter, Download, Trash2, Eye, Copy, Calendar, MoreVertical } from 'lucide-react';
 import { useTranslation } from 'react-i18next';

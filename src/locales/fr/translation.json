@@ -313,7 +313,8 @@
     "card": {
       "customize": "Personnaliser",
       "view": "Voir le template",
-      "used": "Utilisé"
+      "used": "Utilisé",
+      "useTemplate": "Utiliser ce template"
     },
     "cta": {
       "unlockAll": "Débloquez tous les templates Premium",
@@ -529,7 +530,8 @@
     "card": {
       "customize": "Personnaliser",
       "view": "Voir le template",
-      "used": "Utilisé"
+      "used": "Utilisé",
+      "useTemplate": "Utiliser ce template"
     },
     "cta": {
       "unlockAll": "Débloquez tous les templates Premium",
@@ -588,7 +590,16 @@
       "badge": "<strong>100% sécurisé</strong> • Vos données restent privées"
     },
     "comingSoon": {
-      "message": "Des fonctionnalités avancées arrivent bientôt"
+      "message": "Des fonctionnalités avancées arrivent bientôt",
+      "title": "Bientôt Disponible !",
+      "description": "Nous travaillons dur pour vous apporter cette fonctionnalité incroyable. Restez à l'écoute pour des mises à jour passionnantes !",
+      "feature1": "Interface utilisateur améliorée et intuitive",
+      "feature2": "Nouvelles fonctionnalités puissantes",
+      "feature3": "Performance optimisée et stabilité",
+      "notify": "Soyez le premier informé !",
+      "emailPlaceholder": "votre@email.com",
+      "notifyMe": "Me notifier",
+      "comingSoonText": "Bientôt disponible..."
     }
   },
   "howItWorks": {

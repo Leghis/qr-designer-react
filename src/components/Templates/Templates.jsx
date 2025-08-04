@@ -1,5 +1,5 @@
-import { Briefcase, Utensils, Calendar, Share2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Briefcase, Utensils, Calendar, Share2, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -99,7 +99,7 @@ const Templates = () => {
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-medium hover:from-primary-700 hover:to-purple-700 transition-all transform hover:scale-105"
           >
             <Sparkles className="w-5 h-5" />
-{t('templates.viewAll')}
+            {t('templates.viewAll')}
           </Link>
         </motion.div>
       </div>

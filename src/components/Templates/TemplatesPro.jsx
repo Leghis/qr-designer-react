@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Crown, Check, ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Check, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useSubscription } from '../../hooks/useSubscription';
 import QRCodeStyling from 'qr-code-styling';
 import { loadTemplatesByCategory, templateCounts, CATEGORIES } from '../../data/templates';
 import TemplateSkeletonLoader from './TemplateSkeletonLoader';
@@ -14,9 +13,9 @@ const TemplatesPro = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [templates, setTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isPremium, canUsePremiumTemplate } = useSubscription();
-  const [usedPremiumTemplates] = useState([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const dropdownRef = useRef(null);
+  const categoryChangeTimeoutRef = useRef(null);
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -30,13 +29,41 @@ const TemplatesPro = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
   
-  // Load templates when category changes
+  // Preload popular templates on mount for better UX
   useEffect(() => {
+    const preloadPopularTemplates = async () => {
+      try {
+        // Preload the most popular categories in background
+        const popularCategories = ['professional', 'creative', 'spectacular'];
+        const preloadPromises = popularCategories.map(category => 
+          loadTemplatesByCategory(category)
+        );
+        await Promise.allSettled(preloadPromises);
+      } catch (error) {
+        console.debug('Preload templates error:', error);
+      }
+    };
+
+    if (isInitialLoad) {
+      preloadPopularTemplates();
+    }
+  }, [isInitialLoad]);
+
+  // Load templates when category changes with debouncing
+  useEffect(() => {
+    // Clear any pending category change
+    if (categoryChangeTimeoutRef.current) {
+      clearTimeout(categoryChangeTimeoutRef.current);
+    }
+
     const loadTemplates = async () => {
       setIsLoading(true);
       try {
         const loadedTemplates = await loadTemplatesByCategory(selectedCategory);
         setTemplates(loadedTemplates);
+        if (isInitialLoad) {
+          setIsInitialLoad(false);
+        }
       } catch (error) {
         console.error('Error loading templates:', error);
         setTemplates([]);
@@ -45,8 +72,19 @@ const TemplatesPro = () => {
       }
     };
     
-    loadTemplates();
-  }, [selectedCategory]);
+    // Debounce category changes for better UX (except initial load)
+    if (isInitialLoad) {
+      loadTemplates();
+    } else {
+      categoryChangeTimeoutRef.current = setTimeout(loadTemplates, 150);
+    }
+
+    return () => {
+      if (categoryChangeTimeoutRef.current) {
+        clearTimeout(categoryChangeTimeoutRef.current);
+      }
+    };
+  }, [selectedCategory, isInitialLoad]);
   
   return (
     <div>
@@ -165,38 +203,8 @@ const TemplatesPro = () => {
               key={template.id}
               template={template}
               index={index}
-              isPremium={template.isPremium}
-              canUse={isPremium || canUsePremiumTemplate(template.id)}
-              isUsed={usedPremiumTemplates && usedPremiumTemplates.includes(template.id)}
             />
           ))}
-        </motion.div>
-      )}
-      
-      {/* Premium CTA */}
-      {!isPremium && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-8 max-w-3xl mx-auto">
-            <Crown className="w-12 h-12 text-purple-600 dark:text-purple-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-4">
-              {t('templates.cta.unlockAll')}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              {t('templates.cta.description', { count: templateCounts.all })}
-            </p>
-            <Link
-              to="/premium"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-medium hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105"
-            >
-              <Crown className="w-5 h-5" />
-              {t('templates.cta.upgrade')}
-            </Link>
-          </div>
         </motion.div>
       )}
     </div>
@@ -204,7 +212,7 @@ const TemplatesPro = () => {
 };
 
 // Template Card Component
-const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
+const TemplateCard = ({ template, index }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -262,11 +270,14 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
     };
   }, []);
   
-  // Generate QR preview only when in view
+  // Generate QR preview only when in view with optimized timing
   useEffect(() => {
     if (!isInView || qrGenerated) return;
     
-    // Small delay to stagger QR generation
+    // Intelligent staggering: first 6 cards render quickly, others with more delay
+    const baseDelay = index < 6 ? 50 : 150;
+    const staggerDelay = index < 6 ? index * 50 : (index - 6) * 100 + 300;
+    
     timeoutRef.current = setTimeout(() => {
       if (!qrContainerRef.current) return;
       
@@ -275,33 +286,44 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
         qrContainerRef.current.removeChild(qrContainerRef.current.firstChild);
       }
       
-      // Create QR with template options
+      // Optimized QR options for faster rendering
       const qrOptions = {
-        width: 200,
-        height: 200,
+        width: 180,
+        height: 180,
         type: "svg",
         data: "https://qr-designer.com",
-        margin: 10,
+        margin: 8,
         ...template.options,
         imageOptions: {
           hideBackgroundDots: true,
           crossOrigin: "anonymous",
-          margin: 10,
-          imageSize: 0.3,
+          margin: 8,
+          imageSize: 0.25,
           ...template.options?.imageOptions
+        },
+        // Optimize for performance
+        qrOptions: {
+          errorCorrectionLevel: 'M', // Medium error correction for better performance
+          ...template.options?.qrOptions
         }
       };
       
       try {
         qrRef.current = new QRCodeStyling(qrOptions);
         if (qrContainerRef.current) {
-          qrRef.current.append(qrContainerRef.current);
-          setQrGenerated(true);
+          // Use requestAnimationFrame for smoother rendering
+          requestAnimationFrame(() => {
+            if (qrRef.current && qrContainerRef.current) {
+              qrRef.current.append(qrContainerRef.current);
+              setQrGenerated(true);
+            }
+          });
         }
       } catch (error) {
         console.error('Error generating QR preview:', error);
+        setQrGenerated(true); // Mark as generated to prevent retries
       }
-    }, index * 20); // Stagger by 20ms per card
+    }, baseDelay + staggerDelay);
     
     return () => {
       if (timeoutRef.current) {
@@ -316,7 +338,7 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: Math.min(index * 0.05, 0.3) }}
+      transition={{ delay: index * 0.05 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group"
@@ -336,60 +358,37 @@ const TemplateCard = ({ template, index, isPremium, canUse, isUsed }) => {
           </span>
         </div>
         
-        {/* Used/Premium Badge */}
-        {isUsed && (
-          <div className="absolute top-4 right-4 z-10">
-            <span className="px-3 py-1 bg-green-500 text-white text-xs rounded-full flex items-center gap-1">
-              <Check className="w-3 h-3" />
-              {t('templates.card.used')}
-            </span>
-          </div>
-        )}
-        
         {/* QR Preview */}
         <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 p-8">
-          {/* Premium Badge for Premium Templates */}
-          {template.isPremium && !canUse && (
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-20">
-              <div className="text-center">
-                <Crown className="w-12 h-12 text-white mb-2 mx-auto" />
-                <p className="text-white font-medium">{t('templates.card.premiumOnly')}</p>
-              </div>
-            </div>
-          )}
-          
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 dark:to-white/5"></div>
           <div 
             ref={qrContainerRef}
             className="w-full h-full flex items-center justify-center"
           />
+          
+          {/* Hover Overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-6"
+          >
+            <Link
+              to={`/templates/${template.id}`}
+              className="px-6 py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-xl font-medium hover:bg-white dark:hover:bg-slate-900 transition-all transform hover:scale-105"
+            >
+              {t('templates.card.customize')}
+            </Link>
+          </motion.div>
         </div>
         
         {/* Template Info */}
         <div className="p-6">
-          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
             {template.name}
-            {template.isPremium && (
-              <Crown className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-            )}
           </h3>
-          
-          {/* Use Template Button */}
-          {canUse ? (
-            <Link
-              to={`/templates/${template.id}`}
-              className="w-full py-2.5 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all flex items-center justify-center gap-2 transform hover:scale-105"
-            >
-              {t('templates.card.useTemplate')}
-            </Link>
-          ) : (
-            <Link
-              to="/premium"
-              className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-medium transition-all flex items-center justify-center gap-2 transform hover:scale-105"
-            >
-              <Crown className="w-4 h-4" />
-              {t('templates.card.unlockPremium')}
-            </Link>
-          )}
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {template.description || 'Template personnalisable'}
+          </p>
         </div>
       </div>
     </motion.div>

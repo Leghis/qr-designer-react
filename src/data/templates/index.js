@@ -1,91 +1,126 @@
 // Template lazy loading manager
 import { safeDynamicImport } from '../../utils/extensionErrorHandler';
 
-// Cache for loaded templates
+// Cache for loaded templates with expiration
 const templateCache = new Map();
+const CACHE_EXPIRY_TIME = 10 * 60 * 1000; // 10 minutes
 
-// Lazy load templates by category with caching
+// Cache entry structure: { data, timestamp }
+const getCachedTemplate = (category) => {
+  const cached = templateCache.get(category);
+  if (!cached) return null;
+  
+  const now = Date.now();
+  if (now - cached.timestamp > CACHE_EXPIRY_TIME) {
+    templateCache.delete(category);
+    return null;
+  }
+  
+  return cached.data;
+};
+
+const setCachedTemplate = (category, data) => {
+  templateCache.set(category, {
+    data,
+    timestamp: Date.now()
+  });
+};
+
+// Lazy load templates by category with intelligent caching
 export const loadTemplatesByCategory = async (category) => {
   // Check cache first
-  if (templateCache.has(category)) {
-    return templateCache.get(category);
+  const cachedTemplates = getCachedTemplate(category);
+  if (cachedTemplates) {
+    return cachedTemplates;
   }
+
   try {
+    let templates = [];
+    
     switch (category) {
       case 'spectacular': {
         const spectacularModule = await safeDynamicImport(() => import('./spectacular'));
-        const spectacularTemplates = spectacularModule?.spectacularTemplates || [];
-        templateCache.set(category, spectacularTemplates);
-        return spectacularTemplates;
-    }
+        templates = spectacularModule?.spectacularTemplates || [];
+        break;
+      }
       case 'professional': {
         const professionalModule = await safeDynamicImport(() => import('./professional'));
-        const professionalTemplates = professionalModule?.professionalTemplates || [];
-        templateCache.set(category, professionalTemplates);
-        return professionalTemplates;
-    }
+        templates = professionalModule?.professionalTemplates || [];
+        break;
+      }
       case 'creative': {
         const creativeModule = await safeDynamicImport(() => import('./creative'));
-        const creativeTemplates = creativeModule?.creativeTemplates || [];
-        templateCache.set(category, creativeTemplates);
-        return creativeTemplates;
-    }
+        templates = creativeModule?.creativeTemplates || [];
+        break;
+      }
       case 'event': {
         const eventModule = await safeDynamicImport(() => import('./event'));
-        const eventTemplates = eventModule?.eventTemplates || [];
-        templateCache.set(category, eventTemplates);
-        return eventTemplates;
-    }
+        templates = eventModule?.eventTemplates || [];
+        break;
+      }
       case 'hospitality': {
         const hospitalityModule = await safeDynamicImport(() => import('./hospitality'));
-        const hospitalityTemplates = hospitalityModule?.hospitalityTemplates || [];
-        templateCache.set(category, hospitalityTemplates);
-        return hospitalityTemplates;
-    }
+        templates = hospitalityModule?.hospitalityTemplates || [];
+        break;
+      }
       case 'retail': {
         const retailModule = await safeDynamicImport(() => import('./retail'));
-        const retailTemplates = retailModule?.retailTemplates || [];
-        templateCache.set(category, retailTemplates);
-        return retailTemplates;
-    }
+        templates = retailModule?.retailTemplates || [];
+        break;
+      }
       case 'health': {
         const healthModule = await safeDynamicImport(() => import('./health'));
-        const healthTemplates = healthModule?.healthTemplates || [];
-        templateCache.set(category, healthTemplates);
-        return healthTemplates;
-    }
+        templates = healthModule?.healthTemplates || [];
+        break;
+      }
       case 'education': {
         const educationModule = await safeDynamicImport(() => import('./education'));
-        const educationTemplates = educationModule?.educationTemplates || [];
-        templateCache.set(category, educationTemplates);
-        return educationTemplates;
-    }
+        templates = educationModule?.educationTemplates || [];
+        break;
+      }
       case 'social': {
         const socialModule = await safeDynamicImport(() => import('./social'));
-        const socialTemplates = socialModule?.socialTemplates || [];
-        templateCache.set(category, socialTemplates);
-        return socialTemplates;
-    }
+        templates = socialModule?.socialTemplates || [];
+        break;
+      }
       case 'all': {
-        // Load all templates concurrently with safe imports
-        const results = await Promise.all([
-          safeDynamicImport(() => import('./spectacular')).then(m => m?.spectacularTemplates || []),
-          safeDynamicImport(() => import('./professional')).then(m => m?.professionalTemplates || []),
-          safeDynamicImport(() => import('./creative')).then(m => m?.creativeTemplates || []),
-          safeDynamicImport(() => import('./event')).then(m => m?.eventTemplates || []),
-          safeDynamicImport(() => import('./hospitality')).then(m => m?.hospitalityTemplates || []),
-          safeDynamicImport(() => import('./retail')).then(m => m?.retailTemplates || []),
-          safeDynamicImport(() => import('./health')).then(m => m?.healthTemplates || []),
-          safeDynamicImport(() => import('./education')).then(m => m?.educationTemplates || []),
-          safeDynamicImport(() => import('./social')).then(m => m?.socialTemplates || [])
-        ]);
-        const allTemplates = results.flat();
-        templateCache.set(category, allTemplates);
-        return allTemplates;
-    }
+        // For 'all' category, check if individual categories are cached first
+        const categoryNames = ['spectacular', 'professional', 'creative', 'event', 'hospitality', 'retail', 'health', 'education', 'social'];
+        const cachedResults = [];
+        const uncachedCategories = [];
+        
+        // Collect cached templates and identify what needs loading
+        categoryNames.forEach(catName => {
+          const cached = getCachedTemplate(catName);
+          if (cached) {
+            cachedResults.push(...cached);
+          } else {
+            uncachedCategories.push(catName);
+          }
+        });
+        
+        // Load uncached categories concurrently
+        if (uncachedCategories.length > 0) {
+          const loadPromises = uncachedCategories.map(async (catName) => {
+            const result = await loadTemplatesByCategory(catName);
+            return result;
+          });
+          
+          const uncachedResults = await Promise.all(loadPromises);
+          templates = [...cachedResults, ...uncachedResults.flat()];
+        } else {
+          templates = cachedResults;
+        }
+        break;
+      }
       default:
-        return [];
+        templates = [];
     }
+    
+    // Cache the results
+    setCachedTemplate(category, templates);
+    return templates;
+    
   } catch (error) {
     console.error('Error loading templates:', error);
     return [];

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Lock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

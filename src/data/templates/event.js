@@ -4,7 +4,7 @@ export const eventTemplates = [
     name: 'Wedding Elegant',
     category: 'event',
     description: 'Élégance pour mariages',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -36,7 +36,7 @@ export const eventTemplates = [
     name: 'Birthday Fun',
     category: 'event',
     description: 'Amusant pour anniversaires',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -75,7 +75,7 @@ export const eventTemplates = [
     name: 'Christmas Magic',
     category: 'event',
     description: 'Magie de Noël festive',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -113,7 +113,7 @@ export const eventTemplates = [
     name: 'Carnival Fiesta',
     category: 'event',
     description: 'Fiesta carnaval festive',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -160,7 +160,7 @@ export const eventTemplates = [
     name: 'Gala Night',
     category: 'event',
     description: 'Soirée de gala prestigieuse',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -205,7 +205,7 @@ export const eventTemplates = [
     name: 'Summer Festival',
     category: 'event',
     description: 'Festival d\'été ensoleillé',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -244,7 +244,7 @@ export const eventTemplates = [
     name: 'Halloween Spooky',
     category: 'event',
     description: 'Halloween effrayant et amusant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -283,7 +283,7 @@ export const eventTemplates = [
     name: 'Spring Bloom',
     category: 'event',
     description: 'Floraison printanière romantique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -328,7 +328,7 @@ export const eventTemplates = [
     name: 'New Year Sparkle',
     category: 'event',
     description: 'Nouvel an étincelant avec feux d\'artifice',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -384,7 +384,7 @@ export const eventTemplates = [
     name: 'Baby Shower Soft',
     category: 'event',
     description: 'Douche de bébé aux tons doux et tendres',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -429,7 +429,7 @@ export const eventTemplates = [
     name: 'Graduation Honor',
     category: 'event',
     description: 'Remise de diplômes prestigieuse et solennelle',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -468,7 +468,7 @@ export const eventTemplates = [
     name: 'Anniversary Gold',
     category: 'event',
     description: 'Anniversaire doré romantique et élégant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -520,7 +520,7 @@ export const eventTemplates = [
     name: 'Corporate Launch',
     category: 'event',
     description: 'Lancement corporate dynamique et moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -565,7 +565,7 @@ export const eventTemplates = [
     name: 'Music Festival',
     category: 'event',
     description: 'Festival de musique vibrant et électrisant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -621,7 +621,7 @@ export const eventTemplates = [
     name: 'Valentine Romance',
     category: 'event',
     description: 'Saint-Valentin romantique et passionnée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -674,7 +674,7 @@ export const eventTemplates = [
     name: 'Easter Pastel',
     category: 'event',
     description: 'Pâques aux couleurs pastel printanières',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -728,7 +728,7 @@ export const eventTemplates = [
     name: 'Conference Tech',
     category: 'event',
     description: 'Conférence technologique moderne et innovante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -782,7 +782,7 @@ export const eventTemplates = [
     name: 'Charity Gala',
     category: 'event',
     description: 'Gala de charité élégant et bienveillant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',

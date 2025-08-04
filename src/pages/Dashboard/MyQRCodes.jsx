@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo } from 'react';
 import { 
   Plus, 

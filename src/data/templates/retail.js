@@ -4,7 +4,7 @@ export const retailTemplates = [
     name: 'Fashion Bold',
     category: 'retail',
     description: 'Audacieux pour la mode',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -35,7 +35,7 @@ export const retailTemplates = [
     name: 'Boutique Soft',
     category: 'retail',
     description: 'Doux pour boutiques',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -67,7 +67,7 @@ export const retailTemplates = [
     name: 'Store Modern',
     category: 'retail',
     description: 'Moderne pour magasins',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -98,7 +98,7 @@ export const retailTemplates = [
     name: 'Luxury Brand',
     category: 'retail',
     description: 'Marque de luxe exclusive',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -143,7 +143,7 @@ export const retailTemplates = [
     name: 'Tech Store',
     category: 'retail',
     description: 'Magasin tech futuriste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -175,7 +175,7 @@ export const retailTemplates = [
     name: 'Eco Shop',
     category: 'retail',
     description: 'Boutique éco-responsable',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -213,7 +213,7 @@ export const retailTemplates = [
     name: 'Vintage Boutique',
     category: 'retail',
     description: 'Boutique vintage rétro',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -251,7 +251,7 @@ export const retailTemplates = [
     name: 'Sport Dynamic',
     category: 'retail',
     description: 'Sport dynamique énergique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -289,7 +289,7 @@ export const retailTemplates = [
     name: 'Jewelry Sparkle',
     category: 'retail',
     description: 'Bijouterie étincelante aux reflets diamantés',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -345,7 +345,7 @@ export const retailTemplates = [
     name: 'Bookstore Cozy',
     category: 'retail',
     description: 'Librairie chaleureuse et accueillante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -391,7 +391,7 @@ export const retailTemplates = [
     name: 'Beauty Glam',
     category: 'retail',
     description: 'Beauté glamour féminine et sophistiquée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -444,7 +444,7 @@ export const retailTemplates = [
     name: 'Kids Paradise',
     category: 'retail',
     description: 'Paradis enfants coloré et joyeux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -500,7 +500,7 @@ export const retailTemplates = [
     name: 'Home Decor',
     category: 'retail',
     description: 'Décoration intérieure élégante et raffinée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -545,7 +545,7 @@ export const retailTemplates = [
     name: 'Gourmet Market',
     category: 'retail',
     description: 'Marché gourmet artisanal et authentique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -598,7 +598,7 @@ export const retailTemplates = [
     name: 'Electronics Hub',
     category: 'retail',
     description: 'Hub électronique high-tech futuriste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -652,7 +652,7 @@ export const retailTemplates = [
     name: 'Streetwear Urban',
     category: 'retail',
     description: 'Streetwear urbain tendance et moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -697,7 +697,7 @@ export const retailTemplates = [
     name: 'Art Gallery',
     category: 'retail',
     description: 'Galerie d\'art sophistiquée et minimaliste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -749,7 +749,7 @@ export const retailTemplates = [
     name: 'Outlet Mall',
     category: 'retail',
     description: 'Centre commercial dynamique et attractif',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',

@@ -4,7 +4,7 @@ export const socialTemplates = [
     name: 'Instagram Gradient',
     category: 'social',
     description: 'Gradient Instagram iconique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -43,7 +43,7 @@ export const socialTemplates = [
     name: 'LinkedIn Pro',
     category: 'social',
     description: 'Professionnel LinkedIn',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -67,7 +67,7 @@ export const socialTemplates = [
     name: 'YouTube Play',
     category: 'social',
     description: 'Style YouTube dynamique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -91,7 +91,7 @@ export const socialTemplates = [
     name: 'TikTok Trendy',
     category: 'social',
     description: 'TikTok tendance virale',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -129,7 +129,7 @@ export const socialTemplates = [
     name: 'Twitter X',
     category: 'social',
     description: 'Twitter X minimaliste',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -153,7 +153,7 @@ export const socialTemplates = [
     name: 'Pinterest Board',
     category: 'social',
     description: 'Pinterest board créatif',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -183,7 +183,7 @@ export const socialTemplates = [
     name: 'Snapchat Fun',
     category: 'social',
     description: 'Snapchat fun et jeune',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -214,7 +214,7 @@ export const socialTemplates = [
     name: 'Facebook Meta',
     category: 'social',
     description: 'Facebook Meta moderne',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -259,7 +259,7 @@ export const socialTemplates = [
     name: 'Discord Gaming',
     category: 'social',
     description: 'Discord gaming communauté interactive',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -303,7 +303,7 @@ export const socialTemplates = [
     name: 'Twitch Stream',
     category: 'social',
     description: 'Twitch streaming violet dynamique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -342,7 +342,7 @@ export const socialTemplates = [
     name: 'WhatsApp Connect',
     category: 'social',
     description: 'WhatsApp connexion verte instantanée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -380,7 +380,7 @@ export const socialTemplates = [
     name: 'Telegram Secure',
     category: 'social',
     description: 'Telegram sécurisé bleu ciel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -425,7 +425,7 @@ export const socialTemplates = [
     name: 'Reddit Community',
     category: 'social',
     description: 'Reddit communauté orange vibrante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -463,7 +463,7 @@ export const socialTemplates = [
     name: 'Spotify Music',
     category: 'social',
     description: 'Spotify musique verte vibrante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -501,7 +501,7 @@ export const socialTemplates = [
     name: 'GitHub Code',
     category: 'social',
     description: 'GitHub code développeur professionnel',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -546,7 +546,7 @@ export const socialTemplates = [
     name: 'Behance Portfolio',
     category: 'social',
     description: 'Behance portfolio créatif artistique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -591,7 +591,7 @@ export const socialTemplates = [
     name: 'Medium Blog',
     category: 'social',
     description: 'Medium blog minimaliste élégant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -630,7 +630,7 @@ export const socialTemplates = [
     name: 'Clubhouse Audio',
     category: 'social',
     description: 'Clubhouse audio social innovant',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',

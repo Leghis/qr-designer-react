@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Eye, Copy, Download, Trash2, Calendar, Hash, Palette } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../hooks/useNotification';

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
 import analyticsService from '../../services/analyticsService';
 

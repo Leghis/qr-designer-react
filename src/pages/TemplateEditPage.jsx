@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Crown, Sparkles, Palette, Type, Image, Settings } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';

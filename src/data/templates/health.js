@@ -4,7 +4,7 @@ export const healthTemplates = [
     name: 'Medical Clean',
     category: 'health',
     description: 'Propre pour médical',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -28,7 +28,7 @@ export const healthTemplates = [
     name: 'Wellness Zen',
     category: 'health',
     description: 'Zen pour bien-être',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -66,7 +66,7 @@ export const healthTemplates = [
     name: 'Pharmacy Trust',
     category: 'health',
     description: 'Confiance pour pharmacies',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -90,7 +90,7 @@ export const healthTemplates = [
     name: 'Dental Care',
     category: 'health',
     description: 'Soins dentaires professionnels',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -121,7 +121,7 @@ export const healthTemplates = [
     name: 'Yoga Wellness',
     category: 'health',
     description: 'Yoga bien-être harmonieux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -165,7 +165,7 @@ export const healthTemplates = [
     name: 'Medical Tech',
     category: 'health',
     description: 'Technologie médicale avancée',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -204,7 +204,7 @@ export const healthTemplates = [
     name: 'Nutrition Fresh',
     category: 'health',
     description: 'Nutrition fraîche et saine',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -243,7 +243,7 @@ export const healthTemplates = [
     name: 'Mental Health',
     category: 'health',
     description: 'Santé mentale apaisante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -288,7 +288,7 @@ export const healthTemplates = [
     name: 'Hospital Care',
     category: 'health',
     description: 'Soins hospitaliers professionnels et sécurisants',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -333,7 +333,7 @@ export const healthTemplates = [
     name: 'Pediatric Fun',
     category: 'health',
     description: 'Pédiatrie amusante et colorée pour enfants',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'dots',
@@ -387,7 +387,7 @@ export const healthTemplates = [
     name: 'Optometry Vision',
     category: 'health',
     description: 'Vision optométrie claire et précise',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy',
@@ -433,7 +433,7 @@ export const healthTemplates = [
     name: 'Cardiology Heart',
     category: 'health',
     description: 'Cardiologie cœur vital et dynamique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
@@ -477,7 +477,7 @@ export const healthTemplates = [
     name: 'Physical Therapy',
     category: 'health',
     description: 'Kinésithérapie dynamique et énergique',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -522,7 +522,7 @@ export const healthTemplates = [
     name: 'Laboratory Tech',
     category: 'health',
     description: 'Laboratoire technologique haute précision',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -568,7 +568,7 @@ export const healthTemplates = [
     name: 'Emergency Response',
     category: 'health',
     description: 'Urgences réactives et efficaces',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'square',
@@ -607,7 +607,7 @@ export const healthTemplates = [
     name: 'Senior Care',
     category: 'health',
     description: 'Soins seniors bienveillants et chaleureux',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'classy-rounded',
@@ -660,7 +660,7 @@ export const healthTemplates = [
     name: 'Alternative Medicine',
     category: 'health',
     description: 'Médecine alternative holistique et naturelle',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'extra-rounded',
@@ -715,7 +715,7 @@ export const healthTemplates = [
     name: 'Fitness Health',
     category: 'health',
     description: 'Santé fitness énergique et motivante',
-    isPremium: true,
+    isPremium: false,
     options: {
       dotsOptions: { 
         type: 'rounded',
