@@ -46,7 +46,10 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
       isValid = false;
     }
 
-    const qrContent = isValid ? generateQRContent(contentType, contentData) : '';
+    // Do not propagate invalid content as empty string; keep last valid value
+    if (!isValid) return;
+
+    const qrContent = generateQRContent(contentType, contentData);
     if (qrContent !== lastContentRef.current) {
       lastContentRef.current = qrContent;
       onDataChange(qrContent);

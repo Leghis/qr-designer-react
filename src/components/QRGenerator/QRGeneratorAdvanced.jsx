@@ -355,7 +355,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       qrOptions.customColors.background, qrOptions.customColors.corners, 
       qrOptions.customColors.cornersAlt, qrOptions.shape, qrOptions.logo, 
       qrOptions.logoSize, qrOptions.errorCorrectionLevel, qrOptions.margin, 
-      template?.id, templateOptions]);
+      qrOptions.templateOptions, template?.id, templateOptions]);
   
   // Cleanup on unmount
   useEffect(() => {
@@ -530,22 +530,15 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
               </div>
             </div>
         
+        {/* Keep Content editor mounted to preserve user input across tab switches */}
+        <div style={{ display: activeTab === 'content' ? 'block' : 'none' }}>
+          <QRContentEditor
+            initialData={qrData}
+            onDataChange={setQrData}
+          />
+        </div>
+
         <AnimatePresence mode="wait">
-          {/* Content Tab */}
-          {activeTab === 'content' && (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <QRContentEditor
-                initialData={qrData}
-                onDataChange={setQrData}
-              />
-            </motion.div>
-          )}
           
           {/* Style Tab */}
           {activeTab === 'style' && (
