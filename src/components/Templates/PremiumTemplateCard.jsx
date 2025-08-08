@@ -87,7 +87,7 @@ const PremiumTemplateCard = ({ template }) => {
           <h3 className="font-semibold text-lg">{template.name}</h3>
         </div>
         <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${categoryColors[template.category]}`}>
-          {template.category}
+          {t(`templates.categories.${template.category}`)}
         </span>
       </div>
 
@@ -111,7 +111,7 @@ const PremiumTemplateCard = ({ template }) => {
           onClick={handleUseTemplate}
           className="w-full py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 group bg-primary-600 text-white hover:bg-primary-700"
         >
-          Utiliser ce template
+          {t('templates.card.useTemplate')}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

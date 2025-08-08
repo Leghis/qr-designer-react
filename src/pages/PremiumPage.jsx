@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ComingSoonModal from '../components/UI/ComingSoonModal';
 
 const PremiumPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(true);
 
   const handleCloseModal = () => {
@@ -23,8 +25,8 @@ const PremiumPage = () => {
         isOpen={showModal}
         onClose={handleCloseModal}
         type="premium"
-        title="Fonctionnalités Premium"
-        description="Découvrez bientôt nos fonctionnalités premium exclusives qui révolutionneront votre expérience QR Designer ! Templates avancés, personnalisation illimitée, analytics détaillés et bien plus encore."
+        title={t('comingSoon.premium.title')}
+        description={t('comingSoon.premium.description')}
       />
     </div>
   );

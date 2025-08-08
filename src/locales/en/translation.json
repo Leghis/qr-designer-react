@@ -290,6 +290,24 @@
     "title": "Popular Templates",
     "subtitle": "Start with our preset designs",
     "viewAll": "Explore all free templates",
+    "examples": {
+      "business": {
+        "name": "Business Pro",
+        "description": "Perfect for business cards"
+      },
+      "restaurant": {
+        "name": "Restaurant",
+        "description": "Digital menu and orders"
+      },
+      "event": {
+        "name": "Event",
+        "description": "Invitations and ticketing"
+      },
+      "social": {
+        "name": "Social Media",
+        "description": "Links to your profiles"
+      }
+    },
     "categories": {
       "all": "All",
       "spectacular": "Spectacular",
@@ -352,191 +370,24 @@
         "title": "Free Forever",
         "description": "Essential features will always remain free."
       }
-    },
-    "list": {
-      "customization": {
-        "title": "Complete customization",
-        "description": "Colors, shapes, logos - create unique QR codes that match your brand"
-      },
-      "hdExport": {
-        "title": "High quality export",
-        "description": "Download in PNG, SVG or JPG up to 3000x3000 pixels"
-      },
-      "dynamicQR": {
-        "title": "Dynamic QR codes",
-        "description": "Change content without changing the code (Premium)"
-      },
-      "analytics": {
-        "title": "Detailed analytics",
-        "description": "Track scans, locations and devices"
-      },
-      "bulkCreation": {
-        "title": "Bulk creation",
-        "description": "Generate up to 100 QR codes simultaneously"
-      },
-      "security": {
-        "title": "Enhanced security",
-        "description": "Password protection and expiration"
-      }
     }
   },
   "howItWorks": {
     "title": "How it works?",
     "subtitle": "Create your QR code in 3 simple steps",
     "steps": {
-      "choose": {
-        "title": "Choose",
-        "description": "Select the content type"
+      "enterContent": {
+        "title": "Enter your content",
+        "description": "URL, text, email, phone... everything is possible"
       },
       "customize": {
-        "title": "Customize",
-        "description": "Adapt the design to your brand"
+        "title": "Customize the design",
+        "description": "Colors, shapes and styles to match your brand"
       },
       "download": {
         "title": "Download",
-        "description": "Export in high quality"
+        "description": "PNG or SVG, ready to use anywhere"
       }
-    }
-  },
-  "pricing": {
-    "title": "Choose your plan",
-    "subtitle": "Start for free, scale as you grow",
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "save": "Save {{percent}}%",
-    "plans": {
-      "free": {
-        "name": "Free",
-        "price": "$0",
-        "description": "Perfect to get started",
-        "cta": "Start for free",
-        "features": {
-          "unlimitedStatic": "Unlimited static QR codes",
-          "basicTemplates": "Basic templates",
-          "hdDownloads": "HD downloads",
-          "basicCustomization": "Basic customization"
-        }
-      },
-      "premium": {
-        "name": "Premium",
-        "price": "$9",
-        "priceYearly": "$7",
-        "description": "For professionals",
-        "cta": "Go Premium",
-        "popular": "Most popular",
-        "features": {
-          "everything": "Everything in Free",
-          "dynamicQR": "Dynamic QR codes",
-          "premiumTemplates": "45+ premium templates",
-          "advancedCustomization": "Advanced customization",
-          "analytics": "Detailed analytics",
-          "noWatermark": "No watermark",
-          "bulkCreation": "Bulk creation",
-          "prioritySupport": "Priority support"
-        }
-      },
-      "enterprise": {
-        "name": "Enterprise",
-        "price": "Custom",
-        "description": "Tailored solutions",
-        "cta": "Contact us",
-        "features": {
-          "everything": "Everything in Premium",
-          "unlimitedDynamic": "Unlimited dynamic QR",
-          "customDomain": "Custom domain",
-          "apiAccess": "API access",
-          "whiteLabel": "White label",
-          "sla": "Guaranteed SLA",
-          "dedicatedSupport": "Dedicated account manager",
-          "training": "Team training"
-        }
-      }
-    }
-  },
-  "testimonials": {
-    "title": "They trust us",
-    "subtitle": "Thousands of businesses use QR Designer every day",
-    "list": {
-      "restaurant": {
-        "text": "QR Designer revolutionized our digital menu. Customers love scanning to see the dishes!",
-        "author": "Marie L.",
-        "role": "Restaurant Owner",
-        "rating": 5
-      },
-      "marketing": {
-        "text": "The premium templates are beautiful. Our campaigns now have a professional look.",
-        "author": "Thomas B.",
-        "role": "Marketing Director",
-        "rating": 5
-      },
-      "event": {
-        "text": "Perfect for our events. Dynamic QR codes allow us to change everything in real time.",
-        "author": "Sophie M.",
-        "role": "Event Manager",
-        "rating": 5
-      }
-    }
-  },
-  "cta": {
-    "title": "Ready to create",
-    "titleHighlight": "extraordinary",
-    "subtitle": "QR codes? Join thousands of creators and bring your ideas to life",
-    "button": "Start for free",
-    "premium": "or",
-    "premiumLink": "discover Premium"
-  },
-  "templates": {
-    "title": "Popular Templates",
-    "subtitle": "Start with our preset designs",
-    "viewAll": "Explore all free templates",
-    "examples": {
-      "business": {
-        "name": "Business Pro",
-        "description": "Perfect for business cards"
-      },
-      "restaurant": {
-        "name": "Restaurant",
-        "description": "Digital menu and orders"
-      },
-      "event": {
-        "name": "Event",
-        "description": "Invitations and ticketing"
-      },
-      "social": {
-        "name": "Social Media",
-        "description": "Links to your profiles"
-      }
-    },
-    "categories": {
-      "all": "All",
-      "spectacular": "Spectacular",
-      "professional": "Professional",
-      "creative": "Creative",
-      "event": "Event",
-      "hospitality": "Hospitality",
-      "retail": "Retail",
-      "health": "Health",
-      "education": "Education",
-      "social": "Social Media"
-    },
-    "gallery": {
-      "title": "Gallery of",
-      "titleHighlight": "Premium Templates",
-      "subtitle": "Over {{count}} exclusive designs created by professionals. Find the perfect template for your brand.",
-      "loading": "Loading...",
-      "noTemplates": "No templates found",
-      "tryOtherCategory": "Try another category"
-    },
-    "card": {
-      "customize": "Customize",
-      "view": "View template",
-      "used": "Used",
-      "useTemplate": "Use template"
-    },
-    "cta": {
-      "unlockAll": "Unlock all Premium templates",
-      "description": "Access over {{count}} exclusive designs and create QR codes that stand out",
-      "upgrade": "Go Premium"
     }
   },
   "pricing": {
@@ -590,6 +441,34 @@
       "badge": "<strong>100% secure</strong> • Your data remains private"
     }
   },
+  "testimonials": {
+    "title": "What our users say",
+    "subtitle": "Over 50,000 companies trust us",
+    "list": {
+      "ecommerce": {
+        "text": "Amazing that such a complete tool is free! I created custom QR codes for all my products in minutes.",
+        "author": "Marie L.",
+        "role": "E-commerce"
+      },
+      "restaurant": {
+        "text": "The templates are beautiful and everything is free! Our QR codes are now a real visual asset for our digital menu.",
+        "author": "Thomas D.",
+        "role": "Restaurant"
+      },
+      "startup": {
+        "text": "No need for credit card, no hidden subscription. Simple, effective and 100% free. Exactly what we needed!",
+        "author": "Sophie M.",
+        "role": "Tech Startup"
+      }
+    }
+  },
+  "cta": {
+    "badge": "Everything is free, forever",
+    "title": "Ready to create exceptional QR codes?",
+    "subtitle": "Join over 50,000 companies creating professional QR codes for free with QR Designer",
+    "button": "Create my free QR code",
+    "disclaimer": "No credit card • No signup • Full access"
+  },
   "comingSoon": {
     "message": "Advanced features coming soon",
     "title": "Coming Soon!",
@@ -635,52 +514,6 @@
       "title": "GitHub Support",
       "description": "Discover soon our open-source code and contribute to the project on GitHub!"
     }
-  },
-  "howItWorks": {
-    "title": "How it works?",
-    "subtitle": "Create your QR code in 3 simple steps",
-    "steps": {
-      "enterContent": {
-        "title": "Enter your content",
-        "description": "URL, text, email, phone... everything is possible"
-      },
-      "customize": {
-        "title": "Customize the design",
-        "description": "Colors, shapes and styles to match your brand"
-      },
-      "download": {
-        "title": "Download",
-        "description": "PNG or SVG, ready to use anywhere"
-      }
-    }
-  },
-  "testimonials": {
-    "title": "What our users say",
-    "subtitle": "Over 50,000 companies trust us",
-    "list": {
-      "ecommerce": {
-        "text": "Amazing that such a complete tool is free! I created custom QR codes for all my products in minutes.",
-        "author": "Marie L.",
-        "role": "E-commerce"
-      },
-      "restaurant": {
-        "text": "The templates are beautiful and everything is free! Our QR codes are now a real visual asset for our digital menu.",
-        "author": "Thomas D.",
-        "role": "Restaurant"
-      },
-      "startup": {
-        "text": "No need for credit card, no hidden subscription. Simple, effective and 100% free. Exactly what we needed!",
-        "author": "Sophie M.",
-        "role": "Tech Startup"
-      }
-    }
-  },
-  "cta": {
-    "badge": "Everything is free, forever",
-    "title": "Ready to create exceptional QR codes?",
-    "subtitle": "Join over 50,000 companies creating professional QR codes for free with QR Designer",
-    "button": "Create my free QR code",
-    "disclaimer": "No credit card • No signup • Full access"
   },
   "templateEdit": {
     "navigation": {

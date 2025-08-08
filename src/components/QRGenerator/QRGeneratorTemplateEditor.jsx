@@ -499,12 +499,12 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
               className="block w-full p-3 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-center cursor-pointer hover:border-gray-400 transition-colors"
             >
               {qrOptions.logo ? (
-                <img src={qrOptions.logo} alt="Logo" className="w-12 h-12 mx-auto object-contain" />
+                <img src={qrOptions.logo} alt={t('qrGenerator.logo.title') || 'Logo'} className="w-12 h-12 mx-auto object-contain" />
               ) : (
                 <Upload className="w-6 h-6 mx-auto text-gray-400" />
               )}
               <span className="text-xs text-gray-600 dark:text-gray-400 mt-1 block">
-                {qrOptions.logo ? 'Changer' : 'Ajouter'}
+                {qrOptions.logo ? t('qrGenerator.logo.clickToChange') : t('qrGenerator.logo.upload')}
               </span>
             </label>
           </div>
@@ -514,7 +514,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
         {qrOptions.logo && (
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Taille du logo
+              {t('qrGenerator.logo.size')}
             </label>
             <input
               type="range"
@@ -537,7 +537,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
         <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-xl p-8">
           {/* Preview Header */}
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold">Aperçu en temps réel</h3>
+            <h3 className="text-lg font-semibold">{t('qrGenerator.preview.title')}</h3>
             <button
               onClick={() => setShowPreview(!showPreview)}
               className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
@@ -571,7 +571,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
                 className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl font-medium hover:from-primary-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                PNG
+                {t('qrGenerator.actions.downloadPNG')}
               </motion.button>
               
               <motion.button
@@ -581,7 +581,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
                 className="flex-1 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                SVG
+                {t('qrGenerator.actions.downloadSVG')}
               </motion.button>
             </div>
           </div>
@@ -594,11 +594,11 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
               className="mt-6 p-4 bg-gray-50 dark:bg-dark-900 rounded-lg"
             >
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Template: <span className="font-medium text-gray-900 dark:text-white">{template.name}</span>
+                {t('qrGenerator.template.name')}: <span className="font-medium text-gray-900 dark:text-white">{template.name}</span>
               </p>
               {template.category && (
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Catégorie: <span className="font-medium">{template.category}</span>
+                  {t('qrGenerator.template.category')}: <span className="font-medium">{t(`templates.categories.${template.category}`)}</span>
                 </p>
               )}
             </motion.div>

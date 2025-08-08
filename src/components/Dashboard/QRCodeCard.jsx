@@ -87,7 +87,7 @@ const QRCodeCard = memo(({ qrCode, onDelete, viewMode = 'grid' }) => {
         {/* Info */}
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-gray-900 dark:text-white truncate">
-            {qrCode.name || qrCode.data?.substring(0, 30) || 'QR Code'}
+            {qrCode.name || qrCode.data?.substring(0, 30) || t('dashboard.qrDetail.unnamed')}
           </h3>
           <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
             <span>{qrType?.name || 'URL'}</span>
@@ -213,7 +213,7 @@ const QRCodeCard = memo(({ qrCode, onDelete, viewMode = 'grid' }) => {
       {/* Content */}
       <div className="p-6">
         <h3 className="font-semibold text-gray-900 dark:text-white mb-2 truncate">
-          {qrCode.name || qrCode.data?.substring(0, 30) || 'QR Code'}
+          {qrCode.name || qrCode.data?.substring(0, 30) || t('dashboard.qrDetail.unnamed')}
         </h3>
         
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 truncate">
