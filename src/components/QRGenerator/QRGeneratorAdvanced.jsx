@@ -103,34 +103,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
     ...templateOptions
   });
   
-  // Popular templates for home page
-  const popularTemplates = !template ? [
-    { 
-      id: 'basic', 
-      name: t('qrGenerator.templates.basic'),
-      category: t('templates.categories.professional'),
-      options: {
-        dotsOptions: { color: '#000000', type: 'square' },
-        backgroundOptions: { color: '#FFFFFF' },
-        cornersSquareOptions: { color: '#000000', type: 'square' },
-        cornersDotOptions: { color: '#000000', type: 'square' }
-      },
-      isPremium: false 
-    },
-    { 
-      id: 'modern', 
-      name: t('qrGenerator.templates.modern'),
-      category: t('templates.categories.creative'),
-      options: {
-        dotsOptions: { color: '#3B82F6', type: 'rounded' },
-        backgroundOptions: { color: '#EFF6FF' },
-        cornersSquareOptions: { color: '#1E40AF', type: 'extra-rounded' },
-        cornersDotOptions: { color: '#1E40AF', type: 'dot' }
-      },
-      isPremium: false 
-    },
-    ...featuredPremiumTemplates
-  ] : [];
+  // Curated Featured templates for the Home generator
+  const popularTemplates = !template ? featuredPremiumTemplates : [];
   
   // Refs
   const qrCodeRef = useRef(null);
