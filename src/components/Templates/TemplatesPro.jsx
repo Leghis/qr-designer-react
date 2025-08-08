@@ -7,9 +7,71 @@ import QRCodeStyling from 'qr-code-styling';
 import { loadTemplatesByCategory, templateCounts, CATEGORIES } from '../../data/templates';
 import TemplateSkeletonLoader from './TemplateSkeletonLoader';
 
+// Lightweight concurrency controller and preview cache (module scoped)
+let __maxConcurrentQR = (() => {
+  try {
+    const n = typeof navigator !== 'undefined' && navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4;
+    return Math.max(2, Math.min(3, Math.floor(n / 2))); // 2 on low-end, 3 max
+  } catch (e) {
+    return 3;
+  }
+})();
+let __activeQRTasks = 0;
+const __qrTaskQueue = [];
+const __previewCache = new Map(); // key: template.id, value: SVG outerHTML string
+
+const enqueueQRTask = (fn) => {
+  return new Promise((resolve, reject) => {
+    const run = async () => {
+      try {
+        await fn();
+        resolve();
+      } catch (e) {
+        reject(e);
+      } finally {
+        __activeQRTasks = Math.max(0, __activeQRTasks - 1);
+        if (typeof queueMicrotask === 'function') {
+          queueMicrotask(runNext);
+        } else {
+          setTimeout(runNext, 0);
+        }
+      }
+    };
+    __qrTaskQueue.push(run);
+    runNext();
+  });
+};
+
+function runNext() {
+  if (__activeQRTasks >= __maxConcurrentQR) return;
+  const next = __qrTaskQueue.shift();
+  if (!next) return;
+  __activeQRTasks++;
+  next();
+}
+
+const requestIdle = (cb) => {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    const id = window.requestIdleCallback(() => cb(), { timeout: 250 });
+    return { type: 'idle', id };
+  }
+  const id = setTimeout(() => cb(), 16);
+  return { type: 'timeout', id };
+};
+
+const cancelIdle = (token) => {
+  if (!token) return;
+  if (token.type === 'idle' && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+    window.cancelIdleCallback(token.id);
+  } else if (token.type === 'timeout') {
+    clearTimeout(token.id);
+  }
+};
+
 const TemplatesPro = () => {
   const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [listVersion, setListVersion] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [templates, setTemplates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +123,8 @@ const TemplatesPro = () => {
       try {
         const loadedTemplates = await loadTemplatesByCategory(selectedCategory);
         setTemplates(loadedTemplates);
+        // Bump list version so cards can cancel stale tasks
+        setListVersion(v => v + 1);
         if (isInitialLoad) {
           setIsInitialLoad(false);
         }
@@ -203,6 +267,7 @@ const TemplatesPro = () => {
               key={template.id}
               template={template}
               index={index}
+              listVersion={listVersion}
             />
           ))}
         </motion.div>
@@ -212,7 +277,7 @@ const TemplatesPro = () => {
 };
 
 // Template Card Component
-const TemplateCard = ({ template, index }) => {
+const TemplateCard = ({ template, index, listVersion }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -228,9 +293,7 @@ const TemplateCard = ({ template, index }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !qrGenerated) {
-            setIsInView(true);
-          }
+          setIsInView(entry.isIntersecting);
         });
       },
       { threshold: 0.1, rootMargin: '50px' }
@@ -270,67 +333,87 @@ const TemplateCard = ({ template, index }) => {
     };
   }, []);
   
-  // Generate QR preview only when in view with optimized timing
+  // Generate QR preview only when in view, with concurrency limiting, caching and idle scheduling
   useEffect(() => {
     if (!isInView || qrGenerated) return;
-    
-    // Intelligent staggering: first 6 cards render quickly, others with more delay
-    const baseDelay = index < 6 ? 50 : 150;
-    const staggerDelay = index < 6 ? index * 50 : (index - 6) * 100 + 300;
-    
-    timeoutRef.current = setTimeout(() => {
+
+    let canceled = false;
+    let idleToken = null;
+    const currentVersion = listVersion;
+
+    const container = qrContainerRef.current;
+    if (!container) return;
+
+    // Cache hit: render instantly
+    const cached = __previewCache.get(template.id);
+    if (cached) {
+      container.innerHTML = cached;
+      setQrGenerated(true);
+      return;
+    }
+
+    // Otherwise, queue a generation task (limited concurrency)
+    enqueueQRTask(async () => {
+      if (canceled) return;
+      // Skip if went out of view or version changed
+      if (!isInView || currentVersion !== listVersion) return;
+      // Wait for idle time slice to avoid jank
+      await new Promise((res) => {
+        idleToken = requestIdle(res);
+      });
+      if (canceled || !isInView || currentVersion !== listVersion) return;
+
+      // Safety: container may have unmounted
       if (!qrContainerRef.current) return;
-      
+
       // Clear existing QR safely
       while (qrContainerRef.current.firstChild) {
         qrContainerRef.current.removeChild(qrContainerRef.current.firstChild);
       }
-      
-      // Optimized QR options for faster rendering
+
       const qrOptions = {
         width: 180,
         height: 180,
-        type: "svg",
-        data: "https://qr-designer.com",
+        type: 'svg',
+        data: 'https://qr-designer.com',
         margin: 8,
         ...template.options,
         imageOptions: {
           hideBackgroundDots: true,
-          crossOrigin: "anonymous",
+          crossOrigin: 'anonymous',
           margin: 8,
           imageSize: 0.25,
           ...template.options?.imageOptions
         },
-        // Optimize for performance
         qrOptions: {
-          errorCorrectionLevel: 'M', // Medium error correction for better performance
+          errorCorrectionLevel: 'M',
           ...template.options?.qrOptions
         }
       };
-      
+
       try {
         qrRef.current = new QRCodeStyling(qrOptions);
-        if (qrContainerRef.current) {
-          // Use requestAnimationFrame for smoother rendering
-          requestAnimationFrame(() => {
-            if (qrRef.current && qrContainerRef.current) {
-              qrRef.current.append(qrContainerRef.current);
-              setQrGenerated(true);
-            }
-          });
+        if (!qrContainerRef.current || canceled || !isInView || currentVersion !== listVersion) return;
+        await new Promise((r) => requestAnimationFrame(r));
+        if (canceled || !qrRef.current || !qrContainerRef.current || !isInView || currentVersion !== listVersion) return;
+        qrRef.current.append(qrContainerRef.current);
+        setQrGenerated(true);
+        // Cache the SVG outerHTML for instant reuse
+        const svg = qrContainerRef.current.querySelector('svg');
+        if (svg) {
+          __previewCache.set(template.id, svg.outerHTML);
         }
       } catch (error) {
         console.error('Error generating QR preview:', error);
-        setQrGenerated(true); // Mark as generated to prevent retries
+        setQrGenerated(true);
       }
-    }, baseDelay + staggerDelay);
-    
+    });
+
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      canceled = true;
+      if (idleToken) cancelIdle(idleToken);
     };
-  }, [isInView, template, index, qrGenerated]);
+  }, [isInView, qrGenerated, template, listVersion]);
   
   return (
     <motion.div
