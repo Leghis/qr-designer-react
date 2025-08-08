@@ -1,18 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { generateQRCode } from '../../services/qrService';
+import { useRef, useMemo } from 'react';
+import useQRCode from '../../hooks/useQRCode';
 
 const QRPreview = ({ data, qrType }) => {
   const qrContainerRef = useRef(null);
 
-  useEffect(() => {
-    if (!qrContainerRef.current || !data) return;
-
-    // Clear existing QR code
-    qrContainerRef.current.innerHTML = '';
-
-    // Generate QR code (factory – no singleton)
-    const qrCode = generateQRCode({
-      data: data,
+  const qrOptions = useMemo(() => {
+    if (!data) return null;
+    return {
+      data,
       dotsOptions: {
         color: '#3b82f6',
         type: 'rounded'
@@ -24,17 +19,10 @@ const QRPreview = ({ data, qrType }) => {
       backgroundOptions: {
         color: '#ffffff'
       }
-    });
-
-    qrCode.append(qrContainerRef.current);
-
-    // Cleanup on unmount or data change
-    return () => {
-      if (qrContainerRef.current) {
-        qrContainerRef.current.innerHTML = '';
-      }
     };
   }, [data]);
+
+  useQRCode(qrContainerRef, qrOptions);
 
   return (
     <div className="space-y-4">
