@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Briefcase, Utensils, Calendar, Share2, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -51,44 +51,50 @@ const Templates = () => {
   return (
     <section id="templates" className="py-20 bg-gray-50 dark:bg-dark-800">
       <div className="container mx-auto px-4">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('templates.title')}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="gradient-text">{t('templates.title')}</span>
+          </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
             {t('templates.subtitle')}
           </p>
-        </motion.div>
+        </Motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {templates.map((template, index) => {
             const Icon = template.icon;
             return (
-              <motion.div
+              <Motion.div
                 key={template.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => handleTemplateClick(template.id)}
-                className="bg-white dark:bg-dark-900 rounded-xl p-6 hover-lift cursor-pointer template-card"
+                className="group bg-white dark:bg-dark-900 rounded-xl p-6 hover-lift cursor-pointer template-card hover:shadow-2xl"
               >
-                <div className={`${template.bgColor} rounded-lg p-8 mb-4 flex items-center justify-center`}>
+                <div
+                  className={`${template.bgColor} rounded-lg p-8 mb-4 flex items-center justify-center transition-transform group-hover:scale-110`}
+                >
                   <Icon className={`w-16 h-16 ${template.iconColor}`} />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{template.name}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <h3 className="text-lg font-semibold mb-2 transition-colors group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                  {template.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                   {template.description}
                 </p>
-              </motion.div>
+              </Motion.div>
             );
           })}
         </div>
         
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -101,7 +107,7 @@ const Templates = () => {
             <Sparkles className="w-5 h-5" />
             {t('templates.viewAll')}
           </Link>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );

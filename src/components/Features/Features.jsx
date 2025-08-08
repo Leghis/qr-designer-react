@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Palette, Zap, Smartphone, Image, ShieldCheck, Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -47,38 +47,42 @@ const Features = () => {
   return (
     <section id="features" className="py-20 bg-white dark:bg-dark-900">
       <div className="container mx-auto px-4">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            {t('features.mainTitle')}
+            <span className="gradient-text">{t('features.mainTitle')}</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
             {t('features.mainSubtitle')}
           </p>
-        </motion.div>
+        </Motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <Motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gray-50 dark:bg-dark-800 rounded-xl p-6 hover-lift"
+                className="group bg-gray-50 dark:bg-dark-800 rounded-xl p-6 hover-lift transition-shadow hover:shadow-lg"
               >
-                <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4`}>
+                <div
+                  className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110`}
+                >
                   <Icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{t(feature.titleKey)}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{t(feature.descriptionKey)}</p>
-              </motion.div>
+                <h3 className="text-xl font-semibold mb-3 transition-colors group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                  {t(feature.titleKey)}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{t(feature.descriptionKey)}</p>
+              </Motion.div>
             );
           })}
         </div>
