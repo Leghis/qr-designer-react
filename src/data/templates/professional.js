@@ -744,4 +744,89 @@ export const professionalTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'deep-navy-glass',
+    name: 'Deep Navy Glass',
+    category: 'professional',
+    description: 'Verre profond bleu marine, sobre et premium',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#0B1B34' },
+            { offset: 1, color: '#1F3A5F' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#F8FAFC' },
+            { offset: 1, color: '#EEF2F7' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#274060' },
+            { offset: 1, color: '#0D2847' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#2C3E50'
+      }
+    }
+  },
+  {
+    id: 'aubergine-luxe',
+    name: 'Aubergine Luxe',
+    category: 'professional',
+    description: 'Aubergine noble et détails dorés',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#4C1D95' },
+            { offset: 0.5, color: '#6D28D9' },
+            { offset: 1, color: '#7C3AED' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        color: '#FBFAF7'
+      },
+      cornersSquareOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#C9A227' },
+            { offset: 1, color: '#A37E16' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'square',
+        color: '#6B21A8'
+      }
+    }
+  }
 ];

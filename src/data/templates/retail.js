@@ -798,4 +798,82 @@ export const retailTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'neon-window',
+    name: 'Neon Window',
+    category: 'retail',
+    description: 'Vitrine néon ultra contrastée',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#00F5FF' },
+            { offset: 0.5, color: '#00FFC6' },
+            { offset: 1, color: '#FF2E63' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#121212'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        color: '#FFFFFF'
+      },
+      cornersDotOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#00F5D4' },
+            { offset: 1, color: '#F15BB5' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'rose-gold-luxe',
+    name: 'Rose Gold Luxe',
+    category: 'retail',
+    description: 'Luxe rose gold et blanc pur',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#F6D2C4' },
+            { offset: 0.5, color: '#E8B4A5' },
+            { offset: 1, color: '#D39E8C' }
+          ]
+        }
+      },
+      backgroundOptions: { 
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: { 
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#C58C7A' },
+            { offset: 1, color: '#AA6E5A' }
+          ]
+        }
+      },
+      cornersDotOptions: { 
+        type: 'dot',
+        color: '#F2C1B3'
+      }
+    }
+  }
 ];

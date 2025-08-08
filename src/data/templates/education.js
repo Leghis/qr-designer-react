@@ -734,4 +734,94 @@ export const educationTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'quantum-chalk',
+    name: 'Quantum Chalk',
+    category: 'education',
+    description: 'Craie quantique sur tableau, esprit scientifique',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#E5E7EB' },
+            { offset: 1, color: '#CBD5E1' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#0F5132' },
+            { offset: 1, color: '#052E16' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'square',
+        color: '#F8FAFC'
+      },
+      cornersDotOptions: {
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FDE68A' },
+            { offset: 1, color: '#F59E0B' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'aurora-campus',
+    name: 'Aurora Campus',
+    category: 'education',
+    description: 'Aurores inspirantes, curiosity-driven learning',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#34D399' },
+            { offset: 0.5, color: '#60A5FA' },
+            { offset: 1, color: '#8B5CF6' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#F0FDF4' },
+            { offset: 1, color: '#EEF2FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#FDE68A' },
+            { offset: 1, color: '#A7F3D0' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#93C5FD'
+      }
+    }
+  }
 ];

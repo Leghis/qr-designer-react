@@ -676,4 +676,88 @@ export const socialTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'gradient-pop',
+    name: 'Gradient Pop',
+    category: 'social',
+    description: 'Pop multicolore inspiré des réseaux',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#FF3D00' },
+            { offset: 0.33, color: '#FF9100' },
+            { offset: 0.66, color: '#8E24AA' },
+            { offset: 1, color: '#2979FF' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        color: '#FFFFFF'
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF80AB' },
+            { offset: 1, color: '#82B1FF' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#00E676' },
+            { offset: 1, color: '#1DE9B6' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'neon-orbit',
+    name: 'Neon Orbit',
+    category: 'social',
+    description: 'Orbites néon rose/cyan hyper modernes',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FF2E63' },
+            { offset: 1, color: '#08D9D6' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        color: '#0A0A0A'
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        color: '#FFFFFF'
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF2E63' },
+            { offset: 1, color: '#08D9D6' }
+          ]
+        }
+      }
+    }
+  }
 ];

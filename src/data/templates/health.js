@@ -763,4 +763,95 @@ export const healthTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'vital-pulse',
+    name: 'Vital Pulse',
+    category: 'health',
+    description: 'Impulsion vitale, énergie et clarté',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#06B6D4' },
+            { offset: 0.5, color: '#10B981' },
+            { offset: 1, color: '#EF4444' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#F0FDFF' },
+            { offset: 1, color: '#ECFEFF' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#0EA5A6' },
+            { offset: 1, color: '#0D9488' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#84CC16'
+      }
+    }
+  },
+  {
+    id: 'aqua-serenity',
+    name: 'Aqua Serenity',
+    category: 'health',
+    description: 'Sérénité aquatique, bien-être moderne',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#B2FEFA' },
+            { offset: 0.5, color: '#0ED2F7' },
+            { offset: 1, color: '#00C6FB' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#F5FFFE' },
+            { offset: 1, color: '#E6FFFB' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#34D399' },
+            { offset: 1, color: '#059669' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#A7F3D0'
+      }
+    }
+  }
 ];

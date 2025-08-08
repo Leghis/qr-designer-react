@@ -1330,4 +1330,102 @@ export const spectacularTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'solar-flare',
+    name: 'Solar Flare',
+    category: 'spectacular',
+    description: 'Éruption solaire néon sur fond cosmique',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFE259' },
+            { offset: 0.4, color: '#FFA751' },
+            { offset: 1, color: '#FF512F' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 225,
+          colorStops: [
+            { offset: 0, color: '#0B0F25' },
+            { offset: 1, color: '#1A1A3B' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#FF8C00' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#FF6A00'
+      }
+    }
+  },
+  {
+    id: 'iridescent-void',
+    name: 'Iridescent Void',
+    category: 'spectacular',
+    description: 'Irisé futuriste dans le vide profond',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#00F5D4' },
+            { offset: 0.5, color: '#7B2CBF' },
+            { offset: 1, color: '#F15BB5' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#0A0A0A' },
+            { offset: 1, color: '#1B032E' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#00BBF9' },
+            { offset: 1, color: '#F72585' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFD166' },
+            { offset: 1, color: '#06D6A0' }
+          ]
+        }
+      }
+    }
+  }
 ];

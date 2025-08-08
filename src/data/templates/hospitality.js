@@ -768,4 +768,88 @@ export const hospitalityTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'saffron-spice',
+    name: 'Saffron Spice',
+    category: 'hospitality',
+    description: 'Épices safran et chaleur conviviale',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFB703' },
+            { offset: 0.5, color: '#FB8500' },
+            { offset: 1, color: '#E76F51' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        color: '#FFF3E0'
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#8D5524' },
+            { offset: 1, color: '#5D4037' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#E9C46A'
+      }
+    }
+  },
+  {
+    id: 'midnight-jazz',
+    name: 'Midnight Jazz',
+    category: 'hospitality',
+    description: 'Ambiance jazz nocturne chic',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy',
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#0F172A' },
+            { offset: 1, color: '#1E293B' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#0B0B0B' },
+            { offset: 1, color: '#000000' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#D4AF37' },
+            { offset: 1, color: '#B8860B' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#00E5FF'
+      }
+    }
+  }
 ];

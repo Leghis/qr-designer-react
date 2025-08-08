@@ -896,4 +896,100 @@ export const creativeTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'chromatic-bloom',
+    name: 'Chromatic Bloom',
+    category: 'creative',
+    description: 'Floraison chromatique irisée, effet pictural',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FF6B6B' },
+            { offset: 0.25, color: '#FFE66D' },
+            { offset: 0.5, color: '#4ECDC4' },
+            { offset: 0.75, color: '#45B7D1' },
+            { offset: 1, color: '#C06C84' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 25,
+          colorStops: [
+            { offset: 0, color: '#FFFDF7' },
+            { offset: 1, color: '#F3F8FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FF9A9E' },
+            { offset: 1, color: '#FAD0C4' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#8EC5FC' },
+            { offset: 1, color: '#E0C3FC' }
+          ]
+        }
+      }
+    }
+  },
+  {
+    id: 'kaleido-morph',
+    name: 'Kaleido Morph',
+    category: 'creative',
+    description: 'Morphing kaléidoscopique très contrasté',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'square',
+        gradient: {
+          type: 'linear',
+          rotation: 90,
+          colorStops: [
+            { offset: 0, color: '#FF006E' },
+            { offset: 0.2, color: '#FB5607' },
+            { offset: 0.4, color: '#FFBE0B' },
+            { offset: 0.6, color: '#3A86FF' },
+            { offset: 0.8, color: '#8338EC' },
+            { offset: 1, color: '#06D6A0' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        color: '#0A0A0A'
+      },
+      cornersSquareOptions: {
+        type: 'square',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#12C2E9' },
+            { offset: 0.5, color: '#C471ED' },
+            { offset: 1, color: '#F64F59' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'square',
+        color: '#00FF88'
+      }
+    }
+  }
 ];

@@ -829,4 +829,102 @@ export const eventTemplates = [
       }
     }
   }
+  ,
+  {
+    id: 'midnight-fireworks',
+    name: 'Midnight Fireworks',
+    category: 'event',
+    description: 'Feux d’artifice sur ciel nocturne',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'dots',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFD166' },
+            { offset: 0.33, color: '#EF476F' },
+            { offset: 0.66, color: '#06D6A0' },
+            { offset: 1, color: '#118AB2' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'linear',
+          rotation: 180,
+          colorStops: [
+            { offset: 0, color: '#00010A' },
+            { offset: 1, color: '#0B132B' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFD700' },
+            { offset: 1, color: '#FF8C00' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        color: '#FF6F91'
+      }
+    }
+  },
+  {
+    id: 'opal-gala',
+    name: 'Opal Gala',
+    category: 'event',
+    description: 'Gala opalin, nacré et raffiné',
+    isPremium: false,
+    options: {
+      dotsOptions: {
+        type: 'classy-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 135,
+          colorStops: [
+            { offset: 0, color: '#A8EDEA' },
+            { offset: 0.5, color: '#FED6E3' },
+            { offset: 1, color: '#D0D1FF' }
+          ]
+        }
+      },
+      backgroundOptions: {
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#FFFFFF' },
+            { offset: 1, color: '#F7F8FF' }
+          ]
+        }
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded',
+        gradient: {
+          type: 'linear',
+          rotation: 45,
+          colorStops: [
+            { offset: 0, color: '#FFAFBD' },
+            { offset: 1, color: '#C9FFBF' }
+          ]
+        }
+      },
+      cornersDotOptions: {
+        type: 'dot',
+        gradient: {
+          type: 'radial',
+          colorStops: [
+            { offset: 0, color: '#B8C0FF' },
+            { offset: 1, color: '#FFC6FF' }
+          ]
+        }
+      }
+    }
+  }
 ];
