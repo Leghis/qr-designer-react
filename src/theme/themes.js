@@ -92,7 +92,8 @@ export const themes = [
       'cta-badge-bg': 'rgba(255, 255, 255, 0.16)',
       'cta-badge-text': '#f8faff',
       'cta-glow-1': 'rgba(59, 130, 246, 0.28)',
-      'cta-glow-2': 'rgba(124, 58, 237, 0.24)'
+      'cta-glow-2': 'rgba(124, 58, 237, 0.24)',
+      'brand-inner': '#ffffff'
     }
   },
   {
@@ -186,7 +187,8 @@ export const themes = [
       'cta-badge-bg': 'rgba(139, 92, 246, 0.22)',
       'cta-badge-text': '#e2e9ff',
       'cta-glow-1': 'rgba(168, 85, 247, 0.38)',
-      'cta-glow-2': 'rgba(34, 211, 238, 0.28)'
+      'cta-glow-2': 'rgba(34, 211, 238, 0.28)',
+      'brand-inner': '#10162b'
     }
   },
   {
@@ -280,7 +282,8 @@ export const themes = [
       'cta-badge-bg': 'rgba(255, 255, 255, 0.2)',
       'cta-badge-text': '#fff9f5',
       'cta-glow-1': 'rgba(249, 115, 22, 0.4)',
-      'cta-glow-2': 'rgba(236, 72, 153, 0.28)'
+      'cta-glow-2': 'rgba(236, 72, 153, 0.28)',
+      'brand-inner': '#fff6ef'
     }
   },
   {
@@ -374,7 +377,8 @@ export const themes = [
       'cta-badge-bg': 'rgba(255, 255, 255, 0.18)',
       'cta-badge-text': '#f4fffb',
       'cta-glow-1': 'rgba(16, 185, 129, 0.32)',
-      'cta-glow-2': 'rgba(14, 116, 144, 0.28)'
+      'cta-glow-2': 'rgba(14, 116, 144, 0.28)',
+      'brand-inner': '#eef9f3'
     }
   }
 ];

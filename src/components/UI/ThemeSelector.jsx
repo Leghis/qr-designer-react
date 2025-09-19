@@ -7,7 +7,9 @@ import { cn } from '../../utils/cn';
 const ThemeSelector = ({ variant = 'inline', className }) => {
   const { availableThemes, currentTheme, setTheme, theme: activeThemeId } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef(null);
+  const buttonRef = useRef(null);
   const isFloating = variant === 'floating';
 
   const sortedThemes = useMemo(() => availableThemes ?? [], [availableThemes]);
@@ -17,6 +19,29 @@ const ThemeSelector = ({ variant = 'inline', className }) => {
   const dropdownShadow = isFloating
     ? '0 36px 68px -42px var(--brand-glow, var(--overlay))'
     : '0 28px 60px -40px var(--overlay)';
+  const isExpanded = !isFloating || isHovering || isOpen;
+  const floatingSpacingClasses = isFloating
+    ? (isExpanded ? 'gap-3 px-4 sm:px-5' : 'gap-1 px-3 sm:px-3')
+    : 'gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-2.5 shadow-sm hover:shadow-lg hover:-translate-y-0.5';
+
+  useEffect(() => {
+    if (!isFloating) return;
+
+    if (isOpen) {
+      setIsHovering(true);
+      return;
+    }
+
+    const buttonEl = buttonRef.current;
+    if (!buttonEl) {
+      setIsHovering(false);
+      return;
+    }
+
+    if (!buttonEl.matches(':hover') && !buttonEl.matches(':focus-within')) {
+      setIsHovering(false);
+    }
+  }, [isFloating, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -51,6 +76,35 @@ const ThemeSelector = ({ variant = 'inline', className }) => {
   };
 
   const currentIcon = currentTheme?.icon ?? '🎨';
+  const showDetails = !isFloating || isExpanded;
+  const buttonMotionProps = isFloating
+    ? { layout: true, initial: false, transition: { type: 'spring', stiffness: 260, damping: 24 } }
+    : {};
+
+  const handleMouseEnter = () => {
+    if (!isFloating) return;
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (!isFloating) return;
+    if (!isOpen) {
+      setIsHovering(false);
+    }
+  };
+
+  const handleFocus = () => {
+    if (!isFloating) return;
+    setIsHovering(true);
+  };
+
+  const handleBlur = (event) => {
+    if (!isFloating) return;
+    if (isOpen) return;
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsHovering(false);
+    }
+  };
 
   return (
     <div
@@ -63,13 +117,18 @@ const ThemeSelector = ({ variant = 'inline', className }) => {
       )}
     >
       <motion.button
+        ref={buttonRef}
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         className={cn(
-          'flex items-center gap-2 sm:gap-3 rounded-2xl border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2',
+          'flex items-center rounded-2xl border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2',
           isFloating
-            ? 'px-3.5 py-3 sm:px-4 sm:py-3 shadow-xl hover:shadow-2xl hover:-translate-y-1'
-            : 'px-3 py-2 sm:px-4 sm:py-2.5 shadow-sm hover:shadow-lg hover:-translate-y-0.5'
+            ? cn('py-3 shadow-xl hover:shadow-2xl hover:-translate-y-1', floatingSpacingClasses)
+            : floatingSpacingClasses
         )}
         style={{
           background: 'var(--bg-secondary)',
@@ -80,6 +139,7 @@ const ThemeSelector = ({ variant = 'inline', className }) => {
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-label="Choisir un thème"
+        {...buttonMotionProps}
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-xl text-lg shadow-inner" style={{
           background: 'linear-gradient(135deg, var(--color-primary-500-hex, #3b82f6), var(--color-accent-500-hex, #8b5cf6))',
@@ -87,19 +147,60 @@ const ThemeSelector = ({ variant = 'inline', className }) => {
         }}>
           {currentIcon}
         </span>
-        <div className="hidden sm:flex flex-col items-start leading-tight">
-          <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
-            {currentTheme?.name ?? 'Thème'}
-          </span>
-          <span className="text-xs text-opacity-80" style={{ color: 'var(--text-tertiary)' }}>
-            {currentTheme?.description ?? 'Personnalisez votre ambiance'}
-          </span>
-        </div>
-        <div className="flex sm:hidden text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
-          {currentTheme?.name ?? 'Thème'}
-        </div>
-        <div className="ml-auto flex items-center gap-2 text-sm text-opacity-70" style={{ color: 'var(--text-tertiary)' }}>
-          <Palette className="h-4 w-4" />
+        <AnimatePresence initial={false}>
+          {showDetails && (
+            <motion.div
+              key="details-desktop"
+              className="hidden sm:flex flex-col items-start leading-tight"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18 }}
+            >
+              <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
+                {currentTheme?.name ?? 'Thème'}
+              </span>
+              <span className="text-xs text-opacity-80" style={{ color: 'var(--text-tertiary)' }}>
+                {currentTheme?.description ?? 'Personnalisez votre ambiance'}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <AnimatePresence initial={false}>
+          {showDetails && (
+            <motion.div
+              key="details-mobile"
+              className="flex sm:hidden text-sm font-semibold"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18 }}
+              style={{ color: 'var(--text-primary)' }}
+            >
+              {currentTheme?.name ?? 'Thème'}
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div
+          className={cn(
+            'flex items-center gap-2 text-sm text-opacity-70 transition-all duration-200',
+            isFloating && !isExpanded ? 'ml-1 gap-1' : 'ml-auto'
+          )}
+          style={{ color: 'var(--text-tertiary)' }}
+        >
+          <AnimatePresence initial={false}>
+            {(!isFloating || isExpanded) && (
+              <motion.span
+                key="palette-icon"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15 }}
+              >
+                <Palette className="h-4 w-4" />
+              </motion.span>
+            )}
+          </AnimatePresence>
           <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="h-4 w-4" />
           </motion.span>

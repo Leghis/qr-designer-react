@@ -185,9 +185,15 @@ const TemplatesPro = () => {
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg flex items-center justify-between min-h-[52px]"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl shadow-lg flex items-center justify-between min-h-[52px] border"
+            style={{
+              background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+              borderColor: 'color-mix(in srgb, var(--border-primary) 45%, transparent)',
+              boxShadow: '0 22px 48px -32px var(--shadow-soft)'
+            }}
           >
-            <span className="font-medium text-sm sm:text-base">
+            <span className="font-medium text-sm sm:text-base" style={{ color: 'var(--text-primary)' }}>
               {t(`templates.categories.${selectedCategory}`)}
             </span>
             <ChevronDown className={`w-5 h-5 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -210,10 +216,18 @@ const TemplatesPro = () => {
                       setSelectedCategory(category.id);
                       setIsDropdownOpen(false);
                     }}
-                    className={`
-                      w-full px-4 sm:px-6 py-3 sm:py-4 text-left transition-colors min-h-[48px] flex items-center
-                      ${selectedCategory === category.id ? 'bg-surface-soft' : 'hover:bg-surface-soft'}
-                    `}
+                    className="w-full px-4 sm:px-6 py-3 sm:py-4 text-left transition-colors min-h-[48px] flex items-center rounded-lg border"
+                    style={selectedCategory === category.id
+                      ? {
+                          background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 84%, transparent), color-mix(in srgb, var(--bg-tertiary) 92%, transparent))',
+                          borderColor: 'color-mix(in srgb, var(--brand-border, var(--border-primary)) 65%, transparent)',
+                          boxShadow: '0 18px 32px -26px var(--brand-glow, var(--shadow-soft))'
+                        }
+                      : {
+                          background: 'var(--bg-secondary)',
+                          borderColor: 'color-mix(in srgb, var(--border-primary) 35%, transparent)'
+                        }
+                    }
                   >
                     <span className={`bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent font-medium text-sm sm:text-base`}>
                       {t(`templates.categories.${category.id}`)}
@@ -233,34 +247,56 @@ const TemplatesPro = () => {
         transition={{ delay: 0.2 }}
         className="hidden md:flex flex-wrap justify-center gap-3 mb-8 lg:mb-12 px-4"
       >
-        {CATEGORIES.map((category) => (
-          <motion.button
-            key={category.id}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => setSelectedCategory(category.id)}
-            className={`
-              px-4 lg:px-6 py-2.5 lg:py-3 rounded-full font-medium transition-all text-sm lg:text-base min-h-[44px] flex items-center
-              ${selectedCategory === category.id 
-                ? 'bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg' 
-                : 'bg-surface-soft text-secondary-color hover:bg-surface'
+        {CATEGORIES.map((category) => {
+          const isActive = selectedCategory === category.id;
+          const buttonStyles = isActive
+            ? {
+                background: 'linear-gradient(135deg, var(--color-primary-500-hex, #2563eb), var(--color-accent-500-hex, #8b5cf6))',
+                color: 'var(--button-primary-text, var(--text-primary))',
+                borderColor: 'color-mix(in srgb, var(--brand-border, var(--border-primary)) 75%, transparent)',
+                boxShadow: '0 26px 56px -34px var(--brand-glow, var(--shadow-strong))'
               }
-            `}
-          >
-            <span className="flex items-center gap-2">
-              {t(`templates.categories.${category.id}`)}
-              <span
-                className="text-xs px-2 py-0.5 rounded-full"
-                style={{
-                  backgroundColor: 'rgba(var(--color-primary-50, 240 248 255), 0.35)',
-                  color: 'var(--text-tertiary)'
-                }}
-              >
-                {templateCounts[category.id] || 0}
+            : {
+                background: 'var(--bg-secondary)',
+                color: 'var(--text-secondary)',
+                borderColor: 'color-mix(in srgb, var(--border-primary) 40%, transparent)',
+                boxShadow: '0 20px 44px -32px var(--shadow-soft)'
+              };
+
+          return (
+            <motion.button
+              key={category.id}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setSelectedCategory(category.id)}
+              className={cn(
+                'relative overflow-hidden px-4 lg:px-6 py-2.5 lg:py-3 rounded-full font-medium transition-all text-sm lg:text-base min-h-[44px] flex items-center border focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 group',
+                isActive ? 'shadow-xl' : 'hover:-translate-y-0.5'
+              )}
+              style={buttonStyles}
+            >
+              <span className="relative z-10 flex items-center gap-2" style={{ color: 'inherit' }}>
+                {t(`templates.categories.${category.id}`)}
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full"
+                  style={{
+                    backgroundColor: 'rgba(var(--color-primary-50, 240 248 255), 0.35)',
+                    color: 'var(--text-tertiary)'
+                  }}
+                >
+                  {templateCounts[category.id] || 0}
+                </span>
               </span>
-            </span>
-          </motion.button>
-        ))}
+              {isActive && (
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-300"
+                  style={{ background: 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 65%)', zIndex: 0 }}
+                />
+              )}
+            </motion.button>
+          );
+        })}
       </motion.div>
       
       {/* Templates Grid with Loading State */}

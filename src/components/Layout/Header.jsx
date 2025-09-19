@@ -77,7 +77,9 @@ const Header = () => {
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group" onClick={closeMobileMenu}>
               <div className="header-brand-icon relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 group-hover:rotate-6 transition-all duration-300">
-                <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-white transition-transform group-hover:scale-110" />
+                <div className="header-brand-inner">
+                  <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-primary-color transition-transform group-hover:scale-110" />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="relative">

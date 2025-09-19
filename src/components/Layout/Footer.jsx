@@ -48,7 +48,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-3 mb-4 group">
               <div className="header-brand-icon w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <QrCode className="w-7 h-7 text-white" />
+                <div className="header-brand-inner">
+                  <QrCode className="w-7 h-7 text-primary-color" />
+                </div>
               </div>
               <h3 className="text-xl font-bold text-primary-color">{t('footer.brand')}</h3>
             </div>
