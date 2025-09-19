@@ -14,8 +14,8 @@ const Button = React.forwardRef(({
   
   const variants = {
     primary: "bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:from-primary-700 hover:to-purple-700 focus:ring-primary-500 shadow-lg hover:shadow-xl transform hover:scale-105 dark:shadow-primary-500/20",
-    secondary: "bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 border-2 border-gray-300 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700 focus:ring-gray-500 dark:focus:ring-slate-400",
-    ghost: "text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800/50 focus:ring-gray-500 dark:focus:ring-slate-400",
+    secondary: "bg-surface text-primary-color border border-surface-subtle hover:bg-surface-soft focus:ring-[var(--ring-accent)] shadow-soft hover:shadow-strong",
+    ghost: "text-secondary-color hover:text-primary-color hover:bg-[var(--bg-tertiary)] focus:ring-[var(--ring-primary)]",
     danger: "bg-red-600 dark:bg-red-500 text-white hover:bg-red-700 dark:hover:bg-red-600 focus:ring-red-500 shadow-lg hover:shadow-xl transform hover:scale-105 dark:shadow-red-500/20"
   };
   

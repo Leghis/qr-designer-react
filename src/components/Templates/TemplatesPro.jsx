@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import QRCodeStyling from 'qr-code-styling';
 import { loadTemplatesByCategory, templateCounts, CATEGORIES } from '../../data/templates';
 import TemplateSkeletonLoader from './TemplateSkeletonLoader';
+import { cn } from '../../utils/cn';
 
 // Lightweight concurrency controller and preview cache (module scoped)
 let __maxConcurrentQR = (() => {
@@ -200,7 +201,7 @@ const TemplatesPro = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-xl overflow-hidden z-20"
+                className="absolute top-full left-0 right-0 mt-2 surface-glass-strong rounded-xl shadow-xl overflow-hidden z-20"
               >
                 {CATEGORIES.map((category) => (
                   <button
@@ -210,8 +211,8 @@ const TemplatesPro = () => {
                       setIsDropdownOpen(false);
                     }}
                     className={`
-                      w-full px-4 sm:px-6 py-3 sm:py-4 text-left hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors min-h-[48px] flex items-center
-                      ${selectedCategory === category.id ? 'bg-gray-50 dark:bg-slate-700' : ''}
+                      w-full px-4 sm:px-6 py-3 sm:py-4 text-left transition-colors min-h-[48px] flex items-center
+                      ${selectedCategory === category.id ? 'bg-surface-soft' : 'hover:bg-surface-soft'}
                     `}
                   >
                     <span className={`bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent font-medium text-sm sm:text-base`}>
@@ -242,13 +243,19 @@ const TemplatesPro = () => {
               px-4 lg:px-6 py-2.5 lg:py-3 rounded-full font-medium transition-all text-sm lg:text-base min-h-[44px] flex items-center
               ${selectedCategory === category.id 
                 ? 'bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg' 
-                : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700'
+                : 'bg-surface-soft text-secondary-color hover:bg-surface'
               }
             `}
           >
             <span className="flex items-center gap-2">
               {t(`templates.categories.${category.id}`)}
-              <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">
+              <span
+                className="text-xs px-2 py-0.5 rounded-full"
+                style={{
+                  backgroundColor: 'rgba(var(--color-primary-50, 240 248 255), 0.35)',
+                  color: 'var(--text-tertiary)'
+                }}
+              >
                 {templateCounts[category.id] || 0}
               </span>
             </span>
@@ -448,14 +455,18 @@ const TemplateCard = ({ template, index, listVersion }) => {
       }} // Keep visible for 2s on touch
       className="group"
     >
-      <div className={`
-        relative bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300
-        ${isHovered ? 'shadow-xl sm:shadow-2xl transform -translate-y-1 sm:-translate-y-2' : 'shadow-md sm:shadow-lg'}
-      `}>
+      <div
+        className={cn(
+          'relative bg-surface border border-surface-subtle rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300',
+          isHovered
+            ? 'shadow-strong transform -translate-y-1 sm:-translate-y-2'
+            : 'shadow-soft'
+        )}
+      >
         {/* Category Badge - Mobile Optimized */}
         <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
           <span className={`
-            px-2 py-1 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
+            px-2 py-1 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium surface-glass
             bg-gradient-to-r ${CATEGORIES.find(c => c.id === template.category)?.gradient || 'from-gray-500 to-gray-600'}
             bg-clip-text text-transparent
           `}>
@@ -464,8 +475,18 @@ const TemplateCard = ({ template, index, listVersion }) => {
         </div>
         
         {/* QR Preview - Mobile Optimized */}
-        <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 p-4 sm:p-6 lg:p-8">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 dark:to-white/5"></div>
+        <div
+          className="relative aspect-square p-4 sm:p-6 lg:p-8 border-b border-surface-subtle"
+          style={{
+            background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 96%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent))'
+          }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, transparent 10%, color-mix(in srgb, var(--brand-glow, rgba(59,130,246,0.18)) 28%, transparent) 100%)'
+            }}
+          ></div>
           <div 
             ref={qrContainerRef}
             className="w-full h-full flex items-center justify-center"
@@ -475,11 +496,14 @@ const TemplateCard = ({ template, index, listVersion }) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-4 sm:p-6"
+            className="absolute inset-0 flex items-end justify-center p-4 sm:p-6"
+            style={{
+              background: 'linear-gradient(to top, color-mix(in srgb, var(--overlay) 85%, transparent), color-mix(in srgb, var(--overlay) 55%, transparent), transparent)'
+            }}
           >
             <Link
               to={`/templates/${template.id}`}
-              className="px-4 py-2.5 sm:px-6 sm:py-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-lg sm:rounded-xl font-medium hover:bg-white dark:hover:bg-slate-900 transition-all transform hover:scale-105 text-sm sm:text-base min-h-[44px] flex items-center justify-center"
+              className="px-4 py-2.5 sm:px-6 sm:py-3 surface-glass-strong rounded-lg sm:rounded-xl font-medium transition-all transform hover:scale-105 text-sm sm:text-base min-h-[44px] flex items-center justify-center"
             >
               {t('templates.card.customize')}
             </Link>
@@ -488,10 +512,10 @@ const TemplateCard = ({ template, index, listVersion }) => {
         
         {/* Template Info - Mobile Optimized */}
         <div className="p-4 sm:p-6">
-          <h3 className="font-semibold text-base sm:text-lg mb-2 flex items-center gap-2 line-clamp-1">
+          <h3 className="font-semibold text-base sm:text-lg mb-2 flex items-center gap-2 line-clamp-1 text-primary-color">
             {template.name}
           </h3>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+          <p className="text-xs sm:text-sm text-secondary-color opacity-80 line-clamp-2">
             {template.description || 'Template personnalisable'}
           </p>
         </div>

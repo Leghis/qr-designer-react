@@ -449,12 +449,17 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
       {/* Beautiful Background - Only on home page */}
       {showBeautifulBackground && (
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-purple-50/20 to-pink-50/30 dark:from-primary-950/30 dark:via-purple-950/20 dark:to-pink-950/30 rounded-3xl"></div>
-          <div className="absolute inset-0 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm rounded-3xl"></div>
+          <div
+            className="absolute inset-0 rounded-3xl"
+            style={{
+              background: 'linear-gradient(135deg, color-mix(in srgb, var(--color-primary-500-hex) 12%, transparent), color-mix(in srgb, var(--color-accent-500-hex) 10%, transparent))'
+            }}
+          ></div>
+          <div className="absolute inset-0 surface-glass-strong rounded-3xl"></div>
         </div>
       )}
       
-      <div className={showBeautifulBackground ? "relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-200 dark:border-slate-800 p-3 sm:p-6 lg:p-8" : ""}>
+      <div className={showBeautifulBackground ? "relative surface-glass-strong rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-surface-subtle p-3 sm:p-6 lg:p-8" : ""}>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {/* Left: Controls */}
           <div className="space-y-4 sm:space-y-6">
@@ -464,8 +469,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-100/30 to-purple-100/30 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl blur"></div>
               )}
               <div className={showBeautifulBackground 
-                ? 'relative flex gap-1 p-1 bg-gray-100/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl' 
-                : 'flex gap-1 p-1 bg-gray-100 dark:bg-slate-800 rounded-lg'
+                ? 'relative flex gap-1 p-1 surface-glass rounded-xl' 
+                : 'flex gap-1 p-1 bg-surface-soft rounded-lg'
               }>
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
@@ -475,8 +480,8 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg font-medium transition-all text-xs sm:text-sm min-h-[44px] ${
                         activeTab === tab.id
-                          ? `bg-white dark:bg-slate-900 text-primary-600 dark:text-primary-400 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
-                          : 'text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-slate-100'
+                          ? `bg-surface text-primary-600 ${showBeautifulBackground ? 'shadow-md' : 'shadow-sm'}`
+                          : 'text-secondary-color hover:text-primary-color'
                       }`}
                     >
                       <Icon className="w-4 h-4 sm:w-4 sm:h-4" />
@@ -1021,7 +1026,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
             }}
             className="relative"
           >
-            <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-900 dark:to-dark-800 rounded-xl p-4 sm:p-6 lg:p-8 overflow-hidden">
+            <div
+              className="relative rounded-xl p-4 sm:p-6 lg:p-8 overflow-hidden border border-surface-subtle"
+              style={{
+                background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 90%, transparent), color-mix(in srgb, var(--bg-tertiary) 88%, transparent))'
+              }}
+            >
               {/* Blur overlay when hidden */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -1030,11 +1040,12 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   backdropFilter: showPreview ? 'blur(0px)' : 'blur(20px)'
                 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 z-10 bg-white/30 dark:bg-slate-900/30"
+                className="absolute inset-0 z-10"
                 style={{ 
                   display: showPreview ? 'none' : 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  backgroundColor: 'rgba(var(--color-slate-900, 15 23 42), 0.25)'
                 }}
               >
                 <motion.button
@@ -1042,7 +1053,7 @@ const QRGeneratorAdvanced = ({ template, templateOptions, onDataChange, initialD
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.2 }}
                   onClick={() => setShowPreview(true)}
-                  className="px-6 py-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-gray-200 dark:border-slate-700"
+                  className="px-6 py-3 bg-surface text-primary-color rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2 border border-surface-subtle"
                 >
                   <Eye className="w-5 h-5" />
                   <span className="font-medium">{t('qrGenerator.actions.showPreview')}</span>

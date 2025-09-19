@@ -24,11 +24,11 @@ const LanguageSwitcher = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-slate-700"
+        className="flex items-center gap-2 px-3 py-2 surface-glass rounded-lg shadow-sm hover:shadow-lg transition-all duration-200"
       >
-        <Globe className="w-4 h-4 text-gray-600 dark:text-slate-400" />
+        <Globe className="w-4 h-4 text-tertiary-color" />
         <span className="text-2xl">{currentLanguage.flag}</span>
-        <span className="text-sm font-medium text-gray-700 dark:text-slate-200 hidden sm:inline">
+        <span className="text-sm font-medium text-secondary-color hidden sm:inline">
           {currentLanguage.name}
         </span>
         <motion.svg
@@ -37,7 +37,7 @@ const LanguageSwitcher = () => {
           viewBox="0 0 12 12"
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
-          className="text-gray-500 dark:text-slate-400"
+          className="text-tertiary-color"
         >
           <path
             fill="currentColor"
@@ -64,7 +64,7 @@ const LanguageSwitcher = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ type: "spring", duration: 0.3, bounce: 0.3 }}
-              className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-gray-200 dark:border-slate-700 overflow-hidden z-50"
+              className="absolute right-0 mt-2 w-48 surface-glass-strong rounded-xl shadow-xl overflow-hidden z-50"
             >
               {languages.map((lang, index) => (
                 <motion.button
@@ -73,12 +73,12 @@ const LanguageSwitcher = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
                   onClick={() => changeLanguage(lang.code)}
-                  className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors group"
+                  className="w-full px-4 py-3 flex items-center gap-3 transition-colors group hover:bg-surface-soft"
                 >
                   <span className="text-2xl group-hover:scale-110 transition-transform">
                     {lang.flag}
                   </span>
-                  <span className="flex-1 text-left text-sm font-medium text-gray-700 dark:text-slate-200">
+                  <span className="flex-1 text-left text-sm font-medium text-secondary-color">
                     {lang.name}
                   </span>
                   {currentLanguage.code === lang.code && (

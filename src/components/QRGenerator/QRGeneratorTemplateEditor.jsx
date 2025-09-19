@@ -530,7 +530,12 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
           
           {/* QR Preview */}
           <div className={`transition-all ${showPreview ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-dark-900 dark:to-dark-800 rounded-xl p-8">
+            <div
+              className="relative rounded-xl p-8 border border-surface-subtle"
+              style={{
+                background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 94%, transparent), color-mix(in srgb, var(--bg-tertiary) 92%, transparent))'
+              }}
+            >
               <div 
                 ref={previewRef}
                 className="mx-auto flex items-center justify-center"
@@ -538,7 +543,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
               />
               
               {isGenerating && (
-                <div className="absolute inset-0 bg-white/80 dark:bg-dark-900/80 rounded-xl flex items-center justify-center">
+                <div className="absolute inset-0 surface-glass-strong rounded-xl flex items-center justify-center">
                   <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
                 </div>
               )}
@@ -560,7 +565,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => downloadQR('svg')}
-                className="flex-1 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-all flex items-center justify-center gap-2"
+                className="flex-1 px-6 py-3 bg-surface-soft text-secondary-color rounded-xl font-medium hover:bg-surface transition-all flex items-center justify-center gap-2 border border-surface-subtle"
               >
                 <Download className="w-5 h-5" />
                 {t('qrGenerator.actions.downloadSVG')}
@@ -573,13 +578,13 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 p-4 bg-gray-50 dark:bg-dark-900 rounded-lg"
+              className="mt-6 p-4 bg-surface-soft rounded-lg border border-surface-subtle"
             >
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {t('qrGenerator.template.name')}: <span className="font-medium text-gray-900 dark:text-white">{template.name}</span>
+              <p className="text-sm text-secondary-color">
+                {t('qrGenerator.template.name')}: <span className="font-medium text-primary-color">{template.name}</span>
               </p>
               {template.category && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-sm text-secondary-color mt-1">
                   {t('qrGenerator.template.category')}: <span className="font-medium">{t(`templates.categories.${template.category}`)}</span>
                 </p>
               )}

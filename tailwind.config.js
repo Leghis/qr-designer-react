@@ -1,4 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+const baseShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'];
+
+const createColorScale = (name, extraShades = []) => {
+  const shades = Array.from(new Set([...baseShades, ...extraShades.map(String)])).sort((a, b) => Number(a) - Number(b));
+
+  return shades.reduce((acc, shade) => {
+    acc[shade] = `rgb(var(--color-${name}-${shade}) / <alpha-value>)`;
+    return acc;
+  }, {});
+};
+
 export default {
   content: [
     "./index.html",
@@ -8,46 +19,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554'
+        primary: createColorScale('primary'),
+        accent: createColorScale('accent'),
+        purple: createColorScale('accent'),
+        slate: createColorScale('slate', ['750', '850']),
+        dark: createColorScale('dark'),
+        surface: {
+          DEFAULT: 'var(--bg-secondary)',
+          base: 'var(--bg-primary)',
+          soft: 'var(--bg-tertiary)',
+          strong: 'var(--bg-secondary)',
+          contrast: 'var(--text-primary)'
         },
-        'dark': {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617'
+        border: {
+          DEFAULT: 'var(--border-primary)',
+          subtle: 'var(--border-secondary)'
         },
-        'slate': {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          750: '#293548',
-          800: '#1e293b',
-          850: '#162033',
-          900: '#0f172a',
-          950: '#020617'
+        text: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          muted: 'var(--muted-foreground)'
+        },
+        ring: {
+          primary: 'var(--ring-primary)',
+          accent: 'var(--ring-accent)'
         }
       },
       fontFamily: {

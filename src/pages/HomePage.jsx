@@ -93,14 +93,14 @@ const HomePage = () => {
                 </svg>
               </span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-slate-200 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-secondary-color opacity-90 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
               {t('hero.subtitle')}
             </p>
             
             <div className="flex justify-center mb-6 sm:mb-8">
               <button
                 onClick={scrollToGenerator}
-                className="group px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold text-base sm:text-lg transition-all transform hover:scale-105 shadow-xl flex items-center gap-2 sm:gap-3 min-h-[52px]"
+                className="btn-primary group px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg gap-2 sm:gap-3 min-h-[52px]"
               >
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
                 {t('hero.cta')}
@@ -113,7 +113,7 @@ const HomePage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-600 dark:text-slate-300 mb-8 sm:mb-12 px-2"
+              className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-secondary-color opacity-90 mb-8 sm:mb-12 px-2"
             >
               <div className="flex items-center gap-2 justify-center sm:justify-start">
                 <Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0" />
@@ -139,31 +139,31 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-4 py-3 sm:px-6 sm:py-4"
+                className="surface-glass-light rounded-xl px-4 py-3 sm:px-6 sm:py-4"
               >
                 <div className="text-2xl sm:text-3xl font-bold gradient-text">1M+</div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.qrCreated')}</div>
+                <div className="text-xs sm:text-sm text-secondary-color opacity-80">{t('hero.stats.qrCreated')}</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-4 py-3 sm:px-6 sm:py-4"
+                className="surface-glass-light rounded-xl px-4 py-3 sm:px-6 sm:py-4"
               >
                 <div className="text-2xl sm:text-3xl font-bold gradient-text">50K+</div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.activeUsers')}</div>
+                <div className="text-xs sm:text-sm text-secondary-color opacity-80">{t('hero.stats.activeUsers')}</div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-white/50 dark:bg-slate-800/50 backdrop-blur rounded-xl px-4 py-3 sm:px-6 sm:py-4"
+                className="surface-glass-light rounded-xl px-4 py-3 sm:px-6 sm:py-4"
               >
                 <div className="flex items-center justify-center gap-2">
                   <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-300">100%</div>
                   <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500" />
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-slate-300">{t('hero.stats.freeAndFast')}</div>
+                <div className="text-xs sm:text-sm text-secondary-color opacity-80">{t('hero.stats.freeAndFast')}</div>
               </motion.div>
             </div>
           </motion.div>
@@ -186,7 +186,7 @@ const HomePage = () => {
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
                 {t('hero.generator.title')} <span className="gradient-text">{t('hero.generator.titleHighlight')}</span>
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-slate-200 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-secondary-color opacity-90 max-w-2xl mx-auto">
                 {t('hero.generator.subtitle')}
               </p>
             </motion.div>

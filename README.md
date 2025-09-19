@@ -43,7 +43,8 @@ npm run preview
 ## Fonctionnalités
 
 - 🎨 Générateur de QR codes avec personnalisation avancée (styles, palettes, logos)
-- 🌙 Mode sombre/clair avec persistance locale
+- 🎨 Sélecteur multi-thèmes (clair, sombre, coucher de soleil, lagune émeraude)
+- 🌙 Préférences sauvegardées automatiquement
 - 📱 Design responsive et PWA-ready
 - ⚡ Performance optimisée avec code splitting
 - 🎯 Catalogue de templates évolutif avec lazy loading
@@ -61,6 +62,16 @@ src/
 ├── services/       # Services métier (QR generation)
 └── App.jsx         # Composant racine
 ```
+
+## Personnalisation des thèmes
+
+Les palettes et tokens de couleur sont centralisés dans [`src/theme/themes.js`](src/theme/themes.js). Chaque thème définit :
+
+- une identité (nom, icône, type clair/sombre) ;
+- les palettes `primary`, `accent`, `slate`, `dark` (11 nuances) ;
+- des tokens (`bg-*`, `text-*`, `border-*`, etc.) injectés sous forme de variables CSS.
+
+Pour ajouter ou ajuster un thème, il suffit de modifier ce fichier : le provider applique automatiquement les variables, le sélecteur l'affiche et tous les composants s'alignent via Tailwind/Tokens.
 
 ## Optimisations
 

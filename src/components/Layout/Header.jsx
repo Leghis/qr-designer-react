@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { QrCode, Star, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
-import ThemeToggle from '../UI/ThemeToggle';
 import LanguageSwitcher from '../UI/LanguageSwitcher';
 // import Modal from '../UI/Modal';
 // import Button from '../UI/Button';
@@ -69,12 +68,15 @@ const Header = () => {
   // };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/85 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50 shadow-sm">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 surface-glass-strong shadow-sm border-b"
+      style={{ borderBottomColor: 'color-mix(in srgb, var(--border-primary) 45%, transparent)' }}
+    >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group" onClick={closeMobileMenu}>
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+              <div className="header-brand-icon relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-xl flex items-center justify-center transform rotate-3 group-hover:rotate-6 transition-all duration-300">
                 <QrCode className="w-6 h-6 sm:w-7 sm:h-7 text-white transition-transform group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
@@ -105,61 +107,53 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-1">
               <Link
                 to="/"
-                className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group ${
-                  isActive('/') 
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
+                className={`nav-link relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group border ${
+                  isActive('/') ? 'nav-link--active' : ''
                 }`}
               >
                 <span className="relative z-10">{t('header.home')}</span>
-                {isActive('/') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
-                )}
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
               <Link
                 to="/templates"
-                className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group ${
-                  isActive('/templates') 
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                    : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
+                className={`nav-link relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group border ${
+                  isActive('/templates') ? 'nav-link--active' : ''
                 }`}
               >
                 <span className="relative z-10">{t('header.templates')}</span>
-                {isActive('/templates') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
-                )}
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
             </nav>
             
             {/* Desktop Controls - Enhanced */}
             <div className="hidden sm:flex items-center space-x-2">
-              <div className="p-1 rounded-xl bg-gray-50 dark:bg-slate-800/50 backdrop-blur-sm">
+              <div className="p-1 rounded-xl bg-surface-soft">
                 <LanguageSwitcher />
-              </div>
-              <div className="p-1 rounded-xl bg-gray-50 dark:bg-slate-800/50 backdrop-blur-sm">
-                <ThemeToggle />
               </div>
             </div>
             
             {/* Mobile Controls - Enhanced */}
             <div className="flex sm:hidden items-center space-x-2">
               <LanguageSwitcher />
-              <ThemeToggle />
             </div>
             
             {/* Mobile Menu Button - Enhanced */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden relative p-2.5 rounded-xl bg-gray-50 dark:bg-slate-800/50 hover:bg-gray-100 dark:hover:bg-slate-700/50 transition-all duration-300 group backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50"
+              className="md:hidden relative p-2.5 rounded-xl surface-glass transition-all duration-300 group"
               aria-label="Toggle mobile menu"
             >
               <div className="relative">
                 {isMobileMenuOpen ? (
-                  <X className="w-5 h-5 text-gray-700 dark:text-slate-200 transition-all duration-300 rotate-90" />
+                  <X
+                    className="w-5 h-5 transition-all duration-300 rotate-90"
+                    style={{ color: 'var(--text-primary)' }}
+                  />
                 ) : (
-                  <Menu className="w-5 h-5 text-gray-700 dark:text-slate-200 transition-all duration-300 group-hover:scale-110" />
+                  <Menu
+                    className="w-5 h-5 transition-all duration-300 group-hover:scale-110"
+                    style={{ color: 'var(--text-primary)' }}
+                  />
                 )}
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -171,7 +165,11 @@ const Header = () => {
       {/* Mobile Menu Overlay - Enhanced */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 backdrop-blur-md z-40 md:hidden"
+          className="fixed inset-0 z-40 md:hidden"
+          style={{
+            backdropFilter: 'blur(14px)',
+            backgroundColor: 'rgba(var(--color-slate-900, 15 23 42), 0.55)'
+          }}
           onClick={closeMobileMenu}
         />
       )}
@@ -179,13 +177,16 @@ const Header = () => {
       {/* Mobile Menu - Enhanced */}
       <div 
         ref={mobileMenuRef}
-        className={`fixed top-[85px] left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-slate-800/50 shadow-xl transform transition-all duration-500 ease-out z-40 md:hidden ${
+        className={`fixed top-[85px] left-0 right-0 surface-glass-strong shadow-xl transform transition-all duration-500 ease-out z-40 md:hidden ${
           isMobileMenuOpen 
             ? 'translate-y-0 opacity-100' 
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
+        style={{ borderBottomColor: 'color-mix(in srgb, var(--border-primary) 40%, transparent)' }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-50/30 via-transparent to-purple-50/30 dark:from-primary-950/30 dark:via-transparent dark:to-purple-950/30" />
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(180deg, color-mix(in srgb, var(--color-primary-500-hex) 12%, transparent), transparent 60%, color-mix(in srgb, var(--color-accent-500-hex) 12%, transparent))'
+        }} />
         <nav className="relative container mx-auto px-4 py-8">
           <div className="space-y-8">
             {/* User Status Badge - Enhanced Mobile */}
@@ -206,30 +207,24 @@ const Header = () => {
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
+                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] border ${
                   isActive('/') 
-                    ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
-                    : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
+                    ? 'bg-gradient-to-r from-primary-500 to-purple-600 text-white border-transparent shadow-strong' 
+                    : 'text-secondary-color bg-[color:color-mix(in_srgb,var(--bg-secondary) 94%,transparent)] border-[color:color-mix(in_srgb,var(--border-primary) 32%,transparent)] hover:text-primary-color hover:bg-[var(--bg-tertiary)] hover:border-[color:var(--border-secondary)]'
                 }`}
               >
                 <span className="relative z-10">{t('header.home')}</span>
-                {!isActive('/') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                )}
               </Link>
               <Link
                 to="/templates"
                 onClick={closeMobileMenu}
-                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
+                className={`relative block py-4 px-6 rounded-2xl text-center font-semibold transition-all duration-300 transform hover:scale-[1.02] border ${
                   isActive('/templates') 
-                    ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
-                    : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
+                    ? 'bg-gradient-to-r from-primary-500 to-purple-600 text-white border-transparent shadow-strong' 
+                    : 'text-secondary-color bg-[color:color-mix(in_srgb,var(--bg-secondary) 94%,transparent)] border-[color:color-mix(in_srgb,var(--border-primary) 32%,transparent)] hover:text-primary-color hover:bg-[var(--bg-tertiary)] hover:border-[color:var(--border-secondary)]'
                 }`}
               >
                 <span className="relative z-10">{t('header.templates')}</span>
-                {!isActive('/templates') && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                )}
               </Link>
             </div>
           </div>

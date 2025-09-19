@@ -56,7 +56,7 @@ const Pricing = () => {
   const whyFree = getWhyFree(t);
   
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-dark-900 dark:to-dark-800">
+    <section id="pricing" className="section-alt py-20">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -65,7 +65,7 @@ const Pricing = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full mb-6">
+          <div className="badge-soft inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6">
             <Gift className="w-5 h-5" />
             <span className="font-medium">{t('pricing.startFree.badge')}</span>
           </div>
@@ -73,7 +73,7 @@ const Pricing = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {t('pricing.title')} <span className="gradient-text">{t('pricing.titleHighlight')}</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-secondary-color opacity-90 max-w-2xl mx-auto">
             {t('pricing.subtitle')}
           </p>
         </motion.div>
@@ -86,17 +86,17 @@ const Pricing = () => {
           className="max-w-4xl mx-auto mb-16"
         >
           <div className="bg-gradient-to-br from-primary-500 to-purple-600 rounded-3xl p-1">
-            <div className="bg-white dark:bg-dark-900 rounded-3xl p-8 md:p-12">
+            <div className="surface-panel rounded-3xl p-8 md:p-12">
               <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 rounded-2xl mb-6">
                   <Sparkles className="w-10 h-10 text-primary-600 dark:text-primary-400" />
                 </div>
                 <h3 className="text-3xl font-bold mb-2">{t('pricing.free.name')}</h3>
-                <div className="flex items-baseline justify-center gap-2 mb-4">
+                <div className="flex items-baseline justify-center gap-2 mb-4 text-primary-color">
                   <span className="text-5xl font-bold">$0</span>
-                  <span className="text-gray-600 dark:text-gray-400">{t('pricing.free.period')}</span>
+                  <span className="text-secondary-color opacity-80">{t('pricing.free.period')}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-secondary-color opacity-90">
                   {t('pricing.free.description')}
                 </p>
               </div>
@@ -121,7 +121,7 @@ const Pricing = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-1">{feature.title}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-secondary-color opacity-80">
                           {feature.description}
                         </p>
                       </div>
@@ -134,12 +134,12 @@ const Pricing = () => {
               <div className="text-center">
                 <button
                   onClick={() => document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-xl"
+                  className="btn-primary gap-2 px-8 py-4 text-lg"
                 >
                   {t('pricing.free.cta')}
                   <CheckCircle className="inline w-5 h-5 ml-2" />
                 </button>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+                <p className="text-sm text-secondary-color opacity-75 mt-4">
                   {t('pricing.free.noCreditCard')}
                 </p>
               </div>
@@ -165,13 +165,13 @@ const Pricing = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                  className="surface-card rounded-xl p-6"
                 >
                   <div className={`w-16 h-16 ${item.bgColor} rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
                     <Icon className={`w-8 h-8 ${item.color}`} />
                   </div>
                   <h4 className="font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-secondary-color opacity-80">
                     {item.description}
                   </p>
                 </motion.div>
@@ -187,9 +187,9 @@ const Pricing = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-100 dark:bg-dark-800 rounded-full">
+          <div className="surface-pill inline-flex items-center gap-3 px-6 py-3 rounded-full">
             <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
-            <span className="text-gray-700 dark:text-gray-300">
+            <span className="text-secondary-color">
               <Trans 
                 i18nKey="pricing.security.badge" 
                 components={{ strong: <strong /> }}
@@ -205,7 +205,7 @@ const Pricing = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-secondary-color opacity-70">
             <span className="inline-flex items-center gap-1">
               <Sparkles className="w-4 h-4" />
               {t('comingSoon.message')}
