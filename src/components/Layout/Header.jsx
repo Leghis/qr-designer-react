@@ -1,15 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Star } from 'lucide-react';
+import { QrCode, Star, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
 import LanguageSwitcher from '../UI/LanguageSwitcher';
 // import Modal from '../UI/Modal';
 // import Button from '../UI/Button';
+import { useState } from 'react';
 
 const Header = () => {
   const { t } = useTranslation();
   const { isPremium, plan } = useSubscription();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
@@ -64,8 +66,9 @@ const Header = () => {
               </div>
             )}
           </div>
-          
-          <div className="flex items-center space-x-3">
+
+          {/* Desktop Nav + Language */}
+          <div className="hidden md:flex items-center space-x-3">
             {/* Navigation */}
             <nav className="flex items-center space-x-1">
               <Link
@@ -87,7 +90,7 @@ const Header = () => {
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
             </nav>
-            
+
             {/* Language Switcher */}
             <div className="flex items-center space-x-2">
               <div className="p-1 rounded-xl bg-surface-soft">
@@ -95,8 +98,55 @@ const Header = () => {
               </div>
             </div>
           </div>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button
+              type="button"
+              aria-label={mobileOpen ? t('common.close') || 'Close menu' : t('common.menu') || 'Open menu'}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border/50 bg-surface-soft text-text-primary focus:outline-none focus:ring-2 focus:ring-ring-primary"
+            >
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Panel */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="container mx-auto px-4 pb-4">
+          <div className="surface-glass-strong border rounded-2xl p-3 shadow-sm">
+            <div className="flex flex-col gap-2">
+              <Link
+                to="/"
+                onClick={() => setMobileOpen(false)}
+                className={`nav-link w-full text-base px-4 py-3 rounded-xl border ${isActive('/') ? 'nav-link--active' : ''}`}
+              >
+                {t('header.home')}
+              </Link>
+              <Link
+                to="/templates"
+                onClick={() => setMobileOpen(false)}
+                className={`nav-link w-full text-base px-4 py-3 rounded-xl border ${isActive('/templates') ? 'nav-link--active' : ''}`}
+              >
+                {t('header.templates')}
+              </Link>
+
+              <div className="pt-2">
+                <div className="p-1 rounded-xl bg-surface-soft inline-flex">
+                  <LanguageSwitcher />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       {/* Logout Confirmation Modal - Hidden for now */}
       {/* <Modal
