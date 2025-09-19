@@ -185,7 +185,7 @@ const QRContentEditor = ({ initialData, onDataChange }) => {
               type="password"
               value={contentData.password || ''}
               onChange={(e) => handleFieldChange('password', e.target.value)}
-              placeholder={t('auth.passwordPlaceholder')}
+              placeholder={t('qrGenerator.content.placeholders.wifiPassword')}
               className="w-full px-4 py-3 border-2 border-gray-300 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-all"
             />
           </div>

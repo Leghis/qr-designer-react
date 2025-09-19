@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, useCallback, useRef, useEffect } from 'react';
 
 export const NotificationContext = createContext();
@@ -100,15 +101,16 @@ export const NotificationProvider = ({ children }) => {
 
   // Cleanup effect for component unmount
   useEffect(() => {
+    const activeTimeouts = timeoutRefs.current;
     return () => {
       // Mark component as unmounted
       isMountedRef.current = false;
       
       // Clear all active timeouts
-      for (const timeoutId of timeoutRefs.current.values()) {
+      for (const timeoutId of activeTimeouts.values()) {
         clearTimeout(timeoutId);
       }
-      timeoutRefs.current.clear();
+      activeTimeouts.clear();
     };
   }, []);
 

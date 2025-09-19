@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, Clock, Star, Zap, Rocket, CheckCircle, ArrowRight } from 'lucide-react';
 import { useTranslationOptimized } from '../../hooks/useTranslationOptimized';

@@ -2,11 +2,8 @@
   "common": {
     "home": "Home",
     "templates": "Templates",
-    "dashboard": "Dashboard",
     "premium": "Premium",
     "enterprise": "Enterprise",
-    "login": "Login",
-    "logout": "Logout",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "save": "Save",
@@ -38,17 +35,7 @@
   "header": {
     "brand": "QR Designer",
     "home": "Home",
-    "templates": "Templates",
-    "dashboard": "Dashboard",
-    "logout": "Logout",
-    "logoutModal": {
-      "title": "Logout",
-      "connectedAs": "Connected as",
-      "confirmMessage": "Are you sure you want to logout?",
-      "reconnectMessage": "You can login again at any time.",
-      "stayConnected": "Stay connected",
-      "confirmLogout": "Logout"
-    }
+    "templates": "Templates"
   },
   "hero": {
     "badge": "100% Free • No signup • No limits",
@@ -173,7 +160,8 @@
         "spotifyUri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh",
         "linkedinUrl": "https://linkedin.com/in/john-doe",
         "facebookUrl": "https://facebook.com/pagename",
-        "youtubeUrl": "https://youtube.com/watch?v=dQw4w9WgXcQ"
+        "youtubeUrl": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+        "wifiPassword": "WiFi password"
       },
       "security": {
         "wpa": "WPA/WPA2",
@@ -603,270 +591,5 @@
     "copyright": "© {{year}} QR Designer. All rights reserved.",
     "madeWith": "Made with",
     "in": "in Canada"
-  },
-  "dashboard": {
-    "navigation": {
-      "dashboard": "Dashboard",
-      "myQRCodes": "My QR Codes",
-      "settings": "Settings",
-      "createQRCode": "Create QR Code"
-    },
-    "user": {
-      "user": "User"
-    },
-    "overview": {
-      "welcome": "Hello, {{name}}! 👋",
-      "welcomeSubtitle": "Here's an overview of your QR Code activity",
-      "createQRCode": "Create QR Code",
-      "goToPremium": "Go Premium",
-      "stats": {
-        "totalQRCodes": "Total QR Codes",
-        "todayScans": "Today's scans",
-        "activeQRCodes": "Active QR Codes",
-        "averageTime": "Average time"
-      },
-      "quickCreate": {
-        "title": "Quick create",
-        "moreOptions": "More options"
-      },
-      "recentQRCodes": {
-        "title": "Recent QR Codes",
-        "viewAll": "View all",
-        "created": "Created",
-        "scans": "scans",
-        "noQRCodes": "No QR Code created yet",
-        "createFirst": "Create your first QR Code"
-      },
-      "upgrade": {
-        "title": "Unlock QR Designer's full potential ✨",
-        "subtitle": "Dynamic QR Codes, advanced analytics, premium types and much more!",
-        "discoverPremium": "Discover Premium"
-      }
-    },
-    "myQRCodes": {
-      "title": "My QR Codes",
-      "subtitle": "{{count}} QR code{{plural}} created",
-      "createQRCode": "Create QR Code",
-      "searchPlaceholder": "Search for a QR code...",
-      "filters": {
-        "allTypes": "All types",
-        "newest": "Newest",
-        "oldest": "Oldest",
-        "mostUsed": "Most used",
-        "lastUsed": "Last used",
-        "exportJSON": "Export as JSON",
-        "exportCSV": "Export as CSV"
-      },
-      "timeGroups": {
-        "today": "Today",
-        "yesterday": "Yesterday",
-        "thisWeek": "This week",
-        "older": "Older"
-      },
-      "noQRCodes": {
-        "title": "No QR code found",
-        "subtitle": "Try modifying your search criteria",
-        "subtitleEmpty": "Create your first QR code to get started",
-        "createQRCode": "Create QR Code"
-      }
-    },
-    "createQRCode": {
-      "title": "Create a new QR Code",
-      "back": "Back",
-      "typeSelection": {
-        "title": "QR Code Type"
-      },
-      "qrName": {
-        "label": "QR Code Name (optional)",
-        "placeholder": "e.g. Restaurant Menu, Business Card..."
-      },
-      "dynamicQR": {
-        "title": "Dynamic QR Code",
-        "subtitle": "Editable after creation"
-      },
-      "information": {
-        "title": "QR Code Information"
-      },
-      "preview": {
-        "title": "Preview"
-      },
-      "actions": {
-        "create": "Create QR Code",
-        "cancel": "Cancel"
-      },
-      "validation": {
-        "pleaseCorrect": "Please correct the errors",
-        "generationError": "Error generating QR code",
-        "success": "QR Code created successfully!"
-      },
-      "formFields": {
-        "select": "Select...",
-        "required": "*"
-      }
-    },
-    "stats": {
-      "totalQRCodes": "Total QR Codes",
-      "allQRCodesCreated": "All QR codes created",
-      "today": "Today",
-      "todayQRCodes": "QR codes created today",
-      "thisWeek": "This week",
-      "last7Days": "Last 7 days",
-      "trend": "Trend",
-      "vsLastWeek": "vs last week"
-    },
-    "quickActions": {
-      "title": "Quick actions",
-      "newQRCode": "New QR Code",
-      "newQRCodeDesc": "Create a custom QR code",
-      "templates": "Templates",
-      "templatesDesc": "Explore templates",
-      "premium": "Premium",
-      "premiumDesc": "Unlock more features",
-      "quickCreate": "Quick create"
-    },
-    "qrCard": {
-      "timeAgo": {
-        "lessThanHour": "Less than an hour ago",
-        "hoursAgo": "{{hours}} hours ago",
-        "yesterday": "Yesterday"
-      },
-      "actions": {
-        "viewDetails": "View details",
-        "edit": "Edit",
-        "copyLink": "Copy link",
-        "download": "Download",
-        "share": "Share",
-        "delete": "Delete",
-        "details": "Details",
-        "open": "Open"
-      },
-      "confirmDelete": "Are you sure you want to delete this QR code?",
-      "notifications": {
-        "copied": "Content copied!",
-        "downloading": "Downloading QR code...",
-        "shareComingSoon": "Share feature coming soon",
-        "deleted": "QR code deleted"
-      },
-      "dynamic": "Dynamic",
-      "noData": "No data",
-      "scans": "scans"
-    },
-    "history": {
-      "title": "QR Code History",
-      "subtitle": "{{count}} QR codes created in total",
-      "deleteSelected": "Delete ({{count}})",
-      "export": "Export",
-      "exportJSON": "Export as JSON",
-      "exportCSV": "Export as CSV",
-      "filters": "Filters",
-      "searchPlaceholder": "Search in history...",
-      "filterOptions": {
-        "newest": "Newest",
-        "oldest": "Oldest",
-        "mostUsed": "Most used",
-        "lastUsed": "Last used",
-        "allTemplates": "All templates",
-        "default": "Default",
-        "modern": "Modern",
-        "minimalist": "Minimalist",
-        "business": "Business",
-        "startDate": "Start date"
-      },
-      "noQRCodes": {
-        "title": "No QR code found",
-        "searchSubtitle": "No results for your search",
-        "emptySubtitle": "Start creating QR codes to see them here"
-      },
-      "selectAll": "Select all",
-      "viewAll": "View all history ({{count}})",
-      "confirmDelete": "Delete {{count}} QR codes?",
-      "notifications": {
-        "deleted": "QR code deleted",
-        "multipleDeleted": "{{count}} QR codes deleted",
-        "exported": "History exported as {{format}}"
-      }
-    },
-    "historyCard": {
-      "template": "Template",
-      "used": "Used {{count}} times",
-      "actions": {
-        "view": "View",
-        "copy": "Copy",
-        "download": "Download",
-        "delete": "Delete"
-      },
-      "notifications": {
-        "copied": "Content copied!",
-        "downloading": "Downloading QR code..."
-      }
-    },
-    "qrTypeSelector": {
-      "premium": "Premium"
-    },
-    "qrDetail": {
-      "back": "Back",
-      "unnamed": "Unnamed QR Code",
-      "createdOn": "Created on",
-      "dynamic": "Dynamic",
-      "actions": {
-        "edit": "Edit",
-        "share": "Share",
-        "delete": "Delete"
-      },
-      "confirmDelete": "Are you sure you want to delete this QR code?",
-      "tabs": {
-        "overview": "Overview",
-        "analytics": "Analytics"
-      },
-      "stats": {
-        "totalScans": "Total scans",
-        "today": "Today",
-        "thisWeek": "This week"
-      },
-      "qrData": {
-        "title": "QR Code Data",
-        "copyData": "Copy data"
-      },
-      "devicesUsed": {
-        "title": "Devices used",
-        "mobile": "Mobile",
-        "desktop": "Desktop"
-      },
-      "preview": {
-        "title": "Preview",
-        "downloadQR": "Download QR Code"
-      },
-      "analytics": {
-        "title": "Detailed analytics",
-        "comingSoon": "Detailed analytics coming soon..."
-      },
-      "notifications": {
-        "notFound": "QR Code not found",
-        "deleted": "QR code deleted",
-        "downloading": "Downloading QR code...",
-        "linkCopied": "Link copied!",
-        "dataCopied": "Data copied!"
-      },
-      "shareText": "Discover my QR code"
-    }
-  },
-  "auth": {
-    "signIn": "Sign In",
-    "signUp": "Sign Up",
-    "createAccount": "Create Account",
-    "signInSubtitle": "Access your dashboard",
-    "signUpSubtitle": "Join QR Designer and create premium QR codes",
-    "fullName": "Full Name",
-    "fullNamePlaceholder": "John Doe",
-    "emailAddress": "Email Address",
-    "emailPlaceholder": "your@email.com",
-    "password": "Password",
-    "passwordPlaceholder": "••••••••",
-    "rememberMe": "Remember me",
-    "forgotPassword": "Forgot password?",
-    "orContinueWith": "Or continue with",
-    "alreadyHaveAccount": "Already have an account?",
-    "noAccountYet": "Don't have an account yet?",
-    "backToHome": "← Back to home"
   }
 }

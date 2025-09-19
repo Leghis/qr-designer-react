@@ -14,8 +14,6 @@ import {
 import QRCodeStyling from 'qr-code-styling';
 import { useTranslation } from 'react-i18next';
 import { useNotification } from '../../hooks/useNotification';
-import { useAuth } from '../../hooks/useAuth';
-import historyService from '../../services/historyService';
 import { downloadSVG } from '../../utils/domSafeDownload';
 
 // Import constants
@@ -24,7 +22,6 @@ import { COLOR_PALETTES, QR_STYLES } from './constants';
 const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) => {
   const { t } = useTranslation();
   const { showNotification } = useNotification();
-  const { isAuthenticated } = useAuth();
   
   // State
   const [qrData, setQrData] = useState('https://qr-designer.com');
@@ -45,7 +42,6 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
   const previewRef = useRef(null);
   const qrOptionsRef = useRef(qrOptions);
   const qrDataRef = useRef(qrData);
-  const templateRef = useRef(template);
   const templateOptionsRef = useRef(templateOptions);
   
   // Update refs when values change
@@ -56,10 +52,6 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
   useEffect(() => {
     qrDataRef.current = qrData;
   }, [qrData]);
-  
-  useEffect(() => {
-    templateRef.current = template;
-  }, [template]);
   
   useEffect(() => {
     templateOptionsRef.current = templateOptions;
@@ -110,7 +102,6 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
     try {
       const currentQrOptions = qrOptionsRef.current;
       const currentQrData = qrDataRef.current;
-      const currentTemplate = templateRef.current;
       const currentTemplateOptions = templateOptionsRef.current;
       
       // Clear previous QR
@@ -198,27 +189,18 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       qrCodeRef.current = new QRCodeStyling(options);
       qrCodeRef.current.append(previewRef.current);
       
-      // Save to history
-      if (isAuthenticated && currentQrData) {
-        historyService.addQRCode({
-          data: currentQrData,
-          template: currentTemplate?.id || 'custom',
-          options: options
-        });
-      }
-      
     } catch (error) {
       console.error('Error generating QR:', error);
       showNotification(t('common.error'), 'error');
     } finally {
       setIsGenerating(false);
     }
-  }, [isAuthenticated, showNotification, t]); // Minimal stable dependencies
+  }, [showNotification, t]); // Minimal stable dependencies
   
   // Update QR when data or options change
   useEffect(() => {
     generateQR();
-  }, [qrData, qrOptions.style, qrOptions.colors, qrOptions.customColors.dots, 
+  }, [generateQR, qrData, qrOptions.style, qrOptions.colors, qrOptions.customColors.dots, 
       qrOptions.customColors.background, qrOptions.customColors.corners, 
       qrOptions.shape, qrOptions.logo, qrOptions.logoSize, 
       template?.id, templateOptions]);
@@ -264,7 +246,7 @@ const QRGeneratorTemplateEditor = ({ template, templateOptions, onDataChange }) 
       }
       
       showNotification(t('qrGenerator.actions.downloadSuccess', { format: format.toUpperCase() }), 'success');
-    } catch (error) {
+    } catch {
       showNotification(t('qrGenerator.actions.downloadError'), 'error');
     }
   };

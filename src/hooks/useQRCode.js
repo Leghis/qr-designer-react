@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { generateQRCode } from '../services/qrService';
 
 // Small helper to safely stringify options for effect deps
@@ -16,6 +16,7 @@ const stableKey = (obj) => {
 // - Cleans up on unmount
 export const useQRCode = (containerRef, options) => {
   const instanceRef = useRef(null);
+  const optionsKey = useMemo(() => stableKey(options), [options]);
 
   useEffect(() => {
     const container = containerRef?.current;
@@ -34,18 +35,13 @@ export const useQRCode = (containerRef, options) => {
 
     // Cleanup on unmount
     return () => {
-      // Do not destroy instance to avoid double-unmount issues; just clear DOM
-      if (containerRef?.current) {
-        while (containerRef.current.firstChild) {
-          containerRef.current.removeChild(containerRef.current.firstChild);
-        }
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, stableKey(options)]);
+  }, [containerRef, options, optionsKey]);
 
   return instanceRef;
 };
 
 export default useQRCode;
-

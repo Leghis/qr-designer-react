@@ -43,7 +43,7 @@ const TemplateEditPage = () => {
     };
     
     fetchTemplate();
-  }, [id, navigate, showNotification]);
+  }, [id, navigate, showNotification, t]);
 
   // Vérifier l'accès au template premium
   useEffect(() => {
@@ -51,7 +51,7 @@ const TemplateEditPage = () => {
       showNotification(t('templateEdit.premium.accessRequired'), 'info');
       navigate('/premium');
     }
-  }, [template, canUsePremiumTemplate, navigate, showNotification]);
+  }, [template, canUsePremiumTemplate, navigate, showNotification, t]);
 
   // Scroll automatiquement vers le générateur de QR code après le chargement
   useEffect(() => {

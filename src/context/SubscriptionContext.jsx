@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect, createContext } from 'react';
 
 // Context for subscription state
@@ -30,7 +31,7 @@ export const SubscriptionProvider = ({ children }) => {
         try {
           const parsed = JSON.parse(savedSubscription);
           setSubscription(parsed);
-        } catch (e) {
+        } catch {
           console.error('Failed to parse subscription data');
         }
       }

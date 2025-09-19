@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { QrCode, Star, LayoutDashboard, Menu, X } from 'lucide-react';
+import { QrCode, Star, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useSubscription } from '../../hooks/useSubscription';
-import { useAuth } from '../../hooks/useAuth';
-import Badge from '../UI/Badge';
 import ThemeToggle from '../UI/ThemeToggle';
 import LanguageSwitcher from '../UI/LanguageSwitcher';
 // import Modal from '../UI/Modal';
@@ -13,7 +11,6 @@ import LanguageSwitcher from '../UI/LanguageSwitcher';
 const Header = () => {
   const { t } = useTranslation();
   const { isPremium, plan } = useSubscription();
-  const { isAuthenticated } = useAuth();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
@@ -134,23 +131,6 @@ const Header = () => {
                 )}
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </Link>
-              {isAuthenticated && (
-                <Link
-                  to="/dashboard"
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 focus:outline-none group flex items-center gap-2 ${
-                    isActive('/dashboard') 
-                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                      : 'text-gray-600 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-slate-800/50'
-                  }`}
-                >
-                  <LayoutDashboard className="w-4 h-4 transition-transform group-hover:scale-110" />
-                  <span className="relative z-10">{t('header.dashboard')}</span>
-                  {isActive('/dashboard') && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-xl" />
-                  )}
-                  <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-primary-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </Link>
-              )}
             </nav>
             
             {/* Desktop Controls - Enhanced */}
@@ -251,23 +231,6 @@ const Header = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 )}
               </Link>
-              {isAuthenticated && (
-                <Link
-                  to="/dashboard"
-                  onClick={closeMobileMenu}
-                  className={`relative flex items-center justify-center gap-3 py-4 px-6 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
-                    isActive('/dashboard') 
-                      ? 'bg-gradient-to-r from-primary-500 to-purple-500 text-white shadow-lg' 
-                      : 'text-gray-700 dark:text-slate-200 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:from-slate-800 dark:hover:to-slate-700'
-                  }`}
-                >
-                  <LayoutDashboard className="w-5 h-5 transition-transform hover:scale-110" />
-                  <span className="relative z-10">{t('header.dashboard')}</span>
-                  {!isActive('/dashboard') && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                  )}
-                </Link>
-              )}
             </div>
           </div>
         </nav>

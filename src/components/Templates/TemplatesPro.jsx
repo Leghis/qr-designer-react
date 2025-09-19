@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ let __maxConcurrentQR = (() => {
   try {
     const n = typeof navigator !== 'undefined' && navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4;
     return Math.max(2, Math.min(3, Math.floor(n / 2))); // 2 on low-end, 3 max
-  } catch (e) {
+  } catch {
     return 3;
   }
 })();
@@ -113,9 +113,9 @@ const TemplatesPro = () => {
 
   // Load templates when category changes with debouncing
   useEffect(() => {
-    // Clear any pending category change
     if (categoryChangeTimeoutRef.current) {
       clearTimeout(categoryChangeTimeoutRef.current);
+      categoryChangeTimeoutRef.current = null;
     }
 
     const loadTemplates = async () => {
@@ -137,15 +137,17 @@ const TemplatesPro = () => {
     };
     
     // Debounce category changes for better UX (except initial load)
+    let timeoutId = null;
     if (isInitialLoad) {
       loadTemplates();
     } else {
-      categoryChangeTimeoutRef.current = setTimeout(loadTemplates, 150);
+      timeoutId = setTimeout(loadTemplates, 150);
+      categoryChangeTimeoutRef.current = timeoutId;
     }
 
     return () => {
-      if (categoryChangeTimeoutRef.current) {
-        clearTimeout(categoryChangeTimeoutRef.current);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
     };
   }, [selectedCategory, isInitialLoad]);
@@ -286,6 +288,12 @@ const TemplateCard = ({ template, index, listVersion }) => {
   const qrContainerRef = useRef(null);
   const cardRef = useRef(null);
   const timeoutRef = useRef(null);
+  const clearTouchTimeout = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }, []);
   
   // Observe when card comes into view
   useEffect(() => {
@@ -313,10 +321,7 @@ const TemplateCard = ({ template, index, listVersion }) => {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      // Clear timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      clearTouchTimeout();
       
       // Clean up QR instance
       if (qrRef.current) {
@@ -331,7 +336,7 @@ const TemplateCard = ({ template, index, listVersion }) => {
         }
       }
     };
-  }, []);
+  }, [clearTouchTimeout]);
   
   // Generate QR preview only when in view, with concurrency limiting, caching and idle scheduling
   useEffect(() => {
@@ -422,10 +427,25 @@ const TemplateCard = ({ template, index, listVersion }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onTouchStart={() => setIsHovered(true)}
-      onTouchEnd={() => setTimeout(() => setIsHovered(false), 2000)} // Keep visible for 2s on touch
+      onMouseEnter={() => {
+        clearTouchTimeout();
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        clearTouchTimeout();
+        setIsHovered(false);
+      }}
+      onTouchStart={() => {
+        clearTouchTimeout();
+        setIsHovered(true);
+      }}
+      onTouchEnd={() => {
+        clearTouchTimeout();
+        timeoutRef.current = setTimeout(() => {
+          setIsHovered(false);
+          timeoutRef.current = null;
+        }, 2000);
+      }} // Keep visible for 2s on touch
       className="group"
     >
       <div className={`

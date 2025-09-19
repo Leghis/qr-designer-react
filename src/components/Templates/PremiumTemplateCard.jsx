@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { Crown, ArrowRight, Lock } from 'lucide-react';
+import { Crown, ArrowRight } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { defaultQROptions } from '../../services/qrService';
-import { useSubscription } from '../../hooks/useSubscription';
-import { useNotification } from '../../hooks/useNotification';
 
 const PremiumTemplateCard = ({ template }) => {
   const { t } = useTranslation();
@@ -15,8 +13,6 @@ const PremiumTemplateCard = ({ template }) => {
   const qrRef = useRef(null);
   const cardRef = useRef(null);
   const navigate = useNavigate();
-  const { isPremium, canUsePremiumTemplate } = useSubscription();
-  const { showNotification } = useNotification();
 
   // Lazy load QR code when card comes into view
   useEffect(() => {
@@ -85,6 +81,7 @@ const PremiumTemplateCard = ({ template }) => {
       <div className="bg-gradient-to-r from-primary-500 to-purple-600 p-4 text-white">
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-semibold text-lg">{template.name}</h3>
+          <Crown className="w-5 h-5" />
         </div>
         <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${categoryColors[template.category]}`}>
           {t(`templates.categories.${template.category}`)}

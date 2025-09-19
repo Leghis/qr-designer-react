@@ -1,6 +1,6 @@
 # QR Designer - React
 
-Application moderne de génération de QR codes personnalisés construite avec React et Vite.
+Application moderne de génération de QR codes personnalisés construite avec React et Vite. Le projet est désormais entièrement open source : il n'y a plus de partie privée ni de fonctionnalité de connexion. Tout le monde peut créer, modifier et partager des QR codes librement.
 
 ## Technologies
 
@@ -42,12 +42,12 @@ npm run preview
 
 ## Fonctionnalités
 
-- 🎨 Générateur de QR codes avec personnalisation complète
-- 🌙 Mode sombre/clair avec persistance
+- 🎨 Générateur de QR codes avec personnalisation avancée (styles, palettes, logos)
+- 🌙 Mode sombre/clair avec persistance locale
 - 📱 Design responsive et PWA-ready
 - ⚡ Performance optimisée avec code splitting
-- 🎯 Templates premium avec lazy loading
-- 🔔 Système de notifications
+- 🎯 Catalogue de templates évolutif avec lazy loading
+- 🔔 Système de notifications intégré
 - 🛡️ Gestion d'erreurs avec Error Boundaries
 
 ## Structure
@@ -69,3 +69,20 @@ src/
 - Optimisation des chunks vendor
 - Compression terser en production
 - PWA manifest pour installation mobile
+
+## Contribuer
+
+Nous accueillons avec enthousiasme vos idées et vos contributions :
+
+1. Forkez le dépôt et créez une branche (`git checkout -b feature/ma-super-idee`).
+2. Implémentez vos changements et assurez-vous que `npm run build` passe.
+3. Ouvrez une pull request en décrivant clairement la fonctionnalité ou la correction.
+
+Quelques pistes si vous ne savez pas par où commencer :
+
+- Ajouter de nouveaux templates de QR codes ou améliorer ceux existants.
+- Étendre les types de contenus pris en charge (paiement, réseaux sociaux, etc.).
+- Améliorer l'accessibilité (labels, navigation clavier, contrastes).
+- Optimiser les performances ou l'expérience mobile.
+
+N'hésitez pas à créer une issue pour discuter d'une idée avant de vous lancer. Toute suggestion, même petite, aide le projet à grandir !

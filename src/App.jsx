@@ -2,11 +2,9 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { NotificationProvider } from './context/NotificationContext';
-import { AuthProvider } from './context/AuthContext';
 import { SubscriptionProvider } from './context/SubscriptionContext';
 import Layout from './components/Layout/Layout';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import ProtectedRoute from './components/ProtectedRoute';
 import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load pages for better performance
@@ -14,14 +12,6 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const TemplatesPage = lazy(() => import('./pages/TemplatesPage'));
 const TemplateEditPage = lazy(() => import('./pages/TemplateEditPage'));
 const PremiumPage = lazy(() => import('./pages/PremiumPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-
-// Dashboard pages
-const DashboardLayout = lazy(() => import('./components/Dashboard/DashboardLayout'));
-const DashboardOverview = lazy(() => import('./pages/Dashboard/DashboardOverview'));
-const MyQRCodes = lazy(() => import('./pages/Dashboard/MyQRCodes'));
-const CreateQRCode = lazy(() => import('./pages/Dashboard/CreateQRCode'));
-const QRCodeDetail = lazy(() => import('./pages/Dashboard/QRCodeDetail'));
 
 // Loading component
 const PageLoader = () => (
@@ -37,75 +27,37 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <AuthProvider>
-          <SubscriptionProvider>
-            <NotificationProvider>
-              <Router>
-                <ScrollToTop />
-                <Routes>
-                  <Route path="/" element={<Layout />}>
-                    <Route index element={
-                      <Suspense fallback={<PageLoader />}>
-                        <HomePage />
-                      </Suspense>
-                    } />
-                    <Route path="templates" element={
-                      <Suspense fallback={<PageLoader />}>
-                        <TemplatesPage />
-                      </Suspense>
-                    } />
-                    <Route path="templates/:id" element={
-                      <Suspense fallback={<PageLoader />}>
-                        <TemplateEditPage />
-                      </Suspense>
-                    } />
-                    <Route path="premium" element={
-                      <Suspense fallback={<PageLoader />}>
-                        <PremiumPage />
-                      </Suspense>
-                    } />
-                    <Route path="login" element={
-                      <Suspense fallback={<PageLoader />}>
-                        <LoginPage />
-                      </Suspense>
-                    } />
-                    <Route 
-                      path="dashboard" 
-                      element={
-                        <ProtectedRoute>
-                          <Suspense fallback={<PageLoader />}>
-                            <DashboardLayout />
-                          </Suspense>
-                        </ProtectedRoute>
-                      }
-                    >
-                      <Route index element={
-                        <Suspense fallback={<PageLoader />}>
-                          <DashboardOverview />
-                        </Suspense>
-                      } />
-                      <Route path="qr-codes" element={
-                        <Suspense fallback={<PageLoader />}>
-                          <MyQRCodes />
-                        </Suspense>
-                      } />
-                      <Route path="qr-codes/new" element={
-                        <Suspense fallback={<PageLoader />}>
-                          <CreateQRCode />
-                        </Suspense>
-                      } />
-                      <Route path="qr-codes/:id" element={
-                        <Suspense fallback={<PageLoader />}>
-                          <QRCodeDetail />
-                        </Suspense>
-                      } />
-                    </Route>
-                  </Route>
-                </Routes>
-              </Router>
-            </NotificationProvider>
-          </SubscriptionProvider>
-        </AuthProvider>
+        <SubscriptionProvider>
+          <NotificationProvider>
+            <Router>
+              <ScrollToTop />
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={
+                    <Suspense fallback={<PageLoader />}>
+                      <HomePage />
+                    </Suspense>
+                  } />
+                  <Route path="templates" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <TemplatesPage />
+                    </Suspense>
+                  } />
+                  <Route path="templates/:id" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <TemplateEditPage />
+                    </Suspense>
+                  } />
+                  <Route path="premium" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <PremiumPage />
+                    </Suspense>
+                  } />
+                </Route>
+              </Routes>
+            </Router>
+          </NotificationProvider>
+        </SubscriptionProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
